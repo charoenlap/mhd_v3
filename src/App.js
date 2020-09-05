@@ -1,26 +1,26 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Componants/Member/Login";
-import Register from "./Componants/Member/Register";
+import Login from "./Components/Member/Login";
+import Register from "./Components/Member/Register";
 
-import Home from "./Componants/Home";
+import Home from "./Components/Home";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/">
+          <Route path="/" exact component={Login}>
             <Login />
           </Route>
-          <Route path="/login">
+          <Route path="/login" component={Login}>
             <Login />
           </Route>
-          <Route path="/register">
+          <Route path="/register" component={Register}>
             <Register />
           </Route>
-          <Route path="/home" componants={Home}>
+          <Route path="/home" component={Home}>
             <Home />
           </Route>
         </Switch>
