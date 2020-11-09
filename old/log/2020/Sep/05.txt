@@ -1,0 +1,10 @@
+{"os":"Mac OS X","ip":"184.22.203.96:50779","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 15:41:05","action":"CALL CONTROLLER home"}
+{"os":"Mac OS X","ip":"184.22.203.96:50779","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 15:41:05","action":"CALL CONTROLLER member\/logout"}
+{"os":"Mac OS X","ip":"184.22.203.96:50779","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 15:41:05","action":"CALL CONTROLLER member\/login"}
+{"os":"Mac OS X","ip":"184.22.203.96:50808","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 15:41:29","action":"CALL CONTROLLER member\/login"}
+{"os":"Mac OS X","ip":"184.22.203.96:62004","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 16:23:10","action":"CALL CONTROLLER member\/logout"}
+{"os":"Mac OS X","ip":"184.22.203.96:62004","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 16:23:11","action":"CALL CONTROLLER member\/login"}
+{"os":"Mac OS X","ip":"184.22.203.96:53321","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 20:11:25","action":"CALL CONTROLLER member\/login"}
+{"os":"Mac OS X","ip":"184.22.203.96:64892","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 21:54:32","action":"CALL CONTROLLER home"}
+{"os":"Mac OS X","ip":"184.22.203.96:64892","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 21:54:32","action":"CALL CONTROLLER member\/logout"}
+{"os":"Mac OS X","ip":"184.22.203.96:64892","browser":"Chrome 85.0.4183.83","directory":"\/production\/mhd\/index.php","session":"[]","datetime":"2020\/09\/05 21:54:32","action":"CALL CONTROLLER member\/login"}

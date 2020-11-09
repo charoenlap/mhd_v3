@@ -1,0 +1,11 @@
+.sidebar-dark .nav-item .nav-link {
+    padding:7px 15px;
+}
+.sidebar-dark .nav-item .nav-link span { font-size:1em; }
+.sidebar-dark .sidebar-heading { font-size:0.9em; }
+.sidebar-dark .nav-item .nav-link i { font-size:1.1em; }
+.sidebar .sidebar-brand { height:150px;}
+
+input[type="checkbox"].form-control {
+    height: 20px;
+}

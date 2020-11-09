@@ -1,6 +1,0 @@
-@import "~antd/dist/antd.css";
-
-.bgLogin {
-  background: url("/images/bg.png") no-repeat center center / cover;
-  height: 100vh;
-}
