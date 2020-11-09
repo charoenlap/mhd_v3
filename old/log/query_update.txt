@@ -1,6 +1,0 @@
-2020-08-19 13:18:53 : update mhd_member set `status` = '3'WHERE     id = '1' 
-2020-08-19 13:19:22 : update mhd_member set `status` = '3'WHERE     id = '1' 
-2020-08-19 14:17:50 : update mhd_member set `status` = '3'WHERE     id = '1' 
-2020-08-19 14:25:11 : update mhd_member set `status` = '2'WHERE     id = '1' 
-2020-08-19 14:49:30 : update mhd_member set `status` = '2'WHERE     id = '1' 
-2020-08-19 14:55:35 : update mhd_member set `status` = '2'WHERE     id = '1' 
