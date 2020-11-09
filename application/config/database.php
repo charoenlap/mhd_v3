@@ -71,7 +71,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = (ENVIRONMENT !== 'production') ? 'dev' : 'production';
-$active_group = 'production';
 
 $query_builder = TRUE;
 
@@ -80,7 +79,7 @@ $db['dev'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'mhd_production',
+	'database' => 'fsoftpro_mhd',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'mhd_',
 	'pconnect' => FALSE,
