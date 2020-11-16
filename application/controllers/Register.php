@@ -65,7 +65,7 @@ class Register extends CI_Controller
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
 
-    $fitler = array('member_id' => $member_id);
+    $filter = array('member_id' => $member_id);
     $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
 
     $this->load->template('register/index', $data);

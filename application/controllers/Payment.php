@@ -24,31 +24,69 @@ class Payment extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->helper('url', 'form');
   }
 
   public function index()
   {
-    $data = array(); 
-    
+    $data = array();
     $data['success'] = $this->session->has_userdata('success') ? $this->session->success : ''; $this->session->unset_userdata('success');
     $data['error'] = $this->session->has_userdata('error') ? $this->session->error : ''; $this->session->unset_userdata('error');
+    $data['uploadFailed'] = $this->session->has_userdata('uploadFailed') ? $this->session->uploadFailed : ''; $this->session->unset_userdata('uploadFailed');
+    $data['uploadSuccess'] = $this->session->has_userdata('uploadSuccess') ? $this->session->uploadSuccess : ''; $this->session->unset_userdata('uploadSuccess');
+    $data['action'] = base_url('payment/do_upload');
+    $data['user_detail'] = $this->session->member_info['member_no'];
 
-    $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
-    $year_id = $this->model_setting->get('config_register_year_id'); // ? year open
-    $program_info = $this->model_program->getList($checkbox_program_id);
-    $register_id = $this->model_register->getRegisterByYearAndMember($member_id, $year_id)->id;
+    $json = $this->encryption->decrypt($this->session->token);
+    $jsondata = json_decode($json);
+    $data['firstname'] = $jsondata->{'firstname'};
+    $data['lastname'] = $jsondata->{'lastname'};
 
-    $filter = array(
-      'member_id' => $member_id,
-      'register_id' => $register_id,
-    );
-    $this->model_register_program->getList($filter);
-    
-    $this->load->template('payment/index', $data);
+  $this->load->template('payment/index', $data);
+
   }
 
+  public function do_upload()
+  {
+    $json = $this->encryption->decrypt($this->session->token);
+    $jsondata = json_decode($json);
+    $member_no = $jsondata->{'member_no'};
+    if ($this->input->server('REQUEST_METHOD')=='POST') {
+      if($this->input->post('bank_comp')!=''){
+        $bank = $this->input->post('bank_comp');
+      }if($this->input->post('bank_oth')!=''){
+        $bank = $this->input->post('bank_oth');
+      }
+      $image = $_FILES['inputSlip']['name'];
+      $insert = array(
+        'member_id'   =>    $member_no,
+        'admin_id'    =>    0, // admin for check data
+        'image'       =>    $image,
+        'bank_name'   =>    $bank,
+        'date_added'  =>    $this->input->post('date_payment'),
+        'time_stamp'  =>    $this->input->post('time_payment'),
+      );
+      $result[] = ($insert)>0 ? true : false;
+
+      //upload image
+      $config['upload_path']          =   './upload/';
+      $config['allowed_types']        =   'jpeg|jpg|png';
+      $config['max_size']             =   2048;
+      $config['max_width']            =   0; //set 0 for free width
+      $config['max_height']           =   0; //set 0 for free height
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
+      if (in_array(!$this->upload->do_upload('inputSlip'),$result)) {
+        $this->session->set_userdata('uploadFailed','เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง');
+        redirect('payment');
+      } else {
+        $this->session->set_userdata('uploadSuccess','แจ้งชำระเงินเรียบร้อยแล้ว');
+        $this->model_payment->add($insert);
+        redirect('payment');
+      }
+    }
+  }
 }
 
-
 /* End of file Payment.php */
-/* Location: ./application/controllers/Payment.php */
+ /* Location: ./application/controllers/Payment.php */

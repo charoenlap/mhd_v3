@@ -71,7 +71,7 @@ class Member extends CI_Controller
 
         $year = $this->model_setting->get('config_register_open')==1 ?$this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year : false;
         $this->session->set_userdata('year', $year);
-
+      
         redirect('home');
       } else {
         $this->session->set_userdata('error', 'อีเมล รหัสผ่านผิดพลาด');

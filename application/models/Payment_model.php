@@ -60,7 +60,6 @@ class Payment_model extends CI_Model {
     $query = $this->db->get('payment');
     return $query->num_rows() == 1 ? $query->row() : false;
   }
-
   public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
     if (count($filter)>0) {
@@ -102,6 +101,15 @@ class Payment_model extends CI_Model {
     $query = $this->db->get('payment');
     return $query->num_rows();
   }
+  public function getuser($member_no,$firstname)
+  {
+    $this->db->where('firstname',$firstname);
+    $this->db->where('member_no', $member_no);
+    $this->db->where('del', 0);
+    $query = $this->db->get('member');
+    return $query->num_rows() == 1 ? $query->row() : false;
+  }
+
   // ------------------------------------------------------------------------
 
 }

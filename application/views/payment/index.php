@@ -20,28 +20,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card-body border-left-danger text-danger"><i class="fas fa-times-circle text-danger"></i> <?php echo $error;?></div>
             </div>
             <?php } ?>
+            
+            <!--check data upload-->
+            <?php if (!empty($uploadSuccess)) { ?>
+            <div class="card shadow mb-4">
+                <div class="card-body border-left-success text-success"><i class="fas fa-check-circle text-success"></i> <?php echo $uploadSuccess;?></div>
+            </div>
+            <?php } ?>
+            <?php if (!empty($uploadFailed)) { ?>
+            <div class="card shadow mb-4">
+                <div class="card-body border-left-danger text-danger"><i class="fas fa-times-circle text-danger"></i> <?php echo $uploadFailed;?></div>
+            </div>
+            <?php } ?>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">ข้อมูลชำระเงิน</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12">
-                            <form class="user">
+                        <div class="col-12">                            
+                            <form class="user" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="" placeholder="ชื่อ" required>
+                                            <input type="text" class="form-control" id="" placeholder="ชื่อ" value="<?php echo $firstname; ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="" placeholder="นามสกุล" required>
+                                            <input type="text" class="form-control" id="" placeholder="นามสกุล" value="<?php echo $lastname; ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <select name="" id="bank" class="form-control" required>
+                                            <select name="bank_comp" id="bank" class="form-control" required>
                                                 <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
                                                 <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
                                                 <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
@@ -64,33 +76,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <option value="ธนาคารอิสลามแห่งประเทศไทย">ธนาคารอิสลามแห่งประเทศไทย</option>
                                                 <option value="อื่นๆ">อื่นๆ</option>
                                             </select>
-                                            <input type="text" class="form-control mt-2" id="bank_other" placeholder="ช่องทางที่ชำระเงิน" />
+                                            <input type="text" class="form-control mt-2" id="bank_other" name="bank_oth" placeholder="ช่องทางที่ชำระเงิน" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputSlip" required>
-                                                <label class="custom-file-label" for="inputSlip">เลือก ไฟล์รูปภาพสลิป (.jpg .jpeg .png)</label>
+                                                <label class="custom-file-label" for="inputSlip">เลือก ไฟล์รูปภาพสลิป (.jpg .jpeg .png)</label>                          
+                                                <input type="file" class="custom-file-input" id="inputSlip" name="inputSlip" required>              
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="date" class="form-control" value="<?php echo date('Y-m-d');?>" required />
+                                            <input type="date" class="form-control" name="date_payment" value="<?php echo date('Y-m-d');?>" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="time" class="form-control" value="<?php echo date('H:i');?>" required />
+                                            <input type="time" class="form-control" name="time_payment" value="<?php echo date('H:i:s');?>" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
-                                        <button type="submit" class="btn btn-primary">แจ้งชำระเงิน</button>
+                                        <button type="submit" class="btn btn-primary" value="upload">แจ้งชำระเงิน</button>
                                         <button type="button" class="btn btn-primary disabled" disabled>ไม่มียอดชำระ</button>
-                                    </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">รายการโปรแกรม</h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body"></div>
                     <div class="row">
                         <div class="col-12">
                             <form class="user">
@@ -149,6 +161,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <script>
+$('#inputSlip').on("change",function() {
+        console.log("change fired");
+        var i = $(this).prev('label').clone();
+        var file = $('#inputSlip')[0].files[0].name;
+        console.log(file);
+        $(this).prev('label').text(file); 
+
+    });
+
 $(document).ready(function() {
     $('#bank_other').hide();
     $('#bank').change(function() {
@@ -158,6 +179,8 @@ $(document).ready(function() {
             $('#bank_other').slideUp('fast');
             $('#bank_other').focus();
         }
+
     });
 });
+
 </script>

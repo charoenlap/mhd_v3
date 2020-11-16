@@ -66,7 +66,6 @@ class Member_model extends CI_Model {
     $this->db->where('mhd_company.del', 0);
     $this->db->where('mhd_register.del', 0);
     $query = $this->db->get('member');
-
     return $query->row();
   }
 
