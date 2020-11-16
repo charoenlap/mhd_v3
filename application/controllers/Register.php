@@ -58,7 +58,7 @@ class Register extends CI_Controller
         redirect('register');
       } else {
         $this->session->set_userdata('success','สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-        redirect('payment');
+        redirect('register/receipt');
       }
     }
 
@@ -69,6 +69,9 @@ class Register extends CI_Controller
     $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
 
     $this->load->template('register/index', $data);
+  }
+  public function receipt(){
+    $this->load->view('register/receipt');
   }
 
 }
