@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col">
                 <img src="<?php echo base_url();?>assets/img/logo_receipt.png" alt="" class="float-left" width="auto" height="100px">
                     <div class="container text-right">
-                        Print Date : <?php echo date('Y-m-d H:i');?> <br>
-                        Patricipated Date : 2020-11-16 12:23
+                        Print Date : <?php echo date('Y-m-d H:i:s');?> <br>
+                        Patricipated Date : <?php echo $date_added; ?>
                     </div>
                 </div>
             </div>
@@ -27,15 +27,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 โครงการประเมิณคุณภาพห้องปฏิบัติการโดยองค์กรภายนอก <br>
                 คณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล
             </div>
+            <?php foreach ($company as $key => $value): ?>
             <div class="container text-left">
-                Patricipated ID : 20045 <br>
-                โรงพยาบาล/หน่วยงาน : kra<br>
-                ห้องปฏิบัติการ : kratos
+                Patricipated ID : <?php echo $member_no; ?><br>
+                โรงพยาบาล/หน่วยงาน : <?php echo $value->name; ?><br>
+                ห้องปฏิบัติการ : <?php echo $value->room; ?>
             </div>
             <td><hr/></td>
             <div class="container text-left">
-                ที่อยู่ : 99/99 บางขุนเทียน 10150 <br>
-                ผู้สมัครสมาชิก : kratos <br><br>
+                ที่อยู่ : <?php echo $value->address_1." ".$value->address_2." แขวง/ตำบล : ".$value->district." เขต/อำเภอ : ".$value->country." จังหวัด : ".$value->province." รหัสไปรษณีย์ : ".$value->postcode;?> <br>
+                ผู้สมัครสมาชิก : <?php echo $firstname." ".$lastname; ?> <br><br>
             </div>
             <div class="container text-left font-weight-bold">
                 รายการสมัครและชำระค่าธรรมเนียม
@@ -53,21 +54,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </thead>
         <tbody>
             <tr>
-                <td>EQAP</td>
-                <td>2,000</td>
-                <td>kratos@gmail.com</td>
+                <td>EQAB</td>
+                <td></td>
+                <td><?php echo $email; ?></td>
                 <td>kratos</td>
                 <td>99/99 บางขุนเทียน</td>
+                <!-- <td><?php echo $firstname." ".$lastname; ?></td>
+                <td><div class="address" data-toggle="tooltip" title="<?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?>">
+                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td> -->
                 <td>aeris</td>
             </tr>
-            <tr>
+            <!--  Second colum -->
+            <!-- <tr>
                 <td>PAQR</td>
                 <td>4,000</td>
-                <td>aeris@gmail.com</td>
-                <td>aeris</td>
-                <td>99/99 บางขุนเทียน</td>
+                <td><?php echo $email; ?></td>
                 <td>kratos</td>
-            </tr>
+                <td>99/99 บางขุนเทียน</td>
+                <td><?php echo $firstname." ".$lastname; ?></td>
+                <td><div class="address" data-toggle="tooltip" title="<?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?>">
+                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td>
+                <td>kratos</td>          
+            </tr> -->
+            <?php endforeach; ?>
             <tr>
             <td colspan="6" style="font-size: 13px;"> 
                 *สมัครสมาชิก EQAB:GRAM และ EQAB:AFB จะได้รับส่วนลด 200 บาท (โดยค่าธรรมเนียม 1,800 บาท) <br>
@@ -130,7 +139,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <tr>
                     <td>1.</td>
                     <td>ระบบสมัครสมาชิกออนไลน์</td>
-                    <td><a href=""><i class="fas fa-file"></i>  ส่งเอกสารแจ้งการชำระเงิน</a></td>
+                    <td><a href="<?php echo base_url();?>/payment/" target="blank"><i class="fas fa-file"></i>  ส่งเอกสารแจ้งการชำระเงิน</a></td>
                 </tr>
                 <tr>
                     <td>2.</td>
@@ -167,4 +176,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 #footer,#caution{
     font-size: 13px;
 }
+div.address{
+    width: 150px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
 </style>

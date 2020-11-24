@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+print_r($_POST);
 ?>
 
 <!-- Begin Page Content -->
@@ -98,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
-                                        <button type="submit" class="btn btn-primary" value="upload">แจ้งชำระเงิน</button>
+                                        <button type="submit" class="btn btn-primary" value="">แจ้งชำระเงิน</button>
                                         <button type="button" class="btn btn-primary disabled" disabled>ไม่มียอดชำระ</button>
                                     </form>
                                 </div>

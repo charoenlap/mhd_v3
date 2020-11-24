@@ -58,7 +58,7 @@ class Register extends CI_Controller
         redirect('register');
       } else {
         $this->session->set_userdata('success','สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-        redirect('register/receipt');
+        redirect('register');
       }
     }
 
@@ -71,10 +71,22 @@ class Register extends CI_Controller
     $this->load->template('register/index', $data);
   }
   public function receipt(){
-    $this->load->view('register/receipt');
-  }
+    $data = array();
+    $json = json_decode($this->encryption->decrypt($this->session->token));
+    $data['member_no'] = $json->{'member_no'};
+    $data['firstname'] = $json->{'firstname'};
+    $data['lastname'] = $json->{'lastname'};
+    $data['date_added'] = $json->{'date_added'};
+    $data['email'] = $json->{'email'};
 
+    $member_id = $json->{'id'};
+    $filter = array('member_id' => $member_id);
+    $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
+
+    $this->load->view('register/receipt', $data);
+  }
 }
+// }
 
 
 /* End of file Register.php */

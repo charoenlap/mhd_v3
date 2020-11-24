@@ -26,7 +26,7 @@
      <div class="sidebar-heading">จัดการผล</div>
 
      <li class="nav-item">
-         <a class="nav-link" href="<?php echo base_url('home');?>">
+         <a class="nav-link" href="<?php echo base_url('testresult');?>">
              <i class="fas fa-fw fa-file-upload"></i>
              <span>แจ้งส่งผลการทดสอบ</span>
          </a>

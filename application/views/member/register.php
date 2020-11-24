@@ -154,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <input type="text" name="province" class="form-control form-control-user" id="province" placeholder="จังหวัด" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="postcode" class="form-control form-control-user" id="postcode" placeholder="รหัสไปษณีย์" required>
+                                            <input type="text" name="postcode" class="form-control form-control-user" id="postcode" placeholder="รหัสไปรษณีย์" required>
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="สมัครสมาชิก">
