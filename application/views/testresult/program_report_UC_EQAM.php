@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <p><p class="text-bold">Trial:</p> trial 185-186 ( November 2020 )</p>
                     </div>
                     <div class="font-weight-bold container-left">
-                        <label for="report_date">วันที่ได้รับตัวอย่างทดสอบ *</label>
+                        <label for="datepick">วันที่ได้รับตัวอย่างทดสอบ *</label>
                         <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick"></input>
                     </div>
                     <div class="container-left"><p class="font-weight-bold" style="padding-top: 30px;">ความสมบูรณ์ของตัวอย่างทดสอบ * </p></div>
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="container-left">
                             <label for="received_status_other" class="font-weight-bold">เนื่องจาก</label>
-                            <textarea class="form-control" id="received_status_other" name="received_status_other" placeholder="ความคิดเห็นเพิ่มเติม"></textarea>
+                            <textarea class="form-control" id="received_status_other" name="received_status_other"></textarea>
                         </div>
                             <div class="container-left" style="padding-top: 30px;">
                                 <p class="font-weight-bold">ผลการตรวจ</p>
@@ -58,12 +58,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td>Lymphoblast</td>
                                                 <td>
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="sample_1[0]" id="radio_1_0_1" value="1" >           
+                                                <input class="form-check-input" type="radio" name="sample_1[0]" id="radio_1_0_<?php echo $x; ?>" value="<?php echo $x; ?>" >           
                                                 </div>
                                                 </td>
                                                 <td>
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="sample_1[1]" id="radio_1_1_1" value="1" >           
+                                                <input class="form-check-input" type="radio" name="sample_1[1]" id="radio_1_1_<?php echo $x; ?>" value="<?php echo $x; ?>" >           
                                                 </div>
                                                 </td>
                                             </tr>
@@ -90,12 +90,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td>Lymphoblast</td>
                                                 <td>
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="sample_1[0]" id="radio_1_0_1" value="1" >           
+                                                <input class="form-check-input" type="radio" name="sample_1[0]" id="radio_1_0_<?php echo $x; ?>" value="<?php echo $x; ?>" >           
                                                 </div>
                                                 </td>
                                                 <td>
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="sample_1[1]" id="radio_1_1_1" value="1" >           
+                                                <input class="form-check-input" type="radio" name="sample_1[1]" id="radio_1_1_<?php echo $x; ?>" value="<?php echo $x; ?>" >           
                                                 </div>
                                                 </td>
                                             </tr>
