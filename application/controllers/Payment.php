@@ -42,7 +42,18 @@ class Payment extends CI_Controller
     $data['firstname'] = $jsondata->{'firstname'};
     $data['lastname'] = $jsondata->{'lastname'};
 
-  $this->load->template('payment/index', $data);
+
+    $member_id = $jsondata->{'id'};
+    $data['program_list'] = $this->model_register_program->getListProgram($member_id);
+    // คำนวณ
+    $total = 0;
+    $discount = 0;
+    foreach ($data['program_list'] as $key => $value) {
+      $total += $value->price;
+    }
+    $data['discount'] = $discount;
+    $data['total'] = $total;
+    $this->load->template('payment/index', $data);
 
   }
 

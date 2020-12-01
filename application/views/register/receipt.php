@@ -53,17 +53,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </tr>
         </thead>
         <tbody>
+            <?php foreach ($program_list as $key => $value) { ?>
             <tr>
+                <td><?php echo $value->program_name; ?></td>
+                <td><?php echo $value->price; ?></td>
+                <td><?php echo $firstname." ".$lastname; ?></td>
+                <td><?php echo $firstname." ".$lastname; ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <?php } ?>
+            <!-- <tr>
                 <td>EQAB</td>
                 <td></td>
                 <td><?php echo $email; ?></td>
                 <td>kratos</td>
                 <td>99/99 บางขุนเทียน</td>
-                <!-- <td><?php echo $firstname." ".$lastname; ?></td>
+                <td><?php echo $firstname." ".$lastname; ?></td>
                 <td><div class="address" data-toggle="tooltip" title="<?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?>">
-                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td> -->
+                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td>
                 <td>aeris</td>
-            </tr>
+            </tr> -->
             <!--  Second colum -->
             <!-- <tr>
                 <td>PAQR</td>
@@ -84,17 +94,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </tr>
             <tr>
                 <td class="font-weight-bold" colspan="3">ค่าธรรมเนียมการสมัครสมาชิก</td>
-                <td colspan="2">2,500</td>
+                <td colspan="2"><?php echo number_format($total,2); ?></td>
                 <td colspan="2">บาท</td>
             </tr>
             <tr>
                 <td class="font-weight-bold" colspan="3">ส่วนลด</td>
-                <td colspan="2">500</td>
+                <td colspan="2"><?php echo $discount; ?></td>
                 <td colspan="2">บาท</td>
             </tr>
             <tr>
                 <td class="font-weight-bold" colspan="3">รวมค่าธรรมเนียมที่ต้องชำระทั้งสิ้น ("สองพันบาทถ้วน")</td>
-                <td colspan="2">2,000</td>
+                <td colspan="2"><?php echo number_format(($total-$discount),2); ?></td>
                 <td colspan="2">บาท</td>
             </tr>
         </tbody>

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-print_r($_POST);
+// print_r($_POST);
 ?>
 
 <!-- Begin Page Content -->
@@ -129,7 +129,14 @@ print_r($_POST);
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php foreach ($program_list as $key => $value) { ?>
                                                 <tr>
+                                                    <td class="text-center"><?php echo $_SESSION['year']; ?></td>
+                                                    <td class="text-center"><?php echo $value->program_name; ?></td>
+                                                    <td class="text-right"><?php echo $value->price; ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                                <!-- <tr>
                                                     <td colspan="3" class="text-center">ไม่พบโปรแกรมที่สมัคร</td>
                                                 </tr>
                                                 <tr>
@@ -141,12 +148,16 @@ print_r($_POST);
                                                     <td class="text-center">2020</td>
                                                     <td class="text-center">EQAS</td>
                                                     <td class="text-right">3,000</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                             <tfoot>
                                                 <tr>
+                                                    <th colspan="2" class="text-right">ส่วนลด</th>
+                                                    <th class="text-right"></th>
+                                                </tr>
+                                                <tr>
                                                     <th colspan="2" class="text-right">ยอดชำระ</th>
-                                                    <th class="text-right">6,000</th>
+                                                    <th class="text-right"><?php echo number_format($total,2); ?></th>
                                                 </tr>
                                             </tfoot>
                                         </table>

@@ -55,10 +55,10 @@ class Register extends CI_Controller
 
       if (in_array(false, $result)) {
         $this->session->set_userdata('error','เกิดข้อผิดพลาดไม่สามารถสมัครได้กรุณาลองใหม่อีกครั้ง');
-        redirect('register');
+        redirect('register/receipt');
       } else {
         $this->session->set_userdata('success','สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-        redirect('register');
+        redirect('register/receipt');
       }
     }
 
@@ -82,6 +82,21 @@ class Register extends CI_Controller
     $member_id = $json->{'id'};
     $filter = array('member_id' => $member_id);
     $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
+    $data['program_list'] = $this->model_register_program->getListProgram($member_id);
+
+    // ส่วนของการคำนวณ
+    $total = 0;
+    $discount = 0;
+    foreach ($data['program_list'] as $key => $value) {
+      if ($value->program_id == 10 && $value->program_id == 12 && $value->program_id == 13) {
+        $discount = 500;
+      }else if ($value->program_id == 10 && $value->program_id == 12) {
+        $discount = 200;
+      }
+      $total += $value->price;
+    }
+    $data['total'] = $total;
+    $data['discount'] = $discount;
 
     $this->load->view('register/receipt', $data);
   }
