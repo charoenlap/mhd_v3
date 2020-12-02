@@ -87,13 +87,23 @@ class Register extends CI_Controller
     // ส่วนของการคำนวณ
     $total = 0;
     $discount = 0;
+    $case_one = "false";
+    $case_two = "false";
+    $case_tree = "false";
     foreach ($data['program_list'] as $key => $value) {
-      if ($value->program_id == 10 && $value->program_id == 12 && $value->program_id == 13) {
-        $discount = 500;
-      }else if ($value->program_id == 10 && $value->program_id == 12) {
-        $discount = 200;
-      }
       $total += $value->price;
+      if ($value->program_id == 10) {
+        $case_one = "true";
+      }else if ($value->program_id == 12) {
+        $case_two = "true";
+      }else if ($value->program_id == 13) {
+        $case_tree = "true";
+      }
+    }
+    if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
+      $discount = 500;
+    }else if ($case_one == "true" && $case_two == "true") {
+      $discount = 200;
     }
     $data['total'] = $total;
     $data['discount'] = $discount;

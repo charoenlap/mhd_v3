@@ -99,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </tr>
             <tr>
                 <td class="font-weight-bold" colspan="3">ส่วนลด</td>
-                <td colspan="2"><?php echo $discount; ?></td>
+                <td colspan="2"><?php echo number_format($discount,2); ?></td>
                 <td colspan="2">บาท</td>
             </tr>
             <tr>

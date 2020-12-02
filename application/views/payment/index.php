@@ -1,9 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-<<<<<<< Updated upstream
-// print_r($_POST);
-=======
->>>>>>> Stashed changes
 ?>
 
 <!-- Begin Page Content -->
@@ -47,12 +43,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="" placeholder="ชื่อ" value="<?php echo $firstname; ?>" readonly>
+                                            <input type="text" class="form-control" id="" placeholder="ชื่อ" value="<?php echo $firstname; ?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="" placeholder="นามสกุล" value="<?php echo $lastname; ?>" readonly>
+                                            <input type="text" class="form-control" id="" placeholder="นามสกุล" value="<?php echo $lastname; ?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -156,11 +152,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tfoot>
                                                 <tr>
                                                     <th colspan="2" class="text-right">ส่วนลด</th>
-                                                    <th class="text-right"></th>
+                                                    <th class="text-right"><?php echo number_format($discount,2); ?></th>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="2" class="text-right">ยอดชำระ</th>
-                                                    <th class="text-right"><?php echo number_format($total,2); ?></th>
+                                                    <th class="text-right"><?php echo number_format(($total-$discount),2); ?></th>
                                                 </tr>
                                             </tfoot>
                                         </table>

@@ -48,8 +48,23 @@ class Payment extends CI_Controller
     // คำนวณ
     $total = 0;
     $discount = 0;
+    $case_one = "false";
+    $case_two = "false";
+    $case_tree = "false";
     foreach ($data['program_list'] as $key => $value) {
       $total += $value->price;
+      if ($value->program_id == 10) {
+        $case_one = "true";
+      }else if ($value->program_id == 12) {
+        $case_two = "true";
+      }else if ($value->program_id == 13) {
+        $case_tree = "true";
+      }
+    }
+    if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
+      $discount = 500;
+    }else if ($case_one == "true" && $case_two == "true") {
+      $discount = 200;
     }
     $data['discount'] = $discount;
     $data['total'] = $total;
