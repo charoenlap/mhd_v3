@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 ?>
 
 <div class="container-fluid">
@@ -8,11 +9,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="card-body">
             <div class="row">
                 <div class="container-fluid">
+                <form class="user" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                     <div class="text-center p-3 mb-2 bg-primary text-white" id="title2" name="title2">
+                        <input type="text" name="title_1" value="EQAI:Syphilis" class="d-none">
                         <h2><?php echo $heading_title; ?></h2>
                     </div>
-
-                    <form action="<?php echo $action; ?>" method="POST" role="form">
                         <div class="container-left">
                             <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : EQAI:Syphilis</h5>
                         </div>
@@ -26,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                             <div class="font-weight-bold container-left">
                                 <label for="datepick">วันที่ได้รับตัวอย่างทดสอบ *</label>
-                                <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick"></input>
+                                <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick" value="<?php echo date('Y-m-d'); ?>" ></input>
                             </div>
                             <div class="container-left">
                                 <p class="font-weight-bold" style="padding-top: 30px;">ความสมบูรณ์ของตัวอย่างทดสอบ * </p>
@@ -34,7 +35,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <input type="radio" name="received_status" id="test1" name="test1" class="received_check theone" checked="" value="1">
                             <label class="choose_edit" for="test1">อยู่ในสภาพสมบูรณ์</label>
                             <div class="container-left">
-                                <input type="radio" name="received_status" id="test2" name="test2" class="received_check theone" value="2">
+                            <input type="radio" name="received_status" id="test2" name="test2" class="received_check theone" value="2">
                                 <label class="choose_edit" for="test2">อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้</label>
                             </div>
                             <div class="container-left">
@@ -62,7 +63,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <td>
                                                 <select class="select-other custom-select" name="tools[0]" other_id="other_ntp" data-no="4">
                                                     <option value="" selected="">Choose</option>
-                                                    <option value="26" other="">VDRL</option>
+                                                    <option value="26|VDRL" other="">VDRL</option>
                                                     <option value="27" other="">RPR</option>
                                                     <option value="28" other="">Unheated VDLR</option>
                                                     <option value="29" other="1">Other</option>
@@ -153,15 +154,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                             <div class="font-weight-bold container-left" style="padding-top: 30px;">
                                 <label for="report_date">วันที่ทำการทดสอบ </label>
-                                <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date"></input>
+                                <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                             </div>
                             <div class="form-gruop text-center" style="margin-top: 30px;">
                                 <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                <a href="" data-toggle="modal" data-target="#modalsubmitformreport" class="btn btn-primary" id="btnpreview" name="btnpreview">พรีวิว</a>
-                                <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button>
+                                <button class="btn btn-primary" name="submit" type="submit" value="preview">พรีวิว</button>
+                                <button class="btn btn-primary" name="submit" type="submit" value="accept">ยืนยันการส่งผลการตรวจ</button>
+                                <!-- <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button> -->
                             </div>
                         </div>
-                </div>
+                    </div>
                 </form>
 
             </div>

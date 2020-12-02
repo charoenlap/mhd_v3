@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<<<<<<< Updated upstream
 ERROR - 2020-11-30 11:23:27 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library 'pdo_pgsql.so' (tried: /Applications/MAMP/bin/php/php7.3.7/lib/php/extensions/no-debug-non-zts-20180731/pdo_pgsql.so (dlopen(/Applications/MAMP/bin/php/php7.3.7/lib/php/extensions/no-debug-non-zts-20180731/pdo_pgsql.so, 9): Library not loaded: /Applications/MAMP/Library/pg/lib/libpq.5.dylib
   Referenced from: /Applications/MAMP/bin/php/php7.3.7/lib/php/extensions/no-debug-non-zts-20180731/pdo_pgsql.so
   Reason: image not found), /Applications/MAMP/bin/php/php7.3.7/lib/php/extensions/no-debug-non-zts-20180731/pdo_pgsql.so.so (dlopen(/Applications/MAMP/bin/php/php7.3.7/lib/php/extensions/no-debug-non-zts-20180731/pdo_pgsql.so.so, 9): image not found)) Unknown 0
@@ -6950,3 +6951,77 @@ ERROR - 2020-11-30 18:20:23 --> Severity: Notice --> Undefined property: stdClas
 ERROR - 2020-11-30 18:20:23 --> Severity: Notice --> Undefined property: stdClass::$country /Applications/MAMP/htdocs/mhd/application/views/register/receipt.php 86
 ERROR - 2020-11-30 18:20:23 --> Severity: Notice --> Undefined property: stdClass::$province /Applications/MAMP/htdocs/mhd/application/views/register/receipt.php 86
 ERROR - 2020-11-30 18:20:23 --> Severity: Notice --> Undefined property: stdClass::$postcode /Applications/MAMP/htdocs/mhd/application/views/register/receipt.php 86
+=======
+ERROR - 2020-11-30 11:02:20 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' C:\xampp\htdocs\mhd\system\core\CodeIgniter.php 532
+ERROR - 2020-11-30 11:02:39 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:37:16 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:42:47 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:42:48 --> Severity: error --> Exception: Object of class stdClass could not be converted to string C:\xampp\htdocs\mhd\application\controllers\Testresult.php 449
+ERROR - 2020-11-30 11:43:38 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:44:02 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:45:53 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:47:19 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:47:49 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 11:57:43 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 12:07:59 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:07:59 --> Severity: Notice --> Undefined variable: received_status C:\xampp\htdocs\mhd\application\views\testresult\preview.php 49
+ERROR - 2020-11-30 12:08:59 --> Severity: Notice --> Undefined variable: received_status C:\xampp\htdocs\mhd\application\views\testresult\preview.php 49
+ERROR - 2020-11-30 12:09:17 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:11:39 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:26:30 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:31:14 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:31:39 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 12:45:39 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:46:15 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:51:21 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:52:14 --> Severity: error --> Exception: syntax error, unexpected ';', expecting ')' C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 12:52:56 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:55:09 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 12:55:22 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:00:30 --> Severity: error --> Exception: syntax error, unexpected ')' C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:02:53 --> Severity: error --> Exception: syntax error, unexpected ')' C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:03:11 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:03:39 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:05:48 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:05:49 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:05:56 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 445
+ERROR - 2020-11-30 13:09:44 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:15:54 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:17:43 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:18:21 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:19:15 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:19:17 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:19:45 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:19:46 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:26:24 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:26:28 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:27:52 --> Severity: Notice --> Undefined variable: result C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:28:15 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:33:05 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:33:06 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:34:14 --> Severity: error --> Exception: Cannot use [] for reading C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:34:22 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:35:04 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 446
+ERROR - 2020-11-30 13:39:07 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:39:08 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:42:20 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:42:31 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:44:32 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 447
+ERROR - 2020-11-30 13:44:32 --> Severity: Notice --> Undefined variable: insert C:\xampp\htdocs\mhd\application\controllers\Testresult.php 448
+ERROR - 2020-11-30 16:40:28 --> Severity: Notice --> Undefined variable: preview C:\xampp\htdocs\mhd\application\controllers\Testresult.php 444
+ERROR - 2020-11-30 16:40:29 --> Severity: Notice --> Undefined variable: preview C:\xampp\htdocs\mhd\application\controllers\Testresult.php 444
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:06 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+ERROR - 2020-11-30 17:28:07 --> Severity: Notice --> Trying to get property 'datepick' of non-object C:\xampp\htdocs\mhd\application\views\testresult\preview.php 83
+>>>>>>> Stashed changes

@@ -26,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                             <div class="font-weight-bold container-left">
                                 <label for="datepick">วันที่ได้รับตัวอย่างทดสอบ *</label>
-                                <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick"></input>
+                                <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick" value="<?php echo date('Y-m-d'); ?>" ></input>
                             </div>
                             <div class="container-left">
                                 <p class="font-weight-bold" style="padding-top: 30px;">ความสมบูรณ์ของตัวอย่างทดสอบ * </p>
@@ -435,7 +435,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </div>
                                     <div class="font-weight-bold container-left" style="padding-top: 30px;">
                                         <label for="report_date">วันที่ทำการทดสอบ </label>
-                                        <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date"></input>
+                                        <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                                     </div>
                                     <div class="form-gruop text-center">
                                         <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>

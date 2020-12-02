@@ -35,7 +35,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAC'); 
+    $data['action'] = base_url('testresult/preview'); 
     
     /* 
     variable in form
@@ -72,6 +72,7 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
+
     }
     $this->load->template('testresult/program_report_EQAC',$data);  
   }
@@ -80,7 +81,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAH');
+    $data['action'] = base_url('testresult/preview');
    /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -118,6 +119,7 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
+
     }
     $this->load->template('testresult/program_report_EQAH',$data);
   }
@@ -126,7 +128,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAT');
+    $data['action'] = base_url('testresult/preview');
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -395,7 +397,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAI_SYPHI');
+    $data['action'] = base_url('testresult/preview');
 
     /* 
     variable in form
@@ -420,29 +422,28 @@ class Testresult extends CI_Controller
     'comment' = ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง name = comment
     'report_date' = วันที่ทำการทดสอบ name = report_date
     */
-
     if ($this->input->server('REQUEST_METHOD')=='POST') {
-
-      $insert = array(
+      $preview[] = '';
+      $preview = array(
         'datepick'                  =>    $this->input->post('datepick'),
         'received_status'           =>    $this->input->post('received_status'),
         'received_status_other'     =>    $this->input->post('received_status_other'),
-        'tools[0]'                  =>    $this->input->post('tools[0]'),
-        'tool_other[0]'             =>    $this->input->post('tool_other[1]'),
-        'tools[1]'                  =>    $this->input->post('tools[1]'),
-        'tool_other[1]'             =>    $this->input->post('tool_other[1]'),
+        'tools'                     =>    $this->input->post('tools'),
+        'tool_other'                =>    $this->input->post('tool_other'),
         'ntp_result'                =>    $this->input->post('ntp_result'),
         'tp_result'                 =>    $this->input->post('tp_result'),
         'ntp_lot_number'            =>    $this->input->post('ntp_lot_number'),
         'tp_lot_number'             =>    $this->input->post('tp_lot_number'),
-        
+
         'name_lname'              =>    $this->input->post('name_lname'),
         'tel'                     =>    $this->input->post('tel'),
         'position'                =>    $this->input->post('position'),
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
+      $this->session->set_userdata('preview',$preview);
     }
+    $this->session->set_userdata('EQAI_SYPHI',1);
     $this->load->template('testresult/program_report_EQAI_SYPHI',$data);
   }
 
@@ -655,4 +656,28 @@ class Testresult extends CI_Controller
     }
     $this->load->template('testresult/program_report_EQAB_IDEN_AST',$data);
   }
+  public function preview()
+{
+  $data = array();
+  // $data['preview'] = $this->session->has_userdata('preview') ? $this->session->preview : ''; $this->session->unset_userdata('preview');
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+  $data['datereport'] = $this->input->post('report_date');
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+    $received_stat = "อยู่ในสภาพสมบูรณ์";
+    $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+    $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+    $received_other = $this->input->post('received_status_other');
+    $data['received_status']  = $received_other;
+  }
+  // $this->session->unset_userdata('EQAI_SYPHI');
+  // $this->session->unset_userdata('preview');
+  $data['comment'] = $this->input->post('comment');
+  $this->load->view('testresult/preview',$data);
 }
+
+}
+

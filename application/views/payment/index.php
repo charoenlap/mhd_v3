@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+<<<<<<< Updated upstream
 // print_r($_POST);
+=======
+>>>>>>> Stashed changes
 ?>
 
 <!-- Begin Page Content -->
