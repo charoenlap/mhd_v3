@@ -94,6 +94,7 @@ class Register_program_model extends CI_Model {
     $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name');
     $this->db->where('mhd_register_program.member_id',$id);
     $this->db->where('mhd_register_program.del','0');
+    $this->db->order_by('mhd_register_program.id','DESC');
     $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
     $query = $this->db->get('register_program');
     return $query->result();

@@ -65,6 +65,19 @@ class Register extends CI_Controller
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
 
+    // filter choose program 
+    $data['program_choose'] = $this->model_register_program->getListProgram($member_id);
+    $programs_id = array();
+    $program_id  = array();
+    foreach ($data['programs'] as $key => $value) {
+      $programs_id[] = $value->id;
+    }
+    foreach ($data['program_choose'] as $key => $value) {
+      $program_id[] = $value->program_id;
+    }
+    $data['program_choose_list'] = array_intersect($programs_id, $program_id);
+    
+
     $filter = array('member_id' => $member_id);
     $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
 
