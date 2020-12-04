@@ -3346,7 +3346,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 </select>
                                             </td>
                                             <td>
-                                                <select class="custom-select" name="method[24]" other_id="o                                      <option value="" selected="">Choose</option>
+                                                <select class="custom-select" name="method[24]" other_id="" value="" selected="">Choose</option>
                                                                     <option value=" 501" other="">Abbott laboratories</option>
                                                     <option value="502" other="">Beckman Coulter</option>
                                                     <option value="503" other="">BioSystems</option>

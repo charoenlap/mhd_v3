@@ -663,6 +663,11 @@ class Testresult extends CI_Controller
   $data['title']  = $this->input->post('title_1');
   $data['datepick']  = $this->input->post('datepick');
   $data['datereport'] = $this->input->post('report_date');
+
+  $data['principle'] = $this->input->post('principle');
+  $data['instrument'] = $this->input->post('instrument');
+  $data['method'] = $this->input->post('method');
+  $data['result_2'] = $this->input->post('result_2');
   $received_status = $this->input->post('received_status');
   if($received_status==1){
     $received_stat = "อยู่ในสภาพสมบูรณ์";
