@@ -36,6 +36,7 @@ class Payment extends CI_Controller
     $data['uploadSuccess'] = $this->session->has_userdata('uploadSuccess') ? $this->session->uploadSuccess : ''; $this->session->unset_userdata('uploadSuccess');
     $data['action'] = base_url('payment/do_upload');
     $data['user_detail'] = $this->session->member_info['member_no'];
+    $data['link_register'] = base_url('register');
 
     $json = $this->encryption->decrypt($this->session->token);
     $jsondata = json_decode($json);
@@ -43,14 +44,20 @@ class Payment extends CI_Controller
     $data['lastname'] = $jsondata->{'lastname'};
 
 
-    $member_id = $jsondata->{'id'};
-    $data['program_list'] = $this->model_register_program->getListProgram($member_id);
-    // คำนวณ
+    // Find register_id for find program in register
+    $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+    $year_id = $this->model_setting->get('config_register_year_id'); // year
+    $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+    $company_id = $register_info->company_id;
+    $register_id = (int)$register_info->id;
+    
+    // Get List Program
+    $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, false);
+
+    // Condition discount only program
     $total = 0;
     $discount = 0;
-    $case_one = "false";
-    $case_two = "false";
-    $case_tree = "false";
+    $case_one = "false"; $case_two = "false"; $case_tree = "false";
     foreach ($data['program_list'] as $key => $value) {
       $total += $value->price;
       if ($value->program_id == 10) {
@@ -61,11 +68,13 @@ class Payment extends CI_Controller
         $case_tree = "true";
       }
     }
+
     if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
       $discount = 500;
     }else if ($case_one == "true" && $case_two == "true") {
       $discount = 200;
     }
+
     $data['discount'] = $discount;
     $data['total'] = $total;
     $this->load->template('payment/index', $data);
@@ -78,22 +87,21 @@ class Payment extends CI_Controller
     $jsondata = json_decode($json);
     $member_no = $jsondata->{'member_no'};
     if ($this->input->server('REQUEST_METHOD')=='POST') {
+
       if($this->input->post('bank_comp')!=''){
         $bank = $this->input->post('bank_comp');
       }if($this->input->post('bank_oth')!=''){
         $bank = $this->input->post('bank_oth');
       }
-      $image = $_FILES['inputSlip']['name'];
-      $insert = array(
-        'member_id'   =>    $member_no,
-        'admin_id'    =>    0, // admin for check data
-        'image'       =>    $image,
-        'bank_name'   =>    $bank,
-        'date_added'  =>    $this->input->post('date_payment'),
-        'time_stamp'  =>    $this->input->post('time_payment'),
-      );
-      $result[] = ($insert)>0 ? true : false;
 
+      // find register id
+      $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+      $year_id = $this->model_setting->get('config_register_year_id'); // year
+      $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+      $company_id = $register_info->company_id;
+      $register_id = isset($register_info->id) ? $register_info->id : 0;
+
+      
       //upload image
       $config['upload_path']          =   './upload/';
       $config['allowed_types']        =   'jpeg|jpg|png';
@@ -102,14 +110,32 @@ class Payment extends CI_Controller
       $config['max_height']           =   0; //set 0 for free height
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
-      if (in_array(!$this->upload->do_upload('inputSlip'),$result)) {
+      if (!$this->upload->do_upload('inputSlip')) {
         $this->session->set_userdata('uploadFailed','เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง');
-        redirect('payment');
       } else {
-        $this->session->set_userdata('uploadSuccess','แจ้งชำระเงินเรียบร้อยแล้ว');
-        $this->model_payment->add($insert);
-        redirect('payment');
+        $image = $_FILES['inputSlip']['name'];
+        $insert = array(
+          'register_id' =>    $register_id,
+          'member_id'   =>    $member_no,
+          'admin_id'    =>    0, // admin for check data
+          'image'       =>    $image,
+          'bank_name'   =>    $bank,
+          'slip_date'  =>    $this->input->post('date_payment'),
+          'slip_time'  =>    $this->input->post('time_payment'),
+          'date_added' => date('Y-m-d H:i:s')
+        );
+        $result = $this->model_payment->add($insert);
+
+        //find register program and update flag payments
+        $this->model_register_program->updateSlip($register_id, $member_id, $year_id, $company_id);
+
+        if ($result>0) {
+          $this->session->set_userdata('uploadSuccess','แจ้งชำระเงินเรียบร้อยแล้ว รอเจ้าหน้าที่ตรวจสอบระบบ');  
+        } else {
+          $this->session->set_userdata('uploadFailed','เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่');  
+        }
       }
+      redirect('payment');
     }
   }
 }

@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">                            
-                            <form class="user" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+                            <form class="user" id="formpayment" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -98,8 +98,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
-                                        <button type="submit" class="btn btn-primary" value="">แจ้งชำระเงิน</button>
-                                        <button type="button" class="btn btn-primary disabled" disabled>ไม่มียอดชำระ</button>
+                                        <button type="submit" class="btn btn-primary" value="" id="btnsubmit">แจ้งชำระเงิน</button>
+                                        <button type="button" class="btn btn-primary disabled" disabled="disabled" id="btndisabled">ไม่มียอดชำระ</button>
                                     </form>
                                 </div>
                             </div>
@@ -113,13 +113,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">รายการโปรแกรม</h6>
                 </div>
-                <div class="card-body"></div>
+                <div class="card-body">
                     <div class="row">
                         <div class="col-12">
                             <form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered px-2">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">ปี</th>
@@ -128,36 +128,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php if (count($program_list)>0) : ?>
                                                 <?php foreach ($program_list as $key => $value) { ?>
                                                 <tr>
                                                     <td class="text-center"><?php echo $_SESSION['year']; ?></td>
                                                     <td class="text-center"><?php echo $value->program_name; ?></td>
-                                                    <td class="text-right"><?php echo $value->price; ?></td>
+                                                    <td class="text-right"><?php echo number_format($value->price,2); ?></td>
                                                 </tr>
                                                 <?php } ?>
-                                                <!-- <tr>
-                                                    <td colspan="3" class="text-center">ไม่พบโปรแกรมที่สมัคร</td>
-                                                </tr>
+                                                <?php else: ?>
                                                 <tr>
-                                                    <td class="text-center">2020</td>
-                                                    <td class="text-center">EQAC</td>
-                                                    <td class="text-right">3,000</td>
+                                                    <td colspan="3" class="text-center">ไม่พบโปรแกรม<br>
+                                                    <a href="<?php echo $link_register;?>">ไปสมัครโปรแกรม</a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="text-center">2020</td>
-                                                    <td class="text-center">EQAS</td>
-                                                    <td class="text-right">3,000</td>
-                                                </tr> -->
+                                                <?php endif; ?>
                                             </tbody>
                                             <tfoot>
+                                                <?php if ($discount>0) : ?>
                                                 <tr>
                                                     <th colspan="2" class="text-right">ส่วนลด</th>
                                                     <th class="text-right"><?php echo number_format($discount,2); ?></th>
                                                 </tr>
+                                                <?php endif;?>
+                                                <?php if (($total-$discount)>0) : ?>
                                                 <tr>
                                                     <th colspan="2" class="text-right">ยอดชำระ</th>
                                                     <th class="text-right"><?php echo number_format(($total-$discount),2); ?></th>
                                                 </tr>
+                                                <?php endif; ?>
                                             </tfoot>
                                         </table>
                                     </div>
@@ -172,6 +170,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <script>
+$(document).ready(function () {
+    <?php if (count($program_list)==0) : ?>
+        $('#btnsubmit').hide();
+        $('#btndisabled').show();
+        $('#formpayment').on('submit', () => {
+            alert('ไม่มียอดชำระ กรุณาสมัครโปรแกรมก่อน');
+            return false;
+        });
+    <?php else: ?>
+        $('#btnsubmit').show();
+        $('#btndisabled').hide();
+    <?php endif;?> 
+});
 $('#inputSlip').on("change",function() {
         console.log("change fired");
         var i = $(this).prev('label').clone();

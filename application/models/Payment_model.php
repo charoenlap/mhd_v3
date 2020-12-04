@@ -71,9 +71,10 @@ class Payment_model extends CI_Model {
       $this->db->limit($limit, $start);
     }
     if (!empty($sort) && !empty($by)) {
-      $this->db->order_by($sort, $by);
+      $this->db->order_by('mhd_payment.'.$sort, $by);
     }
-    $this->db->where('del', 0);
+    $this->db->join('mhd_member','mhd_member.id = mhd_payment.member_id','LEFT');
+    $this->db->where('mhd_member.del', 0);
     $query = $this->db->get('payment');
     return $query->result();
   }

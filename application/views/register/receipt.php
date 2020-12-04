@@ -44,48 +44,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">โครงการ</th>
-                <th scope="col">ค่าธรรมเนียม(บาท)</th>
-                <th scope="col">ชื่อผู้ชำระเงิน</th>
-                <th scope="col">ออกใบเสร็จในนาม</th>
-                <th scope="col">ที่อยู่จัดส่งใบเสร็จ</th>
-                <th scope="col">ผู้ประสานงานชำระเงิน</th>
+                <th class="text-center">โครงการ</th>
+                <th class="text-center">ค่าธรรมเนียม(บาท)</th>
+                <th class="text-center">ชื่อผู้ชำระเงิน</th>
+                <th class="text-center">ออกใบเสร็จในนาม</th>
+                <th class="text-center">ที่อยู่จัดส่งใบเสร็จ</th>
+                <th class="text-center">ผู้ประสานงานชำระเงิน</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($program_list as $key => $value) { ?>
             <tr>
-                <td><?php echo $value->program_name; ?></td>
-                <td><?php echo $value->price; ?></td>
-                <td><?php echo $firstname." ".$lastname; ?></td>
-                <td><?php echo $firstname." ".$lastname; ?></td>
-                <td></td>
-                <td></td>
+                <td class="text-center"><?php echo $value->program_name; ?></td>
+                <td class="text-center"><?php echo number_format($value->price, 2); ?></td>
+                <td class="text-center"><?php echo $firstname." ".$lastname; ?></td>
+                <td class="text-center"><?php echo $firstname." ".$lastname; ?></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
             </tr>
             <?php } ?>
-            <!-- <tr>
-                <td>EQAB</td>
-                <td></td>
-                <td><?php echo $email; ?></td>
-                <td>kratos</td>
-                <td>99/99 บางขุนเทียน</td>
-                <td><?php echo $firstname." ".$lastname; ?></td>
-                <td><div class="address" data-toggle="tooltip" title="<?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?>">
-                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td>
-                <td>aeris</td>
-            </tr> -->
-            <!--  Second colum -->
-            <!-- <tr>
-                <td>PAQR</td>
-                <td>4,000</td>
-                <td><?php echo $email; ?></td>
-                <td>kratos</td>
-                <td>99/99 บางขุนเทียน</td>
-                <td><?php echo $firstname." ".$lastname; ?></td>
-                <td><div class="address" data-toggle="tooltip" title="<?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?>">
-                <?php echo $value->address_1." ".$value->address_2." ".$value->district." ".$value->country." ".$value->province." ".$value->postcode; ?></div></td>
-                <td>kratos</td>          
-            </tr> -->
             <?php endforeach; ?>
             <tr>
             <td colspan="6" style="font-size: 13px;"> 
@@ -103,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td colspan="2">บาท</td>
             </tr>
             <tr>
-                <td class="font-weight-bold" colspan="3">รวมค่าธรรมเนียมที่ต้องชำระทั้งสิ้น ("สองพันบาทถ้วน")</td>
+                <td class="font-weight-bold" colspan="3">รวมค่าธรรมเนียมที่ต้องชำระทั้งสิ้น ("<?php echo $total_text;?>")</td>
                 <td colspan="2"><?php echo number_format(($total-$discount),2); ?></td>
                 <td colspan="2">บาท</td>
             </tr>

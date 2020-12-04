@@ -37,7 +37,8 @@ class Payment extends CI_Controller
       'prev_link' => '<button type="button" class="btn btn-default btn-next">&lt;</button>',
       'per_page' => 10, // ! this is limit per page
     );
-
+    
+    $data['path_image'] = 'upload/';
     $filter = array();
     $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'id', 'ASC');
     $data['lists'] = array();

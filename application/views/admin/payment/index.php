@@ -38,7 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th>เลขสมาชิก</th>
-                                        <th>ชื่อ</th>
+                                        <th>วันเวลาชำระเงิน</th>
                                         <th>เวลา</th>
                                         <th>รูปภาพ</th>
                                         <th width="15%" class="text-center">การจัดการ</th>
@@ -49,8 +49,8 @@
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
                                         <td><?php echo $value->member_no;?></td>
-                                        <td><?php echo date('d/m/Y H:i', strtotime($value->date_added));?></td>
-                                        <td><?php echo $value->hospital;?></td>
+                                        <td><?php echo date('d/m/Y H:i:s', strtotime($value->slip_date.' '.$value->slip_time)); ?></td>
+                                        <td><img src="<?php echo base_url().$value->image;?>" /></td>
                                         <td>
                                             <span class="text-danger"><i class="fas fa-times-circle"></i> ยังไม่ได้ชำระ</span>
                                         </td>

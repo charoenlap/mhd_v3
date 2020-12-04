@@ -85,6 +85,13 @@ class Year_model extends CI_Model {
 
   // ------------------------------------------------------------------------
 
+  public function getYear($year) {
+    $this->db->where('year', $year);
+    $this->db->where('del', 0);
+    $query = $this->db->get('year');
+    return $query->row();
+  }
+
 }
 
 /* End of file Year_model.php */

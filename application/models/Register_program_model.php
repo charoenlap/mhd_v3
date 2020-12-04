@@ -82,6 +82,12 @@ class Register_program_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
+  public function updateSlip($register_id, $member_id, $year_id, $company_id) {
+    $this->db->set('send_slip', 1);
+    $this->db->where('register_id', $register_id);
+    $this->db->update('register_program');
+    return $this->db->affected_rows()==1 ? true : false;
+  }
   public function delmember($id) 
   {
     $this->db->where('member_id', $id);
@@ -98,6 +104,44 @@ class Register_program_model extends CI_Model {
     $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
     $query = $this->db->get('register_program');
     return $query->result();
+  }
+  public function getListProgramByYear($id, $member_id, $company_id, $slip=null)
+  {
+    $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name');
+    $this->db->where('mhd_register_program.member_id',$member_id);
+    if ($company_id>0) {
+      $this->db->where('mhd_register_program.company_id',$company_id);
+    }
+    if ($id>0) {
+      $this->db->where('mhd_register_program.register_id',$id);
+    }
+    if ($slip===true) {
+      $this->db->where('mhd_register_program.send_slip', 1); // send slip only
+    } else if ($slip===false) {
+      $this->db->where('mhd_register_program.send_slip', 0); // none send slip only
+    }
+    $this->db->where('mhd_register_program.del','0');
+    $this->db->order_by('mhd_register_program.id','DESC');
+    $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
+    $query = $this->db->get('register_program');
+    return $query->result();
+  }
+  public function checkProgramInRegister($id, $program_id, $member_id, $company_id) {
+    $this->db->where('register_id', $id);
+    $this->db->where('program_id', $program_id);
+    $this->db->where('member_id',$member_id);
+    $this->db->where('company_id',$company_id);
+    $query = $this->db->get('register_program');
+    return $query->num_rows() == 1  ? $query->row()->id : false;
+  }
+  public function delProgramInRegister($id, $program_id, $member_id, $company_id) {
+    $this->db->set('del',1);
+    $this->db->where('register_id', $id);
+    $this->db->where('program_id', $program_id);
+    $this->db->where('member_id',$member_id);
+    $this->db->where('company_id',$company_id);
+    $query = $this->db->update('register_program');
+    return $this->db->affected_rows() == 1 ? true : false;
   }
   // ------------------------------------------------------------------------
 

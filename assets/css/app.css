@@ -9,3 +9,13 @@
 input[type="checkbox"].form-control {
     height: 20px;
 }
+
+
+#register_disabled.modal .modal-body img {
+    width:50%;
+}
+#register_disabled.modal .modal-body {
+    text-align: center;
+    background: #4e73df;
+    color:#fff;
+}
