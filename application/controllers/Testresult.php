@@ -441,9 +441,8 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
-      $this->session->set_userdata('preview',$preview);
+      $this->session->set_userdata('EQAI_SYPHILIS');
     }
-    $this->session->set_userdata('EQAI_SYPHI',1);
     $this->load->template('testresult/program_report_EQAI_SYPHI',$data);
   }
 
@@ -659,15 +658,32 @@ class Testresult extends CI_Controller
   public function preview()
 {
   $data = array();
-  // $data['preview'] = $this->session->has_userdata('preview') ? $this->session->preview : ''; $this->session->unset_userdata('preview');
-  $data['title']  = $this->input->post('title_1');
-  $data['datepick']  = $this->input->post('datepick');
-  $data['datereport'] = $this->input->post('report_date');
+    // header
+    $data['title']  = $this->input->post('title_1');
+    $data['datepick']  = $this->input->post('datepick');
+    
+    // content
+    $data['principle'] = $this->input->post('principle');
+    $data['instrument'] = $this->input->post('instrument');
+    $data['method'] = $this->input->post('method');
+    $data['result_2'] = $this->input->post('result_2');
 
-  $data['principle'] = $this->input->post('principle');
-  $data['instrument'] = $this->input->post('instrument');
-  $data['method'] = $this->input->post('method');
-  $data['result_2'] = $this->input->post('result_2');
+    // value member
+    $data['name'] = $this->input->post('name_lname');
+    $data['tel'] = $this->input->post('tel');
+    $data['position'] = $this->input->post('position');
+    $data['comment'] = $this->input->post('comment');
+    $data['datereport'] = $this->input->post('report_date');
+
+    if($data['title']=="EQAI_SYPHILIS"){
+      if($this->input->post('tools')!=''){
+        $tools = $this->input->post('tools');
+      } if($this->input->post('tools_other')!=''){
+        $tools = $this->input->post('tools_other');
+      }
+      $data['tools'] = $tools;
+    }
+
   $received_status = $this->input->post('received_status');
   if($received_status==1){
     $received_stat = "อยู่ในสภาพสมบูรณ์";

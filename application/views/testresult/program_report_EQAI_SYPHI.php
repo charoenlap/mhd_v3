@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <div class="container-fluid">
                 <form class="user" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                     <div class="text-center p-3 mb-2 bg-primary text-white" id="title2" name="title2">
-                        <input type="text" name="title_1" value="EQAI:Syphilis" class="d-none">
+                        <input type="text" name="title_1" value="EQAI_SYPHILIS" class="d-none">
                         <h2><?php echo $heading_title; ?></h2>
                     </div>
                         <div class="container-left">
@@ -63,7 +63,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <td>
                                                 <select class="select-other custom-select" name="tools[0]" other_id="other_ntp" data-no="4">
                                                     <option value="" selected="">Choose</option>
-                                                    <option value="26|VDRL" other="">VDRL</option>
+                                                    <option value="26" other="">VDRL</option>
                                                     <option value="27" other="">RPR</option>
                                                     <option value="28" other="">Unheated VDLR</option>
                                                     <option value="29" other="1">Other</option>

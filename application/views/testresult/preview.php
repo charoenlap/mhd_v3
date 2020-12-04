@@ -39,7 +39,7 @@ print_r($_POST);
 <body>
 <!-- EQAI_SYPHI -->
     <div class="container-fuild">
-        <div class="d-none container container-EQAI_SYPHI" id="EQAI_SYPHI">
+        <div class="d-none container container-EQAI_SYPHI" id="EQAI_SYPHILIS">
             <div class="card border border-dark">
                 <form action="">
                     <div class="card-title text-center text-white" style="padding:20px; background-color:rgba(0, 0, 255, 0.7);">
@@ -70,7 +70,15 @@ print_r($_POST);
                                     <tbody>
                                         <tr>
                                             <td class="font-weight-bold bg-primary text-white" style="width: 250px;">Method</td>
-                                            <td>FTA-ABS</td>                                          
+                                            <td>
+                                                <select class="select-other custom-select" name="tools[0]" other_id="other_ntp" data-no="4">
+                                                    <option <?php if($tools[0] =="26"){echo "selected='selected'";}?> value="26" other="">VDRL</option>
+                                                    <option <?php if($tools[0] =="27"){echo "selected='selected'";}?> value="27" other="">RPR</option>
+                                                    <option <?php if($tools[0] =="28"){echo "selected='selected'";}?> value="28" other="">Unheated VDLR</option>
+                                                    <option <?php if($tools[0] =="29"){echo "selected='selected'";}?> value="29" other="1">Other</option>
+                                                </select>
+                                                <input type="text" class="d-none form-control" name="tools_other[0]" id="other_ntp" value>
+                                            </td>                                          
                                             <td class="font-weight-bold bg-primary text-white" style="width: 250px;">Method</td>
                                             <td>VDRL</td>
                                         </tr>
@@ -146,7 +154,6 @@ print_r($_POST);
                             <span><?php echo $received_status; ?></span>
                             <hr>
                             <div class="container-left">
-                                <?php print_r($principle); ?>
                             </div>
                             <div class="container-fluid">
                             <caption class="font-weight-bold">ผลการตรวจ</caption>
@@ -444,19 +451,19 @@ print_r($_POST);
                                     <tbody class="text-left">
                                         <tr>
                                             <td class="bg-primary text-white" style="width: 350px;">ชื่อ</td>
-                                            <td>mood</td>
+                                            <td><?php echo $name; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="bg-primary text-white" style="width: 350px;">หมายเลขโทรศัพท์</td>
-                                            <td>089-9999999</td>
+                                            <td><?php echo $tel; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="bg-primary text-white" style="width: 350px;">ตำแหน่ง</td>
-                                            <td>position</td>
+                                            <td><?php echo $position; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="bg-primary text-white" style="width: 350px;">ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง</td>
-                                            <td>comment</td>
+                                            <td><?php echo $comment; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="bg-primary text-white" style="width: 350px;">วันที่ทำการทดสอบ</td>
@@ -674,8 +681,11 @@ print_r($_POST);
     <style>
         select
         {
+            width: auto; 
+            text-align-last:center;
             border: none !important;
             pointer-events: none;
+            background: none !important;
         }
     </style>
     <script>        
@@ -685,6 +695,18 @@ print_r($_POST);
            } else {
                 $('#<?php echo $title; ?>').addClass('d-none');
            }
+    });
+    $(document).on('change', '.select-other', function(e) {
+        var status_other = $('option:selected', this).attr('other');;
+        var other_id = $(this).attr('other_id');
+        // console.log(other_id);
+
+        if (status_other == '1') {
+            $('#' + other_id).removeClass('d-none');
+        } else {
+            $('#' + other_id).addClass('d-none');
+            $('#' + other_id).val('');
+        }
     });
     </script>
 </body>
