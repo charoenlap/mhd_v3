@@ -13,6 +13,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
 
                     <form action="<?php echo $action; ?>" method="POST" role="form">
+                    <input type="text" name="title_1" value="EQAP" class="d-none">
+
                         <div class="container-left">
                             <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : EQAP</h5>
                         </div>

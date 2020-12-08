@@ -72,8 +72,9 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
-
+      
     }
+    $this->session->set_userdata('title','EQAC');
     $this->load->template('testresult/program_report_EQAC',$data);  
   }
 
@@ -121,6 +122,7 @@ class Testresult extends CI_Controller
       );
 
     }
+    $this->session->set_userdata('title','EQAH');
     $this->load->template('testresult/program_report_EQAH',$data);
   }
 
@@ -167,6 +169,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAT');
     $this->load->template('testresult/program_report_EQAT',$data);
   }
 
@@ -174,7 +177,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAP');
+    $data['action'] = base_url('testresult/preview');
 
     /* 
     variable in form
@@ -211,6 +214,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAP');
     $this->load->template('testresult/program_report_EQAP',$data);
   }
 
@@ -274,6 +278,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','B_EQAC');
     $this->load->template('testresult/program_report_B_EQAM',$data);
   }
 
@@ -339,6 +344,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','H_EQAM');
     $this->load->template('testresult/program_report_H_EQAM',$data);
   }
 
@@ -390,6 +396,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','UC_EQAM');
     $this->load->template('testresult/program_report_UC_EQAM',$data);
   }
 
@@ -441,8 +448,8 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
-      $this->session->set_userdata('EQAI_SYPHILIS');
     }
+    $this->session->set_userdata('title','EQAI_SYPHILIS');
     $this->load->template('testresult/program_report_EQAI_SYPHI',$data);
   }
 
@@ -510,6 +517,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAI_HBV');
     $this->load->template('testresult/program_report_EQAI_HBV',$data);
   }
 
@@ -549,6 +557,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAB_GRAM');
     $this->load->template('testresult/program_report_EQAB_GRAM',$data);
   }
 
@@ -588,6 +597,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAB_AFB');
     $this->load->template('testresult/program_report_EQAB_AFB',$data);
   }
 
@@ -653,20 +663,42 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
+    $this->session->set_userdata('title','EQAB_IDEN_AST');
     $this->load->template('testresult/program_report_EQAB_IDEN_AST',$data);
   }
   public function preview()
 {
   $data = array();
-    // header
-    $data['title']  = $this->input->post('title_1');
-    $data['datepick']  = $this->input->post('datepick');
-    
+    $session_title = $this->session->userdata('title');
+
+      if($session_title=="EQAC"){
+      $this->session->unset_userdata('title');
     // content
     $data['principle'] = $this->input->post('principle');
     $data['instrument'] = $this->input->post('instrument');
     $data['method'] = $this->input->post('method');
     $data['result_2'] = $this->input->post('result_2');
+    }
+
+      if($session_title=="EQAH"){
+      $this->session->unset_userdata('title');
+    // content
+    $data['method'] = $this->input->post('method');
+    $data['method_other'] = $this->input->post('method_other');
+    $data['tools'] = $this->input->post('tools');
+    }
+
+      if($session_title=="EQAT"){
+      $this->session->unset_userdata('title');
+    // content
+    $data['principle'] = $this->input->post('principle');
+    $data['instrument'] = $this->input->post('instrument');
+    $data['method'] = $this->input->post('method');
+    $data['result_2'] = $this->input->post('result_2');
+    }
+    // header
+    $data['title']  = $this->input->post('title_1');
+    $data['datepick']  = $this->input->post('datepick');
 
     // value member
     $data['name'] = $this->input->post('name_lname');
@@ -674,15 +706,6 @@ class Testresult extends CI_Controller
     $data['position'] = $this->input->post('position');
     $data['comment'] = $this->input->post('comment');
     $data['datereport'] = $this->input->post('report_date');
-
-    if($data['title']=="EQAI_SYPHILIS"){
-      if($this->input->post('tools')!=''){
-        $tools = $this->input->post('tools');
-      } if($this->input->post('tools_other')!=''){
-        $tools = $this->input->post('tools_other');
-      }
-      $data['tools'] = $tools;
-    }
 
   $received_status = $this->input->post('received_status');
   if($received_status==1){
@@ -694,7 +717,7 @@ class Testresult extends CI_Controller
     $received_other = $this->input->post('received_status_other');
     $data['received_status']  = $received_other;
   }
-  // $this->session->unset_userdata('EQAI_SYPHI');
+  $this->session->unset_userdata('EQAI_SYPHI');
   // $this->session->unset_userdata('preview');
   $data['comment'] = $this->input->post('comment');
   $this->load->view('testresult/preview',$data);
