@@ -82,8 +82,17 @@ class Register_program_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
-  public function updateSlip($register_id, $member_id, $year_id, $company_id) {
+  public function getProgramByPayment($payment_id) {
+    $this->db->select('mhd_program.name, mhd_register_program.price, mhd_year.year');
+    $this->db->where('mhd_register_program.payment_id', $payment_id);
+    $this->db->join('mhd_program','mhd_program.id=mhd_register_program.program_id','LEFT');
+    $this->db->join('mhd_year', 'mhd_year.id=mhd_register_program.year_id', 'LEFT');
+    $query = $this->db->get('register_program');
+    return $query->result();
+  }
+  public function updateSlip($register_id, $payment_id=0) {
     $this->db->set('send_slip', 1);
+    $this->db->set('payment_id', (int)$payment_id);
     $this->db->where('register_id', $register_id);
     $this->db->update('register_program');
     return $this->db->affected_rows()==1 ? true : false;
@@ -105,8 +114,9 @@ class Register_program_model extends CI_Model {
     $query = $this->db->get('register_program');
     return $query->result();
   }
-  public function getListProgramByYear($id, $member_id, $company_id, $slip=null)
+  public function getListProgramByYear($id, $member_id, $company_id, $slip=null, $year_id=0)
   {
+
     $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name');
     $this->db->where('mhd_register_program.member_id',$member_id);
     if ($company_id>0) {
@@ -114,6 +124,9 @@ class Register_program_model extends CI_Model {
     }
     if ($id>0) {
       $this->db->where('mhd_register_program.register_id',$id);
+    }
+    if ($year_id>0) {
+      $this->db->where('mhd_register_program.year_id', $year_id);
     }
     if ($slip===true) {
       $this->db->where('mhd_register_program.send_slip', 1); // send slip only

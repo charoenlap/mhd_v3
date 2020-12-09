@@ -10,6 +10,11 @@ class Payment extends CI_Controller
     parent::__construct();
   }
 
+  public function index() 
+  {
+
+  }
+
   public function lists($page=0)
   {
     $data = array(); 
@@ -40,11 +45,12 @@ class Payment extends CI_Controller
     
     $data['path_image'] = 'upload/';
     $filter = array();
-    $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'id', 'ASC');
+    $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'status', 'DESC');
     $data['lists'] = array();
     if (count($lists)>0) {
       foreach ($lists as $key => $value) {
         $value->member_no = $this->model_member->getList($value->member_id)->member_no;
+        $value->programs = $this->model_register_program->getProgramByPayment($value->id);
         $data['lists'][] = $value;
       }
     }
@@ -54,6 +60,37 @@ class Payment extends CI_Controller
 
     
     $this->load->template('admin/payment/index', $data);
+  }
+
+  public function confirm($id=0) 
+  {
+    if ($id>0) {
+      $admin_info = json_decode($this->encryption->decrypt($this->session->admin_token));
+      $update = array('status'=>1, 'date_modify'=>date('Y-m-d H:i:s'), 'admin_id' => $admin_info->id);
+      $result = $this->model_payment->edit($id, $update);
+      if ($result)
+        $this->session->set_userdata('success', 'Confirm payment success');
+      else 
+        $this->session->set_userdata('error', 'Cant confirm payment.');
+    } else {
+      $this->session->set_userdata('error', 'Confirm fail, something has wrong.');
+    }
+    redirect('admin/payment/lists/page/');
+  }
+  public function unconfirm($id=0) 
+  {
+    if ($id>0) {
+      $admin_info = json_decode($this->encryption->decrypt($this->session->admin_token));
+      $update = array('status'=>0, 'date_modify'=>date('Y-m-d H:i:s'), 'admin_id' => $admin_info->id);
+      $result = $this->model_payment->edit($id, $update);
+      if ($result)
+        $this->session->set_userdata('success', 'Unconfirm payment success');
+      else 
+        $this->session->set_userdata('error', 'Cant unconfirm payment.');
+    } else {
+      $this->session->set_userdata('error', 'Unconfirm fail, something has wrong.');
+    }
+    redirect('admin/payment/lists/page/');
   }
 
 }

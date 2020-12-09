@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
 /**
  *
  * Controller Payment
@@ -20,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Payment extends CI_Controller
 {
-    
+
   public function __construct()
   {
     parent::__construct();
@@ -30,10 +29,14 @@ class Payment extends CI_Controller
   public function index()
   {
     $data = array();
-    $data['success'] = $this->session->has_userdata('success') ? $this->session->success : ''; $this->session->unset_userdata('success');
-    $data['error'] = $this->session->has_userdata('error') ? $this->session->error : ''; $this->session->unset_userdata('error');
-    $data['uploadFailed'] = $this->session->has_userdata('uploadFailed') ? $this->session->uploadFailed : ''; $this->session->unset_userdata('uploadFailed');
-    $data['uploadSuccess'] = $this->session->has_userdata('uploadSuccess') ? $this->session->uploadSuccess : ''; $this->session->unset_userdata('uploadSuccess');
+    $data['success'] = $this->session->has_userdata('success') ? $this->session->success : '';
+    $this->session->unset_userdata('success');
+    $data['error'] = $this->session->has_userdata('error') ? $this->session->error : '';
+    $this->session->unset_userdata('error');
+    $data['uploadFailed'] = $this->session->has_userdata('uploadFailed') ? $this->session->uploadFailed : '';
+    $this->session->unset_userdata('uploadFailed');
+    $data['uploadSuccess'] = $this->session->has_userdata('uploadSuccess') ? $this->session->uploadSuccess : '';
+    $this->session->unset_userdata('uploadSuccess');
     $data['action'] = base_url('payment/do_upload');
     $data['user_detail'] = $this->session->member_info['member_no'];
     $data['link_register'] = base_url('register');
@@ -43,35 +46,36 @@ class Payment extends CI_Controller
     $data['firstname'] = $jsondata->{'firstname'};
     $data['lastname'] = $jsondata->{'lastname'};
 
-
     // Find register_id for find program in register
     $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
     $year_id = $this->model_setting->get('config_register_year_id'); // year
     $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
     $company_id = $register_info->company_id;
-    $register_id = (int)$register_info->id;
-    
+    $register_id = (int) $register_info->id;
+
     // Get List Program
     $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, false);
 
     // Condition discount only program
     $total = 0;
     $discount = 0;
-    $case_one = "false"; $case_two = "false"; $case_tree = "false";
+    $case_one = "false";
+    $case_two = "false";
+    $case_tree = "false";
     foreach ($data['program_list'] as $key => $value) {
       $total += $value->price;
       if ($value->program_id == 10) {
         $case_one = "true";
-      }else if ($value->program_id == 12) {
+      } else if ($value->program_id == 12) {
         $case_two = "true";
-      }else if ($value->program_id == 13) {
+      } else if ($value->program_id == 13) {
         $case_tree = "true";
       }
     }
 
     if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
       $discount = 500;
-    }else if ($case_one == "true" && $case_two == "true") {
+    } else if ($case_one == "true" && $case_two == "true") {
       $discount = 200;
     }
 
@@ -86,11 +90,11 @@ class Payment extends CI_Controller
     $json = $this->encryption->decrypt($this->session->token);
     $jsondata = json_decode($json);
     $member_no = $jsondata->{'member_no'};
-    if ($this->input->server('REQUEST_METHOD')=='POST') {
+    if ($this->input->server('REQUEST_METHOD') == 'POST') {
 
-      if($this->input->post('bank_comp')!=''){
+      if ($this->input->post('bank_comp') != '') {
         $bank = $this->input->post('bank_comp');
-      }if($this->input->post('bank_oth')!=''){
+      }if ($this->input->post('bank_oth') != '') {
         $bank = $this->input->post('bank_oth');
       }
 
@@ -101,38 +105,44 @@ class Payment extends CI_Controller
       $company_id = $register_info->company_id;
       $register_id = isset($register_info->id) ? $register_info->id : 0;
 
-      
       //upload image
-      $config['upload_path']          =   './upload/';
-      $config['allowed_types']        =   'jpeg|jpg|png';
-      $config['max_size']             =   2048;
-      $config['max_width']            =   0; //set 0 for free width
-      $config['max_height']           =   0; //set 0 for free height
+      $config['upload_path'] = './upload/';
+      $config['allowed_types'] = 'jpeg|jpg|png';
+      $config['max_size'] = 2048;
+      $config['max_width'] = 0; //set 0 for free width
+      $config['max_height'] = 0; //set 0 for free height
+      $config['remove_spaces'] = true;
+      $config['encrypt_name'] = true;
+
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
       if (!$this->upload->do_upload('inputSlip')) {
-        $this->session->set_userdata('uploadFailed','เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง');
+        $this->session->set_userdata('uploadFailed', 'เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง');
       } else {
-        $image = $_FILES['inputSlip']['name'];
+        $uploaded = $this->upload->data();
+        $image = $uploaded['file_name'];
         $insert = array(
-          'register_id' =>    $register_id,
-          'member_id'   =>    $member_no,
-          'admin_id'    =>    0, // admin for check data
-          'image'       =>    $image,
-          'bank_name'   =>    $bank,
-          'slip_date'  =>    $this->input->post('date_payment'),
-          'slip_time'  =>    $this->input->post('time_payment'),
-          'date_added' => date('Y-m-d H:i:s')
+          'register_id' => $register_id,
+          'member_id' => $member_no,
+          'admin_id' => 0, // admin for check data
+          'image' => $image,
+          'bank_name' => $bank,
+          'total' => $this->input->post('total'),
+          'slip_date' => $this->input->post('date_payment'),
+          'slip_time' => $this->input->post('time_payment'),
+          'date_added' => date('Y-m-d H:i:s'),
         );
-        $result = $this->model_payment->add($insert);
+        $payment_id = $this->model_payment->add($insert);
 
         //find register program and update flag payments
-        $this->model_register_program->updateSlip($register_id, $member_id, $year_id, $company_id);
+        $this->model_register_program->updateSlip($register_id, $payment_id);
 
-        if ($result>0) {
-          $this->session->set_userdata('uploadSuccess','แจ้งชำระเงินเรียบร้อยแล้ว รอเจ้าหน้าที่ตรวจสอบระบบ');  
+        if ($payment_id > 0) {
+          $this->session->set_userdata('uploadSuccess', 'แจ้งชำระเงินเรียบร้อยแล้ว รอเจ้าหน้าที่ตรวจสอบระบบ');
         } else {
-          $this->session->set_userdata('uploadFailed','เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่');  
+          $this->session->set_userdata('uploadFailed', 'เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่');
         }
       }
       redirect('payment');
@@ -141,4 +151,4 @@ class Payment extends CI_Controller
 }
 
 /* End of file Payment.php */
- /* Location: ./application/controllers/Payment.php */
+/* Location: ./application/controllers/Payment.php */

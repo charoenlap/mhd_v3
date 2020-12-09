@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <li class="nav-header">ระบบสมาชิก</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url('admin/payment/lists/page/');?>" class="nav-link">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <p>
                             แจ้งชำระเงิน

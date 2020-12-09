@@ -98,6 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
+                                        <input type="hidden" name="total" value="<?php echo $total-$discount;?>" />
                                         <button type="submit" class="btn btn-primary" value="" id="btnsubmit">แจ้งชำระเงิน</button>
                                         <button type="button" class="btn btn-primary disabled" disabled="disabled" id="btndisabled">ไม่มียอดชำระ</button>
                                     </form>

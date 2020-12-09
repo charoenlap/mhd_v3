@@ -39,39 +39,97 @@
                                     <tr>
                                         <th>เลขสมาชิก</th>
                                         <th>วันเวลาชำระเงิน</th>
-                                        <th>เวลา</th>
-                                        <th>รูปภาพ</th>
-                                        <th width="15%" class="text-center">การจัดการ</th>
+                                        <th>ธนาคาร</th>
+                                        <th>ยอดแจ้งชำระ</th>
+                                        <th>รูปภาพ <small>(คลิกเพื่อยืนยัน)</small></th>
+                                        <!-- <th width="15%" class="text-center">การจัดการ</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (count($lists)>0) : ?>
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
-                                        <td><?php echo $value->member_no;?></td>
-                                        <td><?php echo date('d/m/Y H:i:s', strtotime($value->slip_date.' '.$value->slip_time)); ?></td>
-                                        <td><img src="<?php echo base_url().$value->image;?>" /></td>
+                                        <td class="<?php echo $value->status==1?'text-success':'';?>"><?php echo $value->member_no;?></td>
+                                        <td class="<?php echo $value->status==1?'text-success':'';?>"><?php echo $date_pay = date('d/m/Y H:i:s', strtotime($value->slip_date.' '.$value->slip_time)); ?></td>
+                                        <td class="<?php echo $value->status==1?'text-success':'';?>"><?php echo $value->bank_name;?></td>
+                                        <td class="<?php echo $value->status==1?'text-success':'';?>"><?php echo number_format($value->total, 2);?></td>
                                         <td>
-                                            <span class="text-danger"><i class="fas fa-times-circle"></i> ยังไม่ได้ชำระ</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    จัดการ
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/member/edit/'.$value->id);?>">แก้ไข ข้อมูลผู้สมัคร</a>
-                                                    <a class="dropdown-item" href="#">แก้ไข โปรแกรมที่สมัคร</a>
-                                                    <a class="dropdown-item" href="#">ตรวจสอบ การชำระเงิน</a>
-                                                    <a class="dropdown-item" href="#">Export Excel</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/member/sendEmailConfirm/'.$value->id);?>" onclick="return confirm('การส่งเมลไม่ควรกดส่งถี่ๆ จะทำให้อีเมลระบบโดนแจ้งเป็นสแปมเมลได้ ยืนยันการส่งเมล?');">ส่งอีเมลยืนยันการสมัคร</a>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/member/sendEmailForgot/'.$value->id);?>" onclick="return confirm('การส่งเมลไม่ควรกดส่งถี่ๆ จะทำให้อีเมลระบบโดนแจ้งเป็นสแปมเมลได้ ยืนยันการส่งเมล?');">ส่งอีเมลรีเซทรหัสผ่าน</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="<?php echo base_url('admin/member/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a>
+                                            <a data-toggle="modal" data-target=".exsample_img_<?php echo $value->id;?>" style="cursor:pointer">
+                                                <img src="<?php echo base_url().'upload/'.$value->image;?>" class="img-thumbnail" style="max-height:100px;" />
+                                            </a>
+                                            <div class="modal fade exsample_img_<?php echo $value->id;?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">สลิปของสมาชิก <?php echo $value->member_no;?></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <?php $total = 0; ?>
+                                                            <?php foreach ($value->programs as $program) : ?>
+                                                            <?php $total+=(double)$program->price;?>
+                                                            <?php endforeach; ?>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th>ยอดแจ้งชำระ</th>
+                                                                    <td>
+                                                                        <h4 class="mb-0"><?php echo number_format($value->total,2);?></h4>
+                                                                        <?php if ($total!=$value->total) : ?>
+                                                                        <p class="text-danger">เตือน : ยอดแจ้งชำระไม่ตรงกับยอดสมัครโปรแกรม</p>
+                                                                        <?php endif;?>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>ธนาคาร</th>
+                                                                    <td><?php echo $value->bank_name;?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>วันเวลาชำระเงิน</th>
+                                                                    <td><?php echo $date_pay;?></td>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <thead class="thead-dark">
+                                                                    <tr>
+                                                                        <th>ปี</th>
+                                                                        <th>โปรแกรม</th>
+                                                                        <th>ราคา</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <?php foreach ($value->programs as $program) : ?>
+                                                                <tr>
+                                                                    <td><?php echo $program->year;?></td>
+                                                                    <td><?php echo $program->name;?></td>
+                                                                    <td><?php echo number_format($program->price,2);?></td>
+                                                                </tr>
+                                                                <?php endforeach; ?>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td colspan="2" class="text-right">ราคารวม</td>
+                                                                        <td><?php echo number_format($total,2);?></td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                            
+                                                        </div>
+                                                        <div class="col-sm-6 text-center">
+                                                            <img src="<?php echo base_url().'upload/'.$value->image;?>" class="img-fluid" />
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ยกเลิก</button>
+                                                        <a href="<?php echo $value->status==1?base_url('admin/payment/unconfirm/'.$value->id):base_url('admin/payment/confirm/'.$value->id);?>" type="button" class="btn btn-<?php echo $value->status==1?'danger':'success';?> btn-sm"><?php echo $value->status==1?'ยกเลิก':'ยืนยัน';?></a>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            </div>
                                         </td>
+                                       
                                     </tr>
                                     <?php endforeach; ?>
                                     <?php endif;?>
