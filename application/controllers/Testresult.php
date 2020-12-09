@@ -35,7 +35,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview'); 
+    $data['action'] = base_url('testresult/preview_EQAC'); 
     
     /* 
     variable in form
@@ -82,7 +82,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview');
+    $data['action'] = base_url('testresult/preview_EQAH');
    /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -177,7 +177,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview');
+    $data['action'] = base_url('testresult/preview_EQAP');
 
     /* 
     variable in form
@@ -222,7 +222,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_B_EQAM');
+    $data['action'] = base_url('testresult/preview_B_EQAM');
 
     /* 
     variable in form
@@ -278,7 +278,7 @@ class Testresult extends CI_Controller
         'report_date'             =>    $this->input->post('report_date')
       );
     }
-    $this->session->set_userdata('title','B_EQAC');
+    $this->session->set_userdata('title','B_EQAM');
     $this->load->template('testresult/program_report_B_EQAM',$data);
   }
 
@@ -671,15 +671,6 @@ class Testresult extends CI_Controller
   $data = array();
     $session_title = $this->session->userdata('title');
 
-      if($session_title=="EQAC"){
-      $this->session->unset_userdata('title');
-    // content
-    $data['principle'] = $this->input->post('principle');
-    $data['instrument'] = $this->input->post('instrument');
-    $data['method'] = $this->input->post('method');
-    $data['result_2'] = $this->input->post('result_2');
-    }
-
       if($session_title=="EQAH"){
       $this->session->unset_userdata('title');
     // content
@@ -721,6 +712,149 @@ class Testresult extends CI_Controller
   // $this->session->unset_userdata('preview');
   $data['comment'] = $this->input->post('comment');
   $this->load->view('testresult/preview',$data);
+}
+
+public function preview_EQAC(){
+    $data = array();
+    $session_title = $this->session->userdata('title');
+
+      if($session_title=="EQAC"){
+      $this->session->unset_userdata('title');
+    // content
+    $data['principle'] = $this->input->post('principle');
+    $data['instrument'] = $this->input->post('instrument');
+    $data['method'] = $this->input->post('method');
+    $data['result_2'] = $this->input->post('result_2');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+    $received_stat = "อยู่ในสภาพสมบูรณ์";
+    $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+    $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+    $received_other = $this->input->post('received_status_other');
+    $data['received_status']  = $received_other;
+  }
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAC',$data);
+}
+
+public function preview_EQAH(){
+    $data = array();
+    $session_title = $this->session->userdata('title');
+
+    if($session_title=="EQAH"){
+      $this->session->unset_userdata('title');
+    // content
+    $data['method'] = $this->input->post('method');
+    $data['method_other'] = $this->input->post('method_other');
+    $data['tools'] = $this->input->post('tools');
+    }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+    $received_stat = "อยู่ในสภาพสมบูรณ์";
+    $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+    $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+    $received_other = $this->input->post('received_status_other');
+    $data['received_status']  = $received_other;
+  }
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAH',$data);
+}
+
+public function preview_B_EQAM(){
+    $data = array();
+    $session_title = $this->session->userdata('title');
+
+    if($session_title=="B_EQAM"){
+      $this->session->unset_userdata('title');
+    // content
+    $data['result_0'] = $this->input->post('result_0');
+    $data['result_1'] = $this->input->post('result_1');
+    $data['result_2'] = $this->input->post('result_2');
+    $data['result_3'] = $this->input->post('result_3');
+    $data['result_4'] = $this->input->post('result_4');
+    $data['result_5'] = $this->input->post('result_5');
+    $data['result_6'] = $this->input->post('result_6');
+    $data['result_7'] = $this->input->post('result_7');
+    $data['result_8'] = $this->input->post('result_8');
+    }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+    $received_stat = "อยู่ในสภาพสมบูรณ์";
+    $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+    $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+    $received_other = $this->input->post('received_status_other');
+    $data['received_status']  = $received_other;
+  }
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_B_EQAM',$data);
+}
+
+public function preview_EQAP(){
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="EQAP"){
+    $this->session->unset_userdata('title');
+    $data['sample_0'] = $this->input->post('sample[0]');
+    $data['sample_1'] = $this->input->post('sample[1]');
+    $data['file_0'] = $this->input->post('file_0');
+    $data['file_1'] = $this->input->post('file_1');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+}
+// header
+$data['title']  = $this->input->post('title_1');
+$data['datepick']  = $this->input->post('datepick');
+
+// info member
+$data['name'] = $this->input->post('name_lname');
+$data['tel'] = $this->input->post('tel');
+$data['position'] = $this->input->post('position');
+$data['comment'] = $this->input->post('comment');
+$data['datereport'] = $this->input->post('report_date');
+$this->load->view('testresult/preview_EQAP',$data);
 }
 
 }

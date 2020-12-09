@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800" id="title" name="title"><?php echo $heading_title; ?></h1>
+    <h1 class="h3 mb-2 " id="title" name="title"><?php echo $heading_title; ?></h1>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <form action="<?php echo $action; ?>" method="POST" role="form">
                     <div class="text-center p-3 mb-2 bg-primary text-white" id="title2" name="title2">
                         <input type="text" name="title_1" value="EQAH" class="d-none">
-                        <h2><?php echo $heading_title; ?></h2>
+                        <h2 id="title_head"><?php echo $heading_title; ?></h2>
                     </div>
                         <div class="container-left">
                             <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : EQAH</h5>
@@ -158,9 +158,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                                     </div>
                                     <div class="form-gruop text-center" style="margin-top: 30px;">
-                                        <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                        <button class="btn btn-primary" name="submit" type="submit" value="preview">พรีวิว</button>
-                                        <button class="btn btn-primary" name="submit" type="submit" value="accept">ยืนยันการส่งผลการตรวจ</button>
+                                        <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์"></input>
+                                        <button class="btn btn-primary" name="submit" type="submit" id="btnpreview" value="preview">พรีวิว</button>
+                                        <button class="btn btn-primary" name="submit" type="submit" id="btnsubmit" value="accept">ยืนยันการส่งผลการตรวจ</button>
                                         <!-- <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button> -->
                                     </div>
                                 </div>
@@ -175,14 +175,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <style>
     @media print {
 
-        #printPageButton,
-        #btnpreview,
-        #confirmpreview,
-        #accordionSidebar,
-        #title,
-        #submit {
-            display: none;
-        }
+            #printPageButton,
+            #btnpreview,
+            #btnsubmit,
+            #accordionSidebar,
+            #title,
+            #submit {
+                display: none;
+            }
+            #title_head {
+                color: black;
+            }
     }
     #other_method1, 
     #other_method2
