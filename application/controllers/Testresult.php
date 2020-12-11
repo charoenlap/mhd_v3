@@ -130,7 +130,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview');
+    $data['action'] = base_url('testresult/preview_EQAT');
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -525,7 +525,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAB_GRAM');
+    $data['action'] = base_url('testresult/preview_EQAB_GRAM');
 
     /* 
     variable in form
@@ -565,7 +565,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAB_AFB');
+    $data['action'] = base_url('testresult/preview_EQAB_AFB');
 
     /* 
     variable in form
@@ -605,7 +605,7 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_EQAB_IDEN_AST');
+    $data['action'] = base_url('testresult/preview_EQAB_IDEN_AST');
 
     /* 
     variable in form
@@ -843,19 +843,159 @@ public function preview_EQAP(){
   $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
   $received_other = $this->input->post('received_status_other');
   $data['received_status']  = $received_other;
-}
-// header
-$data['title']  = $this->input->post('title_1');
-$data['datepick']  = $this->input->post('datepick');
+  }
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
 
-// info member
-$data['name'] = $this->input->post('name_lname');
-$data['tel'] = $this->input->post('tel');
-$data['position'] = $this->input->post('position');
-$data['comment'] = $this->input->post('comment');
-$data['datereport'] = $this->input->post('report_date');
-$this->load->view('testresult/preview_EQAP',$data);
-}
-
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAP',$data);
 }
 
+public function preview_EQAT(){
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="EQAT"){
+    $this->session->unset_userdata('title');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+  }
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAT',$data);
+}
+
+public function preview_EQAB_AFB(){
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="EQAB_AFB"){
+    $this->session->unset_userdata('title');
+    $data['result'] = $this->input->post('result');
+    $data['result_other'] = $this->input->post('result_other');
+    $data['sample'] = $this->input->post('sample');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+  }
+
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAB_AFB',$data);
+}
+
+public function preview_EQAB_GRAM(){
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="EQAB_GRAM"){
+    $this->session->unset_userdata('title');
+    $data['sample'] = $this->input->post('sample');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+  }
+
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAB_GRAM',$data);
+}
+
+public function preview_EQAB_IDEN_AST(){
+
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="EQAB_IDEN_AST"){
+    $this->session->unset_userdata('title');
+    $data['result'] = $this->input->post('result');
+    $data['result_other'] = $this->input->post('result_other');
+    $data['infection_sec1'] = $this->input->post('infection_sec1');
+    $data['infection_sec1_other'] = $this->input->post('infection_sec1_other');
+    $data['tool_sec2'] = $this->input->post('tool_sec2');
+    $data['result_2'] = $this->input->post('result_2');
+    $data['infection_sec3'] = $this->input->post('infection_sec3');
+    $data['result_3'] = $this->input->post('result_3');
+    $data['result_4'] = $this->input->post('result_4');
+    $data['file_0'] = $this->input->post('file_0');
+    $data['file_1'] = $this->input->post('file_1');
+    $data['file_2'] = $this->input->post('file_2');
+    $data['file_3'] = $this->input->post('file_3');
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+  }
+
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_EQAB_IDEN_AST',$data);
+}
+
+}

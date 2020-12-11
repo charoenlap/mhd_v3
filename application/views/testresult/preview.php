@@ -845,18 +845,6 @@ print_r($_SESSION);
                 $('#<?php echo $title; ?>').addClass('d-none');
            }
     });
-    // $('#EQAH.select-other', function(e) {
-    //     var status_other = $('option:selected', this).attr('other');;
-    //     var other_id = $(this).attr('other_id');
-    //     // console.log(other_id);
-
-    //     if (status_other == '1') {
-    //         $('#' + other_id).removeClass('d-none');
-    //     } else {
-    //         $('#' + other_id).addClass('d-none');
-    //         $('#' + other_id).val('');
-    //     }
-    // });
     </script>
 </body>
 </html>

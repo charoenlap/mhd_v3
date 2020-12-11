@@ -37,9 +37,9 @@ print_r($_SESSION);
     <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet">
 </head>
 
- <!-- EQAH -->
- <div class="container-fuild">
-        <div class="container container-EQAH" id="EQAH">
+<!-- EQAT -->
+<div class="container-fuild">
+        <div class="container container-EQAT" id="EQAT">
             <div class="card border border-dark">
                 <form action="">
                     <div class="card-title text-center text-white" style="padding:20px; background-color:rgba(0, 0, 255, 0.7);">
@@ -49,7 +49,7 @@ print_r($_SESSION);
                         <div class="container-left">
                             <h6 class="font-weight-bold" style="margin-top: 5px;">โรงพยาบาล ศูนย์วิทยาศาสตร์การแพทย์อาเซียน (Test Account) กลุ่มงานพยาธิวิทยา</h6>
                             <h6 class="font-weight-bold" style="margin-top: 5px;">บันทึกการรับตัวอย่าง</h6>
-                            <span>Trial 185-186 ( November 2020 )</span>
+                            <span>Trial 290 - 291 (November 2020)</span>
                             <h6 class="font-weight-bold" style="margin-top: 5px;">วันที่ได้รับตัวอย่างทดสอบ *</h6>
                             <span><?php echo $datepick; ?></span>
                             <h6 class="font-weight-bold" style="margin-top: 5px;">ความสมบูรณ์ของตัวอย่างทดสอบ</h6>
@@ -64,63 +64,21 @@ print_r($_SESSION);
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col">Code</th>
+                                            <th scope="col">Analytes</th>
+                                            <th scope="col">Instruments</th>
                                             <th scope="col">Principles</th>
-                                            <th scope="col">Sample1</th>
-                                            <th scope="col">Sample2</th>
+                                            <th scope="col">Trial 290</th>
+                                            <th scope="col">Trial 291</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Total T3 (ng/dL)</td>
-                                            <td>
-                                            <select class="custom-select" name="tools[1]" other_id="other_tools1">
-                                                        <option <?php if($tools[1] =="01"){echo "selected='selected'";}?> value="01" other="">01:Maglumi Series 800</option>
-                                                        <option <?php if($tools[1] =="02"){echo "selected='selected'";}?> value="02" other="">02:Abbott Architect Series; Armity</option>
-                                                        <option <?php if($tools[1] =="03"){echo "selected='selected'";}?> value="03" other="">03:Advia centaur CP; XP</option>
-                                                        <option <?php if($tools[1] =="04"){echo "selected='selected'";}?> value="04" other="">04:Beckman, access series DXi</option>
-                                                        <option <?php if($tools[1] =="05"){echo "selected='selected'";}?> value="05" other="">05:Bio merieux; Vidas; Mini Vidas</option>
-                                                        <option <?php if($tools[1] =="06"){echo "selected='selected'";}?> value="06" other="">06:Tosoh AIA series</option>
-                                                        <option <?php if($tools[1] =="07"){echo "selected='selected'";}?> value="07" other="">07:Johnson vitros Eci. 3600, 5600</option>
-                                                        <option <?php if($tools[1] =="08"){echo "selected='selected'";}?> value="08" other="">08:Roche; Cobas series; Elecsys series; Modular</option>
-                                                        <option <?php if($tools[1] =="09"){echo "selected='selected'";}?> value="09" other="">09:Hybiome AE-180</option>
-                                                        <option <?php if($tools[1] =="10"){echo "selected='selected'";}?> value="10" other="">10:Mindray CL 1000i; 2000i; 6000</option>
-                                                        <option <?php if($tools[1] =="11"){echo "selected='selected'";}?> value="11" other="">11:Liaison; Liaison XL</option>
-                                                        <option <?php if($tools[1] =="12"){echo "selected='selected'";}?> value="12" other="">12:Sysmex HISCL-800</option>
-                                                        <option <?php if($tools[1] =="13"){echo "selected='selected'";}?> value="13" other="">13:Others</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                            <select class="select-other custom-select" name="method[1]" other_id="other_method1">
-                                                        <option <?php if($method[1] =="1"){echo "selected='selected'";}?> value="1" other="">CLIA</option>
-                                                        <option <?php if($method[1] =="2"){echo "selected='selected'";}?> value="2" other="">ECLIA</option>
-                                                        <option <?php if($method[1] =="3"){echo "selected='selected'";}?> value="3" other="">ELFA</option>
-                                                        <option <?php if($method[1] =="4"){echo "selected='selected'";}?> value="4" other="">CMIA</option>
-                                                        <option <?php if($method[1] =="5"){echo "selected='selected'";}?> value="5" other="">FEIA</option>
-                                                        <option <?php if($method[1] =="99"){echo "selected='selected'";}?> value="99" other="1">Other</option>
-                                                    </select>
-                                                <input type="text" class="d-none form-control other_method" name="method_other[1]" id="other_method1" value="<?php echo $method_other[1]; ?>">
-                                            </td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Albumin (g/dL)</td>
-                                            <td>Bromocresol green</td>
-                                            <td>Audicom AC9000 Series electrolyte analyzer</td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>                                        
-                                            <td>3</td>
-                                            <td>Albumin (g/dL)</td>
-                                            <td>Bromocresol green</td>
-                                            <td>Audicom AC9000 Series electrolyte analyzer</td>
-                                            <td>2</td>
-                                            <td>2</td>
+                                            <td>AFP* IU/mL</td>
+                                            <td>01: Maglumi Series /800</td>
+                                            <td>ELFA</td>
+                                            <td>11</td>
+                                            <td>12</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -152,7 +110,7 @@ print_r($_SESSION);
                             </div> 
                         </div>
                         <div class="form-group text-center">
-                            <button class="btn btn-primary" type="submit" name="submit">ยืนยันการส่งผลตรวจ</button>
+                            <input class="btn btn-primary" type="submit" name="" value="ยืนยันการส่งผลตรวจ"></input>
                         </div>
                 </form>
             </div>
@@ -160,23 +118,12 @@ print_r($_SESSION);
         </div>
 
     </div>
-    <style>
-        select
-        {
-            width: auto; 
-            text-align-last:center;
-            border: none !important;
-            pointer-events: none;
-            background: none !important;
-        }
-    </style>
-    <script>        
-    $(document).ready(function(e) {
-        var method_other = ;
-        if(method_other != ''){
-            ('.other_method').removeClass('d-none');
-        } else {
-            ('.other_method').addClass('d-none');
-        }
-    });
-    </script>
+<style>
+    select {
+        width: auto;
+        text-align-last: center;
+        border: none !important;
+        pointer-events: none;
+        background: none !important;
+    }
+</style>

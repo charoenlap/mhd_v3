@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="text-center p-3 mb-2 bg-primary text-white" id="title2" name="title2"><h2><?php echo $heading_title;?></h2></div>
                 
                 <form action="<?php echo $action;?>" method="POST" role="form">
+                <input type="text" name="title_1" value="EQAB_AFB" class="d-none">
                     <div class="container-left">
                     <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : EQAB: AFB</h5>
                     </div>
@@ -64,12 +65,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </label>                 
                                         </div>
                                         <input type="text" name="result_other" class="form-control" placeholder="Other ระบุ" style="margin-bottom: 20px;"></input>
-                                        <caption>4.รายงานผลการย้อมสี</caption>
+                                        <caption>รายงานผลการย้อมสี</caption>
                                         <table class="table text-center table-hover">
                                             <thead class="bg-primary text-white">
                                                 <tr>
                                                     <th>Sample Id</th>
-                                                    <th>รายงานผลการย้อมสี</th>
+                                                    <th>4.รายงานผลการย้อมสี</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -147,9 +148,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                                     </div>
                                     <div class="form-gruop text-center" style="margin-top: 30px;">
-                                    <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                    <a href="#" class="btn btn-primary" id="btnpreview" name="btnpreview">พรีวิว</a>
-                                    <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button>
+                                    <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
                                     </div>
                                 </div>
                             </div>                      
@@ -162,8 +163,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <style>
     @media print {
-  #printPageButton,#btnpreview,#confirmpreview,#accordionSidebar,#title,#submit{
-    display: none;
-  }
+
+    #printPageButton,
+    #btnpreview,
+    #btnsubmit,
+    #accordionSidebar,
+    #title,
+    #submit {
+        display: none;
+    }
 }
 </style>
