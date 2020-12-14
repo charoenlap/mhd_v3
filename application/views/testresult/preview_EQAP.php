@@ -60,6 +60,7 @@ print_r($_SESSION);
                             </div>
                             <div class="container-fluid">
                             <caption class="font-weight-bold">ผลการตรวจ</caption>
+                            <div id="sample_0">
                             <h5 class="font-weight-bold" style="margin-left: 10px;">ST-6311-1</h5>
                                 <table class="table text-center table-hover">
                                     <thead class="bg-primary text-white">
@@ -75,8 +76,8 @@ print_r($_SESSION);
                                         <tr>
                                             <td><?php echo $y++; ?></td>
                                             <td>
-                                                <select class="custom-select" name="sample[0][]">
-                                                        <option <?php if($sample_0[$x] ==""){echo "selected='selected'";}?> value="">Choose</option>
+                                                <select class="custom-select" name="sample[0][]" >
+                                                        <option value="">Choose</option>
                                                         <option <?php if($sample_0[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
                                                         <option <?php if($sample_0[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
                                                         <option <?php if($sample_0[$x] =="3"){echo "selected='selected'";}?> value="3">Balantidium coli cyst </option>
@@ -135,6 +136,8 @@ print_r($_SESSION);
                                         <?php endfor; ?>
                                     </tbody>
                                 </table>
+                                </div>
+                                <div id="sample_1">
                                 <h5 class="font-weight-bold" style="margin-left: 10px;">BL-6311-2</h5>
                                 <table class="table text-center table-hover">
                                     <thead class="bg-primary text-white">
@@ -150,7 +153,7 @@ print_r($_SESSION);
                                         <tr>
                                             <td><?php echo $y++; ?></td>
                                             <td>
-                                                <select class="custom-select" name="sample[0][]">
+                                                <select class="custom-select" name="sample[0][]" >
                                                         <option <?php if($sample_1[$x] ==""){echo "selected='selected'";}?> value="">Choose</option>
                                                         <option <?php if($sample_1[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
                                                         <option <?php if($sample_1[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
@@ -210,6 +213,7 @@ print_r($_SESSION);
                                         <?php endfor; ?>
                                     </tbody>
                                 </table>
+                                </div>
                                 <table class="table text-center table-hover">
                                     <tbody class="text-left">
                                         <tr>

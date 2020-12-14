@@ -52,7 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="container-left col-md-auto">
                             <span class="font-weight-bold">1.วิธีการที่ท่านใช้ในการตรวจวินิจฉัยเชื้อแบคทีเรียสำหรับตัวอย่างที่ได้รับ</span>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="result" id="radio_0" value="1">
+                                <input class="form-check-input" type="radio" name="result" id="radio_0" value="1" checked="" >
                                 <label class="form-check-label" for="radio_0">
                                     Conventional tests
                                 </label>
@@ -84,7 +84,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 <div class="card-content" style="margin-top: 20px;">
                                     <span class="font-weight-bold ">3.วิธีการที่ท่านใช้ในการทดสอบความไวต่อยาปฏิชีวนะสำหรับเชื้อตัวอย่างที่ได้รับ</span>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="infection_sec1[0]" id="radio_sec1_01" value="1">
+                                        <input class="form-check-input" type="radio" name="infection_sec1[0]" id="radio_sec1_01" value="1" checked="" >
                                         <label class="form-check-label" for="radio_sec1_01">
                                             Disc diffusion
                                         </label>
@@ -210,7 +210,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </table>
                                         <div class="card-content">
                                             <span>5.ในกรณีที่ยาบางชนิดที่ท่านทดสอบนั้นมีวิธีการทดสอบที่แตกต่างไปจากที่ให้ข้อมูลโปรดระบุ</span>
-                                            <input type="text" class="form-control border-white" name="result_4[]" >
+                                            <input type="text" class="form-control border-white" name="result_4[0]" >
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="card-content" style="margin-top: 20px;">
                                 <span class="font-weight-bold ">7.วิธีการที่ท่านใช้ในการทดสอบความไวต่อยาปฏิชีวนะสำหรับเชื้อตัวอย่างที่ได้รับ</span>
                                 <div class="form-check ">
-                                    <input class="form-check-input" type="radio" name="infection_sec1[1]" id="radio_sec1_11" value="1">
+                                    <input class="form-check-input" type="radio" name="infection_sec1[1]" id="radio_sec1_11" value="1" checked="">
                                     <label class="form-check-label" for="radio_sec1_11">
                                         Disc diffusion
                                     </label>
@@ -267,7 +267,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <select class="form-control" name="tool_sec2[0][]">
+                                                    <select class="form-control" name="tool_sec2[1][]">
                                                         <option value="" selected="">Choose</option>
                                                         <option value="1">Amikacin</option>
                                                         <option value="2">Amoxicillin-calvulonate</option>
@@ -323,10 +323,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control" name="result_2[0][]">
+                                                    <input type="number" class="form-control" name="result_2[1][]">
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="infection_sec3[0][]">
+                                                    <select class="form-control" name="infection_sec3[1][]">
                                                         <option value="" selected="">Choose</option>
                                                         <option value="1">Susceptible</option>
                                                         <option value="2">Susceptible dose dependent</option>
@@ -335,7 +335,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="result_3[0][]">
+                                                    <input type="text" class="form-control" name="result_3[1][]">
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-delete-row btn_event">
@@ -350,7 +350,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </table>
                                     <div class="card-content">
                                         <span>9.ในกรณีที่ยาบางชนิดที่ท่านทดสอบนั้นมีวิธีการทดสอบที่แตกต่างไปจากที่ให้ข้อมูลโปรดระบุ</span>
-                                        <input type="text" class="form-control border-white" name="" id="">
+                                        <input type="text" class="form-control border-white" name="result_4[1]" id="">
                                     </div>
                                 </div>
                             </div>

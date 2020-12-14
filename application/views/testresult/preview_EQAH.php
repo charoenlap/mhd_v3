@@ -172,7 +172,6 @@ print_r($_SESSION);
     </style>
     <script>        
     $(document).ready(function(e) {
-        var method_other = ;
         if(method_other != ''){
             ('.other_method').removeClass('d-none');
         } else {

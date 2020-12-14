@@ -1,51 +1,64 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+print_r($_POST);
+print_r($_SESSION);
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800" id="title" name="title"><?php echo $heading_title; ?></h1>
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="container-fluid">
-                    <div class="text-center p-3 mb-2 bg-primary text-white" id="title2" name="title2">
-                        <h2><?php echo $heading_title; ?></h2>
-                    </div>
+<head>
+    <title>Preview-<?php echo $title; ?></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-                    <form action="<?php echo $action; ?>" method="POST" role="form">
-                    <input type="text" name="title_1" value="EQAI_HBV" class="d-none">
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <script src="<?php echo base_Url(); ?>assets/vendor/jquery.Thailand.js-master/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script src="<?php echo base_Url(); ?>assets/vendor/jquery.Thailand.js-master/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/jquery.Thailand.js-master/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+    <script src="<?php echo base_Url(); ?>assets/vendor/jquery.Thailand.js-master/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+
+    <!-- Custom fonts for this template-->
+    <link href="<?php echo base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet">
+</head>
+
+<div class="container-fuild">
+    <div class="container container-EQAI_HBV" id="EQAI_HBV">
+        <div class="card border border-dark">
+            <form action="">
+                <div class="card-title text-center text-white" style="padding:20px; background-color:rgba(0, 0, 255, 0.7);">
+                    <h5 class="font-weight-bold"><?php echo $title; ?></h5>
+                </div>
+                <div class="card-body" style="background-color:white;">
+                    <div class="container-left">
+                        <h6 class="font-weight-bold" style="margin-top: 5px;">โรงพยาบาล ศูนย์วิทยาศาสตร์การแพทย์อาเซียน (Test Account) กลุ่มงานพยาธิวิทยา</h6>
+                        <h6 class="font-weight-bold" style="margin-top: 5px;">บันทึกการรับตัวอย่าง</h6>
+                        <span>Trial : 4-2563</span>
+                        <h6 class="font-weight-bold" style="margin-top: 5px;">วันที่ได้รับตัวอย่างทดสอบ *</h6>
+                        <span><?php echo $datepick; ?></span>
+                        <h6 class="font-weight-bold" style="margin-top: 5px;">ความสมบูรณ์ของตัวอย่างทดสอบ</h6>
+                        <span><?php echo $received_status; ?></span>
+                        <hr>
                         <div class="container-left">
-                            <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : EQAI:HBV</h5>
+
                         </div>
-                        <div class="container-left">
-                            <h5 class="text-left">
-                                <p class="font-weight-bold">โรงพยาบาล ศูนย์วิทยาศาสตร์การแพทย์อาเซียน (Test Account) กลุ่มงานพยาธิวิทยา</p>
-                            </h5>
-                            <p class="font-weight-bold"> บันทึกการรับตัวอย่าง</p>
-                            <div class="col">
-                                <h6><label class="font-weight-bold">Trial : </label> Trial 185-186 ( November 2020 )</h6>
-                            </div>
-                            <div class="font-weight-bold container-left date">
-                                <label for="datepick">วันที่ได้รับตัวอย่างทดสอบ *</label>
-                                <input type="date" class="form-control" style="width: 180px;" id="datepick" name="datepick" value="<?php echo date('Y-m-d'); ?>" ></input>
-                            </div>
-                            <div class="container-left">
-                                <p class="font-weight-bold" style="padding-top: 30px;">ความสมบูรณ์ของตัวอย่างทดสอบ * </p>
-                            </div>
-                            <input type="radio" name="received_status" id="test1" name="test1" class="received_check theone" checked="" value="1">
-                            <label class="choose_edit" for="test1">อยู่ในสภาพสมบูรณ์</label>
-                            <div class="container-left">
-                                <input type="radio" name="received_status" id="test2" name="test2" class="received_check theone" value="2">
-                                <label class="choose_edit" for="test2">อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้</label>
-                            </div>
-                            <div class="container-left">
-                                <label for="received_status_other" class="font-weight-bold">เนื่องจาก</label>
-                                <textarea class="form-control" id="received_status_other" name="received_status_other"></textarea>
-                            </div>
-                            <div class="container-left" style="padding-top: 30px;">
-                                <p class="font-weight-bold">ผลการตรวจ</p>
-                            </div>
-                            eqai_hbv.php
+                        <div class="container-fluid">
+                            <caption class="font-weight-bold">ผลการตรวจ</caption>
                             <div class="container-fluid">
                                 <caption>รายงานผลการทดสอบแบบ qualitative report</caption>
                                 <table class="table text-center table-hover">
@@ -62,35 +75,37 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <tbody>
                                         <tr>
                                             <td></td>
-                                            <?php $x = 1; $y = 0; $z = 0;?>
+                                            <?php $x = 1;
+                                            $y = 0;
+                                            $z = 0; ?>
                                             <?php while ($x <= 5) : ?>
 
                                                 <td>
                                                     <label for="tool[<?php echo $x; ?>]">Method</label>
-                                                    <select name="tool[<?php echo $x; ?>]" class="form-control selected check_select_<?php echo $y++; ?>" >
-                                                        <option value="">Select</option>
-                                                        <option value="1" data-id="auto">Automation</option>
-                                                        <option value="2" data-id="">Immunochromatography</option>
-                                                        <option value="3" data-id="other">Other</option>
+                                                    <select name="tool[<?php echo $x; ?>]" class="form-control selected check_select_<?php echo $y++; ?> <?php if($tool[$x]!="2"){echo "d-none";} ?>" >
+                                                        <option <?php if($tool[$x]==""){echo "selected";} ?> value="" data-id="">-</option>
+                                                        <option <?php if($tool[$x]=="1"){echo "selected";} ?> value="1" data-id="auto">Automation</option>
+                                                        <option <?php if($tool[$x]=="2"){echo "selected";} ?> value="2" data-id="">Immunochromatography</option>
+                                                        <option <?php if($tool[$x]=="3"){echo "selected";} ?> value="3" data-id="other">Other</option>
                                                     </select>
                                                     <div class="auto" style="display: none;">
                                                         <div class="input-field">
                                                             <span>Automation</span>
                                                             <!--<select name="tool_auto[1]"  cutoff="0" class="browser-default select_show_cutoff"> -->
                                                             <select name="tool_auto[<?php echo $x; ?>]" cutoff="<?php echo $z++; ?>" class="select_show_cutoff form-control">
-                                                                <option value="">Select</option>
-                                                                <option value="1" data-id>EIA / ELISA</option>
-                                                                <option value="2" data-id>CLIA</option>
-                                                                <option value="3" data-id>CMIA</option>
-                                                                <option value="4" data-id>E-CLIA</option>
-                                                                <option value="5" data-id>FEIA</option>
+                                                                <option <?php if($tool_auto[$x]==""){echo "selected";} ?> value="">Select</option>
+                                                                <option <?php if($tool_auto[$x]=="1"){echo "selected";} ?> value="1" data-id>EIA / ELISA</option>
+                                                                <option <?php if($tool_auto[$x]=="2"){echo "selected";} ?> value="2" data-id>CLIA</option>
+                                                                <option <?php if($tool_auto[$x]=="3"){echo "selected";} ?> value="3" data-id>CMIA</option>
+                                                                <option <?php if($tool_auto[$x]=="4"){echo "selected";} ?> value="4" data-id>E-CLIA</option>
+                                                                <option <?php if($tool_auto[$x]=="5"){echo "selected";} ?> value="5" data-id>FEIA</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="other" style="display: none;">
                                                         <div class="input-field">
                                                             <span>Other</span>
-                                                            <input type="text" name="tool_other[<?php echo $x; ?>]" value class="form-control">
+                                                            <input type="text" name="tool_other[<?php echo $x; ?>]" value="<?php echo $tool_other[$x]; ?>" class="form-control" disabled>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -99,11 +114,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <?php $x = 1; $y = 0;?>
+                                            <?php $x = 1;
+                                            $y = 0; ?>
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Instrument/test kit/ Brand</span>
-                                                    <input type="text" name="result_1[<?php echo $x; ?>]" value="" class="input_check_<?php echo $y++; ?> form-control">
+                                                    <input type="text" name="result_1[<?php echo $x; ?>]" value="<?php echo $result_1[$x]; ?>" class="input_check_<?php echo $y++; ?> form-control">
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -114,7 +130,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Reagent Lot Number </span>
-                                                    <input type="text" name="result_2[<?php echo $x; ?>]" value="" class="form-control">
+                                                    <input type="text" name="result_2[<?php echo $x; ?>]" value="<?php echo $result_2[$x]; ?>" class="form-control">
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -125,7 +141,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Catalog number</span>
-                                                    <input type="text" name="result_3[<?php echo $x; ?>]" value="" class="form-control">
+                                                    <input type="text" name="result_3[<?php echo $x; ?>]" value="<?php echo $result_3[$x]; ?>" class="form-control">
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -146,17 +162,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <tbody>
                                         <tr>
                                             <td>Trial 185</td>
-                                            <?php $x = 1; $y = 0;?>
+                                            <?php $x = 1;
+                                            $y = 0; ?>
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <select name="sample_q_li[0][<?php echo $x; ?>]" id="" class="fixed-select-<?php echo $y++; ?> form-control">
                                                         <option value="">Select</option>
-                                                        <option value="1" class="text-danger">Positive</option>
-                                                        <!-- <option value="1" class="fixed-color0">Positive</option> -->
-                                                        <option value="2" class="text-success">Weakly Positive</option>
-                                                        <!-- <option value="2" class="fixed-color1" >Weakly Positive</option> -->
-                                                        <option value="3" class="text-primary">Negative</option>
-                                                        <!-- <option value="3" class="fixed-color2" >Negative</option> -->
+                                                        <option <?php if($sample_q_li[0][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
+                                                        <option <?php if($sample_q_li[0][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
+                                                        <option <?php if($sample_q_li[0][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
                                                     </select>
                                                 </td>
                                                 <?php $x++; ?>
@@ -164,17 +178,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         </tr>
                                         <tr>
                                             <td>Trial 186</td>
-                                            <?php $x = 1; $y = 0;?>
+                                            <?php $x = 1;
+                                            $y = 0; ?>
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <select name="sample_q_li[1][<?php echo $x; ?>]" id="" class="fixed-select-<?php echo $y++; ?> form-control">
                                                         <option value="">Select</option>
-                                                        <option value="1" class="text-danger">Positive</option>
-                                                        <!-- <option value="1" class="fixed-color0">Positive</option> -->
-                                                        <option value="2" class="text-success">Weakly Positive</option>
-                                                        <!-- <option value="2" class="fixed-color1" >Weakly Positive</option> -->
-                                                        <option value="3" class="text-primary">Negative</option>
-                                                        <!-- <option value="3" class="fixed-color2" >Negative</option> -->
+                                                        <option <?php if($sample_q_li[1][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
+                                                        <option <?php if($sample_q_li[1][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
+                                                        <option <?php if($sample_q_li[1][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
                                                     </select>
                                                 </td>
                                                 <?php $x++; ?>
@@ -199,22 +211,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <span>Automation Principle</span>
                                                 <select name="tool_auto2[5][1]" cutoff="4" class="form-control">
                                                     <option value="">Select</option>
-                                                    <option value="1" data-id="">EIA / ELISA</option>
-                                                    <option value="2" data-id="">CLIA</option>
-                                                    <option value="3" data-id="">CMIA</option>
-                                                    <option value="4" data-id="">E-CLIA</option>
-                                                    <option value="5" data-id="">FEIA</option>
+                                                    <option <?php if($tool_auto2[5][1]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
+                                                    <option <?php if($tool_auto2[5][1]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
+                                                    <option <?php if($tool_auto2[5][1]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
+                                                    <option <?php if($tool_auto2[5][1]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
+                                                    <option <?php if($tool_auto2[5][1]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
                                                 </select>
                                             </td>
                                             <td colspan="2">
                                                 <span>Automation Principle</span>
                                                 <select name="tool_auto2[5][2]" cutoff="4" class="form-control">
                                                     <option value="">Select</option>
-                                                    <option value="1" data-id="">EIA / ELISA</option>
-                                                    <option value="2" data-id="">CLIA</option>
-                                                    <option value="3" data-id="">CMIA</option>
-                                                    <option value="4" data-id="">E-CLIA</option>
-                                                    <option value="5" data-id="">FEIA</option>
+                                                    <option <?php if($tool_auto2[5][2]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
+                                                    <option <?php if($tool_auto2[5][2]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
+                                                    <option <?php if($tool_auto2[5][2]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
+                                                    <option <?php if($tool_auto2[5][2]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
+                                                    <option <?php if($tool_auto2[5][2]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -222,11 +234,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <td></td>
                                             <td colspan="2">
                                                 <span>Instrument/test kit/ Brand</span>
-                                                <input type="text" class="form-control" name="tool_reagent[5][1]">
+                                                <input type="text" class="form-control" name="tool_reagent[5][1]" value="<?php echo $tool_reagent[5][1]; ?>">
                                             </td>
                                             <td colspan="2">
                                                 <span>Instrument/test kit/ Brand</span>
-                                                <input type="text" class="form-control" name="tool_reagent[5][2]">
+                                                <input type="text" class="form-control" name="tool_reagent[5][2]" value="<?php echo $tool_reagent[5][2]; ?>">
                                             </td>
                                         </tr>
                                         <tr>
@@ -265,108 +277,104 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <tbody>
                                         <tr>
                                             <td>Trial 185</td>
-                                                <td><select class="form-control" name="symbol[0][1]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-1" name="tool_specimen_hbs[0][1]"></td>
-                                                <td>
+                                            <td><select class="form-control" name="symbol[0][1]">
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-1" name="tool_specimen_hbs[0][1]"></td>
+                                            <td>
                                                 <select class="form-control" name="symbol_new[0]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[0]"></td>
-                                                <td>
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[0]"></td>
+                                            <td>
                                                 <select class="form-control" name="symbol[0][2]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-2" name="tool_specimen_hbs[0][2]" required="required"></td>
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-2" name="tool_specimen_hbs[0][2]" required="required"></td>
                                         </tr>
                                         <tr>
                                             <td>Trial 186</td>
-                                                <td><select class="form-control" name="symbol[1][1]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-1" name="tool_specimen_hbs[1][1]"></td>
-                                                <td>
+                                            <td><select class="form-control" name="symbol[1][1]">
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-1" name="tool_specimen_hbs[1][1]"></td>
+                                            <td>
                                                 <select class="form-control" name="symbol_new[1]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[1]"></td>
-                                                <td>
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[1]"></td>
+                                            <td>
                                                 <select class="form-control" name="symbol[1][2]">
-                                                        <option value="" selected=""></option>
-                                                        <option value="<">&lt;</option>
-                                                        <option value=">">&gt;</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="number" class="form-control fixed-select2-2" name="tool_specimen_hbs[1][2]" required="required"></td>
+                                                    <option value="" selected=""></option>
+                                                    <option value="<">&lt;</option>
+                                                    <option value=">">&gt;</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control fixed-select2-2" name="tool_specimen_hbs[1][2]" required="required"></td>
                                         </tr>
-                                        </tbody>
+                                    </tbody>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="font-weight-bold" style="padding-top: 30px; padding-bottom: 10px;"> ข้อมูลผู้ส่ง </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-5">
-                                    <label for="name_lname">ชื่อ</label>
-                                    <input type="text" class="form-control" id="name_lname" name="name_lname" placeholder="ชื่อ">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="tel">หมายเลขโทรศัพท์</label>
-                                    <input type="text" class="form-control" id="tel" name="tel" placeholder="หมายเลขโทรศัพท์">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="position">ตำแหน่ง</label>
-                                    <input type="text" class="form-control" id="position" name="position" placeholder="ตำแหน่ง">
-                                </div>
-                            </div>
-                            <div class="font-weight-bold" style="padding-top: 30px;">
-                                <label for="comment">ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง </label>
-                                <textarea class="form-control" id="comment" name="comment" placeholder="ความคิดเห็นเพิ่มเติม"></textarea>
-                            </div>
-                            <div class="font-weight-bold container-left" style="padding-top: 30px;">
-                                <label for="report_date">วันที่ทำการทดสอบ </label>
-                                <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
-                            </div>
-                            <div class="form-gruop text-center" style="margin-top: 30px;">
-                                <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                <a href="#" class="btn btn-primary" id="btnpreview" name="btnpreview">พรีวิว</a>
-                                <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button>
-                            </div>
+                            <caption>ข้อมูลผู้ส่ง</caption>
+                            <table class="table text-center table-hover">
+                                <tbody class="text-left">
+                                    <tr>
+                                        <td class="bg-primary text-white" style="width: 350px;">ชื่อ</td>
+                                        <td><?php echo $name; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-primary text-white" style="width: 350px;">หมายเลขโทรศัพท์</td>
+                                        <td><?php echo $tel; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-primary text-white" style="width: 350px;">ตำแหน่ง</td>
+                                        <td><?php echo $position; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-primary text-white" style="width: 350px;">ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง</td>
+                                        <td><?php echo $comment; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-primary text-white" style="width: 350px;">วันที่ทำการทดสอบ</td>
+                                        <td><?php echo $datereport; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                </div>
-                </form>
-
-            </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <input class="btn btn-primary" type="submit" name="" value="ยืนยันการส่งผลตรวจ"></input>
+                    </div>
+            </form>
         </div>
+
     </div>
-</div>
+
 </div>
 <style>
-    @media print {
-
-        #printPageButton,
-        #btnpreview,
-        #confirmpreview,
-        #accordionSidebar,
-        #title,
-        #submit {
-            display: none;
-        }
+    select {
+        width: auto;
+        text-align-last: center;
+        border: none !important;
+        pointer-events: none;
+        background: none !important;
+        appearance: none;
     }
 </style>
 <script>
