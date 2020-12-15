@@ -13,6 +13,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
 
                     <form class="user" action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="title_1" value="H_EQAM" class="d-none">
                         <div class="container-left">
                             <h5 class="text-left font-weight-bold" style="padding-top: 30px;">Scheme : *H-EQAM - ปิดรับสมาชืกปี 2564 (สมาชิกเต็ม)</h5>
                         </div>
@@ -59,26 +60,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <tr>
                                                 <td>1</td>
                                                 <td>Blast cell (cannot be identified)</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][1]" ></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][1]" ></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="amount_cal form-control" name="sample[0][1]" ></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="amount_cal form-control" name="sample[1][1]" ></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td>Lymphoblast/prolymphocyte</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][2]" ></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][2]" ></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="amount_cal form-control" name="sample[0][2]" ></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="amount_cal form-control" name="sample[1][2]" ></td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
                                                 <td>Monoblast/promonocyte</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][3]" ></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][3]" ></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="amount_cal form-control" name="sample[0][3]" ></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="amount_cal form-control" name="sample[1][3]" ></td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td>Total</td>
-                                                <td><input type="number" class="form-control" name="sum_sec1[0][1]" id="sum_amount_0" ></td>
-                                                <td><input type="number" class="form-control" name="sum_sec1[1][1]" id="sum_amount_1" ></td>
+                                                <td><input type="number" class="sum_amount_0 form-control" name="sum_sec1[0][1]" id="sum_amount_0" readonly></td>
+                                                <td><input type="number" class="sum_amount_1 form-control" name="sum_sec1[1][1]" id="sum_amount_1" readonly></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -439,8 +440,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </div>
                                     <div class="form-gruop text-center">
                                         <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                        <a href="#" class="btn btn-primary" id="btnpreview" name="btnpreview">พรีวิว</a>
-                                        <button type="submit" id="submit" class="btn btn-primary">ยืนยันการส่งผลการตรวจ</button>
+                                        <button class="btn btn-primary" name="submit" type="submit" value="preview">พรีวิว</button>
+                                        <button class="btn btn-primary" name="submit" type="submit" value="accept">ยืนยันการส่งผลการตรวจ</button>
                                     </div>
                                 </div>
                             </div>
@@ -464,8 +465,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         #accordionSidebar,
         #title,
         #submit {
-            display: none;
-        }
+        display: none;
+     }
     }
 </style>
 <script>
@@ -485,4 +486,126 @@ defined('BASEPATH') or exit('No direct script access allowed');
         $(this).prev('label').text(file);
 
     });
+
+        $(document).on('keyup', '.amount_cal', function(event) {
+            $this = $(this);
+            if ($(this).val() >100) {
+                $(this).val(100);
+            }
+            var sum = 0;
+            $('.amount_cal').each(function(index_head, el_head) {
+                var amount_attr = $(this).attr('amount_attr');
+                if (amount_attr == $this.attr('amount_attr')) {
+                    sum += Number($(this).val());
+                }
+            });
+            if (sum > 100) {
+                $this.val('')
+            } else {
+                $('#sum_amount_'+$this.attr('amount_attr')).val(sum);
+            }
+            console.log(sum);
+            event.preventDefault();
+        });
+
+        function number_plus ($class) {
+            $($class).each(function(index, el) {
+                $(this).text(index+1);
+            });
+        }
+        $(document).ready(function() {
+            number_plus('.number_topics');
+            number_plus('.number_topics_0');
+            number_plus('.number_topics_1');
+
+            $('.datepicker').datepicker({
+                dateFormat: 'dd-mm-yyyy',
+                format: 'dd-mm-yyyy',
+                // format: 'yyyy-mm-dd',
+                "setDate": new Date('d-m-Y'),
+                autoclose: true
+            });
+        });
+
+        $(document).on("click", ".btn-add-row", function() {
+            var clone = $(this).parents('table').find('tbody tr').first().clone();
+            // var clone = $(this).next().find('tbody tr').first().clone();
+            $(this).parents('table').find('tbody').append(clone);
+            // $('.preview').find('table').find('tbody').append(clone);
+            clone.removeClass('hidden');
+            clone.find(".select-other").removeAttr('disabled');
+            clone.find("input").removeAttr('disabled');
+            clone.find("input").val('');
+
+            $('.table').each(function(index, el) {
+                number_plus('.number_topics_'+index);
+            });
+            $('.preview').html('');
+            $("#htmlpreview").clone().appendTo( ".preview" );
+        });
+
+        $(document).on("click", ".btn-delete-row", function() {
+            var clone = $(this).next().find('tbody tr').first().clone();
+            $(this).next().find('tbody').append(clone);
+
+            if(confirm('Do you want to delete')==true){
+                $(this).parents('tr').remove();
+            }else{
+                e.preventDefault();
+            }
+            $('.preview').html('');
+            $("#htmlpreview").clone().appendTo( ".preview" );
+        });
+
+        $(document).on('click', '#btn_submit', function(e) {
+            var total = $('.sum_amount_0').val();
+            var total1 = $('.sum_amount_1').val();
+            if(total <= 99 || total1 <= 99){
+                alert("น้อยกว่า 100");
+                return false;
+            }else{
+                if(confirm('ยืนยันการส่งผลตรวจใช่หรือไม่?')==true){
+                    $('.report_submit'),submit();
+                }else{
+                    e.preventDefault();
+                }
+                /* Act on the event */
+            }
+        });
+
+        $(document).on('click', '.received_check', function(e) {
+            $('#content_report').removeClass('hidden');
+        });
+
+
+        $("input:radio").on("click",function (e) {
+            var inp=$(this);
+            if (inp.is(".theone")) {
+                inp.prop("checked",false).removeClass("theone");
+            } else {
+                $("input:radio[name='"+inp.prop("name")+"'].theone").removeClass("theone");
+                inp.addClass("theone");
+            }
+
+        });
+        function limit_decimal(ele,limit){
+            // $this.val(parseFloat($this.val(),10).toFixed($limit));
+            // console.log(parseFloat(ele.val()).toFixed(limit));
+            // ele.val();
+            if(parseFloat(ele.val())>0){
+                ele.val(parseFloat(ele.val()).toFixed(limit));
+            }else{
+                ele.val(0);
+            }
+            // console.log($(this).val()+'<<<');
+            // if($(this).val().indexOf('.')!=-1){         
+            //    if($(this).val().split(".")[1].length > 2){                
+            //        if( isNaN( parseFloat( this.value ) ) ) return;
+            //        this.value = parseFloat(this.value).toFixed(2);
+            //    }  
+            // }            
+            // return this; //for chaining
+        }
+
+
 </script>
