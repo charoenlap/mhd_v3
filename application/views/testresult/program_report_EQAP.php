@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <h2><?php echo $heading_title; ?></h2>
                     </div>
 
-                    <form action="<?php echo $action; ?>" method="POST" role="form">
+                    <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
                     <input type="text" name="title_1" value="EQAP" class="d-none">
 
                         <div class="container-left">
@@ -261,9 +261,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                                     </div>
                                     <div class="form-gruop text-center" style="margin-top: 30px;">
-                                    <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
-                                    <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
-                                    <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
+                                        <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
+                                        <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
+                                        <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
                                     </div>
                                 </div>
                             </div>

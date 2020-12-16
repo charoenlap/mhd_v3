@@ -1090,7 +1090,8 @@ public function preview_H_EQAM(){
     $this->session->unset_userdata('title');
     $data['sample'] = $this->input->post('sample');
     $data['sum_sec1'] = $this->input->post('sum_sec1');
-
+    $data['file_0'] = $this->input->post('file_0');
+    $data['file_1'] = $this->input->post('file_1');
   }
   $received_status = $this->input->post('received_status');
   if($received_status==1){

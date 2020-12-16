@@ -71,26 +71,26 @@ print_r($_SESSION);
                                             <tr>
                                                 <td>1</td>
                                                 <td>Blast cell (cannot be identified)</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][1]" value="<?php echo $sample[0][1]; ?>" readonly></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][1]" value="<?php echo $sample[1][1]; ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][1]" value="<?php if(!empty($sample[0][1])){echo $sample[0][1];} ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][1]" value="<?php if(!empty($sample[1][1])){echo $sample[1][1];} ?>" readonly></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td>Lymphoblast/prolymphocyte</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][2]" value="<?php echo $sample[0][2]; ?>" readonly></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][2]" value="<?php echo $sample[1][2]; ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][2]" value="<?php if(!empty($sample[0][2])){echo $sample[0][2];} ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][2]" value="<?php if(!empty($sample[1][2])){echo $sample[1][2];} ?>" readonly></td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
                                                 <td>Monoblast/promonocyte</td>
-                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][3]" value="<?php echo $sample[0][3]; ?>" readonly></td>
-                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][3]" value="<?php echo $sample[1][3]; ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="0" class="form-control" name="sample[0][3]" value="<?php if(!empty($sample[0][3])){echo $sample[0][3];} ?>" readonly></td>
+                                                <td><input type="number" step="0" amount_attr="1" class="form-control" name="sample[1][3]" value="<?php if(!empty($sample[1][3])){echo $sample[1][3];} ?>" readonly></td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td>Total</td>
-                                                <td><input type="number" class="form-control" name="sum_sec1[0][1]" id="sum_amount_0" value="<?php echo $sum_sec1[0][1]; ?>" readonly></td>
-                                                <td><input type="number" class="form-control" name="sum_sec1[1][1]" id="sum_amount_1" value="<?php echo $sum_sec1[1][1]; ?>" readonly></td>
+                                                <td><input type="number" class="form-control" name="sum_sec1[0][1]" id="sum_amount_0" value="<?php if(!empty($sum_sec1[0][0])){echo $sum_sec1[0][1];} ?>" readonly></td>
+                                                <td><input type="number" class="form-control" name="sum_sec1[1][1]" id="sum_amount_1" value="<?php if(!empty($sum_sec1[1][1])){echo $sum_sec1[1][1];} ?>" readonly></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -151,22 +151,22 @@ print_r($_SESSION);
                                                 <td>Anisocytosis</td>
                                                 <td>
                                                     <select name="sample[0][6]" id="" class="form-control">
-                                                        <option <?php if($sample[0][6]==""){echo "selected";} ?> value="">-</option>
-                                                        <option <?php if($sample[0][6]=="0.5"){echo "selected";} ?> value="0.5">0.5</option>
-                                                        <option <?php if($sample[0][6]=="1"){echo "selected";} ?> value="1">1</option>
-                                                        <option <?php if($sample[0][6]=="2"){echo "selected";} ?> value="2">2</option>
-                                                        <option <?php if($sample[0][6]=="3"){echo "selected";} ?> value="3">3</option>
-                                                        <option <?php if($sample[0][6]=="4"){echo "selected";} ?> value="4">4</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]==""){echo "selected";} ?> value="">-</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]=="0.5"){echo "selected";} ?> value="0.5">Few</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]=="1"){echo "selected";} ?> value="1">1+</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]=="2"){echo "selected";} ?> value="2">2+</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]=="3"){echo "selected";} ?> value="3">3+</option>
+                                                        <option <?php if(!empty($sample[0][6]) && $sample[0][6]=="4"){echo "selected";} ?> value="4">4+</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select name="sample[1][6]" id="" class="form-control">
-                                                        <option <?php if($sample[1][6]==""){echo "selected";} ?> value="">-</option>
-                                                        <option <?php if($sample[1][6]=="0.5"){echo "selected";} ?> value="0.5">0.5</option>
-                                                        <option <?php if($sample[1][6]=="1"){echo "selected";} ?> value="1">1</option>
-                                                        <option <?php if($sample[1][6]=="2"){echo "selected";} ?> value="2">2</option>
-                                                        <option <?php if($sample[1][6]=="3"){echo "selected";} ?> value="3">3</option>
-                                                        <option <?php if($sample[1][6]=="4"){echo "selected";} ?> value="4">4</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]==""){echo "selected";} ?> value="">-</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]=="0.5"){echo "selected";} ?> value="0.5">Few</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]=="1"){echo "selected";} ?> value="1">1+</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]=="2"){echo "selected";} ?> value="2">2+</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]=="3"){echo "selected";} ?> value="3">3+</option>
+                                                        <option <?php if(!empty($sample[1][6]) && $sample[1][6]=="4"){echo "selected";} ?> value="4">4+</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -175,22 +175,22 @@ print_r($_SESSION);
                                                 <td>Poikilocytosis</td>
                                                 <td>
                                                     <select name="sample[0][7]" id="" class="form-control">
-                                                        <option <?php if($sample[0][7]==""){echo "selected";} ?> value="">-</option>
-                                                        <option <?php if($sample[0][7]=="0.5"){echo "selected";} ?> value="0.5">0.5</option>
-                                                        <option <?php if($sample[0][7]=="1"){echo "selected";} ?> value="1">1</option>
-                                                        <option <?php if($sample[0][7]=="2"){echo "selected";} ?> value="2">2</option>
-                                                        <option <?php if($sample[0][7]=="3"){echo "selected";} ?> value="3">3</option>
-                                                        <option <?php if($sample[0][7]=="4"){echo "selected";} ?> value="4">4</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]==""){echo "selected";} ?> value="">-</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]=="0.5"){echo "selected";} ?> value="0.5">Few</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]=="1"){echo "selected";} ?> value="1">1+</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]=="2"){echo "selected";} ?> value="2">2+</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]=="3"){echo "selected";} ?> value="3">3+</option>
+                                                        <option <?php if(!empty($sample[0][7]) && $sample[0][7]=="4"){echo "selected";} ?> value="4">4+</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select name="sample[1][7]" id="" class="form-control">
-                                                        <option <?php if($sample[1][7]==""){echo "selected";} ?> value="">-</option> 
-                                                        <option <?php if($sample[1][7]=="0.5"){echo "selected";} ?> value="0.5">0.5</option>
-                                                        <option <?php if($sample[1][7]=="1"){echo "selected";} ?> value="1">1</option>
-                                                        <option <?php if($sample[1][7]=="2"){echo "selected";} ?> value="2">2</option>
-                                                        <option <?php if($sample[1][7]=="3"){echo "selected";} ?> value="3">3</option>
-                                                        <option <?php if($sample[1][7]=="4"){echo "selected";} ?> value="4">4</option>
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]==""){echo "selected";} ?> value="">-</option> 
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]=="0.5"){echo "selected";} ?> value="0.5">Few</option>
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]=="1"){echo "selected";} ?> value="1">1+</option>
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]=="2"){echo "selected";} ?> value="2">2+</option>
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]=="3"){echo "selected";} ?> value="3">3+</option>
+                                                        <option <?php if(!empty($sample[1][7]) && $sample[1][7]=="4"){echo "selected";} ?> value="4">4+</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -214,12 +214,12 @@ print_r($_SESSION);
                                                 <td>Normal red blood cell</td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[0][8]" type="checkbox" value="1" id="test_0_sec_4_8" checked>
+                                                        <input class="form-check-input" name="sample[0][8]" type="checkbox" value="1" id="test_0_sec_4_8" <?php if(!empty($sample[0][8])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[1][8]" type="checkbox" value="1" id="test_1_sec_4_8">
+                                                        <input class="form-check-input" name="sample[1][8]" type="checkbox" value="1" id="test_1_sec_4_8" <?php if(!empty($sample[1][8])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -228,20 +228,20 @@ print_r($_SESSION);
                                                 <td>Basophilic stippling</td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[0][9]" type="checkbox" value="1" id="test_0_sec_4_9">
+                                                        <input class="form-check-input" name="sample[0][9]" type="checkbox" value="1" id="test_0_sec_4_9" <?php if(!empty($sample[0][9])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[1][9]" type="checkbox" value="1" id="test_1_sec_4_9">
+                                                        <input class="form-check-input" name="sample[1][9]" type="checkbox" value="1" id="test_1_sec_4_9" <?php if(!empty($sample[1][9])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>48</td>
                                                 <td>Nucleated red blood cell (โปรดระบุระยะของเซลล์ที่พบ)</td>
-                                                <td><input type="text" class="form-control" name="sample[0][48]" style="padding-bottom: 0px;"></td>
-                                                <td><input type="text" class="form-control" name="sample[1][48]" style="padding-bottom: 0px;"></td>
+                                                <td><input type="text" class="form-control" name="sample[0][48]" <?php if(!empty($sample[0][48])){echo $sample[0][48];} ?> style="padding-bottom: 0px;" readonly></td>
+                                                <td><input type="text" class="form-control" name="sample[1][48]" <?php if(!empty($sample[1][48])){echo $sample[1][48];} ?> style="padding-bottom: 0px;" readonly></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -264,17 +264,17 @@ print_r($_SESSION);
                                                 <td>Platelet</td>
                                                 <td>
                                                     <select class="custom-select" name="sample[0][49]">
-                                                        <option value="1">decrease</option>
-                                                        <option value="2" selected="">adequate</option>
-                                                        <option value="3">increase</option>
+                                                        <option <?php if(!empty($sample[0][49])&& $sample[0][49]=="1"){echo "selected";} ?> value="1">decrease</option>
+                                                        <option <?php if(!empty($sample[0][49])&& $sample[0][49]=="2"){echo "selected";} ?> value="2">adequate</option>
+                                                        <option <?php if(!empty($sample[0][49])&& $sample[0][49]=="3"){echo "selected";} ?> value="3">increase</option>
                                                     </select>
                                                 </td>
                                                 <th class="bg-primary"></th>
                                                 <td>
                                                     <select class="custom-select" name="sample[1][49]">
-                                                        <option value="1" selected="">decrease</option>
-                                                        <option value="2">adequate</option>
-                                                        <option value="3">increase</option>
+                                                        <option <?php if(!empty($sample[1][49])&& $sample[1][49]=="1"){echo "selected";} ?> value="1">decrease</option>
+                                                        <option <?php if(!empty($sample[1][49])&& $sample[1][49]=="2"){echo "selected";} ?> value="2">adequate</option>
+                                                        <option <?php if(!empty($sample[1][49])&& $sample[1][49]=="3"){echo "selected";} ?> value="3">increase</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -297,12 +297,12 @@ print_r($_SESSION);
                                                 <td>Pale stained platelet</td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[0][50]" type="checkbox" value="1" id="test_0_sec_6_50" checked>
+                                                        <input class="form-check-input" name="sample[0][50]" type="checkbox" value="1" id="test_0_sec_6_50" <?php if(!empty($sample[0][50])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[1][50]" type="checkbox" value="1" id="test_1_sec_6_50">
+                                                        <input class="form-check-input" name="sample[1][50]" type="checkbox" value="1" id="test_1_sec_6_50" <?php if(!empty($sample[1][50])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -311,41 +311,36 @@ print_r($_SESSION);
                                                 <td>Giant platelet</td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[0][51]" type="checkbox" value="" id="test_0_sec_6_51">
+                                                        <input class="form-check-input" name="sample[0][51]" type="checkbox" value="" id="test_0_sec_6_51" <?php if(!empty($sample[0][51])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="sample[1][51]" type="checkbox" value="" id="test_1_sec_6_51">
+                                                        <input class="form-check-input" name="sample[1][51]" type="checkbox" value="" id="test_1_sec_6_51" <?php if(!empty($sample[1][51])){echo "checked";} ?>>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>52</td>
                                                 <td>Other abnormalities (โปรดระบุ)</td>
-                                                <td><input type="text" class="form-control" name="sample[0][52]" style="padding-bottom: 0px;"></td>
-                                                <td><input type="text" class="form-control" name="sample[1][52]" style="padding-bottom: 0px;"></td>
+                                                <td><input type="text" class="form-control" name="sample[0][52]" value="<?php if(!empty($sample[0][52])){echo $sample[0][52];} ?>" style="padding-bottom: 0px;" readonly></td>
+                                                <td><input type="text" class="form-control" name="sample[1][52]" value="<?php if(!empty($sample[1][52])){echo $sample[1][52];} ?>" style="padding-bottom: 0px;" readonly></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <!-- file upload -->
-                                    <div class="row justify-content-between">
-                                        <div class="page-title" style="padding-top: 20px; padding-bottom: 20px;">อัพโหลดไฟล์</div>
-                                        <div class="input-group">
-                                            <div class="col px-md-5">
-                                                <div class="custom-file">
-                                                    <label class="custom-file-label" for="file_0">Upload one file</label>
-                                                    <input type="file" class="custom-file-input" id="file_0" name="file_0">
-                                                </div>
-                                            </div>
-                                            <div class="col px-md-5">
-                                                <div class="custom-file">
-                                                    <label class="custom-file-label" for="file_1">Upload one file</label>
-                                                    <input type="file" class="custom-file-input" id="file_1" name="file_1">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <table class="table text-center table-hover">
+                                    <tbody class="text-left">
+                                        <tr>
+                                            <td class="bg-primary text-white" style="width: 350px;"> File 1</td>
+                                            <td><?php if(!empty($file_0)){echo $file_0;}else{echo "-";} ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg-primary text-white" style="width: 350px;"> File 2</td>
+                                            <td><?php if(!empty($file_1)){echo $file_1;}else{echo "-";} ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 <caption>ข้อมูลผู้ส่ง</caption>
                                 <table class="table text-center table-hover">
                                     <tbody class="text-left">

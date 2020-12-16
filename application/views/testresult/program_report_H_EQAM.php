@@ -439,9 +439,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date" value="<?php echo date('Y-m-d'); ?>" ></input>
                                     </div>
                                     <div class="form-gruop text-center">
-                                        <button class="btn btn-primary" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton">พิมพ์</button>
-                                        <button class="btn btn-primary" name="submit" type="submit" value="preview">พรีวิว</button>
-                                        <button class="btn btn-primary" name="submit" type="submit" value="accept">ยืนยันการส่งผลการตรวจ</button>
+                                    <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
                                     </div>
                                 </div>
                             </div>
@@ -459,15 +459,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <style>
     @media print {
 
-        #printPageButton,
-        #btnpreview,
-        #confirmpreview,
-        #accordionSidebar,
-        #title,
-        #submit {
+    #printPageButton,
+    #btnpreview,
+    #btnsubmit,
+    #accordionSidebar,
+    #title,
+    #submit {
         display: none;
-     }
     }
+}
 </style>
 <script>
     $('#file_0').on("change", function() {
