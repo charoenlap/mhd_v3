@@ -12,10 +12,8 @@ class Testresult extends CI_Controller
     $data = array();
     $data['heading_title'] = 'แจ้งส่งผลการทดสอบ ';
     $data['action'] = base_url('testresult/detail');
-    $data['test_result'] = 280;
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
-
     $this->load->template('testresult/index', $data);
   }
   public function detail()
@@ -23,6 +21,11 @@ class Testresult extends CI_Controller
     $data = array();
     $data['heading_title'] = 'Trial';
     $data['action'] = base_url('testresult/graph');
+    $id_pro = $this->uri->uri_to_assoc();
+    $id_program = $id_pro['id'];
+    $val_program = $this->model_program->getList($id_program);
+    $name = $val_program->name;
+    $data['name'] = preg_replace('/[-:& ]/','_',$name);
     $this->load->template('testresult/detail',$data);
   }
   public function graph()
@@ -56,7 +59,6 @@ class Testresult extends CI_Controller
     */
 
     if ($this->input->server('REQUEST_METHOD')=='POST') {
-
       $insert = array(
         'datepick'                  =>    $this->input->post('datepick'),
         'received_status'           =>    $this->input->post('received_status'),
@@ -352,7 +354,9 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/program_report_UC_EQAM');
+    $data['action'] = base_url('testresult/preview_UC_EQAM');
+    $filter = array();
+    $data['name'] = $this->model_program_infection->getLists($filter, 0, 99999999999);
 
     /* 
     variable in form
@@ -400,11 +404,11 @@ class Testresult extends CI_Controller
     $this->load->template('testresult/program_report_UC_EQAM',$data);
   }
 
-  public function program_report_EQAI_SYPHI()
+  public function program_report_EQAI_SYPHILIS()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAI_SYPHI');
+    $data['action'] = base_url('testresult/preview_EQAI_SYPHILIS');
 
     /* 
     variable in form
@@ -450,7 +454,7 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAI_SYPHILIS');
-    $this->load->template('testresult/program_report_EQAI_SYPHI',$data);
+    $this->load->template('testresult/program_report_EQAI_SYPHILIS',$data);
   }
 
   public function program_report_EQAI_HBV()
@@ -759,6 +763,7 @@ public function preview_EQAH(){
     $data['method'] = $this->input->post('method');
     $data['method_other'] = $this->input->post('method_other');
     $data['tools'] = $this->input->post('tools');
+    $data['sample'] = $this->input->post('sample');
     }
   $received_status = $this->input->post('received_status');
   if($received_status==1){
@@ -1045,7 +1050,7 @@ public function preview_EQAI_HBV(){
   $this->load->view('testresult/preview_EQAI_HBV',$data);
 }
 
-public function preview_EQAI_SYPHI(){
+public function preview_EQAI_SYPHILIS(){
   $data = array();
   $session_title = $this->session->userdata('title');
 
@@ -1079,7 +1084,7 @@ public function preview_EQAI_SYPHI(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAI_SYPHI',$data);
+  $this->load->view('testresult/preview_EQAI_SYPHILIS',$data);
 }
 
 public function preview_H_EQAM(){
@@ -1115,6 +1120,47 @@ public function preview_H_EQAM(){
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
   $this->load->view('testresult/preview_H_EQAM',$data);
+}
+
+public function preview_UC_EQAM(){
+  $data = array();
+  $session_title = $this->session->userdata('title');
+
+  if($session_title=="UC_EQAM"){
+    $this->session->unset_userdata('title');
+      $config['upload_path'] = '.';
+      $config['allowed_types'] = 'jpeg|jpg|png';
+      $config['max_size'] = 2048;
+      $config['max_width'] = 0; //set 0 for free width
+      $config['max_height'] = 0; //set 0 for free height
+      $config['remove_spaces'] = true;
+      $config['encrypt_name'] = true;
+
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
+  }
+  $received_status = $this->input->post('received_status');
+  if($received_status==1){
+  $received_stat = "อยู่ในสภาพสมบูรณ์";
+  $data['received_status']  = $received_stat;
+
+  } if($received_status==2){
+  $received_stat = "อยู่ในสภาพไม่สมบูรณ์ และไม่สามารถนำมาทดสอบได้<br>เนื่องจาก : ";
+  $received_other = $this->input->post('received_status_other');
+  $data['received_status']  = $received_other;
+  }
+
+  // header
+  $data['title']  = $this->input->post('title_1');
+  $data['datepick']  = $this->input->post('datepick');
+
+  // info member
+  $data['name'] = $this->input->post('name_lname');
+  $data['tel'] = $this->input->post('tel');
+  $data['position'] = $this->input->post('position');
+  $data['comment'] = $this->input->post('comment');
+  $data['datereport'] = $this->input->post('report_date');
+  $this->load->view('testresult/preview_UC_EQAM',$data);
 }
 
 }

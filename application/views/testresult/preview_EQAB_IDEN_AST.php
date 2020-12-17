@@ -63,28 +63,28 @@ print_r($_SESSION);
                         <div class="container-left col-md-auto">
                             <span class="font-weight-bold">1.วิธีการที่ท่านใช้ในการตรวจวินิจฉัยเชื้อแบคทีเรียสำหรับตัวอย่างที่ได้รับ</span>
                            <select class="form-control" name="" id="result_0">
-                               <option <?php if($result ==""){echo "selected";}  ?>value="">-</option>
-                               <option <?php if($result =="1"){echo "selected";}  ?> value="1">Conventional tests</option>
-                               <option <?php if($result =="2"){echo "selected";}  ?> value="2">VITEK</option>
-                               <option <?php if($result =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
-                               <option <?php if($result =="4"){echo "selected";}  ?> value="4"> Other..</option>
+                               <option <?php if(!empty($result)&& $result ==""){echo "selected";}  ?>value="">-</option>
+                               <option <?php if(!empty($result)&& $result =="1"){echo "selected";}  ?> value="1">Conventional tests</option>
+                               <option <?php if(!empty($result)&& $result =="2"){echo "selected";}  ?> value="2">VITEK</option>
+                               <option <?php if(!empty($result)&& $result =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
+                               <option <?php if(!empty($result)&& $result =="4"){echo "selected";}  ?> value="4"> Other..</option>
                            </select>
                             <input type="text" name="result_other" class="form-control <?php if($result != "4"){echo "d-none";} ?> " value="<?php echo $result_other; ?>" placeholder="Other ระบุ" disabled></input>
                         </div>
                         <div style="padding: 10px;"></div>
                         <div class="card text-black font-weight-bold" style="background-color: rgba(255, 167, 71, 0.5); padding:10px;">
-                            <div class="btn btn-primary col-2" style="margin: 10px;">Trial 185</div>
+                            <div class="btn btn-primary col-2 font-weight-bold" style="margin: 10px;">Trial 185</div>
                             <div class="card-content">
                                 <span class="font-weight-bold">2.รายงานชนิดของเชื้อแบคทีเรียที่พบในตัวอย่าง Trial 185</span>
                                 <input type="text" class="form-control border-white" name="result_1[]" value="<?php echo $result_1[0]; ?>" disabled>
                                 <div class="card-content" style="margin-top: 20px;">
                                     <span class="font-weight-bold ">3.วิธีการที่ท่านใช้ในการทดสอบความไวต่อยาปฏิชีวนะสำหรับเชื้อตัวอย่างที่ได้รับ</span>
                                     <select class="form-control" name="" id="result_0">
-                                        <option <?php if($infection_sec1[0] ==""){echo "selected";}  ?> value="">-</option>
-                                        <option <?php if($infection_sec1[0] =="1"){echo "selected";}  ?> value="1">Disc diffusion</option>
-                                        <option <?php if($infection_sec1[0] =="2"){echo "selected";}  ?> value="2">VITEK</option>
-                                        <option <?php if($infection_sec1[0] =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
-                                        <option <?php if($infection_sec1[0] =="4"){echo "selected";}  ?> value="4"> Other..</option>
+                                        <option <?php if(!empty($infection_sec1[0]) && $infection_sec1[0] ==""){echo "selected";}  ?> value="">-</option>
+                                        <option <?php if(!empty($infection_sec1[0]) && $infection_sec1[0] =="1"){echo "selected";}  ?> value="1">Disc diffusion</option>
+                                        <option <?php if(!empty($infection_sec1[0]) && $infection_sec1[0] =="2"){echo "selected";}  ?> value="2">VITEK</option>
+                                        <option <?php if(!empty($infection_sec1[0]) && $infection_sec1[0] =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
+                                        <option <?php if(!empty($infection_sec1[0]) && $infection_sec1[0] =="4"){echo "selected";}  ?> value="4"> Other..</option>
                                     </select>
                                 <input type="text" name="result_other" class="form-control <?php if($infection_sec1[0] != "4"){echo "d-none";} ?> " value="<?php echo $infection_sec1_other[0]; ?>" placeholder="Other ระบุ" disabled></input>
                                     <div class="card-content" style="padding-top: 20px;">
@@ -106,57 +106,57 @@ print_r($_SESSION);
                                                 <tr>
                                                     <td>
                                                         <select class="form-control" name="tool_sec2[0][]">
-                                                            <option <?php if($tool_sec2[0][$x]=="1"){echo "selected";} ?> value="1">Amikacin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="2"){echo "selected";} ?> value="2">Amoxicillin-calvulonate</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="3"){echo "selected";} ?> value="3">Ampicillin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="4"){echo "selected";} ?> value="4">Ampicillin-sulbactam</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="5"){echo "selected";} ?> value="5">Azithromycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="6"){echo "selected";} ?> value="6">Aztreonam</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="7"){echo "selected";} ?> value="7">Cefazolin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="8"){echo "selected";} ?> value="8">Cefepime</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="9"){echo "selected";} ?> value="9">Cefotaxime</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="10"){echo "selected";} ?> value="10">Cefotetan</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="11"){echo "selected";} ?> value="11">Cefoxtin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="12"){echo "selected";} ?> value="12">Ceftaroline</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="13"){echo "selected";} ?> value="13">Ceftazidime</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="14"){echo "selected";} ?> value="14">Ceftolozane-lazobactam</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="15"){echo "selected";} ?> value="15">Ceftriaxone</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="16"){echo "selected";} ?> value="16">Cefuroxime</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="17"){echo "selected";} ?> value="17">Chloramphenicol</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="18"){echo "selected";} ?> value="18">Ciprofloxacin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="19"){echo "selected";} ?> value="19">Clarithomycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="20"){echo "selected";} ?> value="20">Clindamycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="21"){echo "selected";} ?> value="21">Colistin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="22"){echo "selected";} ?> value="22">Daptomycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="23"){echo "selected";} ?> value="23">Doripenem</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="24"){echo "selected";} ?> value="24">Doxycycline</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="25"){echo "selected";} ?> value="25">Ertapenem</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="26"){echo "selected";} ?> value="26">Erythomycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="27"){echo "selected";} ?> value="27">Fosfomycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="28"){echo "selected";} ?> value="28">Gentamycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="29"){echo "selected";} ?> value="29">Hight-level Gentamycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="30"){echo "selected";} ?> value="30">Hight-level Streptomycin </option>
-                                                            <option <?php if($tool_sec2[0][$x]=="31"){echo "selected";} ?> value="31">Imipenem</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="32"){echo "selected";} ?> value="32">Levofloxacin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="33"){echo "selected";} ?> value="33">Linezolid</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="34"){echo "selected";} ?> value="34">Meropenem</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="35"){echo "selected";} ?> value="35">Minocycline</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="36"){echo "selected";} ?> value="36">Moxifloxacin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="37"){echo "selected";} ?> value="37">Netilmicin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="38"){echo "selected";} ?> value="38">Nitrofurantoin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="39"){echo "selected";} ?> value="39">Oritavancin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="40"){echo "selected";} ?> value="40">Oxacillin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="41"){echo "selected";} ?> value="41">Penicillin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="42"){echo "selected";} ?> value="42">Rifampin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="43"){echo "selected";} ?> value="43">Piperracillin-tazobactam</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="44"){echo "selected";} ?> value="44">Sulfisoxazole</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="45"){echo "selected";} ?> value="45">Tedizolid</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="46"){echo "selected";} ?> value="46">Telavancin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="47"){echo "selected";} ?> value="47">Tetracycline</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="48"){echo "selected";} ?> value="48">Tobramycin</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="49"){echo "selected";} ?> value="49">Trimethoprim</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="50"){echo "selected";} ?> value="50">Trimethoprim-sulfamethoxzole</option>
-                                                            <option <?php if($tool_sec2[0][$x]=="51"){echo "selected";} ?> value="51">Vancomycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="1"){echo "selected";} ?> value="1">Amikacin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="2"){echo "selected";} ?> value="2">Amoxicillin-calvulonate</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="3"){echo "selected";} ?> value="3">Ampicillin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="4"){echo "selected";} ?> value="4">Ampicillin-sulbactam</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="5"){echo "selected";} ?> value="5">Azithromycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="6"){echo "selected";} ?> value="6">Aztreonam</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="7"){echo "selected";} ?> value="7">Cefazolin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="8"){echo "selected";} ?> value="8">Cefepime</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="9"){echo "selected";} ?> value="9">Cefotaxime</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="10"){echo "selected";} ?> value="10">Cefotetan</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="11"){echo "selected";} ?> value="11">Cefoxtin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="12"){echo "selected";} ?> value="12">Ceftaroline</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="13"){echo "selected";} ?> value="13">Ceftazidime</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="14"){echo "selected";} ?> value="14">Ceftolozane-lazobactam</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="15"){echo "selected";} ?> value="15">Ceftriaxone</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="16"){echo "selected";} ?> value="16">Cefuroxime</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="17"){echo "selected";} ?> value="17">Chloramphenicol</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="18"){echo "selected";} ?> value="18">Ciprofloxacin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="19"){echo "selected";} ?> value="19">Clarithomycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="20"){echo "selected";} ?> value="20">Clindamycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="21"){echo "selected";} ?> value="21">Colistin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="22"){echo "selected";} ?> value="22">Daptomycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="23"){echo "selected";} ?> value="23">Doripenem</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="24"){echo "selected";} ?> value="24">Doxycycline</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="25"){echo "selected";} ?> value="25">Ertapenem</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="26"){echo "selected";} ?> value="26">Erythomycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="27"){echo "selected";} ?> value="27">Fosfomycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="28"){echo "selected";} ?> value="28">Gentamycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="29"){echo "selected";} ?> value="29">Hight-level Gentamycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="30"){echo "selected";} ?> value="30">Hight-level Streptomycin </option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="31"){echo "selected";} ?> value="31">Imipenem</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="32"){echo "selected";} ?> value="32">Levofloxacin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="33"){echo "selected";} ?> value="33">Linezolid</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="34"){echo "selected";} ?> value="34">Meropenem</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="35"){echo "selected";} ?> value="35">Minocycline</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="36"){echo "selected";} ?> value="36">Moxifloxacin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="37"){echo "selected";} ?> value="37">Netilmicin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="38"){echo "selected";} ?> value="38">Nitrofurantoin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="39"){echo "selected";} ?> value="39">Oritavancin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="40"){echo "selected";} ?> value="40">Oxacillin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="41"){echo "selected";} ?> value="41">Penicillin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="42"){echo "selected";} ?> value="42">Rifampin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="43"){echo "selected";} ?> value="43">Piperracillin-tazobactam</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="44"){echo "selected";} ?> value="44">Sulfisoxazole</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="45"){echo "selected";} ?> value="45">Tedizolid</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="46"){echo "selected";} ?> value="46">Telavancin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="47"){echo "selected";} ?> value="47">Tetracycline</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="48"){echo "selected";} ?> value="48">Tobramycin</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="49"){echo "selected";} ?> value="49">Trimethoprim</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="50"){echo "selected";} ?> value="50">Trimethoprim-sulfamethoxzole</option>
+                                                            <option <?php if(!empty($tool_sec2[0][$x]) && $tool_sec2[0][$x]=="51"){echo "selected";} ?> value="51">Vancomycin</option>
                                                         </select>
                                                     </td>
                                                     <td>
@@ -165,10 +165,10 @@ print_r($_SESSION);
                                                     <td>
                                                         <select class="form-control" name="infection_sec3[0][]">
                                                             <option value="">Choose</option>
-                                                            <option <?php if($infection_sec3[0][$x]=="1"){echo "selected";} ?> value="1">Susceptible</option>
-                                                            <option <?php if($infection_sec3[0][$x]=="2"){echo "selected";} ?> value="2">Susceptible dose dependent</option>
-                                                            <option <?php if($infection_sec3[0][$x]=="3"){echo "selected";} ?> value="3">Intermedate</option>
-                                                            <option <?php if($infection_sec3[0][$x]=="4"){echo "selected";} ?> value="4">Resistant</option>
+                                                            <option <?php if(!empty($infection_sec3[0][$x]) && $infection_sec3[0][$x]=="1"){echo "selected";} ?> value="1">Susceptible</option>
+                                                            <option <?php if(!empty($infection_sec3[0][$x]) && $infection_sec3[0][$x]=="2"){echo "selected";} ?> value="2">Susceptible dose dependent</option>
+                                                            <option <?php if(!empty($infection_sec3[0][$x]) && $infection_sec3[0][$x]=="3"){echo "selected";} ?> value="3">Intermedate</option>
+                                                            <option <?php if(!empty($infection_sec3[0][$x]) && $infection_sec3[0][$x]=="4"){echo "selected";} ?> value="4">Resistant</option>
                                                         </select>
                                                     </td>
                                                     <td>
@@ -188,17 +188,17 @@ print_r($_SESSION);
                         </div>
                         <div style="margin: 20px;"></div>
                         <div class="card text-black font-weight-bold" style="background-color: rgba(95, 77, 189, 0.3); padding:10px;">
-                            <div class="btn btn-primary col-2" style="margin: 10px;">Trial 186</div>
+                            <div class="btn btn-primary col-2 font-weight-bold" style="margin: 10px;">Trial 186</div>
                             <span class="font-weight-bold">6.รายงานชนิดของเชื้อแบคทีเรียที่พบในตัวอย่าง Trial 186</span>
                             <input type="text" class="form-control border-white" name="result_1[]" value="<?php echo $result_1[1]; ?>" disabled>
                             <div class="card-content" style="margin-top: 20px;">
                                 <span class="font-weight-bold ">7.วิธีการที่ท่านใช้ในการทดสอบความไวต่อยาปฏิชีวนะสำหรับเชื้อตัวอย่างที่ได้รับ</span>
                                     <select class="form-control" name="" id="result_0">
-                                        <option <?php if($infection_sec1[1] ==""){echo "selected";}  ?> value="">-</option>
-                                        <option <?php if($infection_sec1[1] =="1"){echo "selected";}  ?> value="1">Disc diffusion</option>
-                                        <option <?php if($infection_sec1[1] =="2"){echo "selected";}  ?> value="2">VITEK</option>
-                                        <option <?php if($infection_sec1[1] =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
-                                        <option <?php if($infection_sec1[1] =="4"){echo "selected";}  ?> value="4"> Other..</option>
+                                        <option <?php if(!empty($infection_sec1[1]) && $infection_sec1[1] ==""){echo "selected";}  ?> value="">-</option>
+                                        <option <?php if(!empty($infection_sec1[1]) && $infection_sec1[1] =="1"){echo "selected";}  ?> value="1">Disc diffusion</option>
+                                        <option <?php if(!empty($infection_sec1[1]) && $infection_sec1[1] =="2"){echo "selected";}  ?> value="2">VITEK</option>
+                                        <option <?php if(!empty($infection_sec1[1]) && $infection_sec1[1] =="3"){echo "selected";}  ?> value="3">VITEK 2</option>
+                                        <option <?php if(!empty($infection_sec1[1]) && $infection_sec1[1] =="4"){echo "selected";}  ?> value="4"> Other..</option>
                                     </select>
                                 <input type="text" name="result_other" class="form-control <?php if($infection_sec1[1] != "4"){echo "d-none";} ?> " value="<?php echo $infection_sec1_other[1]; ?>" placeholder="Other ระบุ" disabled></input>
                                 <div class="card-content" style="padding-top: 20px;">
@@ -280,10 +280,10 @@ print_r($_SESSION);
                                                 <td>
                                                     <select class="form-control" name="infection_sec3[0][]">
                                                             <option value="">Choose</option>
-                                                            <option <?php if($infection_sec3[1][$x]=="1"){echo "selected";} ?> value="1">Susceptible</option>
-                                                            <option <?php if($infection_sec3[1][$x]=="2"){echo "selected";} ?> value="2">Susceptible dose dependent</option>
-                                                            <option <?php if($infection_sec3[1][$x]=="3"){echo "selected";} ?> value="3">Intermedate</option>
-                                                            <option <?php if($infection_sec3[1][$x]=="4"){echo "selected";} ?> value="4">Resistant</option>
+                                                            <option <?php if(!empty($infection_sec3[1][$x]) && $infection_sec3[1][$x]=="1"){echo "selected";} ?> value="1">Susceptible</option>
+                                                            <option <?php if(!empty($infection_sec3[1][$x]) && $infection_sec3[1][$x]=="2"){echo "selected";} ?> value="2">Susceptible dose dependent</option>
+                                                            <option <?php if(!empty($infection_sec3[1][$x]) && $infection_sec3[1][$x]=="3"){echo "selected";} ?> value="3">Intermedate</option>
+                                                            <option <?php if(!empty($infection_sec3[1][$x]) && $infection_sec3[1][$x]=="4"){echo "selected";} ?> value="4">Resistant</option>
                                                         </select>
                                                 </td>
                                                 <td>
@@ -300,22 +300,23 @@ print_r($_SESSION);
                                 </div>
                             </div>
                         </div>
+                        <caption>File upload</caption>
                         <table class="table text-center table-hover">
                                     <tbody class="text-left">
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 1</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 1</td>
                                             <td><?php echo $file_0; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 2</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 2</td>
                                             <td><?php echo $file_1; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 3</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 3</td>
                                             <td><?php echo $file_2; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 4</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 4</td>
                                             <td><?php echo $file_3; ?></td>
                                         </tr>
                                     </tbody>

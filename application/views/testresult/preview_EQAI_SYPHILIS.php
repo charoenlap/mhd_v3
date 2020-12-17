@@ -74,10 +74,10 @@ print_r($_SESSION);
                                             <td></td>
                                             <td>
                                                 <select class="select-other custom-select" name="tools[0]" other_id="other_ntp" data-no="4">
-                                                    <option <?php if($tools[0] == "26"){echo "selected";} ?> value="26" other="">VDRL</option>
-                                                    <option <?php if($tools[0] == "27"){echo "selected";} ?> value="27" other="">RPR</option>
-                                                    <option <?php if($tools[0] == "28"){echo "selected";} ?> value="28" other="">Unheated VDLR</option>
-                                                    <option <?php if($tools[0] == "29"){echo "selected";} ?> value="29" other="1">Other</option>
+                                                    <option <?php if(!empty($tools[0]) && $tools[0] == "26"){echo "selected";} ?> value="26" other="">VDRL</option>
+                                                    <option <?php if(!empty($tools[0]) && $tools[0] == "27"){echo "selected";} ?> value="27" other="">RPR</option>
+                                                    <option <?php if(!empty($tools[0]) && $tools[0] == "28"){echo "selected";} ?> value="28" other="">Unheated VDLR</option>
+                                                    <option <?php if(!empty($tools[0]) && $tools[0] == "29"){echo "selected";} ?> value="29" other="1">Other</option>
                                                 </select>
                                                 <input disabled type="text" class="<?php if($tools[0]!="29"){echo "d-none";} ?> form-control" name="tools_other[0]" id="other_ntp" placeholder="Other ระบุ" value="<?php echo $tools_other[0]; ?>">
                                             </td>
@@ -85,15 +85,15 @@ print_r($_SESSION);
                                             <td class="bg-primary border-0"></td>
                                             <td>
                                                 <select class="select-other custom-select" name="tools[1]" other_id="other_tp" data-no="5">
-                                                    <option <?php if($tools[1] ==""){echo "selected";} ?> value="" >Choose</option>
-                                                    <option <?php if($tools[1] =="30"){echo "selected";} ?> value="30" other="">TPHA</option>
-                                                    <option <?php if($tools[1] =="31"){echo "selected";} ?> value="31" other="">FTA-ABS</option>
-                                                    <option <?php if($tools[1] =="32"){echo "selected";} ?> value="32" other="">TPPA</option>
-                                                    <option <?php if($tools[1] =="33"){echo "selected";} ?> value="33" other="">Immunochromatography</option>
-                                                    <option <?php if($tools[1] =="34"){echo "selected";} ?> value="34" other="">CMIA</option>
-                                                    <option <?php if($tools[1] =="35"){echo "selected";} ?> value="35" other="">ECLIA</option>
-                                                    <option <?php if($tools[1] =="36"){echo "selected";} ?> value="36" other="">CLIA</option>
-                                                    <option <?php if($tools[1] =="40"){echo "selected";} ?> value="40" other="1">Other</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] ==""){echo "selected";} ?> value="" >Choose</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="30"){echo "selected";} ?> value="30" other="">TPHA</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="31"){echo "selected";} ?> value="31" other="">FTA-ABS</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="32"){echo "selected";} ?> value="32" other="">TPPA</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="33"){echo "selected";} ?> value="33" other="">Immunochromatography</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="34"){echo "selected";} ?> value="34" other="">CMIA</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="35"){echo "selected";} ?> value="35" other="">ECLIA</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="36"){echo "selected";} ?> value="36" other="">CLIA</option>
+                                                    <option <?php if(!empty($tools[1]) && $tools[1] =="40"){echo "selected";} ?> value="40" other="1">Other</option>
                                                 </select>
                                                 <input disabled type="text" class="<?php if($tools[1]!="40"){echo "d-none";} ?> form-control" name="tools_other[1]" id="other_tp" placeholder="Other ระบุ" value="<?php echo $tools_other[1]; ?>">
                                             </td>

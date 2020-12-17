@@ -87,9 +87,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                         <option value="3" other="">ELFA</option>
                                                         <option value="4" other="">CMIA</option>
                                                         <option value="5" other="">FEIA</option>
-                                                        <option value="6" other="1">ICMA</option>
+                                                        <option value="6" other="">ICMA</option>
                                                         <option value="7" other="">IRMA</option>
-                                                        <option value="99" other="">Others</option>
+                                                        <option value="99" other="1">Others</option>
                                                     </select>
                                                     <input type="text" class="d-none form-control" name="method_other[1]" id="other_method1" placeholder="Other ระบุ" value>
                                                 </td>
@@ -125,9 +125,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                         <option value="3" other="">ELFA</option>
                                                         <option value="4" other="">CMIA</option>
                                                         <option value="5" other="">FEIA</option>
-                                                        <option value="6" other="1">ICMA</option>
+                                                        <option value="6" other="">ICMA</option>
                                                         <option value="7" other="">IRMA</option>
-                                                        <option value="99" other="">Others</option>
+                                                        <option value="99" other="1">Others</option>
                                                     </select>
                                                     <input type="text" class="d-none form-control" name="method_other[2]" id="other_method2" placeholder="Other ระบุ" value>
                                                 </td>

@@ -78,58 +78,58 @@ print_r($_SESSION);
                                             <td>
                                                 <select class="custom-select" name="sample[0][]" >
                                                         <option value="">Choose</option>
-                                                        <option <?php if($sample_0[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
-                                                        <option <?php if($sample_0[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
-                                                        <option <?php if($sample_0[$x] =="3"){echo "selected='selected'";}?> value="3">Balantidium coli cyst </option>
-                                                        <option <?php if($sample_0[$x] =="4"){echo "selected='selected'";}?> value="4">Balantidium coli trophozoite </option>
-                                                        <option <?php if($sample_0[$x] =="5"){echo "selected='selected'";}?> value="5">Blastocystis hominis </option>
-                                                        <option <?php if($sample_0[$x] =="6"){echo "selected='selected'";}?> value="6">Capillaria philippinensis adult </option>
-                                                        <option <?php if($sample_0[$x] =="7"){echo "selected='selected'";}?> value="7">Capillaria philippinensis egg </option>
-                                                        <option <?php if($sample_0[$x] =="8"){echo "selected='selected'";}?> value="8">Capillaria philippinensis larva </option>
-                                                        <option <?php if($sample_0[$x] =="9"){echo "selected='selected'";}?> value="9">Chilomastix mesnili cyst </option>
-                                                        <option <?php if($sample_0[$x] =="10"){echo "selected='selected'";}?> value="10">Chilomastix mesnili trophozoite </option>
-                                                        <option <?php if($sample_0[$x] =="11"){echo "selected='selected'";}?> value="11">Cyclospora oocyst </option>
-                                                        <option <?php if($sample_0[$x] =="12"){echo "selected='selected'";}?> value="12">Diphyllobrothium latum egg </option>
-                                                        <option <?php if($sample_0[$x] =="13"){echo "selected='selected'";}?> value="13">Dipylidium caninum egg </option>
-                                                        <option <?php if($sample_0[$x] =="14"){echo "selected='selected'";}?> value="14">Endolimax nana cyst </option>
-                                                        <option <?php if($sample_0[$x] =="15"){echo "selected='selected'";}?> value="15">Entamoeba coli cyst </option>
-                                                        <option <?php if($sample_0[$x] =="16"){echo "selected='selected'";}?> value="16">Entamoeba histolytica cyst </option>
-                                                        <option <?php if($sample_0[$x] =="17"){echo "selected='selected'";}?> value="17">Enterobious vermicularis egg </option>
-                                                        <option <?php if($sample_0[$x] =="18"){echo "selected='selected'";}?> value="18">Fasciolopsis/Fasciola/Echinostoma egg </option>
-                                                        <option <?php if($sample_0[$x] =="19"){echo "selected='selected'";}?> value="19">Giardia lamblia cyst </option>
-                                                        <option <?php if($sample_0[$x] =="20"){echo "selected='selected'";}?> value="20">Giardia lamblia trophozoite </option>
-                                                        <option <?php if($sample_0[$x] =="21"){echo "selected='selected'";}?> value="21">Hookworm egg </option>
-                                                        <option <?php if($sample_0[$x] =="22"){echo "selected='selected'";}?> value="22">Hookworm filariform larva </option>
-                                                        <option <?php if($sample_0[$x] =="23"){echo "selected='selected'";}?> value="23">Hookworm rhabditiform larva </option>
-                                                        <option <?php if($sample_0[$x] =="24"){echo "selected='selected'";}?> value="24">Hymenolepis diminuta egg </option>
-                                                        <option <?php if($sample_0[$x] =="25"){echo "selected='selected'";}?> value="25">Hymenolepis nana egg </option>
-                                                        <option <?php if($sample_0[$x] =="26"){echo "selected='selected'";}?> value="26">Iodamoeba butschlii cyst </option>
-                                                        <option <?php if($sample_0[$x] =="27"){echo "selected='selected'";}?> value="27">Isospora belli oocyst </option>
-                                                        <option <?php if($sample_0[$x] =="28"){echo "selected='selected'";}?> value="28">Opisthorchis/MIF egg </option>
-                                                        <option <?php if($sample_0[$x] =="29"){echo "selected='selected'";}?> value="29">Paragonimus heterotremus egg </option>
-                                                        <option <?php if($sample_0[$x] =="30"){echo "selected='selected'";}?> value="30">Paragonimus westermani egg </option>
-                                                        <option <?php if($sample_0[$x] =="31"){echo "selected='selected'";}?> value="31">Plasmodium falciparum asexual form </option>
-                                                        <option <?php if($sample_0[$x] =="32"){echo "selected='selected'";}?> value="32">Plasmodium falciparum gametocyte </option>
-                                                        <option <?php if($sample_0[$x] =="33"){echo "selected='selected'";}?> value="33">Plasmodium malariae asexual form </option>
-                                                        <option <?php if($sample_0[$x] =="34"){echo "selected='selected'";}?> value="34">Plasmodium malariae gametocyte </option>
-                                                        <option <?php if($sample_0[$x] =="35"){echo "selected='selected'";}?> value="35">Plasmodium ovale asexual form </option>
-                                                        <option <?php if($sample_0[$x] =="36"){echo "selected='selected'";}?> value="36">Plasmodium ovale gametocyte </option>
-                                                        <option <?php if($sample_0[$x] =="37"){echo "selected='selected'";}?> value="37">Plasmodium vivax asexual form </option>
-                                                        <option <?php if($sample_0[$x] =="38"){echo "selected='selected'";}?> value="38">Plasmodium vivax gametocyte </option>
-                                                        <option <?php if($sample_0[$x] =="39"){echo "selected='selected'";}?> value="39">Sarcocystis hominis sporocyst/oocyst </option>
-                                                        <option <?php if($sample_0[$x] =="40"){echo "selected='selected'";}?> value="40">Schistosoma haematobium egg </option>
-                                                        <option <?php if($sample_0[$x] =="41"){echo "selected='selected'";}?> value="41">Schistosoma japonicum egg </option>
-                                                        <option <?php if($sample_0[$x] =="42"){echo "selected='selected'";}?> value="42">Schistosoma mansoni egg </option>
-                                                        <option <?php if($sample_0[$x] =="43"){echo "selected='selected'";}?> value="43">Schistosoma mekongi egg </option>
-                                                        <option <?php if($sample_0[$x] =="44"){echo "selected='selected'";}?> value="44">Strongyloides stercoralis female </option>
-                                                        <option <?php if($sample_0[$x] =="45"){echo "selected='selected'";}?> value="45">Strongyloides stercoralis filariform larva </option>
-                                                        <option <?php if($sample_0[$x] =="46"){echo "selected='selected'";}?> value="46">Strongyloides stercoralis male </option>
-                                                        <option <?php if($sample_0[$x] =="47"){echo "selected='selected'";}?> value="47">Strongyloides stercoralis rhabditiform larva </option>
-                                                        <option <?php if($sample_0[$x] =="48"){echo "selected='selected'";}?> value="48">Taenia solium/Taenia saginata egg </option>
-                                                        <option <?php if($sample_0[$x] =="49"){echo "selected='selected'";}?> value="49">Trichomonas hominis trophozoite </option>
-                                                        <option <?php if($sample_0[$x] =="50"){echo "selected='selected'";}?> value="50">Trichuris trichiura egg </option>
-                                                        <option <?php if($sample_0[$x] =="51"){echo "selected='selected'";}?> value="51">Not Found </option>
-                                                        <option <?php if($sample_0[$x] =="52"){echo "selected='selected'";}?> value="52">Not Tested</option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="3"){echo "selected='selected'";}?> value="3">Balantidium coli cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="4"){echo "selected='selected'";}?> value="4">Balantidium coli trophozoite </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="5"){echo "selected='selected'";}?> value="5">Blastocystis hominis </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="6"){echo "selected='selected'";}?> value="6">Capillaria philippinensis adult </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="7"){echo "selected='selected'";}?> value="7">Capillaria philippinensis egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="8"){echo "selected='selected'";}?> value="8">Capillaria philippinensis larva </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="9"){echo "selected='selected'";}?> value="9">Chilomastix mesnili cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="10"){echo "selected='selected'";}?> value="10">Chilomastix mesnili trophozoite </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="11"){echo "selected='selected'";}?> value="11">Cyclospora oocyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="12"){echo "selected='selected'";}?> value="12">Diphyllobrothium latum egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="13"){echo "selected='selected'";}?> value="13">Dipylidium caninum egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="14"){echo "selected='selected'";}?> value="14">Endolimax nana cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="15"){echo "selected='selected'";}?> value="15">Entamoeba coli cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="16"){echo "selected='selected'";}?> value="16">Entamoeba histolytica cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="17"){echo "selected='selected'";}?> value="17">Enterobious vermicularis egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="18"){echo "selected='selected'";}?> value="18">Fasciolopsis/Fasciola/Echinostoma egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="19"){echo "selected='selected'";}?> value="19">Giardia lamblia cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="20"){echo "selected='selected'";}?> value="20">Giardia lamblia trophozoite </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="21"){echo "selected='selected'";}?> value="21">Hookworm egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="22"){echo "selected='selected'";}?> value="22">Hookworm filariform larva </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="23"){echo "selected='selected'";}?> value="23">Hookworm rhabditiform larva </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="24"){echo "selected='selected'";}?> value="24">Hymenolepis diminuta egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="25"){echo "selected='selected'";}?> value="25">Hymenolepis nana egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="26"){echo "selected='selected'";}?> value="26">Iodamoeba butschlii cyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="27"){echo "selected='selected'";}?> value="27">Isospora belli oocyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="28"){echo "selected='selected'";}?> value="28">Opisthorchis/MIF egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="29"){echo "selected='selected'";}?> value="29">Paragonimus heterotremus egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="30"){echo "selected='selected'";}?> value="30">Paragonimus westermani egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="31"){echo "selected='selected'";}?> value="31">Plasmodium falciparum asexual form </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="32"){echo "selected='selected'";}?> value="32">Plasmodium falciparum gametocyte </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="33"){echo "selected='selected'";}?> value="33">Plasmodium malariae asexual form </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="34"){echo "selected='selected'";}?> value="34">Plasmodium malariae gametocyte </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="35"){echo "selected='selected'";}?> value="35">Plasmodium ovale asexual form </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="36"){echo "selected='selected'";}?> value="36">Plasmodium ovale gametocyte </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="37"){echo "selected='selected'";}?> value="37">Plasmodium vivax asexual form </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="38"){echo "selected='selected'";}?> value="38">Plasmodium vivax gametocyte </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="39"){echo "selected='selected'";}?> value="39">Sarcocystis hominis sporocyst/oocyst </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="40"){echo "selected='selected'";}?> value="40">Schistosoma haematobium egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="41"){echo "selected='selected'";}?> value="41">Schistosoma japonicum egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="42"){echo "selected='selected'";}?> value="42">Schistosoma mansoni egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="43"){echo "selected='selected'";}?> value="43">Schistosoma mekongi egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="44"){echo "selected='selected'";}?> value="44">Strongyloides stercoralis female </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="45"){echo "selected='selected'";}?> value="45">Strongyloides stercoralis filariform larva </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="46"){echo "selected='selected'";}?> value="46">Strongyloides stercoralis male </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="47"){echo "selected='selected'";}?> value="47">Strongyloides stercoralis rhabditiform larva </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="48"){echo "selected='selected'";}?> value="48">Taenia solium/Taenia saginata egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="49"){echo "selected='selected'";}?> value="49">Trichomonas hominis trophozoite </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="50"){echo "selected='selected'";}?> value="50">Trichuris trichiura egg </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="51"){echo "selected='selected'";}?> value="51">Not Found </option>
+                                                        <option <?php if(!empty($sample_0[$x]) && $sample_0[$x] =="52"){echo "selected='selected'";}?> value="52">Not Tested</option>
                                                     </select>
                                             </td>
                                         </tr>
@@ -154,59 +154,59 @@ print_r($_SESSION);
                                             <td><?php echo $y++; ?></td>
                                             <td>
                                                 <select class="custom-select" name="sample[0][]" >
-                                                        <option <?php if($sample_1[$x] ==""){echo "selected='selected'";}?> value="">Choose</option>
-                                                        <option <?php if($sample_1[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
-                                                        <option <?php if($sample_1[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
-                                                        <option <?php if($sample_1[$x] =="3"){echo "selected='selected'";}?> value="3">Balantidium coli cyst </option>
-                                                        <option <?php if($sample_1[$x] =="4"){echo "selected='selected'";}?> value="4">Balantidium coli trophozoite </option>
-                                                        <option <?php if($sample_1[$x] =="5"){echo "selected='selected'";}?> value="5">Blastocystis hominis </option>
-                                                        <option <?php if($sample_1[$x] =="6"){echo "selected='selected'";}?> value="6">Capillaria philippinensis adult </option>
-                                                        <option <?php if($sample_1[$x] =="7"){echo "selected='selected'";}?> value="7">Capillaria philippinensis egg </option>
-                                                        <option <?php if($sample_1[$x] =="8"){echo "selected='selected'";}?> value="8">Capillaria philippinensis larva </option>
-                                                        <option <?php if($sample_1[$x] =="9"){echo "selected='selected'";}?> value="9">Chilomastix mesnili cyst </option>
-                                                        <option <?php if($sample_1[$x] =="10"){echo "selected='selected'";}?> value="10">Chilomastix mesnili trophozoite </option>
-                                                        <option <?php if($sample_1[$x] =="11"){echo "selected='selected'";}?> value="11">Cyclospora oocyst </option>
-                                                        <option <?php if($sample_1[$x] =="12"){echo "selected='selected'";}?> value="12">Diphyllobrothium latum egg </option>
-                                                        <option <?php if($sample_1[$x] =="13"){echo "selected='selected'";}?> value="13">Dipylidium caninum egg </option>
-                                                        <option <?php if($sample_1[$x] =="14"){echo "selected='selected'";}?> value="14">Endolimax nana cyst </option>
-                                                        <option <?php if($sample_1[$x] =="15"){echo "selected='selected'";}?> value="15">Entamoeba coli cyst </option>
-                                                        <option <?php if($sample_1[$x] =="16"){echo "selected='selected'";}?> value="16">Entamoeba histolytica cyst </option>
-                                                        <option <?php if($sample_1[$x] =="17"){echo "selected='selected'";}?> value="17">Enterobious vermicularis egg </option>
-                                                        <option <?php if($sample_1[$x] =="18"){echo "selected='selected'";}?> value="18">Fasciolopsis/Fasciola/Echinostoma egg </option>
-                                                        <option <?php if($sample_1[$x] =="19"){echo "selected='selected'";}?> value="19">Giardia lamblia cyst </option>
-                                                        <option <?php if($sample_1[$x] =="20"){echo "selected='selected'";}?> value="20">Giardia lamblia trophozoite </option>
-                                                        <option <?php if($sample_1[$x] =="21"){echo "selected='selected'";}?> value="21">Hookworm egg </option>
-                                                        <option <?php if($sample_1[$x] =="22"){echo "selected='selected'";}?> value="22">Hookworm filariform larva </option>
-                                                        <option <?php if($sample_1[$x] =="23"){echo "selected='selected'";}?> value="23">Hookworm rhabditiform larva </option>
-                                                        <option <?php if($sample_1[$x] =="24"){echo "selected='selected'";}?> value="24">Hymenolepis diminuta egg </option>
-                                                        <option <?php if($sample_1[$x] =="25"){echo "selected='selected'";}?> value="25">Hymenolepis nana egg </option>
-                                                        <option <?php if($sample_1[$x] =="26"){echo "selected='selected'";}?> value="26">Iodamoeba butschlii cyst </option>
-                                                        <option <?php if($sample_1[$x] =="27"){echo "selected='selected'";}?> value="27">Isospora belli oocyst </option>
-                                                        <option <?php if($sample_1[$x] =="28"){echo "selected='selected'";}?> value="28">Opisthorchis/MIF egg </option>
-                                                        <option <?php if($sample_1[$x] =="29"){echo "selected='selected'";}?> value="29">Paragonimus heterotremus egg </option>
-                                                        <option <?php if($sample_1[$x] =="30"){echo "selected='selected'";}?> value="30">Paragonimus westermani egg </option>
-                                                        <option <?php if($sample_1[$x] =="31"){echo "selected='selected'";}?> value="31">Plasmodium falciparum asexual form </option>
-                                                        <option <?php if($sample_1[$x] =="32"){echo "selected='selected'";}?> value="32">Plasmodium falciparum gametocyte </option>
-                                                        <option <?php if($sample_1[$x] =="33"){echo "selected='selected'";}?> value="33">Plasmodium malariae asexual form </option>
-                                                        <option <?php if($sample_1[$x] =="34"){echo "selected='selected'";}?> value="34">Plasmodium malariae gametocyte </option>
-                                                        <option <?php if($sample_1[$x] =="35"){echo "selected='selected'";}?> value="35">Plasmodium ovale asexual form </option>
-                                                        <option <?php if($sample_1[$x] =="36"){echo "selected='selected'";}?> value="36">Plasmodium ovale gametocyte </option>
-                                                        <option <?php if($sample_1[$x] =="37"){echo "selected='selected'";}?> value="37">Plasmodium vivax asexual form </option>
-                                                        <option <?php if($sample_1[$x] =="38"){echo "selected='selected'";}?> value="38">Plasmodium vivax gametocyte </option>
-                                                        <option <?php if($sample_1[$x] =="39"){echo "selected='selected'";}?> value="39">Sarcocystis hominis sporocyst/oocyst </option>
-                                                        <option <?php if($sample_1[$x] =="40"){echo "selected='selected'";}?> value="40">Schistosoma haematobium egg </option>
-                                                        <option <?php if($sample_1[$x] =="41"){echo "selected='selected'";}?> value="41">Schistosoma japonicum egg </option>
-                                                        <option <?php if($sample_1[$x] =="42"){echo "selected='selected'";}?> value="42">Schistosoma mansoni egg </option>
-                                                        <option <?php if($sample_1[$x] =="43"){echo "selected='selected'";}?> value="43">Schistosoma mekongi egg </option>
-                                                        <option <?php if($sample_1[$x] =="44"){echo "selected='selected'";}?> value="44">Strongyloides stercoralis female </option>
-                                                        <option <?php if($sample_1[$x] =="45"){echo "selected='selected'";}?> value="45">Strongyloides stercoralis filariform larva </option>
-                                                        <option <?php if($sample_1[$x] =="46"){echo "selected='selected'";}?> value="46">Strongyloides stercoralis male </option>
-                                                        <option <?php if($sample_1[$x] =="47"){echo "selected='selected'";}?> value="47">Strongyloides stercoralis rhabditiform larva </option>
-                                                        <option <?php if($sample_1[$x] =="48"){echo "selected='selected'";}?> value="48">Taenia solium/Taenia saginata egg </option>
-                                                        <option <?php if($sample_1[$x] =="49"){echo "selected='selected'";}?> value="49">Trichomonas hominis trophozoite </option>
-                                                        <option <?php if($sample_1[$x] =="50"){echo "selected='selected'";}?> value="50">Trichuris trichiura egg </option>
-                                                        <option <?php if($sample_1[$x] =="51"){echo "selected='selected'";}?> value="51">Not Found </option>
-                                                        <option <?php if($sample_1[$x] =="52"){echo "selected='selected'";}?> value="52">Not Tested</option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] ==""){echo "selected='selected'";}?> value="">Choose</option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="1"){echo "selected='selected'";}?> value="1">Amoeba trophozoite </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="2"){echo "selected='selected'";}?> value="2">Ascaris lumbricoides egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="3"){echo "selected='selected'";}?> value="3">Balantidium coli cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="4"){echo "selected='selected'";}?> value="4">Balantidium coli trophozoite </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="5"){echo "selected='selected'";}?> value="5">Blastocystis hominis </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="6"){echo "selected='selected'";}?> value="6">Capillaria philippinensis adult </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="7"){echo "selected='selected'";}?> value="7">Capillaria philippinensis egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="8"){echo "selected='selected'";}?> value="8">Capillaria philippinensis larva </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="9"){echo "selected='selected'";}?> value="9">Chilomastix mesnili cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="10"){echo "selected='selected'";}?> value="10">Chilomastix mesnili trophozoite </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="11"){echo "selected='selected'";}?> value="11">Cyclospora oocyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="12"){echo "selected='selected'";}?> value="12">Diphyllobrothium latum egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="13"){echo "selected='selected'";}?> value="13">Dipylidium caninum egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="14"){echo "selected='selected'";}?> value="14">Endolimax nana cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="15"){echo "selected='selected'";}?> value="15">Entamoeba coli cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="16"){echo "selected='selected'";}?> value="16">Entamoeba histolytica cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="17"){echo "selected='selected'";}?> value="17">Enterobious vermicularis egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="18"){echo "selected='selected'";}?> value="18">Fasciolopsis/Fasciola/Echinostoma egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="19"){echo "selected='selected'";}?> value="19">Giardia lamblia cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="20"){echo "selected='selected'";}?> value="20">Giardia lamblia trophozoite </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="21"){echo "selected='selected'";}?> value="21">Hookworm egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="22"){echo "selected='selected'";}?> value="22">Hookworm filariform larva </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="23"){echo "selected='selected'";}?> value="23">Hookworm rhabditiform larva </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="24"){echo "selected='selected'";}?> value="24">Hymenolepis diminuta egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="25"){echo "selected='selected'";}?> value="25">Hymenolepis nana egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="26"){echo "selected='selected'";}?> value="26">Iodamoeba butschlii cyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="27"){echo "selected='selected'";}?> value="27">Isospora belli oocyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="28"){echo "selected='selected'";}?> value="28">Opisthorchis/MIF egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="29"){echo "selected='selected'";}?> value="29">Paragonimus heterotremus egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="30"){echo "selected='selected'";}?> value="30">Paragonimus westermani egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="31"){echo "selected='selected'";}?> value="31">Plasmodium falciparum asexual form </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="32"){echo "selected='selected'";}?> value="32">Plasmodium falciparum gametocyte </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="33"){echo "selected='selected'";}?> value="33">Plasmodium malariae asexual form </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="34"){echo "selected='selected'";}?> value="34">Plasmodium malariae gametocyte </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="35"){echo "selected='selected'";}?> value="35">Plasmodium ovale asexual form </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="36"){echo "selected='selected'";}?> value="36">Plasmodium ovale gametocyte </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="37"){echo "selected='selected'";}?> value="37">Plasmodium vivax asexual form </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="38"){echo "selected='selected'";}?> value="38">Plasmodium vivax gametocyte </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="39"){echo "selected='selected'";}?> value="39">Sarcocystis hominis sporocyst/oocyst </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="40"){echo "selected='selected'";}?> value="40">Schistosoma haematobium egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="41"){echo "selected='selected'";}?> value="41">Schistosoma japonicum egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="42"){echo "selected='selected'";}?> value="42">Schistosoma mansoni egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="43"){echo "selected='selected'";}?> value="43">Schistosoma mekongi egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="44"){echo "selected='selected'";}?> value="44">Strongyloides stercoralis female </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="45"){echo "selected='selected'";}?> value="45">Strongyloides stercoralis filariform larva </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="46"){echo "selected='selected'";}?> value="46">Strongyloides stercoralis male </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="47"){echo "selected='selected'";}?> value="47">Strongyloides stercoralis rhabditiform larva </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="48"){echo "selected='selected'";}?> value="48">Taenia solium/Taenia saginata egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="49"){echo "selected='selected'";}?> value="49">Trichomonas hominis trophozoite </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="50"){echo "selected='selected'";}?> value="50">Trichuris trichiura egg </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="51"){echo "selected='selected'";}?> value="51">Not Found </option>
+                                                        <option <?php if(!empty($sample_1[$x]) && $sample_1[$x] =="52"){echo "selected='selected'";}?> value="52">Not Tested</option>
                                                     </select>
                                             </td>
                                         </tr>
@@ -214,14 +214,15 @@ print_r($_SESSION);
                                     </tbody>
                                 </table>
                                 </div>
+                                <caption>File upload</caption>
                                 <table class="table text-center table-hover">
                                     <tbody class="text-left">
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 1</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 1</td>
                                             <td><?php echo $file_0; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="bg-primary text-white" style="width: 350px;"> File 2</td>
+                                            <td class="bg-primary text-white font-weight-bold" style="width: 350px;"> File 2</td>
                                             <td><?php echo $file_1; ?></td>
                                         </tr>
                                     </tbody>

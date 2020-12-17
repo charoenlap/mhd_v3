@@ -59,6 +59,95 @@ print_r($_SESSION);
                             </div>
                             <div class="container-fluid">
                             <caption class="font-weight-bold">ผลการตรวจ</caption>
+                            <table class="table text-center table-hover">
+                                <thead class="bg-primary text-white" >
+                                    <tr>
+                                        <th></th>
+                                        <th>รหัส</th>
+                                        <th>สิ่งที่ตรวจพบ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-left">
+                                    <tr>
+                                        <td class="bg-primary text-white font-weight-bold" style="width: 350px;">Trial : 185</td>
+                                        <td class="text-center">
+                                            23
+                                        </td>
+                                        <td class="text-center">
+                                            Lymphoblast
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-primary text-white font-weight-bold" style="width: 350px;">Trial : 186</td>
+                                        <td class="text-center">
+                                            45
+                                        </td>
+                                        <td class="text-center"> 
+                                            Lymphoblast
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <table class="table text-center table-hover">
+                                                <thead class="bg-primary text-white">
+                                                    <tr>
+                                                        <th>รหัส</th>
+                                                        <th>สิ่งที่ตรวจพบ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $x=1;?>
+                                                <?php while($x<=20):?>
+                                                <tr>
+                                                    <td><?php echo $x; ?></td>
+                                                    <td>Red blood cell</td>   
+                                                </tr>
+                                                <?php $x++;?>
+                                                <?php endwhile; ?>
+                                                </tbody>
+                                            </table>            
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <table class="table text-center table-hover">
+                                                <thead class="bg-primary text-white">
+                                                    <tr>
+                                                        <th>รหัส</th>
+                                                        <th>สิ่งที่ตรวจพบ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $x=21;?>
+                                                <?php while($x<=40):?>
+                                                <tr>
+                                                    <td><?php echo $x; ?></td>
+                                                    <td>Bacterial cast</td>   
+                                                </tr>
+                                                <?php $x++;?>
+                                                <?php endwhile; ?>
+                                                </tbody>
+                                            </table>            
+                                        </div>
+                                    </div>
+                                    <caption>File upload</caption>
+                                    <table class="table text-center table-hover">
+                                        <tbody class="text-left">
+                                            <tr>
+                                                <td class="bg-primary text-white font-weight-bold" style="width: 350px;">File 1</td>
+                                                <td class="text-center">
+                                                    uu.jpg
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bg-primary text-white font-weight-bold" style="width: 350px;">File 2</td>
+                                                <td class="text-center">
+                                                    45.png
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                 <caption>ข้อมูลผู้ส่ง</caption>
                                 <table class="table text-center table-hover">

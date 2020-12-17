@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                <?php } ?>
                                <tr>
                                    <td> 286 </td>
-                                   <td class="text-right"> เหลือเวลาอีก 11 วัน 8 ชั่วโมง 36 นาที <a href="<?php echo base_url('/testresult/program_report_EQAC'); ?>" class="btn btn-primary">รายงานผล</a></td>
+                                   <td class="text-right"> เหลือเวลาอีก 11 วัน 8 ชั่วโมง 36 นาที <a href="<?php echo base_url('/testresult/program_report_').$name; ?>" class="btn btn-primary">รายงานผล</a></td>
                                </tr>
                            </tbody>
                         </table>

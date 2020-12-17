@@ -71,18 +71,18 @@ print_r($_SESSION);
                                             <td>Trial 185</td>
                                             <td>
                                                 <div class="form-check text-left">
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="1" name="sample[0][]" id="test3170">
+                                                    <input <?php if(!empty($sample[0][0]) && $sample[0][0]=="1"){echo "checked";} if(!empty($sample[0][1]) && $sample[0][1]=="1"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="1" name="sample[0][]" id="test3170" disabled>
                                                     <label class="form-check-label" for="test3170">
                                                         Gram positive cocci in clusters, single, pairs and short chains
                                                     </label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="2" name="sample[0][]" id="test3180">
+                                                    <input <?php if(!empty($sample[0][0]) && $sample[0][0]=="2"){echo "checked";} if(!empty($sample[0][1]) && $sample[0][1]=="2"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="2" name="sample[0][]" id="test3180" disabled>
                                                     <label class="form-check-label" for="test3180">Gram positive cocci in chains</label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="3" name="sample[0][]" id="test3190">
+                                                    <input <?php if(!empty($sample[0][0]) && $sample[0][0]=="3"){echo "checked";} if(!empty($sample[0][1]) && $sample[0][1]=="3"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="3" name="sample[0][]" id="test3190" disabled>
                                                     <label class="form-check-label" for="test3180">Gram positive cocci in chains</label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="4" name="sample[0][]" id="test3200">
+                                                    <input <?php if(!empty($sample[0][0]) && $sample[0][0]=="4"){echo "checked";} if(!empty($sample[0][1]) && $sample[0][1]=="4"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="4" name="sample[0][]" id="test3200" disabled>
                                                     <label class="form-check-label" for="test3200">Gram positive cocci in tetrads</label>
                                                 </div>
                                             </td>
@@ -91,18 +91,18 @@ print_r($_SESSION);
                                             <td>Trial 186</td>
                                             <td>
                                                 <div class="form-check text-left">
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="1" name="sample[1][]" id="test3171">
+                                                    <input <?php if(!empty($sample[1][0]) && $sample[1][0]=="1"){echo "checked";} if(!empty($sample[1][1]) && $sample[1][1]=="1"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="1" name="sample[1][]" id="test3171" disabled>
                                                     <label class="form-check-label" for="test3171">
                                                         Gram positive cocci in clusters, single, pairs and short chains
                                                     </label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="2" name="sample[1][]" id="test3181">
+                                                    <input <?php if(!empty($sample[1][0]) && $sample[1][0]=="2"){echo "checked";} if(!empty($sample[1][1]) && $sample[1][1]=="2"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="2" name="sample[1][]" id="test3181" disabled>
                                                     <label class="form-check-label" for="test3181">Gram positive cocci in chains</label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="3" name="sample[1][]" id="test3191">
+                                                    <input <?php if(!empty($sample[1][0]) && $sample[1][0]=="3"){echo "checked";} if(!empty($sample[1][1]) && $sample[1][1]=="3"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="3" name="sample[1][]" id="test3191" disabled>
                                                     <label class="form-check-label" for="test3191">Gram positive cocci in tetrads</label>
                                                     <br>
-                                                    <input class="form-check-input checkbox-two" type="checkbox" value="4" name="sample[1][]" id="test3191">
+                                                    <input <?php if(!empty($sample[1][0]) && $sample[1][0]=="4"){echo "checked";} if(!empty($sample[1][1]) && $sample[1][1]=="4"){echo "checked";}?> class="form-check-input checkbox-two" type="checkbox" value="4" name="sample[1][]" id="test3191" disabled>
                                                     <label class="form-check-label" for="test3191">Gram positive cocci in tetrads</label>
                                                 </div>
                                             </td>

@@ -76,18 +76,35 @@ print_r($_SESSION);
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $result_0 ?></td>
-                                        <td><?php echo $result_1 ?></td>
-                                        <td><?php echo $result_2 ?></td>
-                                        <td><?php echo $result_3 ?></td>
-                                        <td><?php echo $result_4 ?></td>
-                                        <td><?php echo $result_5 ?></td>
-                                        <td><?php echo $result_6 ?></td>
-                                        <td><?php echo $result_7 ?></td>
-                                        <td><?php echo $result_8 ?></td>
+                                        <td><?php if(!empty($result_0)) {echo $result_0;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_1)) {echo $result_1;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_2)) {echo $result_2;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_3)) {echo $result_3;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_4)) {echo $result_4;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_5)) {echo $result_5;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_6)) {echo $result_6;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_7)) {echo $result_7;}else{echo "-";} ?></td>
+                                        <td><?php if(!empty($result_8)) {echo $result_8;}else{echo "-";} ?></td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <caption>File upload</caption>
+                            <table class="table text-center table-hover">
+                                        <tbody class="text-left">
+                                            <tr>
+                                                <td class="bg-primary text-white font-weight-bold" style="width: 350px;">File 1</td>
+                                                <td class="text-center">
+                                                    uu.jpg
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bg-primary text-white font-weight-bold" style="width: 350px;">File 2</td>
+                                                <td class="text-center">
+                                                    45.png
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                             <caption>ข้อมูลผู้ส่ง</caption>
                             <table class="table text-center table-hover">
                                 <tbody class="text-left">

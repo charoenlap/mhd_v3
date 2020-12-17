@@ -83,22 +83,22 @@ print_r($_SESSION);
                                                 <td>
                                                     <label for="tool[<?php echo $x; ?>]">Method</label>
                                                     <select name="tool[<?php echo $x; ?>]" class="form-control selected check_select_<?php echo $y++; ?> <?php if($tool[$x]!="2"){echo "d-none";} ?>" >
-                                                        <option <?php if($tool[$x]==""){echo "selected";} ?> value="" data-id="">-</option>
-                                                        <option <?php if($tool[$x]=="1"){echo "selected";} ?> value="1" data-id="auto">Automation</option>
-                                                        <option <?php if($tool[$x]=="2"){echo "selected";} ?> value="2" data-id="">Immunochromatography</option>
-                                                        <option <?php if($tool[$x]=="3"){echo "selected";} ?> value="3" data-id="other">Other</option>
+                                                        <option <?php if(!empty($tool[$x]) && $tool[$x]==""){echo "selected";} ?> value="" data-id="">-</option>
+                                                        <option <?php if(!empty($tool[$x]) && $tool[$x]=="1"){echo "selected";} ?> value="1" data-id="auto">Automation</option>
+                                                        <option <?php if(!empty($tool[$x]) && $tool[$x]=="2"){echo "selected";} ?> value="2" data-id="">Immunochromatography</option>
+                                                        <option <?php if(!empty($tool[$x]) && $tool[$x]=="3"){echo "selected";} ?> value="3" data-id="other">Other</option>
                                                     </select>
                                                     <div class="auto" style="display: none;">
                                                         <div class="input-field">
                                                             <span>Automation</span>
                                                             <!--<select name="tool_auto[1]"  cutoff="0" class="browser-default select_show_cutoff"> -->
                                                             <select name="tool_auto[<?php echo $x; ?>]" cutoff="<?php echo $z++; ?>" class="select_show_cutoff form-control">
-                                                                <option <?php if($tool_auto[$x]==""){echo "selected";} ?> value="">Select</option>
-                                                                <option <?php if($tool_auto[$x]=="1"){echo "selected";} ?> value="1" data-id>EIA / ELISA</option>
-                                                                <option <?php if($tool_auto[$x]=="2"){echo "selected";} ?> value="2" data-id>CLIA</option>
-                                                                <option <?php if($tool_auto[$x]=="3"){echo "selected";} ?> value="3" data-id>CMIA</option>
-                                                                <option <?php if($tool_auto[$x]=="4"){echo "selected";} ?> value="4" data-id>E-CLIA</option>
-                                                                <option <?php if($tool_auto[$x]=="5"){echo "selected";} ?> value="5" data-id>FEIA</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]==""){echo "selected";} ?> value="">Select</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]=="1"){echo "selected";} ?> value="1" data-id>EIA / ELISA</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]=="2"){echo "selected";} ?> value="2" data-id>CLIA</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]=="3"){echo "selected";} ?> value="3" data-id>CMIA</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]=="4"){echo "selected";} ?> value="4" data-id>E-CLIA</option>
+                                                                <option <?php if(!empty($tool_auto[$x]) && $tool_auto[$x]=="5"){echo "selected";} ?> value="5" data-id>FEIA</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -119,7 +119,7 @@ print_r($_SESSION);
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Instrument/test kit/ Brand</span>
-                                                    <input type="text" name="result_1[<?php echo $x; ?>]" value="<?php echo $result_1[$x]; ?>" class="input_check_<?php echo $y++; ?> form-control">
+                                                    <input type="text" name="result_1[<?php echo $x; ?>]" value="<?php echo $result_1[$x]; ?>" class="input_check_<?php echo $y++; ?> form-control" disabled>
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -130,7 +130,7 @@ print_r($_SESSION);
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Reagent Lot Number </span>
-                                                    <input type="text" name="result_2[<?php echo $x; ?>]" value="<?php echo $result_2[$x]; ?>" class="form-control">
+                                                    <input type="text" name="result_2[<?php echo $x; ?>]" value="<?php echo $result_2[$x]; ?>" class="form-control" disabled>
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -141,7 +141,7 @@ print_r($_SESSION);
                                             <?php while ($x <= 5) : ?>
                                                 <td>
                                                     <span>Catalog number</span>
-                                                    <input type="text" name="result_3[<?php echo $x; ?>]" value="<?php echo $result_3[$x]; ?>" class="form-control">
+                                                    <input type="text" name="result_3[<?php echo $x; ?>]" value="<?php echo $result_3[$x]; ?>" class="form-control" disabled>
                                                 </td>
                                                 <?php $x++; ?>
                                             <?php endwhile ?>
@@ -168,9 +168,9 @@ print_r($_SESSION);
                                                 <td>
                                                     <select name="sample_q_li[0][<?php echo $x; ?>]" id="" class="fixed-select-<?php echo $y++; ?> form-control">
                                                         <option value="">Select</option>
-                                                        <option <?php if($sample_q_li[0][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
-                                                        <option <?php if($sample_q_li[0][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
-                                                        <option <?php if($sample_q_li[0][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
+                                                        <option <?php if(!empty($sample_q_li[0][$x]) && $sample_q_li[0][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
+                                                        <option <?php if(!empty($sample_q_li[0][$x]) && $sample_q_li[0][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
+                                                        <option <?php if(!empty($sample_q_li[0][$x]) && $sample_q_li[0][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
                                                     </select>
                                                 </td>
                                                 <?php $x++; ?>
@@ -184,9 +184,9 @@ print_r($_SESSION);
                                                 <td>
                                                     <select name="sample_q_li[1][<?php echo $x; ?>]" id="" class="text fixed-select-<?php echo $y++; ?> form-control">
                                                         <option value="">Select</option>
-                                                        <option <?php if($sample_q_li[1][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
-                                                        <option <?php if($sample_q_li[1][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
-                                                        <option <?php if($sample_q_li[1][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
+                                                        <option <?php if(!empty($sample_q_li[1][$x]) && $sample_q_li[1][$x]=="1"){echo "selected";} ?> value="1" class="text-danger">Positive</option>
+                                                        <option <?php if(!empty($sample_q_li[1][$x]) && $sample_q_li[1][$x]=="2"){echo "selected";} ?> value="2" class="text-success">Weakly Positive</option>
+                                                        <option <?php if(!empty($sample_q_li[1][$x]) && $sample_q_li[1][$x]=="3"){echo "selected";} ?> value="3" class="text-primary">Negative</option>
                                                     </select>
                                                 </td>
                                                 <?php $x++; ?>
@@ -211,22 +211,22 @@ print_r($_SESSION);
                                                 <span>Automation Principle</span>
                                                 <select name="tool_auto2[5][1]" cutoff="4" class="form-control">
                                                     <option value="">Select</option>
-                                                    <option <?php if($tool_auto2[5][1]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
-                                                    <option <?php if($tool_auto2[5][1]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
-                                                    <option <?php if($tool_auto2[5][1]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
-                                                    <option <?php if($tool_auto2[5][1]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
-                                                    <option <?php if($tool_auto2[5][1]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][1]) && $tool_auto2[5][1]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][1]) && $tool_auto2[5][1]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][1]) && $tool_auto2[5][1]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][1]) && $tool_auto2[5][1]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][1]) && $tool_auto2[5][1]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
                                                 </select>
                                             </td>
                                             <td colspan="2">
                                                 <span>Automation Principle</span>
                                                 <select name="tool_auto2[5][2]" cutoff="4" class="form-control">
                                                     <option value="">Select</option>
-                                                    <option <?php if($tool_auto2[5][2]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
-                                                    <option <?php if($tool_auto2[5][2]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
-                                                    <option <?php if($tool_auto2[5][2]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
-                                                    <option <?php if($tool_auto2[5][2]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
-                                                    <option <?php if($tool_auto2[5][2]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][2]) && $tool_auto2[5][2]=="1"){echo "selected";} ?> value="1" data-id="">EIA / ELISA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][2]) && $tool_auto2[5][2]=="2"){echo "selected";} ?> value="2" data-id="">CLIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][2]) && $tool_auto2[5][2]=="3"){echo "selected";} ?> value="3" data-id="">CMIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][2]) && $tool_auto2[5][2]=="4"){echo "selected";} ?> value="4" data-id="">E-CLIA</option>
+                                                    <option <?php if(!empty($tool_auto2[5][2]) && $tool_auto2[5][2]=="5"){echo "selected";} ?> value="5" data-id="">FEIA</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -234,33 +234,33 @@ print_r($_SESSION);
                                             <td></td>
                                             <td colspan="2">
                                                 <span>Instrument/test kit/ Brand</span>
-                                                <input type="text" class="form-control" name="tool_reagent[5][1]" value="<?php echo $tool_reagent[5][1]; ?>">
+                                                <input type="text" class="form-control" name="tool_reagent[5][1]" value="<?php echo $tool_reagent[5][1]; ?>" disabled>
                                             </td>
                                             <td colspan="2">
                                                 <span>Instrument/test kit/ Brand</span>
-                                                <input type="text" class="form-control" name="tool_reagent[5][2]" value="<?php echo $tool_reagent[5][2]; ?>">
+                                                <input type="text" class="form-control" name="tool_reagent[5][2]" value="<?php echo $tool_reagent[5][2]; ?>" disabled>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td colspan="2">
                                                 <span>Reagent Lot Number</span>
-                                                <input type="text" class="form-control" name="tool_lot[5][1]" value="<?php echo $tool_lot[5][1]; ?>">
+                                                <input type="text" class="form-control" name="tool_lot[5][1]" value="<?php echo $tool_lot[5][1]; ?>" disabled>
                                             </td>
                                             <td colspan="2">
                                                 <span>Reagent Lot Number</span>
-                                                <input type="text" class="form-control" name="tool_lot[5][2]" value="<?php echo $tool_lot[5][2]; ?>">
+                                                <input type="text" class="form-control" name="tool_lot[5][2]" value="<?php echo $tool_lot[5][2]; ?>" disabled>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td colspan="2">
                                                 <span>Catalog number</span>
-                                                <input type="text" class="form-control" name="tool_catalog[5][1]" value="<?php echo $tool_catalog[5][1]; ?>">
+                                                <input type="text" class="form-control" name="tool_catalog[5][1]" value="<?php echo $tool_catalog[5][1]; ?>" disabled>
                                             </td>
                                             <td colspan="2">
                                                 <span>Catalog number</span>
-                                                <input type="text" class="form-control" name="tool_catalog[5][2]" value="<?php echo $tool_catalog[5][2]; ?>">
+                                                <input type="text" class="form-control" name="tool_catalog[5][2]" value="<?php echo $tool_catalog[5][2]; ?>" disabled>
                                             </td>
                                         </tr>
                                         <thead class="bg-primary text-white font-weight-bold">
@@ -278,54 +278,54 @@ print_r($_SESSION);
                                         <tr>
                                             <td>Trial 185</td>
                                             <td style="width: 100px;"><select class="form-control" name="symbol[0][1]">
-                                                    <option <?php if($symbol[0][1]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol[0][1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol[0][1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol[0][1]) && $symbol[0][1]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol[0][1]) && $symbol[0][1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol[0][1]) && $symbol[0][1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-1" name="tool_specimen_hbs[0][1]" value= "<?php echo $tool_specimen_hbs[0][1]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-1" name="tool_specimen_hbs[0][1]" value= "<?php echo $tool_specimen_hbs[0][1]; ?>" disabled></td>
                                             <td style="width: 100px;">
                                                 <select class="form-control" name="symbol_new[0]">
-                                                    <option <?php if($symbol_new[0]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol_new[0]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol_new[0]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol_new[0]) && $symbol_new[0]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol_new[0]) && $symbol_new[0]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol_new[0]) && $symbol_new[0]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[0]" value= "<?php echo $tool_specimen_hbs_new[0]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[0]" value= "<?php echo $tool_specimen_hbs_new[0]; ?>" disabled></td>
                                             <td style="width: 100px;">
                                                 <select class="form-control" name="symbol[0][2]">
-                                                    <option <?php if($symbol[0][2]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol[0][2]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol[0][2]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol[0][2]) && $symbol[0][2]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol[0][2]) && $symbol[0][2]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol[0][2]) && $symbol[0][2]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-2" name="tool_specimen_hbs[0][2]" required="required" value= "<?php echo $tool_specimen_hbs[0][2]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-2" name="tool_specimen_hbs[0][2]" required="required" value= "<?php echo $tool_specimen_hbs[0][2]; ?>" disabled></td>
                                         </tr>
                                         <tr>
                                             <td>Trial 186</td>
                                             <td style="width: 100px;"><select class="form-control" name="symbol[1][1]">
-                                                    <option <?php if($symbol[1][1]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol[1][1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol[1][1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol[1][1]) && $symbol[1][1]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol[1][1]) && $symbol[1][1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol[1][1]) && $symbol[1][1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-1" name="tool_specimen_hbs[1][1]" value= "<?php echo $tool_specimen_hbs[1][1]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-1" name="tool_specimen_hbs[1][1]" value= "<?php echo $tool_specimen_hbs[1][1]; ?>" disabled></td>
                                             <td style="width: 100px;">
                                                 <select class="form-control" name="symbol_new[1]">
-                                                    <option <?php if($symbol_new[1]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol_new[1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol_new[1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol_new[1]) && $symbol_new[1]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol_new[1]) && $symbol_new[1]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol_new[1]) && $symbol_new[1]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[1]" value= "<?php echo $tool_specimen_hbs_new[1]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-3" name="tool_specimen_hbs_new[1]" value= "<?php echo $tool_specimen_hbs_new[1]; ?>" disabled></td>
                                             <td style="width: 100px;">
                                                 <select class="form-control" name="symbol[1][2]">
-                                                    <option <?php if($symbol[1][2]==""){echo "selected='selected'";} ?> value=""></option>
-                                                    <option <?php if($symbol[1][2]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
-                                                    <option <?php if($symbol[1][2]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
+                                                    <option <?php if(!empty($symbol[1][2]) && $symbol[1][2]==""){echo "selected='selected'";} ?> value=""></option>
+                                                    <option <?php if(!empty($symbol[1][2]) && $symbol[1][2]=="<"){echo "selected='selected'";} ?> value="<">&lt;</option>
+                                                    <option <?php if(!empty($symbol[1][2]) && $symbol[1][2]==">"){echo "selected='selected'";} ?> value=">">&gt;</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" class="form-control fixed-select2-2" name="tool_specimen_hbs[1][2]" required="required" value= "<?php echo $tool_specimen_hbs[1][2]; ?>"></td>
+                                            <td><input type="text" class="form-control fixed-select2-2" name="tool_specimen_hbs[1][2]" required="required" value= "<?php echo $tool_specimen_hbs[1][2]; ?>" disabled></td>
                                         </tr>
                                     </tbody>
                                     </tbody>
