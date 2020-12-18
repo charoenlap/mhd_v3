@@ -104,10 +104,47 @@ print_r($_SESSION);
                                                         <option <?php if(!empty($method[1])&& $method[1]=="7") ?> value="7" other="">IRMA</option>
                                                         <option <?php if(!empty($method[1])&& $method[1]=="99") ?> value="99" other="">Others</option>
                                                     </select>
-                                                    <input type="text" class="<?php if($method[1]!="99"){echo "d-none";} ?> form-control" name="method_other[1]" id="other_method1" placeholder="Other ระบุ" value="<?php echo $method_other[1]; ?>">
+                                                    <input type="text" class="<?php if($method[1]!="99"){echo "d-none";} ?> form-control" name="method_other[1]" id="other_method1" placeholder="Other ระบุ" value="<?php echo $method_other[1]; ?>" disabled>
                                             </td>
                                             <td><?php echo $sample[0][0]; ?></td>
                                             <td><?php echo $sample[0][1]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>AFP* IU/mL</td>
+                                            <td>
+                                                <select class="custom-select" name="tools[]" other_id="other_0" data-no="1_0">
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]==""){echo "selected";} ?> value="">Choose</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="01"){echo "selected";} ?> value="01" other="">01: Maglumi Series /800</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="02"){echo "selected";} ?> value="02" other="">02: Abbott, Architect Series /Armity</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="03"){echo "selected";} ?> value="03" other="">03: Siemens, Advia Centaur CP [ ] XP</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="04"){echo "selected";} ?> value="04" other="">04: Beckman, Access ; Unicel DXi</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="05"){echo "selected";} ?> value="05" other="">05: BioMerieux, VIDAS ; Minividas</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="06"){echo "selected";} ?> value="06" other="">06: Tosoh AIA Series</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="07"){echo "selected";} ?> value="07" other="">07: Johnson, Vitros ECi 3600, 5600</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="08"){echo "selected";} ?> value="08" other="">08: Roche; Cobas Series, Modular, Elecsys series</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="09"){echo "selected";} ?> value="09" other="">09: Hybiome AE-180</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="10"){echo "selected";} ?> value="10" other="">10: Mindray CL 6000i,2000i / 1000i</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="11"){echo "selected";} ?> value="11" other="">11: Liaison Series ;</option>
+                                                        <option <?php if(!empty($tools[1]) && $tools[1]=="12"){echo "selected";} ?> value="12" other="">12: Immulite, LKB1277, DPC, Others</option>
+                                                    </select>
+                                            </td>
+                                            <td>
+                                                <select class="select-other custom-select" name="method[2]" other_id="other_method1" data-no="2_0">
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="") {echo "selected";}?> value="">Select Method</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="1") {echo "selected";}?> value="1" other="">CLIA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="2") {echo "selected";}?> value="2" other="">ECLIA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="3") {echo "selected";}?> value="3" other="">ELFA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="4") {echo "selected";}?> value="4" other="">CMIA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="5") {echo "selected";}?> value="5" other="">FEIA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="6") {echo "selected";}?> value="6" other="">ICMA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="7") {echo "selected";}?> value="7" other="">IRMA</option>
+                                                        <option <?php if(!empty($method[2])&& $method[2]=="99"){echo "selected";} ?> value="99" other="">Others</option>
+                                                    </select>
+                                                    <input type="text" class="<?php if($method[2]!="99"){echo "d-none";} ?> form-control" name="method_other[1]" id="other_method1" placeholder="Other ระบุ" value="<?php echo $method_other[2]; ?>" disabled>
+                                            </td>
+                                            <td><?php echo $sample[1][0]; ?></td>
+                                            <td><?php echo $sample[1][1]; ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

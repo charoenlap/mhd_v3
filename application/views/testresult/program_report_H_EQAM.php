@@ -440,8 +440,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     </div>
                                     <div class="form-gruop text-center">
                                     <input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton" name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
-                                    <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
-                                    <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview" >พรีวิว</button>
+                                    <button class="btn btn-primary" name="submit" type="submit" value="accept" id="btnsubmit" >ยืนยันการส่งผลการตรวจ</button>
                                     </div>
                                 </div>
                             </div>

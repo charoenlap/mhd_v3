@@ -180,7 +180,6 @@ class Testresult extends CI_Controller
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
     $data['action'] = base_url('testresult/preview_EQAP');
-
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -289,7 +288,6 @@ class Testresult extends CI_Controller
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
     $data['action'] = base_url('testresult/preview_H_EQAM');
-
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -323,19 +321,14 @@ class Testresult extends CI_Controller
     'comment' = ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง name = comment
     'report_date' = วันที่ทำการทดสอบ name = report_date
     */
-
     if ($this->input->server('REQUEST_METHOD')=='POST') {
 
       $insert = array(
         'datepick'                  =>    $this->input->post('datepick'),
         'received_status'           =>    $this->input->post('received_status'),
         'received_status_other'     =>    $this->input->post('received_status_other'),
-        'tool'                      =>    $this->input->post('tool'),
-        'tool_other'                =>    $this->input->post('tool_other'),
-        'sample[0][]'               =>    $this->input->post('sample[0][]'),
-        'sample[1][]'               =>    $this->input->post('sample[1][]'),
-        'sum_sec1[0][]'             =>    $this->input->post('sum_sec1[0][]'),
-        'sum_sec1[1][]'             =>    $this->input->post('sum_sec1[1][]'),
+        'sample'                    =>    $this->input->post('sample'),
+        'sum_sec1'                  =>    $this->input->post('sum_sec1'),
         'file_0'                    =>    $this->input->post('file_0'),
         'file_1'                    =>    $this->input->post('file_1'),
         
@@ -345,6 +338,8 @@ class Testresult extends CI_Controller
         'comment'                 =>    $this->input->post('comment'),
         'report_date'             =>    $this->input->post('report_date')
       );
+      $this->output->set_output(json_encode($insert));
+      // $data['encode_post'] = $this->output->set_output(json_encode());
     }
     $this->session->set_userdata('title','H_EQAM');
     $this->load->template('testresult/program_report_H_EQAM',$data);
@@ -868,6 +863,10 @@ public function preview_EQAT(){
 
   if($session_title=="EQAT"){
     $this->session->unset_userdata('title');
+    $data['tools'] = $this->input->post('tools');
+    $data['method'] = $this->input->post('method');
+    $data['method_other'] = $this->input->post('method_other');
+    $data['sample'] = $this->input->post('sample');
   }
   $received_status = $this->input->post('received_status');
   if($received_status==1){
@@ -1097,6 +1096,7 @@ public function preview_H_EQAM(){
     $data['sum_sec1'] = $this->input->post('sum_sec1');
     $data['file_0'] = $this->input->post('file_0');
     $data['file_1'] = $this->input->post('file_1');
+    $data['submit'] = $this->input->post('submit');
   }
   $received_status = $this->input->post('received_status');
   if($received_status==1){

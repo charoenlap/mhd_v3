@@ -369,7 +369,7 @@ print_r($_SESSION);
                             </div> 
                         </div>
                         <div class="form-group text-center">
-                            <button class="btn btn-primary" type="submit" name="submit">ยืนยันการส่งผลตรวจ</button>
+                            <button class="btn btn-primary" type="submit" name="submit" >ยืนยันการส่งผลตรวจ</button>
                         </div>
                 </form>
             </div>
