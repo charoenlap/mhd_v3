@@ -13,12 +13,33 @@ class Home extends CI_Controller
 
   public function index()
   {
-    $data = array(
-      'name' => 'ok',
-    ); 
-    $this->load->template('home/index', $data);
-    // return $this;
-    // return ( $yourcompany == 'Rama2' && $salary >= 40000 ) ? $this : null ;
+    $data = array(); 
+
+    $data['bgcontent'] = "background:url('".base_url()."assets/img/bghome.jpg') no-repeat center center / cover;";
+
+    $data['banner'] = $this->model_content->getContentList(184)->picture1;
+
+    $this->load->TemplateHome('home/index', $data);
+  }
+
+
+  public function contentcat($catid) // หมวดหมู่หน้า
+  {
+    $data = array();
+    $result = $this->model_content->getCatList($catid);
+    $result2 = $this->model_content->getContentListByCat($catid);
+
+    $data['result_cat'] = $result;
+    $data['result_content'] = $result2;
+    
+    $this->load->TemplateHome('home/cat', $data);
+  }
+
+  public function content($id) // หน้า มีอ้างอิงจาก cat 
+  {
+    $data = array();
+    $data['result'] = $this->model_content->getContentList($id);
+    $this->load->TemplateHome('home/content', $data);
   }
 
 }

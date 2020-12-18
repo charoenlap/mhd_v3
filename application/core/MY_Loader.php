@@ -22,5 +22,20 @@ class MY_Loader extends CI_Loader {
             endif;
         }
     }
+    public function TemplateHome($template_name, $vars = array(), $return = FALSE)
+    {
+        if($return):
+            $content = $this->view('home/header', $vars, $return);
+            $content .= $this->view('home/navbar', $vars, $return);
+            $content .= $this->view($template_name, $vars, $return);
+            $content .= $this->view('home/footer', $vars, $return);
+            return $content;
+        else:
+            $this->view('home/header', $vars);
+            $this->view('home/navbar', $vars);
+            $this->view($template_name, $vars);
+            $this->view('home/footer', $vars);
+        endif;
+    }
 }
     ?>
