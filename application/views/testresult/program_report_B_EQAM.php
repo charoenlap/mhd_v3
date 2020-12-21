@@ -48,33 +48,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             eqam.php
                             <div class="row justify-content-between">
                                 <div class="col px-md-4">
-                                    <select name="tool" class="custom-select">
-                                        <!-- <option value="">ชื่อเครื่องนับเม็ดเลือดอัตโนมัติและรุ่นที่ใช้</option> -->
-                                        <option value="13">XN-L series</option>
-                                        <option value="14">XN series</option>
-                                        <option value="15">XS series</option>
-                                        <option value="16">XT series</option>
-                                        <option value="17">XE series</option>
-                                        <option value="18">Sysmex K series, XP series</option>
-                                        <option value="23">Ac.T 5 series</option>
-                                        <option value="24">DxH 600 / 800 / 900</option>
-                                        <option value="6">DxH 500 / 520</option>
-                                        <option value="7">LH</option>
-                                        <option value="1">BC 3000 series</option>
-                                        <option value="2">BC 5000 series</option>
-                                        <option value="3">BC 6000 series</option>
-                                        <option value="4">BF 6800</option>
-                                        <option value="5">Cell-Dyn </option>
-                                        <option value="8">MEK</option>
-                                        <option value="10">Pentra</option>
-                                        <option value="11">Quintus</option>
-                                        <option value="12">URIT</option>
-                                        <option value="19">Swelab</option>
-                                        <option value="20">Hycel</option>
-                                        <option value="21">ABX Micros/Minos/ABC VET</option>
-                                        <option value="22">Advia 120/2120</option>
-                                        <option value="9">Others</option>
-                                    </select>
+                                <select name="tool" id="" class="custom-select select-other">
+                                    <!-- <option value="">ชื่อเครื่องนับเม็ดเลือดอัตโนมัติและรุ่นที่ใช้</option> -->
+                                      <option value="13">XN-L series</option>
+                                      <option value="14">XN series</option>
+                                      <option value="15">XS series</option>
+                                      <option value="16">XT series</option>
+                                      <option value="17">XE series</option>
+                                      <option value="18">Sysmex K series, XP series</option>
+                                      <option value="23">Ac.T 5 series</option>
+                                      <option value="24">DxH 600 / 800 / 900</option>
+                                      <option value="6">DxH 500 / 520</option>
+                                      <option value="7">LH</option>
+                                      <option value="1">BC 3000 series</option>
+                                      <option value="2">BC 5000 series</option>
+                                      <option value="3">BC 6000 series</option>
+                                      <option value="4">BF 6800</option>
+                                      <option value="5">Cell-Dyn </option>
+                                      <option value="8">MEK</option>
+                                      <option value="10">Pentra</option>
+                                      <option value="11">Quintus</option>
+                                      <option value="12">URIT</option>
+                                      <option value="19">Swelab</option>
+                                      <option value="20">Hycel</option>
+                                      <option value="21">ABX Micros/Minos/ABC VET</option>
+                                      <option value="22">Advia 120/2120</option>
+                                      <option value="9">Others</option>
+                                </select>
                                 </div>
                                 <div class="col px-md-3">
                                     <input type="text" class="form-control" id="tool_other" name="tool_other" placeholder="รายชื่อเครื่องอื่นๆ">

@@ -224,7 +224,8 @@ class Testresult extends CI_Controller
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
     $data['action'] = base_url('testresult/preview_B_EQAM');
-
+    $filter=array();
+    $data['program_tools'] = $this->model_program_tool->getLists($filter, 0, 99999999999);
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -587,7 +588,7 @@ class Testresult extends CI_Controller
         'datepick'                  =>    $this->input->post('datepick'),
         'received_status'           =>    $this->input->post('received_status'),
         'received_status_other'     =>    $this->input->post('received_status_other'),
-        'sample[]'                =>    $this->input->post('sample[]'),
+        'sample'                    =>    $this->input->post('sample'),
         
         'name_lname'              =>    $this->input->post('name_lname'),
         'tel'                     =>    $this->input->post('tel'),

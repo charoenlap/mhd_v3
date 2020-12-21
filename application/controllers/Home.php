@@ -28,10 +28,10 @@ class Home extends CI_Controller
     $data = array();
     $result = $this->model_content->getCatList($catid);
     $result2 = $this->model_content->getContentListByCat($catid);
+    
 
     $data['result_cat'] = $result;
     $data['result_content'] = $result2;
-    
     $this->load->TemplateHome('home/cat', $data);
   }
 
