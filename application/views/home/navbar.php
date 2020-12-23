@@ -19,6 +19,8 @@
                     <a href="ww" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">ติดต่อโครงการ</a>
                     
                 </div>
+                <a href="<?php echo base_url('member/login'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;"> <img src="login.png" alt=""></a>
+
             </div>
         </div>
         <div class="col-sm-12 col-md-9 col-lg-10 m-0 p-0" style="<?php echo isset($bgcontent) ? $bgcontent : '';?> height:100vh;">
