@@ -28,10 +28,11 @@ class Home extends CI_Controller
     $data = array();
     $result = $this->model_content->getCatList($catid);
     $result2 = $this->model_content->getContentListByCat($catid);
-    
+    $result3 = $this->model_content->getContentByCat($catid);
 
     $data['result_cat'] = $result;
     $data['result_content'] = $result2;
+    $data['result_con'] = $result3;
     $this->load->TemplateHome('home/cat', $data);
   }
 
@@ -41,7 +42,11 @@ class Home extends CI_Controller
     $data['result'] = $this->model_content->getContentList($id);
     $this->load->TemplateHome('home/content', $data);
   }
-
+  public function about_schemes()
+  {
+    $data = array();
+    $this->load->TemplateHome('home/about_schemes', $data);
+  }
 }
 
 

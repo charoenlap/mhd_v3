@@ -145,6 +145,16 @@ class Content_model extends CI_Model {
     $query = $this->db->get('content_cat');
     return $query->result();
   }
+  public function getContentByCat($cat)
+  {
+    $this->db->select('mhd_content.*, mhd_language_detail.*, mhd_content.id as id');
+    $this->db->where('mhd_language_detail.type', 1);
+    $this->db->where('mhd_content.cat', $cat);
+    $this->db->where('mhd_content.del', 0);
+    $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
+    $query = $this->db->get('content');
+    return $query->result();
+  }
   // ------------------------------------------------------------------------
 
 }

@@ -7,7 +7,7 @@
             MENU HERE -->
             <div class="container-fuild"> 
                 <a href="<?php echo base_url(); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">หน้าหลัก</a>
-                <a href="<?php echo base_url('about-of-schemes'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">เกี่ยวกับโครงการ</a>
+                <a href="<?php echo base_url('home/about_schemes'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">เกี่ยวกับโครงการ</a>
                 <a href="<?php echo base_url('member/webboard/'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">เว็บบอร์ด</a>
                 <a href="<?php echo base_url('contact'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">ติดต่อโครงการ</a>
                 <a href="#collapsemenu" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" style="margin: 5px;">Scheme ที่เปิดให้บริการ 
@@ -19,7 +19,9 @@
                     <a href="ww" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">ติดต่อโครงการ</a>
                     
                 </div>
-                <a href="<?php echo base_url('member/login'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;"> <img src="login.png" alt=""></a>
+                <a href="<?php echo base_url('member/login'); ?>" class="btn btn-outline-primary form-control bg-light text-center fon-weight-bold" style="margin: 5px;">
+                    เข้าสู่ระบบ Login
+                </a>
 
             </div>
         </div>

@@ -17,6 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="card mx-3">
             <div class="card-body">
                 <?php echo $result->name; ?><br>
+                <?php if($result->detail != ""){echo $result->detail."<br>";} ?>
                 ดาวน์โหลดไฟล์ : <a href="<?php echo base_url().'upload/content/'.$result->picture1;?>" target="new">คลิ๊ก</a>
             <!-- view/home/content.php Content here -->
             </div>
