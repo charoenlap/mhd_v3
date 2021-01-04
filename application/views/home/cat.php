@@ -15,8 +15,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="card mx-3">
             <div class="card-body">
                 <?php echo $result_cat->name;?><br>
-                <?php $set_result = array_column($result_content, $result_content->id); ?>
-                <?php echo $set_result; ?>
+                <?php print_r($result_content); ?>
+                <!-- <a href="<?php echo base_url('home/content/'.$result_content->ref_id);?>"><?php echo $result_content->name; ?></a> -->
+
+                <!-- sample -->
+                <!-- <?php $set_result = array_column($result_content, $result_content->id); ?> -->
                 <!-- <a href="<?php echo base_url('home/content/'.$result_content->id);?>"><?php echo $result_content->name;?></a> -->
                 <!-- <pre><?php print_r($result_cat);?></pre>
                 <pre><?php print_r($result_content);?></pre> -->

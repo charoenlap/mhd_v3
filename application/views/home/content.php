@@ -16,9 +16,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="card mx-3">
             <div class="card-body">
-                <?php print_r($result);?>
-                <a href="<?php echo base_url().'upload/content/'.$result->picture1;?>" target="new">Load</a>
-            view/home/content.php Content here
+                <?php echo $result->name; ?><br>
+                ดาวน์โหลดไฟล์ : <a href="<?php echo base_url().'upload/content/'.$result->picture1;?>" target="new">คลิ๊ก</a>
+            <!-- view/home/content.php Content here -->
             </div>
         </div>
     </div>
