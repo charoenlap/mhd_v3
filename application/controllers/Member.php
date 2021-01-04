@@ -18,6 +18,13 @@ class Member extends CI_Controller
     $this->load->template('member/form', $data);
   }
 
+  public function dashboard()
+  {
+    $data = array();
+    $data['heading_title'] = 'Dashboard';
+    $this->load->template('member/dashboard', $data);
+  }
+
   public function login() 
   {
     $data = array();  

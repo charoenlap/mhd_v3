@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php foreach ($programs as $program) :?>
                                 <tr>
                                     <td><?php echo $program->name; ?></td>  
-                                    <td class="text-right"><a href="<?php echo $action."/id/".$program->id; ?>" class="btn btn-primary">Trial</a></td>
+                                    <td class="text-right"><a href="<?php echo base_url('report/program/').$program->slug; ?>" class="btn btn-primary">Trial</a></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

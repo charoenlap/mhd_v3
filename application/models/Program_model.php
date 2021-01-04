@@ -94,6 +94,14 @@ class Program_model extends CI_Model {
     $query = $this->db->get('program');
     return $query->num_rows();
   }
+
+  public function getProgramBySlug($slug)
+  {
+    $this->db->where('slug', $slug);
+    $this->db->where('del', 0);
+    $query = $this->db->get('program');
+    return $query->row();
+  }
   // ------------------------------------------------------------------------
 
 }

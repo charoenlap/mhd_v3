@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Testresult extends CI_Controller
+class Report extends CI_Controller
 {
     public function __construct()
   {
@@ -11,34 +11,98 @@ class Testresult extends CI_Controller
   {
     $data = array();
     $data['heading_title'] = 'แจ้งส่งผลการทดสอบ ';
-    $data['action'] = base_url('testresult/detail');
+    $data['action'] = base_url('report/detail');
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
-    $this->load->template('testresult/index', $data);
+    $this->load->template('report/index', $data);
   }
+  public function program($slug) 
+  {
+    $data = array();
+    $data['action'] = base_url('report/graph');
+
+    $program_info = $this->model_program->getProgramBySlug($slug);
+    $id = $program_info->id;
+
+    $program = $this->model_program->getList($id);
+    $data['name'] = $program->name;
+
+    $filter = array(
+      'program_id' => $program->id,
+    );
+    $trial = $this->model_trial->getLists($filter);
+    foreach ($trial as $value) {
+      $value->can_send = time() < strtotime($value->date_send.' 00:00:00') ? true : false;
+
+      $remaining = strtotime($value->date_send.' 00:00:00') - time();
+      $day = floor($remaining / (60*60*24));
+      $remaining -= (60*60*24) * $day;
+      $hour = floor($remaining / (60*60));
+      $remaining -= (60*60) * $hour;
+      $min = floor($remaining / (60));
+      $value->send_remaining = ($day>0 ? $day.' วัน ': '').($hour>0 ? $hour.' ชั่วโมง ': '').($min>0 ? $min.' นาที ' : '');
+
+      $value->program_slug = $slug;
+
+      $data['trial'][] = $value;
+    }
+
+    $data['heading_title'] = 'Trial in program '.$program->name;
+
+    $this->load->template('report/detail',$data);
+  }
+  public function trial($program_slug, $trial_slug)
+  {
+    $data = array();
+    
+    $program_info = $this->model_program->getProgramBySlug($program_slug);
+    echo $program_id = $program_info->id;
+
+    echo '<br>';
+
+    $trial_info = $this->model_trial->getTrialBySlug($trial_slug);
+    echo $trial_id = $trial_info->id;
+
+    echo '<br>';
+
+    $this->load->template('report/detail',$data);
+    
+  }
+
+  public function updateSlug() {
+    $list = $this->model_trial->getLists(array(), 0, 10000);
+    foreach ($list as $value) {
+      echo $slug = url_title($value->name, 'dash', true);
+      echo '<br>';
+      $this->model_trial->edit($value->id, array('slug'=>$slug));
+    }
+    
+  }
+
+
   public function detail()
   {
     $data = array();
     $data['heading_title'] = 'Trial';
-    $data['action'] = base_url('testresult/graph');
+    $data['action'] = base_url('report/graph');
     $id_pro = $this->uri->uri_to_assoc();
     $id_program = $id_pro['id'];
     $val_program = $this->model_program->getList($id_program);
     $name = $val_program->name;
     $data['name'] = preg_replace('/[-:& ]/','_',$name);
-    $this->load->template('testresult/detail',$data);
+    $this->load->template('report/detail',$data);
   }
   public function graph()
   {
     $data = array();
     $data['heading_title'] = 'Graph';
-    $this->load->template('testresult/graph',$data);  
+    $this->load->template('report/graph',$data);  
   }
   public function program_report_EQAC()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAC'); 
+    $data['action'] = base_url('report/preview_EQAC'); 
     
     /* 
     variable in form
@@ -77,14 +141,14 @@ class Testresult extends CI_Controller
       
     }
     $this->session->set_userdata('title','EQAC');
-    $this->load->template('testresult/program_report_EQAC',$data);  
+    $this->load->template('report/program_report_EQAC',$data);  
   }
 
   public function program_report_EQAH()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAH');
+    $data['action'] = base_url('report/preview_EQAH');
    /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -125,14 +189,14 @@ class Testresult extends CI_Controller
 
     }
     $this->session->set_userdata('title','EQAH');
-    $this->load->template('testresult/program_report_EQAH',$data);
+    $this->load->template('report/program_report_EQAH',$data);
   }
 
   public function program_report_EQAT()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAT');
+    $data['action'] = base_url('report/preview_EQAT');
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -172,14 +236,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAT');
-    $this->load->template('testresult/program_report_EQAT',$data);
+    $this->load->template('report/program_report_EQAT',$data);
   }
 
   public function program_report_EQAP()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAP');
+    $data['action'] = base_url('report/preview_EQAP');
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -216,14 +280,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAP');
-    $this->load->template('testresult/program_report_EQAP',$data);
+    $this->load->template('report/program_report_EQAP',$data);
   }
 
   public function program_report_B_EQAM()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_B_EQAM');
+    $data['action'] = base_url('report/preview_B_EQAM');
     $filter=array();
     $data['program_tools'] = $this->model_program_tool->getLists($filter, 0, 99999999999);
     /* 
@@ -281,14 +345,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','B_EQAM');
-    $this->load->template('testresult/program_report_B_EQAM',$data);
+    $this->load->template('report/program_report_B_EQAM',$data);
   }
 
   public function program_report_H_EQAM()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_H_EQAM');
+    $data['action'] = base_url('report/preview_H_EQAM');
     /* 
     variable in form
     'datepick'  = วันที่ได้รับตัวอย่างทดสอบ
@@ -343,14 +407,14 @@ class Testresult extends CI_Controller
       // $data['encode_post'] = $this->output->set_output(json_encode());
     }
     $this->session->set_userdata('title','H_EQAM');
-    $this->load->template('testresult/program_report_H_EQAM',$data);
+    $this->load->template('report/program_report_H_EQAM',$data);
   }
 
   public function program_report_UC_EQAM()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_UC_EQAM');
+    $data['action'] = base_url('report/preview_UC_EQAM');
     $filter = array();
     $data['name'] = $this->model_program_infection->getLists($filter, 0, 99999999999);
 
@@ -397,14 +461,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','UC_EQAM');
-    $this->load->template('testresult/program_report_UC_EQAM',$data);
+    $this->load->template('report/program_report_UC_EQAM',$data);
   }
 
   public function program_report_EQAI_SYPHILIS()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAI_SYPHILIS');
+    $data['action'] = base_url('report/preview_EQAI_SYPHILIS');
 
     /* 
     variable in form
@@ -450,14 +514,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAI_SYPHILIS');
-    $this->load->template('testresult/program_report_EQAI_SYPHILIS',$data);
+    $this->load->template('report/program_report_EQAI_SYPHILIS',$data);
   }
 
   public function program_report_EQAI_HBV()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAI_HBV');
+    $data['action'] = base_url('report/preview_EQAI_HBV');
 
     /* 
     variable in form
@@ -518,14 +582,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAI_HBV');
-    $this->load->template('testresult/program_report_EQAI_HBV',$data);
+    $this->load->template('report/program_report_EQAI_HBV',$data);
   }
 
   public function program_report_EQAB_GRAM()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAB_GRAM');
+    $data['action'] = base_url('report/preview_EQAB_GRAM');
 
     /* 
     variable in form
@@ -558,14 +622,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAB_GRAM');
-    $this->load->template('testresult/program_report_EQAB_GRAM',$data);
+    $this->load->template('report/program_report_EQAB_GRAM',$data);
   }
 
   public function program_report_EQAB_AFB()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAB_AFB');
+    $data['action'] = base_url('report/preview_EQAB_AFB');
 
     /* 
     variable in form
@@ -598,14 +662,14 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAB_AFB');
-    $this->load->template('testresult/program_report_EQAB_AFB',$data);
+    $this->load->template('report/program_report_EQAB_AFB',$data);
   }
 
   public function program_report_EQAB_IDEN_AST()
   {
     $data = array();
     $data['heading_title'] = 'รายงานผลการทดสอบ';
-    $data['action'] = base_url('testresult/preview_EQAB_IDEN_AST');
+    $data['action'] = base_url('report/preview_EQAB_IDEN_AST');
 
     /* 
     variable in form
@@ -664,7 +728,7 @@ class Testresult extends CI_Controller
       );
     }
     $this->session->set_userdata('title','EQAB_IDEN_AST');
-    $this->load->template('testresult/program_report_EQAB_IDEN_AST',$data);
+    $this->load->template('report/program_report_EQAB_IDEN_AST',$data);
   }
   public function preview()
 {
@@ -711,7 +775,7 @@ class Testresult extends CI_Controller
   $this->session->unset_userdata('EQAI_SYPHI');
   // $this->session->unset_userdata('preview');
   $data['comment'] = $this->input->post('comment');
-  $this->load->view('testresult/preview',$data);
+  $this->load->view('report/preview',$data);
 }
 
 public function preview_EQAC(){
@@ -746,7 +810,7 @@ public function preview_EQAC(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAC',$data);
+  $this->load->view('report/preview_EQAC',$data);
 }
 
 public function preview_EQAH(){
@@ -781,7 +845,7 @@ public function preview_EQAH(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAH',$data);
+  $this->load->view('report/preview_EQAH',$data);
 }
 
 public function preview_B_EQAM(){
@@ -821,7 +885,7 @@ public function preview_B_EQAM(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_B_EQAM',$data);
+  $this->load->view('report/preview_B_EQAM',$data);
 }
 
 public function preview_EQAP(){
@@ -855,7 +919,7 @@ public function preview_EQAP(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAP',$data);
+  $this->load->view('report/preview_EQAP',$data);
 }
 
 public function preview_EQAT(){
@@ -889,7 +953,7 @@ public function preview_EQAT(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAT',$data);
+  $this->load->view('report/preview_EQAT',$data);
 }
 
 public function preview_EQAB_AFB(){
@@ -923,7 +987,7 @@ public function preview_EQAB_AFB(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAB_AFB',$data);
+  $this->load->view('report/preview_EQAB_AFB',$data);
 }
 
 public function preview_EQAB_GRAM(){
@@ -955,7 +1019,7 @@ public function preview_EQAB_GRAM(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAB_GRAM',$data);
+  $this->load->view('report/preview_EQAB_GRAM',$data);
 }
 
 public function preview_EQAB_IDEN_AST(){
@@ -1001,7 +1065,7 @@ public function preview_EQAB_IDEN_AST(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAB_IDEN_AST',$data);
+  $this->load->view('report/preview_EQAB_IDEN_AST',$data);
 }
 
 public function preview_EQAI_HBV(){
@@ -1047,7 +1111,7 @@ public function preview_EQAI_HBV(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAI_HBV',$data);
+  $this->load->view('report/preview_EQAI_HBV',$data);
 }
 
 public function preview_EQAI_SYPHILIS(){
@@ -1084,7 +1148,7 @@ public function preview_EQAI_SYPHILIS(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_EQAI_SYPHILIS',$data);
+  $this->load->view('report/preview_EQAI_SYPHILIS',$data);
 }
 
 public function preview_H_EQAM(){
@@ -1120,7 +1184,7 @@ public function preview_H_EQAM(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_H_EQAM',$data);
+  $this->load->view('report/preview_H_EQAM',$data);
 }
 
 public function preview_UC_EQAM(){
@@ -1161,7 +1225,7 @@ public function preview_UC_EQAM(){
   $data['position'] = $this->input->post('position');
   $data['comment'] = $this->input->post('comment');
   $data['datereport'] = $this->input->post('report_date');
-  $this->load->view('testresult/preview_UC_EQAM',$data);
+  $this->load->view('report/preview_UC_EQAM',$data);
 }
 
 }

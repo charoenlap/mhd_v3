@@ -32,7 +32,7 @@ class Trial_model extends CI_Model {
   public function add($data)
   {
     $this->db->set($data);
-    $this->db->insert('trial');
+    $this->db->insert('program_trial');
     return $this->db->insert_id();
   }
 
@@ -40,7 +40,7 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->set($data);
-    $this->db->update('trial');
+    $this->db->update('program_trial');
     return $this->db->affected_rows()==1 ? true : false;
   }
 
@@ -48,7 +48,7 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->set( array('del'=>1) );
-    $this->db->update('trial');
+    $this->db->update('program_trial');
     return $this->db->affected_rows()==1 ? true : false;
   }
 
@@ -56,7 +56,7 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->where('del', 0);
-    $query = $this->db->get('trial');
+    $query = $this->db->get('program_trial');
     return $query->num_rows() == 1 ? $query->row() : false;
   }
 
@@ -74,7 +74,7 @@ class Trial_model extends CI_Model {
       $this->db->order_by($sort, $by);
     }
     $this->db->where('del', 0);
-    $query = $this->db->get('trial');
+    $query = $this->db->get('program_trial');
     return $query->result();
   }
   // ------------------------------------------------------------------------
@@ -82,6 +82,13 @@ class Trial_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
+  public function getTrialBySlug($slug)
+  {
+    $this->db->where('slug', $slug);
+    $this->db->where('del', 0);
+    $query = $this->db->get('program_trial');
+    return $query->row();
+  }
   // ------------------------------------------------------------------------
 
 }

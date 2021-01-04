@@ -59,7 +59,8 @@ class Content_model extends CI_Model {
     $this->db->where('mhd_content.del', 0);
     $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
     $query = $this->db->get('content');
-    return $query->num_rows() == 1 ? $query->row() : false;
+    // return $query->num_rows() == 1 ? $query->result() : false;
+    return $query->result();
   }
   public function getContentList($id)
   {
@@ -130,6 +131,8 @@ class Content_model extends CI_Model {
 
   public function getCatLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
+    $this->db->select('mhd_content_cat.*, mhd_language_detail.*, mhd_content_cat.id as id');
+    $this->db->where('mhd_language_detail.type', 0);
     if (count($filter)>0) {
       foreach ($filter as $key => $value) {
         $this->db->where($key, $value);
@@ -141,7 +144,8 @@ class Content_model extends CI_Model {
     if (!empty($sort) && !empty($by)) {
       $this->db->order_by($sort, $by);
     }
-    $this->db->where('del', 0);
+    $this->db->where('mhd_content_cat.del', 0);
+    $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content_cat.id', 'LEFT');
     $query = $this->db->get('content_cat');
     return $query->result();
   }

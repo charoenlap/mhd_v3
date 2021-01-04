@@ -26,7 +26,7 @@
      <div class="sidebar-heading">จัดการผล</div>
 
      <li class="nav-item">
-         <a class="nav-link" href="<?php echo base_url('testresult');?>">
+         <a class="nav-link" href="<?php echo base_url('report');?>">
              <i class="fas fa-fw fa-file-upload"></i>
              <span>แจ้งส่งผลการทดสอบ</span>
          </a>
@@ -65,6 +65,8 @@
          </a>
      </li>
 
+
+
      <hr class="sidebar-divider mt-2">
 
      <li class="nav-item">
@@ -73,7 +75,6 @@
              <span>ออกจากระบบ</span>
          </a>
      </li>
-
 
      <!-- Divider -->
      <hr class="sidebar-divider d-none d-md-block mt-2">

@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?php echo base_url('admin/home');?>" class="brand-link text-center">
-        <img src="<?php echo base_url();?>assets/img/logo.png" alt="AdminLTE Logo" class="img-fluid">
+        <img src="<?php echo base_url();?>assets/img/logo.png" alt="AdminLTE Logo" class="img-fluid" style="height:100px;">
     </a>
 
     <!-- Sidebar -->
@@ -25,7 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <b class="text-white">แอดมิน :</b><a href="#" class="d-block"><?php echo $_SESSION['admin_info']['username'];?></a>
+                <p class="mb-0"><b class="text-white">ผู้ใช้งาน : <a href="#" ><?php echo $_SESSION['admin_info']['username'];?></a></b></p>
+                <a href="<?php echo base_url('admin/user/logout');?>" class="text-danger">ออกจากระบบ</a>
             </div>
         </div>
 
@@ -104,7 +105,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </p>
                     </a>
                 </li>
-                <li class="nav-header"></li>
+                <li class="nav-header">ระบบเนื้อหาเว็บไซต์</li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url('admin/content/category/');?>" class="nav-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>
+                            จัดการเนื้อหา
+                        </p>
+                    </a>
+                </li>
+                <!-- <li class="nav-header"></li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('admin/user/logout');?>" class="nav-link text-danger">
                         <i class="fas fa-door-open"></i>
@@ -112,7 +122,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             ออกจากระบบ
                         </p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
