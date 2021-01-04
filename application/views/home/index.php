@@ -13,16 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="col-sm-12 col-md-9 col-lg-9">
         <div class="px-3">
-            <img src="<?php echo base_url().'upload/content/'.$banner;?>" />
+            <img src="<?php echo base_url().'upload/content/'.$banner;?>"  />
             <!-- view/home/index.php Content here -->
         </div>
     </div>
     <div class="col-sm-12 col-md-3 col-lg-3">
         <!-- Right Side change with page -->
-        <a href="<?php echo base_url('home/contentcat/59');?>" class="btn btn-primary border boder-light font-weight-bold btn-lg" style="margin: 5px;">ข่าวประชาสัมพันธ์</a><br>
-        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold btn-lg" style="margin: 5px;">ดาวน์โหลดเอกสารและคู่มือ</a><br>
-        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold btn-lg" style="margin: 5px;">การประเมินความพึงพอใจ</a><br>
-        <a href="<?php echo base_url('home/contentcat/81');?>" class="btn btn-primary border boder-light font-weight-bold btn-lg" style="margin: 5px;">ใบสมัครสมาชิก</a><br>
-        <a href="<?php echo base_url();?>" class="btn btn-primary border boder-light font-weight-bold btn-lg" style="margin: 5px;">ตรวจสอบสถานะ</a><br>
+        <a href="<?php echo base_url('home/contentcat/59');?>" class="btn btn-primary border boder-light font-weight-bold m-1">ข่าวประชาสัมพันธ์</a><br>
+        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold m-1">ดาวน์โหลดเอกสารและคู่มือ</a><br>
+        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold m-1">การประเมินความพึงพอใจ</a><br>
+        <a href="<?php echo base_url('home/contentcat/81');?>" class="btn btn-primary border boder-light font-weight-bold m-1">ใบสมัครสมาชิก</a><br>
+        <a href="<?php echo base_url();?>" class="btn btn-primary border boder-light font-weight-bold m-1">ตรวจสอบสถานะ</a><br>
     </div>
 </div>

@@ -18,10 +18,9 @@ class Home extends CI_Controller
     $data['bgcontent'] = "background:url('".base_url()."assets/img/bghome.jpg') no-repeat center center / cover;";
 
     $data['banner'] = $this->model_content->getContentList(184)->picture1;
-
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
     $this->load->TemplateHome('home/index', $data);
   }
-
 
   public function contentcat($catid) // หมวดหมู่หน้า
   {
@@ -33,6 +32,8 @@ class Home extends CI_Controller
     $data['result_cat'] = $result;
     $data['result_content'] = $result2;
     $data['result_con'] = $result3;
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+
     $this->load->TemplateHome('home/cat', $data);
   }
 
@@ -40,12 +41,23 @@ class Home extends CI_Controller
   {
     $data = array();
     $data['result'] = $this->model_content->getContentList($id);
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+
     $this->load->TemplateHome('home/content', $data);
   }
   public function about_schemes()
   {
     $data = array();
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+
     $this->load->TemplateHome('home/about_schemes', $data);
+  }
+  public function contact()
+  {
+    $data = array();
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    
+    $this->load->TemplateHome('home/contact',$data);
   }
 }
 

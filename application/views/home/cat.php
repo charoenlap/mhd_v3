@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php echo $result_cat->name;?><br>
                 <?php $row_count = count($result_con); ?>
                 <?php for($x = 0 ; $x < $row_count; $x++) :?>
-                    <a href="<?php echo base_url('home/content/'.$result_con[$x]->ref_id);?>"><?php echo $result_con[$x]->name;?></a><br>
+                    <a href="<?php echo base_url('home/content/'.$result_con[$x]->ref_id);?>" class="text-decoration-none"><?php echo $result_con[$x]->name;?></a><br>
                 <?php endfor; ?>
                 <!-- sample -->
                 <!-- <?php $set_result = array_column($result_content, $result_content->id); ?> -->
@@ -29,25 +29,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     <div class="col-sm-12 col-md-3 col-lg-3">
-        <a href="" class="text-dark">
+        <a href="" class="text-dark text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
             </svg> หนังสือประชาสัมพันธ์ การรับสมัครสมาชิก ปี 2562</a><br>
-        <a href="" class="text-dark">
+        <a href="" class="text-dark text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
             </svg> คู่มือการสมัครสมาชิก โครงการฯ ปี 2562</a><br>
-        <a href="" class="text-dark">
+        <a href="" class="text-dark text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
             </svg> เอกสารแนะนำ การรับสมัครสมาชิก ปี 2562</a><br>
-        <a href="" class="text-dark">
+        <a href="" class="text-dark text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
             </svg> ใบสมัครสมาชิก โครงการฯ ปี 2562</a><br>
         <!-- Right Side change with page -->
     </div>
 </div>
-<style>
-
-</style>
