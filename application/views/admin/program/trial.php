@@ -36,14 +36,36 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
+                            <form class="form-inline">
+                                <div class="form-group mb-2 mr-2">
+                                    <label>Search year </label>
+                                </div>
+                                <div class="form-group mb-2 mr-2">
+                                    <select name="" id="" class="form-control">
+                                        <option value="">Select year</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="submit" class="btn btn-primary" value="Filter" />
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
 
 
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ชื่อโปรแกรม</th>
-                                        <th>จำนวนผู้สมัคร</th>
-                                        <th width="15%" class="text-center">การจัดการ</th>
+                                        <th>Trial</th>
+                                        <th>Year</th>
+                                        <th>Dispatched Date</th>
+                                        <th>Deadline</th>
+                                        <th>Limit</th>
+                                        <th>Note</th>
+                                        <th width="15%" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,17 +74,17 @@
                                     <tr>
                                         <td><?php echo $value->name;?></td>
                                         <td>0</td>
+                                        <td><?php echo $value->dispatched;?></td>
+                                        <td><?php echo $value->date_send;?></td>
+                                        <td><?php echo $value->row_limit;?></td>
+                                        <td><?php echo $value->note;?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     จัดการ
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/edit/'.$value->id);?>">แก้ไข</a>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/setting/'.$value->id);?>">ตั้งค่าเครื่อง</a>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/trial/'.$value->id);?>">จัดการ Trial</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="<?php echo base_url('admin/program/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a>
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/specimen/'.$value->id);?>">Specimen</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -74,7 +96,7 @@
 
                             <?php echo $pagination; ?>
 
-                            <small class="float-right mt-4">ไม่สามารถเพิ่มโปรแกรมเองได้เนื่องจากรูปแบบของแต่ละโปรแกรมไม่เหมือนกัน</small>
+                            <!-- <small class="float-right mt-4">ไม่สามารถเพิ่มโปรแกรมเองได้เนื่องจากรูปแบบของแต่ละโปรแกรมไม่เหมือนกัน</small> -->
 
                         </div>
                     </div>

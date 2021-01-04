@@ -112,7 +112,6 @@ class Program extends CI_Controller
         redirect('admin/program/lists/page/');
       }
 
-
       $this->load->template('admin/program/form', $data);
   }
 
@@ -127,9 +126,30 @@ class Program extends CI_Controller
         redirect('admin/program/lists/page/');
   }
 
+  public function trial($id) 
+  {
+    $data = array();
+      
+      $data['breadcrumbs'] = array(
+        'ภาพรวม' => base_url('admin/home'),
+        'โปรแกรมทั้งหมด' => base_url('admin/program/lists/page/'),
+        'แก้ไขโปรแกรม' => base_url('admin/program/trial/'.$id)
+      );
+      $data['action'] = base_url('admin/program/trial/'.$id);
+      $data['lists'] = array();
+      $data['pagination'] = '';
+      // $data['lists'][] = (object)array('name'=>'');
 
+      $filter['del'] = 0;
+      $filter['program_id'] = $id;
+      $data['lists'] = $this->model_trial->getLists($filter);
 
+      
+      $program_info = $this->model_program->getList($id);
+      $data['heading_title'] = 'แก้ไข Trial ของโปรแกรม '.$program_info->name;
 
+      $this->load->template('admin/program/trial', $data);
+  }
 
   public function setting($id)
   {
