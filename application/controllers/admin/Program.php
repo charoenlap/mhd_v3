@@ -189,11 +189,31 @@ class Program extends CI_Controller
         $data['error'] = '';
     }
 
+    $data['id'] = $id;
+    
+    // default tool
     $filter = array('program_id'=>$id);
-    $data['tools'] = $this->model_program_tool->getLists($filter, 0, 9999999999, 'name', 'ASC');
+    $data['tools'] = $this->model_program_tool->getLists($filter, 0, 9999999999);
 
+    // default instrument
     $filter = array('program_id'=>$id);
     $data['instruments'] = $this->model_program_infection->getLists($filter, 0, 9999999999, 'name', 'ASC');
+
+    
+    $show_principle = array(2,3);
+    $data['show_principle'] = $show_principle;
+    if (in_array($id, $show_principle)) {
+      $data['principle'] = array();
+      // $filter = array('program_id'=>$id);
+      // $data['instruments'] = $this->model_program_infection->getLists($filter, 0, 9999999999, 'name', 'ASC');
+    }
+
+    // list tool in instrument (Only EQAC)
+    if ($id==1) {
+      // Only EQAC
+      $filter = array('program_id'=>$id,'section'=>1);
+      $data['tools_eqac'] = $this->model_program_tool->getLists($filter, 0, 9999999999);
+    }
 
     $this->load->template('admin/program/setting', $data);
   }

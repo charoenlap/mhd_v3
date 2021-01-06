@@ -61,8 +61,9 @@
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/program/edit/'.$value->id);?>">แก้ไข</a>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/program/setting/'.$value->id);?>">ตั้งค่าเครื่อง</a>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/program/trial/'.$value->id);?>">จัดการ Trial</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="<?php echo base_url('admin/program/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a>
+                                                    <a class="dropdown-item disabled" href="#" disabled="disabled">คู่มือ</a>
+                                                    <!-- <div class="dropdown-divider"></div> -->
+                                                    <!-- <a class="dropdown-item text-danger" href="<?php echo base_url('admin/program/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a> -->
                                                 </div>
                                             </div>
                                         </td>
