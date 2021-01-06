@@ -36,24 +36,7 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-inline" action="<?php echo $action;?>" method="post">
-                                <div class="form-group mb-2 mr-2">
-                                    <label>Search</label>
-                                </div>
-                                <div class="form-group mb-2 mr-2">
-                                    <select name="year" id="" class="form-control form-control-sm" required>
-                                        <option value="">Select year</option>
-                                        <?php foreach ($years as $value): ?>
-                                        <option value="<?php echo $value->id;?>" <?php echo $year==$value->id?'selected="selected"':'';?>><?php echo $value->year;?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Filter" />
-                                    <a href="<?php echo $action;?>" class="btn btn-sm btn-default ml-2">Clear</a>
-                                </div>
-                                
-                            </form>
+                           
                         </div>
                     </div>
                     <div class="card">
@@ -63,12 +46,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Trial</th>
-                                        <th>Year</th>
-                                        <th width="12%">Dispatched Date</th>
-                                        <th width="12%">Deadline</th>
-                                        <th width="12%">Limit</th>
-                                        <th>Note</th>
+                                        <th>Specimen Name</th>
                                         <th width="12%" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -77,18 +55,15 @@
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
                                         <td><?php echo $value->name;?></td>
-                                        <td><?php echo $value->year; ?></td>
-                                        <td><?php echo $value->dispatched;?></td>
-                                        <td><?php echo $value->date_send;?></td>
-                                        <td><?php echo $value->row_limit;?></td>
-                                        <td><?php echo $value->note;?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     จัดการ
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/specimen/'.$value->id);?>">Specimen</a>
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/editspecimen/'.$value->id);?>">แก้ไข</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/delspecimen/'.$value->id);?>">ลบ</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -96,7 +71,7 @@
                                     <?php endforeach; ?>
                                     <?php else: ?>
                                     <tr>
-                                        <td colspan="7" class="text-center">ไม่พบข้อมูล Trial ในปี <?php echo $year;?></td>
+                                        <td colspan="7" class="text-center">ไม่พบข้อมูล Specimen ใน Trial </td>
                                     </tr>
                                     <?php endif;?>
                                 </tbody>

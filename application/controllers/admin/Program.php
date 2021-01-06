@@ -126,29 +126,64 @@ class Program extends CI_Controller
         redirect('admin/program/lists/page/');
   }
 
-  public function trial($id) 
+  public function trial($id) // id program
   {
     $data = array();
       
       $data['breadcrumbs'] = array(
         'ภาพรวม' => base_url('admin/home'),
         'โปรแกรมทั้งหมด' => base_url('admin/program/lists/page/'),
-        'แก้ไขโปรแกรม' => base_url('admin/program/trial/'.$id)
+        'Trial' => base_url('admin/program/trial/'.$id)
       );
       $data['action'] = base_url('admin/program/trial/'.$id);
       $data['lists'] = array();
       $data['pagination'] = '';
       // $data['lists'][] = (object)array('name'=>'');
+      
 
+      $data['year'] = '';
+      $data['year_name'] = '';
+      
+
+      $filter = array();
+      if ($this->input->post('year')) {
+        $filter['year_id'] = $this->input->post('year');
+        $data['year'] = $this->input->post('year');
+        $data['year_name'] = $this->model_year->getList($this->input->post('year'))->year;
+      }
       $filter['del'] = 0;
       $filter['program_id'] = $id;
       $data['lists'] = $this->model_trial->getLists($filter);
 
+
+      $data['years'] = $this->model_year->getLists(array(), 0, 99999999999, 'year', 'DESC');
+      
       
       $program_info = $this->model_program->getList($id);
       $data['heading_title'] = 'แก้ไข Trial ของโปรแกรม '.$program_info->name;
 
       $this->load->template('admin/program/trial', $data);
+  }
+
+  public function specimen($id) // id trial
+  {
+    $data = array();
+      
+      $data['breadcrumbs'] = array(
+        'ภาพรวม' => base_url('admin/home'),
+        'โปรแกรมทั้งหมด' => base_url('admin/program/lists/page/'),
+        'Trial' => base_url('admin/program/trial/'),
+        'Specimen' => base_url('admin/program/specimen/'.$id)
+      );
+      $data['action'] = base_url('admin/program/specimen/'.$id);
+      $data['lists'] = array();
+      $data['pagination'] = '';
+      $data['heading_title'] = 'Specimen';
+
+      $trial_info = $this->model_trial->getList($id);
+      $data['heading_title'] = 'Specimen ของ Trial '.$trial_info->name;
+
+      $this->load->template('admin/program/specimen', $data);
   }
 
   public function setting($id)

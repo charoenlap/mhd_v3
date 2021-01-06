@@ -62,9 +62,10 @@ class Trial_model extends CI_Model {
 
   public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
+    $this->db->select('mhd_program_trial.*,mhd_program_trial.id as id,mhd_year.year as year');
     if (count($filter)>0) {
       foreach ($filter as $key => $value) {
-        $this->db->where($key, $value);
+        $this->db->where('mhd_program_trial.'.$key, $value);
       }
     }
     if ($start>=0 && $limit>=1) {
@@ -73,7 +74,8 @@ class Trial_model extends CI_Model {
     if (!empty($sort) && !empty($by)) {
       $this->db->order_by($sort, $by);
     }
-    $this->db->where('del', 0);
+    $this->db->where('mhd_program_trial.del', 0);
+    $this->db->join('mhd_year','mhd_year.id = mhd_program_trial.year_id','LEFT');
     $query = $this->db->get('program_trial');
     return $query->result();
   }
