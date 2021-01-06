@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="col-sm-12 col-md-9 col-lg-9">
         <div class="px-3">
-            <img src="<?php echo base_url().'upload/content/'.$banner;?>"  />
+            <img src="<?php echo base_url().'upload/content/'.$banner;?>" />
             <!-- view/home/index.php Content here -->
         </div>
     </div>

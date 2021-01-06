@@ -12,8 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     <div class="col-sm-12 col-md-9 col-lg-9">
-        
-
         <div class="card mx-3">
             <div class="card-body">
                 <?php echo $result->name; ?><br>

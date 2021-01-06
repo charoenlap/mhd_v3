@@ -1,5 +1,4 @@
-                    <footer>
-                        <div class="card position-absolute rounded-0 " style="bottom:0;width:100%;">
+                        <div class="card position-relative rounded-0 " style="bottom:0;width:100%;">
                             <div class="card-body">
                                 <div class="col-md-12 text-center">
                                     <b>ศูนย์พัฒนามาตรฐานและการประเมินผลิตภัณฑ์ (Center for Standardization and Product validation)</b>
@@ -12,7 +11,6 @@
                         </div>
                         </div>
                         </div>
-                    </footer>
                     </body>
 
                     </html>
