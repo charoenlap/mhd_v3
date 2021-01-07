@@ -5,7 +5,7 @@
             <img src="<?php echo base_url(); ?>assets/img/logo.png" class="img-fluid my-4" />
             <!-- view/home/navbar.php 
             MENU HERE -->
-            <div class="container-fuild pl-1">
+            <div class="container-fulid ml-2">
                 <!-- <a href="<?php echo base_url(); ?>" class="btn btn-outline-primary form-control bg-light text-center mb-1" >หน้าหลัก</a> -->
                 <a href="<?php echo base_url(); ?>" class="btn btn-outline-primary form-control bg-light text-center mb-1">หน้าหลัก</a>
                 <a href="<?php echo base_url('home/about_schemes'); ?>" class="btn btn-outline-primary form-control bg-light text-center mb-1">เกี่ยวกับโครงการ</a>

@@ -34,12 +34,21 @@
 </head>
 
 <body class="">
-    <!-- <style>
+    <style>
         .sidenav {
             position: fixed;
             overflow-x: hidden;
             top: 0;
             left: 0;
             height: 100%;
+            z-index: 1;
         }
-    </style> -->
+        @media (min-width: 576px){
+            .img-fluid {
+                width: 250px;
+                justify-content: center;
+            }
+
+        }
+
+    </style>
