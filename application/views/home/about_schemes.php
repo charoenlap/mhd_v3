@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row about-schemes">
         <div class="col-sm-8">
             <img src="<?php echo base_url(); ?>assets/img/headerblack.png" class="img-fluid my-4 px-4" />
         </div>

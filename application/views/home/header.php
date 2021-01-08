@@ -35,6 +35,10 @@
 
 <body class="">
     <style>
+        .home-page {
+            margin-left: 20px;
+            margin-right: 0;
+        }
         .sidenav {
             position: fixed;
             overflow-x: hidden;
@@ -42,13 +46,43 @@
             left: 0;
             height: 100%;
             z-index: 1;
+            padding-right: 0;
         }
-        @media (min-width: 576px){
-            .img-fluid {
-                width: 250px;
-                justify-content: center;
+        .sidebar {
+            min-height: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        @media screen and (max-width:768px){
+            .navbar-brand {
+                width: 90px;
+                margin-top: 0;
+                margin-bottom: 0;
             }
-
+            .sidenav {
+                height: fit-content;
+                position: fixed;
+            }
+            .home-page, .about-schemes, .contact, .content, .cat{
+                margin-top: 70px;
+            }
+            .menu-index {
+                text-align: center;
+            }
+            footer {
+                position: relative;
+            }
+            .extra-menu {
+                text-align: center;
+            }
+            .navbar-toggler  {
+                float: right;
+                margin-top: 40px;
+                margin-right: 20px;
+            }
+            .sidebar {
+                text-align: center;
+                width: 80%;
+            }
         }
-
     </style>
