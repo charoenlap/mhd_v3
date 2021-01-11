@@ -35,10 +35,6 @@
 
 <body class="">
     <style>
-        .home-page {
-            margin-left: 20px;
-            margin-right: 0;
-        }
         .sidenav {
             position: fixed;
             overflow-x: hidden;
@@ -46,43 +42,98 @@
             left: 0;
             height: 100%;
             z-index: 1;
-            padding-right: 0;
+            padding: 0;
         }
+
         .sidebar {
             min-height: 0;
             padding-left: 0;
             padding-right: 0;
+            text-align: center;
         }
-        @media screen and (max-width:768px){
+
+        .img-index {
+            text-align: center;
+        }
+
+        .bg-content {
+            width: fit-content !important;
+        }
+
+        .nav-link {
+            width: 100%;
+        }
+
+        @media screen and (max-width:767px) {
             .navbar-brand {
-                width: 90px;
-                margin-top: 0;
-                margin-bottom: 0;
+                width: 90px !important;
+                padding: 0;
+                margin-top: 10px !important;
+                margin-bottom: 10px !important;
             }
+
             .sidenav {
-                height: fit-content;
-                position: fixed;
+                position: static;
+                padding-bottom: 10px;
+                padding-right: 10px !important;
+                width: 100%;
             }
-            .home-page, .about-schemes, .contact, .content, .cat{
-                margin-top: 70px;
-            }
+
             .menu-index {
                 text-align: center;
             }
-            footer {
-                position: relative;
-            }
+
+            /* page content cat contact */
             .extra-menu {
-                text-align: center;
+                text-align: left;
+                margin-top: 20px;
+                padding: 50px;
+
             }
-            .navbar-toggler  {
+
+            .navbar-toggler {
                 float: right;
-                margin-top: 40px;
-                margin-right: 20px;
+                margin-top: 15px;
+                margin-right: 10px;
             }
+
             .sidebar {
+                margin: auto;
+                width: 100%;
+            }
+
+            #nav-menubar {
+                text-align: center !important;
+                width: fit-content !important;
+            }
+
+            .menu-index {
+                margin-top: 50px !important;
+            }
+
+            .navbar-row {
+                display: block;
+            }
+
+            .nav-link {
+                display: flex;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+
+            .nav-about {
+                display: none;
+            }
+
+            .footer-area {
+                position: relative !important;
+                margin-top: 40px;
+                bottom: 0;
+            }
+
+            .img-index {
                 text-align: center;
-                width: 80%;
+                margin: auto;
             }
         }
     </style>

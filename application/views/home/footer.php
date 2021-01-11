@@ -1,6 +1,5 @@
-                        <footer>
-                            <div class="card position-absolute rounded-0" style="bottom: 0;width:100%;">
-                                <div class="card-body">
+                          <div class="card footer-area position-absolute rounded-0" style="bottom: 0;width:100%;">
+                                <div class="card-body mt-1 border-0">
                                     <div class="col-md-12 text-center">
                                         <b>ศูนย์พัฒนามาตรฐานและการประเมินผลิตภัณฑ์ (Center for Standardization and Product validation)</b>
                                         <p style="margin: 0;">คณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล เลขที่ 2 ถนนวังหลัง แขวงศิริราช เขตบางกอกน้อย กรุงเทพฯ 10700</p>
@@ -9,7 +8,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </footer>
                         </div>
                         </div>
                         </div>
