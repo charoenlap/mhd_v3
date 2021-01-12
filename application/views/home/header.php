@@ -33,7 +33,7 @@
     <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet">
 </head>
 
-<body class="">
+<body class="position-relative">
     <style>
         .sidenav {
             position: fixed;
@@ -47,9 +47,8 @@
 
         .sidebar {
             min-height: 0;
-            padding-left: 0;
-            padding-right: 0;
             text-align: center;
+
         }
 
         .img-index {
@@ -57,26 +56,35 @@
         }
 
         .bg-content {
-            width: fit-content !important;
+            width: 100% !important;
         }
 
-        .nav-link {
-            width: 100%;
+        .navbar {
+            width: fit-content;
         }
-
+        .menu-index>.btn-primary:hover {
+           background-color: white !important;
+           color: blue !important;
+           border-color: blue !important;
+        }
+        #nav-menubar>a.nav-link:hover, #nav-menubar>.collapse>a.btn:hover{
+            background-color: rgb(51, 51, 204) !important;
+            color: white !important;
+            border-color: white !important;
+        }
         @media screen and (max-width:767px) {
             .navbar-brand {
                 width: 90px !important;
                 padding: 0;
                 margin-top: 10px !important;
                 margin-bottom: 10px !important;
+                margin-left: 10px !important;
             }
 
             .sidenav {
                 position: static;
-                padding-bottom: 10px;
                 padding-right: 10px !important;
-                width: 100%;
+                height: fit-content;
             }
 
             .menu-index {
@@ -100,6 +108,7 @@
             .sidebar {
                 margin: auto;
                 width: 100%;
+                margin-bottom: 10px;
             }
 
             #nav-menubar {
@@ -117,8 +126,8 @@
 
             .nav-link {
                 display: flex;
-                margin-right: 10px;
-                margin-left: 10px;
+                margin-right: 20px !important;
+                margin-left: 20px !important;
             }
 
             .nav-about {
@@ -134,6 +143,13 @@
             .img-index {
                 text-align: center;
                 margin: auto;
+            }
+
+            .navbar {
+                width: 100%;
+            }
+            .about-schemes {
+                margin-bottom: 0 !important;
             }
         }
     </style>

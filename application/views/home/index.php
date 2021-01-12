@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-
 <div class="row home-page">
     <div class="col-sm-12">
         <div class="row ml-1">

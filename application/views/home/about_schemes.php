@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
-<div class="container-fluid">
-    <div class="row about-schemes">
+<div class="container-fluid about-schemes" style="margin-bottom: 140px;">
+    <div class="row">
         <div class="col-sm-8">
             <img src="<?php echo base_url(); ?>assets/img/headerblack.png" class="img-fluid my-4 px-4" />
         </div>
-        <div class="row px-3">
+        <div class="row px-3 schemes-content">
             <div class="col-md-12">
                 <div class="progress mb-0 rounded-0" style="height: 5px;">
                     <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>

@@ -48,8 +48,8 @@ class Home extends CI_Controller
   public function about_schemes()
   {
     $data = array();
-
     $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    $data['size_bg'] = 'height';
     $this->load->TemplateHome('home/about_schemes', $data);
   }
   public function contact()
