@@ -137,6 +137,7 @@ class Register_program_model extends CI_Model {
     $this->db->order_by('mhd_register_program.id','DESC');
     $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
     $query = $this->db->get('register_program');
+    // echo $this->db->last_query();
     return $query->result();
   }
   public function checkProgramInRegister($id, $program_id, $member_id, $company_id) {

@@ -131,11 +131,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if (count($instruments)>0){ 
-                                                    foreach ($instruments as $instrument) { ?>
+                                                <?php if (count($principles)>0){ 
+                                                    foreach ($principles as $principle) { ?>
                                                 <tr>
-                                                    <td><input type="text" name="instrument[code][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->code;?>" /></td>
-                                                    <td><input type="text" name="instrument[name][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->name;?>" /></td>
+                                                    <td><input type="text" name="principle[code][<?php echo $principle->id;?>]" class="form-control" value="<?php echo $principle->code;?>" /></td>
+                                                    <td><input type="text" name="principle[name][<?php echo $principle->id;?>]" class="form-control" value="<?php echo $principle->name;?>" /></td>
                                                     <td><button type="button" class="del_tool btn btn-sm btn-danger">Del</button></td>
                                                 </tr>
                                                 <?php } } ?>

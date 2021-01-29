@@ -40,6 +40,19 @@
                                         <input type="text" name="name" class="form-control" value="<?php echo $list->name;?>" required autofocus="on" />
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">ตัวย่อ</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="code" class="form-control" value="<?php echo $list->code;?>" required />
+                                        <small>ใช้สำหรับจับชื่อไฟล์ที่อัพโหลด (ตัวพิมพ์ใหญ่)</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">ราคา</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" name="price" class="form-control" value="<?php echo (int)$list->price;?>" required />
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-10 offset-sm-2">
                                         <input type="submit" class="btn btn-primary" value="บันทึก" />

@@ -36,48 +36,57 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                
+                                </div>
+                                <div class="col-sm-4 text-right offset-sm-4">
+                                    <a href="<?php echo $link_add;?>" class="btn btn-sm btn-primary">เพิ่ม Specimen</a>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
 
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ชื่อโปรแกรม</th>
-                                        <th width="15%" class="text-center">ตัวย่อ</th>
-                                        <th width="20%" class="text-center">รวมจำนวนผู้สมัครทุกปี</th>
-                                        <th width="15%" class="text-center">การจัดการ</th>
+                                        <th>Specimen Name</th>
+                                        <th width="12%" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (count($lists)>0) : ?>
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
-                                        <td><?php echo $value->name;?></td>
-                                        <td class="text-center"><?php echo $value->code;?></td>
-                                        <td class="text-center">0</td>
+                                        <td><?php echo $value->name; ?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     จัดการ
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/edit/'.$value->id);?>">แก้ไข</a>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/setting/'.$value->id);?>">ตั้งค่าเครื่อง</a>
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/trial/list/'.$value->id.'/');?>">จัดการ Trial</a>
-                                                    <a class="dropdown-item disabled" href="#" disabled="disabled">คู่มือ</a>
-                                                    <!-- <div class="dropdown-divider"></div> -->
-                                                    <!-- <a class="dropdown-item text-danger" href="<?php echo base_url('admin/program/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a> -->
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/specimen/edit/'.$value->id);?>">Edit Specimen</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="<?php echo base_url('admin/specimen/del/'.$value->id);?>" onclick="return confirm('Are you sure delete this?');">Delete Specimen</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                    <?php else: ?>
+                                    <tr>
+                                        <td colspan="7" class="text-center">ไม่พบข้อมูล Trial ในปีที่เลือก</td>
+                                    </tr>
                                     <?php endif;?>
                                 </tbody>
                             </table>
 
                             <?php echo $pagination; ?>
 
-                            <small class="float-right mt-4">ไม่สามารถเพิ่มโปรแกรมเองได้เนื่องจากรูปแบบของแต่ละโปรแกรมไม่เหมือนกัน</small>
+                            <!-- <small class="float-right mt-4">ไม่สามารถเพิ่มโปรแกรมเองได้เนื่องจากรูปแบบของแต่ละโปรแกรมไม่เหมือนกัน</small> -->
 
                         </div>
                     </div>
@@ -89,3 +98,4 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+

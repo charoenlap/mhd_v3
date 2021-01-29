@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  *
- * Model Trial_model
+ * Model Program_principle_model
  *
  * This Model for ...
  * 
@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class Trial_model extends CI_Model {
+class Program_principle_model extends CI_Model {
 
   // ------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ class Trial_model extends CI_Model {
   public function add($data)
   {
     $this->db->set($data);
-    $this->db->insert('program_trial');
+    $this->db->insert('program_principle');
     return $this->db->insert_id();
   }
 
@@ -40,9 +40,7 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->set($data);
-    $this->db->update('program_trial');
-    // echo $this->db->last_query();
-    // exit();
+    $this->db->update('program_principle');
     return $this->db->affected_rows()==1 ? true : false;
   }
 
@@ -50,7 +48,7 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->set( array('del'=>1) );
-    $this->db->update('program_trial');
+    $this->db->update('program_principle');
     return $this->db->affected_rows()==1 ? true : false;
   }
 
@@ -58,27 +56,28 @@ class Trial_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->where('del', 0);
-    $query = $this->db->get('program_trial');
+    $query = $this->db->get('program_principle');
     return $query->num_rows() == 1 ? $query->row() : false;
   }
 
   public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
-    $this->db->select('mhd_program_trial.*,mhd_program_trial.id as id,mhd_year.year as year');
-    if (count($filter)>0) {
-      foreach ($filter as $key => $value) {
-        $this->db->where('mhd_program_trial.'.$key, $value);
-      }
-    }
+
     if ($start>=0 && $limit>=1) {
       $this->db->limit($limit, $start);
     }
-    if (!empty($sort) && !empty($by)) {
+    $this->db->order_by('code', 'ASC');
+    $this->db->order_by('name', 'ASC');
+    if (!empty($sort)) {
       $this->db->order_by($sort, $by);
     }
-    $this->db->where('mhd_program_trial.del', 0);
-    $this->db->join('mhd_year','mhd_year.id = mhd_program_trial.year_id','LEFT');
-    $query = $this->db->get('program_trial');
+    if (count($filter)>0) {
+      foreach ($filter as $key => $value) {
+        $this->db->where($key, $value);
+      }
+    }
+    $this->db->where('del', 0);
+    $query = $this->db->get('program_principle');
     return $query->result();
   }
   // ------------------------------------------------------------------------
@@ -86,29 +85,8 @@ class Trial_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
-  public function countLists($filter=array()) 
-  {
-    if (count($filter)>0) {
-      foreach ($filter as $key => $value) {
-        $this->db->where($key, $value);
-      }
-    }
-    $query = $this->db->get('program_trial');
-    return $query->num_rows();
-  }
-  public function getTrialBySlug($slug, $program_id=null)
-  {
-    if ($program_id!=null) {
-      $this->db->where('program_id', $program_id);
-    }
-    $this->db->where('slug', $slug);
-    $this->db->where('del', 0);
-    $query = $this->db->get('program_trial');
-    return $query->row();
-  }
-  // ------------------------------------------------------------------------
 
 }
 
-/* End of file Trial_model.php */
-/* Location: ./application/models/Trial_model.php */
+/* End of file Program_instrument_model.php */
+/* Location: ./application/models/Program_instrument_model.php */

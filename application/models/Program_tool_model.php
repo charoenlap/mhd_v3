@@ -66,12 +66,13 @@ class Program_tool_model extends CI_Model {
     if ($start>=0 && $limit>=1) {
       $this->db->limit($limit, $start);
     }
-    $this->db->order_by('section', 'ASC');
-    $this->db->order_by('code', 'ASC');
-    $this->db->order_by('name', 'ASC');
-    
     if (!empty($sort)) {
       $this->db->order_by($sort, $by);
+    } else {
+      $this->db->order_by('section', 'ASC');
+      $this->db->order_by('code', 'ASC');
+      $this->db->order_by('name', 'ASC');
+    
     }
     if (count($filter)>0) {
       foreach ($filter as $key => $value) {
@@ -87,6 +88,13 @@ class Program_tool_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
+
+  public function delByProgram($program_id)
+  {
+    $this->db->where('program_id', $program_id);
+    $this->db->delete('program_tools');
+    return $this->db->affected_rows()==1 ? true : false;
+  }
 
 }
 

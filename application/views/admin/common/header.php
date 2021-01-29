@@ -18,6 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- DataTables -->
         <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <!-- DateRangePicker -->
+        
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/dist/css/adminlte.min.css">
         <!-- Google Font: Source Sans Pro -->
@@ -32,8 +34,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo base_url();?>assets/admin/dist/js/demo.js"></script>
 
+        <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/moment/moment.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/plugins/daterangepicker/daterangepicker.css" />
+
         <script src="<?php echo base_url();?>assets/admin/select2-develop/dist/js/select2.full.min.js"></script>
         <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/select2-develop/dist/css/select2.min.css">
+        
         <script>
         $(document).ready(function() {
             $('.select2').select2();

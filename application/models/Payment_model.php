@@ -62,6 +62,7 @@ class Payment_model extends CI_Model {
   }
   public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
+    $this->db->select('mhd_payment.*, mhd_member.member_no');
     if (count($filter)>0) {
       foreach ($filter as $key => $value) {
         $this->db->where($key, $value);
@@ -76,6 +77,7 @@ class Payment_model extends CI_Model {
     $this->db->join('mhd_member','mhd_member.id = mhd_payment.member_id','LEFT');
     $this->db->where('mhd_member.del', 0);
     $query = $this->db->get('payment');
+    // echo $this->db->last_query();
     return $query->result();
   }
   // ------------------------------------------------------------------------
@@ -98,7 +100,8 @@ class Payment_model extends CI_Model {
         $this->db->where($key, $value);
       }
     }
-    $this->db->where('del', 0);
+    $this->db->join('mhd_member','mhd_member.id = mhd_payment.member_id','LEFT');
+    $this->db->where('mhd_member.del', 0);
     $query = $this->db->get('payment');
     return $query->num_rows();
   }

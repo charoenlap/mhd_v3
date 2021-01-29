@@ -40,10 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </tr>
                                 <?php endforeach; ?>
                                 <?php endif;?>
-                               <tr>
-                                   <td> 286 </td>
-                                   <td class="text-right"> </td>
-                               </tr>
+                             
                            </tbody>
                         </table>
                     </div>

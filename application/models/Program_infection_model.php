@@ -66,9 +66,9 @@ class Program_infection_model extends CI_Model {
     if ($start>=0 && $limit>=1) {
       $this->db->limit($limit, $start);
     }
-    $this->db->order_by('section', 'ASC');
     $this->db->order_by('code', 'ASC');
     $this->db->order_by('name', 'ASC');
+    // $this->db->order_by('section', 'ASC');
     if (!empty($sort)) {
       $this->db->order_by($sort, $by);
     }

@@ -1,27 +1,80 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
-<div class="row home-page">
-    <div class="col-sm-12">
-        <div class="row ml-1">
-            <div class="col-md-8">
-                <img src="<?php echo base_url();?>assets/img/header.png" class="img-fluid my-4 mx-0 px-0" />
+
+<div class="col-sm-12 col-md-9 col-lg-10">
+  <section id="content">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="row"><div class="col-9"><img src="assets/img/header.png" class="img-fluid mt-4" alt="logo"></div></div>
+      </div>
+
+      <div class="col-sm-12 col-md-9">
+        <img src="upload/content/<?php echo $banner;?>" class="img-fluid" />
+      </div>
+
+
+
+      <div class="col-sm-12 col-md-3">
+        <ul id="rightside" class="list-unstyled">
+          <li>
+            <a href="#">
+            <div class="media">
+              <img class="mr-3" src="assets/img/logo-box.png" alt="imgbox">
+              <div class="media-body d-inline-block">
+                ข่าวประชาสัมพันธ์
+              </div>
             </div>
-        </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="media">
+              <img class="mr-3" src="assets/img/logo-box.png" alt="imgbox">
+              <div class="media-body d-inline-block">
+                ดาวน์โหลดเอกสารและคู่มือ
+              </div>
+            </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="media">
+              <img class="mr-3" src="assets/img/logo-box.png" alt="imgbox">
+              <div class="media-body d-inline-block">
+                การประเมินความพึงพอใจ
+              </div>
+            </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="media">
+              <img class="mr-3" src="assets/img/logo-box.png" alt="imgbox">
+              <div class="media-body d-inline-block">
+                ใบสมัครสมาชิก
+              </div>
+            </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="media">
+              <img class="mr-3" src="assets/img/logo-box.png" alt="imgbox">
+              <div class="media-body d-inline-block">
+                ตรวจสอบสถานะ
+              </div>
+            </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
     </div>
-    <div class="col-sm-12 col-md-9 col-lg-9">
-        <div class="px-3 img-index">
-            <img src="<?php echo base_url().'upload/content/'.$banner;?>" style="width:80%"/>
-            <!-- view/home/index.php Content here -->
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-3 col-lg-3 menu-index mt-1">
-        <!-- Right Side change with page -->
-        <a href="<?php echo base_url('home/contentcat/59');?>" class="btn btn-primary border boder-light font-weight-bold mb-1 w-75">ข่าวประชาสัมพันธ์</a><br>
-        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold mb-1 w-75">ดาวน์โหลดเอกสารและคู่มือ</a><br>
-        <a href="<?php echo base_url('home/contentcat/71');?>" class="btn btn-primary border boder-light font-weight-bold mb-1 w-75">การประเมินความพึงพอใจ</a><br>
-        <a href="<?php echo base_url('home/contentcat/81');?>" class="btn btn-primary border boder-light font-weight-bold mb-1 w-75">ใบสมัครสมาชิก</a><br>
-        <a href="<?php echo base_url();?>" class="btn btn-primary border boder-light font-weight-bold mb-1 w-75">ตรวจสอบสถานะ</a><br>
-    </div>
+  </section>
 </div>
+
+      

@@ -114,8 +114,6 @@ class Payment extends CI_Controller
       $config['remove_spaces'] = true;
       $config['encrypt_name'] = true;
 
-      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
       if (!$this->upload->do_upload('inputSlip')) {

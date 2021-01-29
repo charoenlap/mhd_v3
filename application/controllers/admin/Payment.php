@@ -23,7 +23,7 @@ class Payment extends CI_Controller
       'ภาพรวม' => base_url('admin/home'),
       $data['heading_title'] => base_url('admin/payment')
     );
-    $data['action'] = base_url('admin/payment');
+    $data['action'] = base_url('admin/payment/lists/'.$page);
 
     $data['success'] = $this->session->has_userdata('success') ? $this->session->success : ''; $this->session->unset_userdata('success');
     $data['error'] = $this->session->has_userdata('error') ? $this->session->error : ''; $this->session->unset_userdata('error');
@@ -31,7 +31,7 @@ class Payment extends CI_Controller
     
     $config = array(
       'uri_segment' => 4,
-      'base_url' => base_url(). 'admin/payment/lists/page/',
+      'base_url' => base_url(). 'admin/payment/lists/',
       'full_tag_open' => '<div class="btn-group pagination-group mt-3">',
       'full_tag_close' => '</div>',
       'cur_tag_open' => '<button type="button" class="btn btn-primary">',
@@ -42,9 +42,26 @@ class Payment extends CI_Controller
       'prev_link' => '<button type="button" class="btn btn-default btn-next">&lt;</button>',
       'per_page' => 10, // ! this is limit per page
     );
-    
+    $data['filter_date'] = '';
+    $data['filter_status'] = null;
+    $data['filter_member'] = '';
     $data['path_image'] = 'upload/';
     $filter = array();
+    if ($this->input->server('REQUEST_METHOD')=='POST') {
+      
+      if (!empty($this->input->post('filter_date'))) { 
+        $data['filter_date'] = $this->input->post('filter_date');
+        $filter['mhd_payment.slip_date'] = implode('-', array_reverse(explode('/', $this->input->post('filter_date'))));
+      }
+      if ($this->input->post('filter_status')!='null') { 
+        $data['filter_status'] = (int)$this->input->post('filter_status');
+        $filter['mhd_payment.status'] = (int)$data['filter_status'];
+      }
+      if (!empty($this->input->post('filter_member'))) { 
+        $data['filter_member'] = $this->input->post('filter_member');
+        $filter['mhd_member.member_no'] = substr($this->input->post('filter_member'), 4, strlen($this->input->post('filter_member')));
+      }
+    }
     $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'status', 'DESC');
     $data['lists'] = array();
     if (count($lists)>0) {

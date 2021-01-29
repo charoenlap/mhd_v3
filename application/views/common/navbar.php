@@ -13,7 +13,7 @@
 
      <!-- Nav Item - Dashboard -->
      <li class="nav-item">
-         <a class="nav-link" href="<?php echo base_url('home');?>">
+         <a class="nav-link" href="<?php echo base_url('member/dashboard');?>">
              <i class="fas fa-fw fa-tachometer-alt"></i>
              <span>หน้าแรก</span>
          </a>

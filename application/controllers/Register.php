@@ -98,7 +98,8 @@ class Register extends CI_Controller
 
         // filter choose program
         $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, null, $year_id);
-        $data['program_choose'] = array(); $data['program_slip'] = array();
+        $data['program_choose'] = array(); 
+        $data['program_slip'] = array();
         foreach ($program_choose as $key => $value) {
           $data['program_choose'][] = $value->program_id;
           $data['program_slip'][$value->program_id] = $value->send_slip;

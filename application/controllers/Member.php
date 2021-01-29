@@ -45,6 +45,8 @@ class Member extends CI_Controller
       $data['error'] = '';
     }
 
+    $data['year'] = $this->model_setting->get('config_register_open')==1 ? $this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year : false;
+
     if ($this->input->server('REQUEST_METHOD')=='POST') {
       if ($this->model_member->checkConfirm($this->input->post('email'), md5($this->input->post('password'))) == false) {
         $this->session->set_userdata('error','ท่านยังไม่ได้ยืนยันอีเมล กรุณายืนยันอีเมลเข้าระบบของท่านที่อีเมลผู้สมัคร');
@@ -76,7 +78,7 @@ class Member extends CI_Controller
         $this->session->set_userdata('token', $this->encryption->encrypt(json_encode($result)));
         $this->session->set_userdata('member_info', array('member_no'=>$member_no, 'email'=>$email));
 
-        $year = $this->model_setting->get('config_register_open')==1 ?$this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year : false;
+        $year = $this->model_setting->get('config_register_open')==1 ? $this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year : false;
         $this->session->set_userdata('year', $year);
       
         redirect('member/dashboard');

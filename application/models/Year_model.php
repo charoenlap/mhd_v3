@@ -66,6 +66,13 @@ class Year_model extends CI_Model {
     return $query->num_rows();
   }
 
+  public function add($data) 
+  {
+    $this->db->set($data);
+    $this->db->insert('year');
+    return $this->db->insert_id();
+  }
+  
   public function edit($id, $data) 
   {
     $this->db->where('id', $id);

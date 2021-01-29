@@ -146,5 +146,7 @@ $autoload['model'] = array(
     'Payment_model' => 'model_payment',
     'Content_model' => 'model_content',
     'Trial_model' => 'model_trial',
+    'Specimen_model' => 'model_specimen',
+    'Program_principle_model' => 'model_program_principle',
 
 );

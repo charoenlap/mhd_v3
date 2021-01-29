@@ -36,35 +36,43 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-inline" action="<?php echo $action;?>" method="post">
-                                <div class="form-group mb-2 mr-2">
-                                    <label>Search</label>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <form class="form-inline" action="<?php echo $action;?>" method="post">
+                                        <div class="form-group mb-2 mr-2">
+                                            <label>Search</label>
+                                        </div>
+                                        <div class="form-group mb-2 mr-2">
+                                            <select name="year" id="" class="form-control form-control-sm" required>
+                                                <option value="">Select year</option>
+                                                <?php foreach ($years as $value): ?>
+                                                <option value="<?php echo $value->id;?>" <?php echo $year==$value->id?'selected="selected"':'';?>><?php echo $value->year;?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Filter" />
+                                            <a href="<?php echo $action;?>" class="btn btn-sm btn-default ml-2">Clear</a>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group mb-2 mr-2">
-                                    <select name="year" id="" class="form-control form-control-sm" required>
-                                        <option value="">Select year</option>
-                                        <?php foreach ($years as $value): ?>
-                                        <option value="<?php echo $value->id;?>" <?php echo $year==$value->id?'selected="selected"':'';?>><?php echo $value->year;?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <div class="col-sm-4 text-right offset-sm-4">
+                                    <a href="<?php echo $link_add;?>" class="btn btn-sm btn-primary">เพิ่ม Trial</a>
                                 </div>
-                                <div class="form-group mb-2">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Filter" />
-                                    <a href="<?php echo $action;?>" class="btn btn-sm btn-default ml-2">Clear</a>
-                                </div>
-                                
-                            </form>
+                            </div>
+
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
 
+                       
 
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Trial</th>
                                         <th>Year</th>
+                                        <th>Trial</th>
                                         <th width="12%">Dispatched Date</th>
                                         <th width="12%">Deadline</th>
                                         <th width="12%">Limit</th>
@@ -76,8 +84,8 @@
                                     <?php if (count($lists)>0) : ?>
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
-                                        <td><?php echo $value->name;?></td>
                                         <td><?php echo $value->year; ?></td>
+                                        <td><?php echo $value->name;?></td>
                                         <td><?php echo $value->dispatched;?></td>
                                         <td><?php echo $value->date_send;?></td>
                                         <td><?php echo $value->row_limit;?></td>
@@ -88,7 +96,10 @@
                                                     จัดการ
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <a class="dropdown-item" href="<?php echo base_url('admin/program/specimen/'.$value->id);?>">Specimen</a>
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/trial/edit/'.$value->id);?>">Edit Trial</a>
+                                                    <a class="dropdown-item" href="<?php echo base_url('admin/specimen/list/'.$value->id);?>">Specimen</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="<?php echo base_url('admin/trial/del/'.$value->id);?>" onclick="return confirm('Are you sure delete this?');">Delete Trial</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -96,7 +107,7 @@
                                     <?php endforeach; ?>
                                     <?php else: ?>
                                     <tr>
-                                        <td colspan="7" class="text-center">ไม่พบข้อมูล Trial ในปี <?php echo $year;?></td>
+                                        <td colspan="7" class="text-center">ไม่พบข้อมูล Trial ในปีที่เลือก</td>
                                     </tr>
                                     <?php endif;?>
                                 </tbody>
@@ -117,3 +128,20 @@
 </div>
 <!-- /.content-wrapper -->
 
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.pickerdate').daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true,
+			minYear: 1901,
+			maxYear: parseInt(moment().format('YYYY'), 10),
+			locale: {
+				format: 'DD-MM-YYYY'
+			}
+		}, function (start, end, label) {
+			// var years = moment().diff(start, 'years');
+			// alert("You are " + years + " years old!");
+		});
+	});
+</script>

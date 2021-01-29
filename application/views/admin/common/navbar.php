@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <li class="nav-header">ระบบโปรแกรม</li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/program/lists/page/');?>" class="nav-link">
+                    <a href="<?php echo base_url('admin/program/lists/');?>" class="nav-link">
                         <i class="fab fa-buffer"></i>
                         <p>
                             โปรแกรมทั้งหมด
@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <li class="nav-header">ระบบสมาชิก</li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/payment/lists/page/');?>" class="nav-link">
+                    <a href="<?php echo base_url('admin/payment/lists/');?>" class="nav-link">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <p>
                             แจ้งชำระเงิน

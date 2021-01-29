@@ -90,10 +90,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             echo form_submit($data); 
                                         ?>
                                         <hr />
+                                        <?php if ($year!==false) : ?>
                                         <div class="text-center">
-                                            <a href="<?php echo base_url('member/register');?>" class="btn btn-danger rounded-5 btn-user btn-block">สมัครสมาชิกปี 2021</a>
+                                            <a href="<?php echo base_url('member/register');?>" class="btn btn-danger rounded-5 btn-user btn-block">สมัครสมาชิกปี <?php echo $year;?></a>
+                                            
                                         </div>
                                         <br>
+                                        <?php endif;?>
                                         <div class="text-center">
                                             <a class="small" href="<?php echo base_url('member/forgot');?>">ลืมรหัสผ่าน?</a>
                                         </div>

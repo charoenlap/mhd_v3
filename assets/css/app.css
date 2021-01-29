@@ -19,3 +19,18 @@ input[type="checkbox"].form-control {
     background: #4e73df;
     color:#fff;
 }
+
+.bg-bluemhd {
+    background: #1F4F91;
+}
+
+
+#nav-menubar { width:100%; }
+#nav-menubar li { padding:10px 20px; }
+#nav-menubar li.active,
+#nav-menubar li:hover { background:#FFC845; cursor: pointer; }
+#nav-menubar li a { width:100%; display: block; color:#fff; font-size: 14px; text-decoration: none; }
+#nav-menubar li.active a,
+#nav-menubar li:hover a { color:#333; } 
+ul#nav-menubar li.active.login-link,
+ul#nav-menubar li.login-link:hover { background: transparent; }
