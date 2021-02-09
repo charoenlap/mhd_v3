@@ -16,6 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- Bootstrap core JavaScript-->
         <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
         <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
@@ -43,6 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+        <!-- Bootstrap datepicker -->
+        <script type="text/javascript" src="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
 
         <link rel="stylesheet" href="<?php echo base_url();?>/assets/css/app.css" />
     </head>

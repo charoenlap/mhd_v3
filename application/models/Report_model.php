@@ -83,6 +83,17 @@ class Report_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
+  public function getReport($filter=array()) 
+  {
+    if (count($filter)>0) {
+      foreach ($filter as $key => $value) {
+        $this->db->where($key, $value);
+      }
+
+      $query = $this->db->get('report');
+      return $query->result();
+    }
+  }
   // ------------------------------------------------------------------------
 
 }

@@ -133,20 +133,21 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-    'Member_model' => 'model_member',
-    'Setting_model' => 'model_setting',
-    'Year_model' => 'model_year',
-    'Admin_model' => 'model_admin',
-    'Register_model' => 'model_register',
-    'Register_program_model' => 'model_register_program',
-    'Company_model' => 'model_company',
-    'Program_model' => 'model_program',
-    'Program_tool_model' => 'model_program_tool',
+    'Member_model'            => 'model_member',
+    'Setting_model'           => 'model_setting',
+    'Year_model'              => 'model_year',
+    'Admin_model'             => 'model_admin',
+    'Register_model'          => 'model_register',
+    'Register_program_model'  => 'model_register_program',
+    'Company_model'           => 'model_company',
+    'Program_model'           => 'model_program',
+    'Program_tool_model'      => 'model_program_tool',
     'Program_infection_model' => 'model_program_infection',
-    'Payment_model' => 'model_payment',
-    'Content_model' => 'model_content',
-    'Trial_model' => 'model_trial',
-    'Specimen_model' => 'model_specimen',
+    'Payment_model'           => 'model_payment',
+    'Content_model'           => 'model_content',
+    'Trial_model'             => 'model_trial',
+    'Specimen_model'          => 'model_specimen',
     'Program_principle_model' => 'model_program_principle',
+    'Report_model'            => 'model_report'
 
 );

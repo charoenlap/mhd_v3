@@ -69,6 +69,22 @@
 									</div>
 								</div>
 								<div class="form-group row">
+									<label for="" class="col-sm-2 col-form-label">Start Report Date<br>วันที่สามารถเริ่มลงผล</label>
+									<div class="col-sm-10">
+										<input name="start_report_date" type="text" class="form-control pickerdate" required
+											value="<?php echo $start_report_date; ?>" />
+										<small>วว-ดด-ปปปป(ค.ศ.)</small>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="" class="col-sm-2 col-form-label">End Report Date<br>วันปิดการลงผล</label>
+									<div class="col-sm-10">
+										<input name="end_report_date" type="text" class="form-control pickerdate" required
+											value="<?php echo $end_report_date; ?>" />
+										<small>วว-ดด-ปปปป(ค.ศ.)</small>
+									</div>
+								</div>
+								<!-- <div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label">Dispatched Date</label>
 									<div class="col-sm-10">
 										<input name="dispatched" type="text" class="form-control pickerdate" required
@@ -90,7 +106,7 @@
 											value="<?php echo $date_send; ?>" />
 										<small>วว-ดด-ปปปป(ค.ศ.)</small>
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label">Report Limit</label>
 									<div class="col-sm-10">
@@ -134,7 +150,7 @@
 			singleDatePicker: true,
 			showDropdowns: true,
 			minYear: 1901,
-			maxYear: parseInt(moment().format('YYYY'), 10),
+			// maxYear: parseInt(moment().format('YYYY'), 10),
 			locale: {
 				format: 'DD-MM-YYYY'
 			}

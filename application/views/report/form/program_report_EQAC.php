@@ -1,9 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 ?>
 
 <div class="row" id="showdetail">
-	<div class="col s12">
+	<div class="col">
 		<table class="table text-center table-hover">
 			<thead class="bg-primary text-white">
 				<tr>
@@ -21,71 +22,75 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<td><?php echo $value->code;?></td>
 					<td><?php echo $value->name;?></td>
 					<td width="15%">
-						<select class="form-control">
+						<select class="form-control" name="save[infection][<?php echo $value->id;?>]">
 							<option value="">choose</option>
 							<?php $saved = json_decode($value->event, true); ?>
 							<?php foreach($tools_sec1 as $tool): ?>
 								<?php if (in_array($tool->code, $saved)) : ?>
-									<option value="<?php echo $tool->code;?>"><?php echo $tool->name;?></option>
+									<option value="<?php echo $tool->code;?>" <?php echo isset($save['infection'][$value->id])&&$save['infection'][$value->id]==$tool->code?'selected':'';?>>
+										<?php echo $tool->name;?>
+									</option>
 								<?php endif; ?>
 							<?php endforeach;?>
 						</select>
 					</td>
 					<td width="15%">
-						<select class="form-control">
+						<select class="form-control" name="save[tool_sec2][<?php echo $value->id;?>]">
 							<option value="">choose</option>
 							<?php foreach($tools_sec2 as $tool): ?>
-							<option value="<?php echo $tool->code;?>"><?php echo $tool->name;?></option>
+							<option value="<?php echo $tool->code;?>" <?php echo isset($save['tool_sec2'][$value->id])&&$save['tool_sec2'][$value->id]==$tool->code?'selected':'';?>><?php echo $tool->name;?></option>
 							<?php endforeach;?>
 						</select>
 					</td>
 					<td width="15%">
-						<select class="form-control">
+						<select class="form-control" name="save[tool_sec3][<?php echo $value->id;?>]">
 							<option value="">choose</option>
 							<?php foreach($tools_sec3 as $tool): ?>
-							<option value="<?php echo $tool->code;?>"><?php echo $tool->name;?></option>
+							<option value="<?php echo $tool->code;?>" <?php echo isset($save['tool_sec3'][$value->id])&&$save['tool_sec3'][$value->id]==$tool->code?'selected':'';?>><?php echo $tool->name;?></option>
 							<?php endforeach;?>
 						</select>
 					</td>
 					<td>
-						<input type="number" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)" name="result_2[1]" value="" step="0.01" class="form-control" />
+						<input type="number" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)" name="save[result][<?php echo $value->id;?>]" value="<?php echo isset($save['result'][$value->id])?$save['result'][$value->id]:'';?>" step="0.01" class="form-control" />
 					</td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
-		
-		<div class="font-weight-bold" style="padding-top: 30px; padding-bottom: 10px;"> ข้อมูลผู้ส่ง </div>
-		<div class="form-row">
-			<div class="form-group col-md-5">
-				<label for="name_lname">ชื่อ</label>
-				<input type="text" class="form-control" id="name_lname" name="name_lname" placeholder="ชื่อ">
-			</div>
-			<div class="form-group col-md-3">
-				<label for="tel">หมายเลขโทรศัพท์</label>
-				<input type="text" class="form-control" id="tel" name="tel" placeholder="หมายเลขโทรศัพท์">
-			</div>
-			<div class="form-group col-md-4">
-				<label for="position">ตำแหน่ง</label>
-				<input type="text" class="form-control" id="position" name="position" placeholder="ตำแหน่ง">
-			</div>
+	</div>
+</div>
+
+
+	<div class="row">
+		<div class="col-sm-12 mb-2">
+			<p><b>ข้อมูลผู้ส่ง</b></p>
 		</div>
-		<div class="font-weight-bold" style="padding-top: 30px;">
+		<div class="col-sm-6 mb-2">
+			<label for="">ชื่อ</label>
+			<input type="text" class="form-control" id="name" name="save[name]" placeholder="ชื่อ" value="<?php echo $name;?>" />
+		</div>
+		<div class="col-sm-3 mb-2">
+			<label for="tel">หมายเลขโทรศัพท์</label>
+			<input type="text" class="form-control" id="tel" name="save[telephone]" placeholder="หมายเลขโทรศัพท์" value="<?php echo $telephone;?>" />
+		</div>
+		<div class="col-sm-3 mb-2">
+			<label for="position">ตำแหน่ง</label>
+			<input type="text" class="form-control" id="position" name="save[position]" placeholder="ตำแหน่ง" value="<?php echo $position;?>" />
+		</div>
+		<div class="col-sm-12 mb-2">
 			<label for="comment">ข้อคิดเห็นหรือเสนอแนะเพื่อการพัฒนาปรับปรุง </label>
-			<textarea class="form-control" id="comment" name="comment" placeholder="ความคิดเห็นเพิ่มเติม"></textarea>
+			<textarea class="form-control" id="comment" name="save[comment]" placeholder="ความคิดเห็นเพิ่มเติม"><?php echo $comment;?></textarea>
 		</div>
-		<div class="font-weight-bold container-left" style="padding-top: 30px;">
+		<div class="col-sm-3 mb-2">
 			<label for="report_date">วันที่ทำการทดสอบ </label>
-			<input type="date" class="form-control" style="width: 180px;" id="report_date" name="report_date"
-				value="<?php echo date('Y-m-d'); ?>"></input>
+			<input type="text" class="form-control datepicker" id="report_date" name="save[report_date]" value="<?php echo date('d-m-Y'); ?>" />
 		</div>
-		<div class="form-gruop text-center" style="margin-top: 30px;">
-			<input class="btn btn-primary" type="button" onclick="window.print()" name="printPageButton" id="printPageButton"
-				name="printPageButton" value="พิมพ์" style="width: 60px;"></input>
-			<button class="btn btn-primary" name="submit" type="submit" value="preview" id="btnpreview">พรีวิว</button>
-			<button class="btn btn-primary" name="submit" type="submit" value="accept"
-				id="btnsubmit">ยืนยันการส่งผลการตรวจ</button>
+		<div class="col-sm-12 mb-2 text-center">
+			<button class="btn btn-primary hidepreview" type="submit" id="btnsubmit">ส่งผลการตรวจ</button>
 		</div>
+	</div>
+
+
 	</div>
 
 </div>

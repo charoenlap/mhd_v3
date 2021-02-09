@@ -11,12 +11,13 @@
     <title>EQAS-MUMT</title>
 
 
-    <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/fontawesome.min.css" />
 
-    <link rel="stylesheet/less" type="text/css" href="assets/css/home.less?t=<?php time();?>" />
-    <script src="//cdn.jsdelivr.net/npm/less@3.13" ></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/home.css" />
+    <!-- <link rel="stylesheet/less" type="text/css" href="assets/css/home.less?t=<?php time();?>" /> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/less@3.13" ></script> -->
   </head>
   <body>
-      <div class="container-fluid px-0 bg-home" style="background: url('<?php echo base_url();?>assets/img/bghome.jpg') no-repeat;">
+      <div class="container-fluid px-0 bg-home" style="background: url('<?php echo base_url();?>assets/img/bghome.jpg') no-repeat center center / cover;">
         <div class="row">

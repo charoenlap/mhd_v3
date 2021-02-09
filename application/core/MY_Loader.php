@@ -11,12 +11,21 @@ class MY_Loader extends CI_Loader {
             $content .= $this->view('common/footer', $vars, $return);
             return $content;
         else:
-            $this->view('common/header', $vars);
-            $this->view('common/navbar', $vars);
-            $this->view('report/header', $vars);
-            $this->view($template_name, $vars);
-            $this->view('report/footer', $vars);
-            $this->view('common/footer', $vars);
+            if (isset($_POST['type']) && !empty($_POST['type']) && $_POST['type']=='preview') {
+                $this->view('common/header', $vars);
+                // $this->view('common/navbar', $vars);
+                $this->view('report/header', $vars);
+                $this->view($template_name, $vars);
+                $this->view('report/footer', $vars);
+                // $this->view('common/footer', $vars);
+            } else {
+                $this->view('common/header', $vars);
+                $this->view('common/navbar', $vars);
+                $this->view('report/header', $vars);
+                $this->view($template_name, $vars);
+                $this->view('report/footer', $vars);
+                $this->view('common/footer', $vars);
+            }
         endif;
     }
     public function Template($template_name, $vars = array(), $return = FALSE)

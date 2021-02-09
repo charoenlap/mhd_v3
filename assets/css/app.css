@@ -34,3 +34,21 @@ input[type="checkbox"].form-control {
 #nav-menubar li:hover a { color:#333; } 
 ul#nav-menubar li.active.login-link,
 ul#nav-menubar li.login-link:hover { background: transparent; }
+
+#mainmenu .list-group li.list-group-item { padding:0 !important; }
+
+
+form .row>label,
+.text-blue {
+    color:#1F4F91;
+    font-weight: bold;
+}
+
+#blockpreview {
+    position: fixed;
+    top:0; 
+    left:0;
+    width:100%;
+    background:rgba(0,0,0,0.3);
+    padding:10px 15px;
+}

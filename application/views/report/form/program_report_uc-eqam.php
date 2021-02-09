@@ -3,146 +3,80 @@ defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
 <div class="row">
+
+    <?php 
+    $head_name = array(
+        '1'=>'0,2',
+        '2'=>'0,2',
+        '3'=>'2,4',
+        '4'=>'2,4'
+    );
+    $U_C = 1;
+    $in = array(
+        '1' => $infections_sec1,
+        '2' => $infections_sec2,
+        '3' => $infections_sec3,
+        '4' => $infections_sec4,
+    );
+    foreach ($head_name as $key => $value):
+        if ($key==3) {
+            $U_C++;
+        }
+    ?>
     <div class="col-md-6 col-sm-12">
         <table class="table text-center table-hover">
             <thead class="bg-primary text-white">
                 <tr>
                     <th>รหัส</th>
                     <th>สิ่งที่ตรวจพบ</th>
-                    <?php foreach ($specimens as $specimen) : ?>
+                    <?php 
+                    $count = 0;
+                    foreach ($specimens as $key_speci => $specimen) : ?>
+                    <?php if (($value=='0,2' && $count<2) || ($value=='2,4' && $count>1 && $count<4)) :?>
                     <th><?php echo $specimen->name;?></th>
+                    <?php endif; ?>
+                    <?php $count++; ?>
                     <?php endforeach; ?>
                 </tr>
             </thead>
             <tbody>
-                <?php $x = 1;?>
-                <?php while ($x <= 21): ?>
+                        
+                <?php foreach ($in[$key] as $key_infec => $infection) : ?>
                 <tr>
                     <td>
-                        <?php echo $x; ?>
+                    <?php echo $infection->code;?>
                     </td>
-                    <td>Lymphoblast</td>
+                    <td class="text-left"><?php echo $infection->name;?> </td>
+
+
+                    <?php 
+                    $count = 0;
+                    foreach ($specimens as $key_speci => $specimen) : ?>
+                    <?php if (($value=='0,2' && $count<2) || ($value=='2,4' && $count>1 && $count<4)) :?>
+                    
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[0]"
-                                id="radio_1_0_<?php echo $x; ?>" value="<?php echo $x; ?>">
+                            <input class="form-check-input" type="radio" name="sample_<?php echo $U_C; ?>[<?php echo $key_speci; ?>]"
+                                id="radio_<?php echo $key.'_'.$key_speci.'_'.$infection->id; ?>" value="">
                         </div>
+                        <?php if ($infection->name == "Other (โปรดระบุ)"): ?>
+                        <div><textarea name="sample_other_<?php echo $U_C; ?>[<?php echo $key_speci; ?>]" class="form-control" id="" cols="30" rows="3" style="margin-top:25px;"></textarea></div>
+                        <?php endif; ?>
                     </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[1]"
-                                id="radio_1_1_<?php echo $x; ?>" value="<?php echo $x; ?>">
-                        </div>
-                    </td>
+
+
+                    <?php endif; ?>
+                    <?php $count++; ?>
+                    <?php endforeach; ?>
+                    
                 </tr>
-                <?php $x++;?>
-                <?php endwhile;?>
+                <?php endforeach;?> 
             </tbody>
         </table>
     </div>
-    <div class="col-md-6 col-sm-12">
-        <table class="table text-center table-hover">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>รหัส</th>
-                    <th>สิ่งที่ตรวจพบ</th>
-                    <th>Trial 185</th>
-                    <th>Trial 186</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $x = 1;?>
-                <?php while ($x <= 20): ?>
-                <tr>
-                    <td>
-                        <?php echo $x; ?>
-                    </td>
-                    <td>Lymphoblast</td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[0]"
-                                id="radio_1_0_<?php echo $x; ?>" value="<?php echo $x; ?>">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[1]"
-                                id="radio_1_1_<?php echo $x; ?>" value="<?php echo $x; ?>">
-                        </div>
-                    </td>
-                </tr>
-                <?php $x++;?>
-                <?php endwhile;?>
-                <tr>
-                    <td>21</td>
-                    <td>Other (โปรดระบุ)</td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[0]" id="radio_1_0_1" value="1">
-                            <label class="choose-edit" for="radio_1_0_1"></label>
-                            <textarea name="sample_other_1[0]" class="validate form-control valid" id="" cols="30"
-                                rows="6"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sample_1[1]" id="radio_1_1_1" value="1">
-                            <label class="choose-edit" for="radio_1_1_1"></label>
-                            <textarea name="sample_other_1[1]" class="validate form-control valid" id="" cols="30"
-                                rows="6"></textarea>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <?php endforeach; ?>
 </div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <table class="table text-center table-hover">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>รหัส</th>
-                    <th>สิ่งที่ตรวจพบ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $x = 1;?>
-                <?php while ($x <= 20): ?>
-                <tr>
-                    <td>
-                        <?php echo $x; ?>
-                    </td>
-                    <td>Red blood cell</td>
-                </tr>
-                <?php $x++;?>
-                <?php endwhile;?>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <table class="table text-center table-hover">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>รหัส</th>
-                    <th>สิ่งที่ตรวจพบ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $x = 21;?>
-                <?php while ($x <= 40): ?>
-                <tr>
-                    <td>
-                        <?php echo $x; ?>
-                    </td>
-                    <td>Bacterial cast</td>
-                </tr>
-                <?php $x++;?>
-                <?php endwhile;?>
-            </tbody>
-        </table>
-    </div>
-</div>
+
 <div class="container-left" style="padding-bottom: 20px;">
     <dl>
         <dt>หมายเหตุ</dt>
@@ -156,14 +90,47 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="input-group" style="padding-top: 10px;">
         <div class="col px-md-5">
             <div class="custom-file">
-                <label class="custom-file-label" for="file_0">Upload one file</label>
+                <label class="custom-file-label" for="file_0">C</label>
                 <input type="file" class="custom-file-input" id="file_0" name="file_0">
             </div>
         </div>
         <div class="col px-md-5">
             <div class="custom-file">
-                <label class="custom-file-label" for="file_1">Upload one file</label>
+                <label class="custom-file-label" for="file_1">U</label>
                 <input type="file" class="custom-file-input" id="file_1" name="file_1">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-left">อัพโหลดไฟล์</div>
+<div class="row justify-content-between">
+    <div class="input-group" style="padding-top: 10px;">
+        <div class="col px-md-5">
+            <div class="custom-file">
+                <label class="custom-file-label" for="file_3">C1</label>
+                <input type="file" class="custom-file-input" id="file_3" name="file_3">
+            </div>
+        </div>
+        <div class="col px-md-5">
+            <div class="custom-file">
+                <label class="custom-file-label" for="file_4">C2</label>
+                <input type="file" class="custom-file-input" id="file_4" name="file_4">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-between">
+    <div class="input-group" style="padding-top: 10px;">
+        <div class="col px-md-5">
+            <div class="custom-file">
+                <label class="custom-file-label" for="file_5">U1</label>
+                <input type="file" class="custom-file-input" id="file_5" name="file_5">
+            </div>
+        </div>
+        <div class="col px-md-5">
+            <div class="custom-file">
+                <label class="custom-file-label" for="file_6">U2</label>
+                <input type="file" class="custom-file-input" id="file_6" name="file_6">
             </div>
         </div>
     </div>

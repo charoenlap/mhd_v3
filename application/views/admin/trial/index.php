@@ -73,8 +73,8 @@
                                     <tr>
                                         <th>Year</th>
                                         <th>Trial</th>
-                                        <th width="12%">Dispatched Date</th>
-                                        <th width="12%">Deadline</th>
+                                        <th width="12%">Start Date</th>
+                                        <th width="12%">End Date</th>
                                         <th width="12%">Limit</th>
                                         <th>Note</th>
                                         <th width="12%" class="text-center">Action</th>
@@ -86,8 +86,8 @@
                                     <tr>
                                         <td><?php echo $value->year; ?></td>
                                         <td><?php echo $value->name;?></td>
-                                        <td><?php echo $value->dispatched;?></td>
-                                        <td><?php echo $value->date_send;?></td>
+                                        <td><?php echo $value->start_report_date;?></td>
+                                        <td><?php echo $value->end_report_date;?></td>
                                         <td><?php echo $value->row_limit;?></td>
                                         <td><?php echo $value->note;?></td>
                                         <td class="text-center">

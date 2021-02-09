@@ -70,7 +70,10 @@ class Content_model extends CI_Model {
     $this->db->where('mhd_content.del', 0);
     $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
     $query = $this->db->get('content');
-    return $query->num_rows() == 1 ? $query->row() : false;
+    // echo $this->db->last_query();
+    // exit();
+    // echo $this->db->last_query();
+    return $query->row();
   }
 
   public function getContentLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
@@ -124,6 +127,7 @@ class Content_model extends CI_Model {
     $this->db->where('mhd_language_detail.type', 0);
     $this->db->where('mhd_content_cat.id', $id);
     $this->db->where('mhd_content_cat.del', 0);
+    // $this->db->where('mhd_language_detail.language_id', 1);
     $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content_cat.id', 'LEFT');
     $query = $this->db->get('content_cat');
     return $query->num_rows() == 1 ? $query->row() : false;
@@ -133,7 +137,7 @@ class Content_model extends CI_Model {
   {
     $this->db->select('mhd_content_cat.*, mhd_language_detail.*, mhd_content_cat.id as id');
     $this->db->where('mhd_language_detail.type', 0);
-    if (count($filter)>0) {
+    if (isset($filter) && !empty($filter) && is_array($filter) && count($filter)>0) {
       foreach ($filter as $key => $value) {
         $this->db->where($key, $value);
       }

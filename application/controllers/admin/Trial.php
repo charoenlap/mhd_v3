@@ -107,8 +107,8 @@ class Trial extends CI_Controller
       // upload image
 
       // check post
-      $check = array('year_id','name','dispatched','dispatched_count','date_send','file','note','row_limit');
-      $checkDate = array('dispatched', 'date_send');
+      $check = array('year_id','name','start_report_date','end_report_date','file','note','row_limit');
+      $checkDate = array('dispatched', 'date_send','start_report_date','end_report_date');
       foreach ($this->input->post() as $key => $value) {
         if (in_array($key, $check)) {
           if (in_array($key, $checkDate)) {
@@ -202,6 +202,8 @@ class Trial extends CI_Controller
     
     // init 
     $data['name'] = !empty($trial_info->name) ? $trial_info->name : '';
+    $data['start_report_date'] = !empty($trial_info->start_report_date) ? date('d-m-Y', strtotime($trial_info->start_report_date)) : '';
+    $data['end_report_date'] = !empty($trial_info->end_report_date) ? date('d-m-Y', strtotime($trial_info->end_report_date)) : '';
     $data['dispatched'] = !empty($trial_info->dispatched) ? date('d-m-Y', strtotime($trial_info->dispatched)) : '';
     $data['dispatched_count'] =  (int)$trial_info->dispatched_count;
     $data['date_send'] = !empty($trial_info->date_send) ? date('d-m-Y', strtotime($trial_info->date_send)) : '';

@@ -8,6 +8,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?php echo $heading_title;?></h1>
 
+    <div class="row">
+        <div class="col-sm-12">
+            <?php if (!empty($success)): ?> 
+            <div class="alert alert-success" role="alert"><?php echo $success;?></div>
+            <?php endif; ?>
+            <?php if (!empty($error)): ?> 
+            <div class="alert alert-danger" role="alert"><?php echo $error;?></div>
+            <?php endif; ?>
+        </div>
+    </div>
+
     <div class="card shadow mb-4">
         <div class="card-body">
                 <div class="row">
@@ -29,9 +40,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <td class="text-right">
                                         
                                         <?php if ($value->can_send) : ?>
-                                            <!-- <?php echo base_url('/report/program_report_').$name; ?> -->
-                                            
-                                            เหลือเวลาอีก <?php echo $value->send_remaining; ?> จะหมดเวลารายงานผล <a href="<?php echo base_url('report/trial/').$value->program_slug.'/'.$value->slug;?>" class="btn btn-primary">รายงานผล</a>
+                                            เหลือเวลาอีก <?php echo $value->send_remaining; ?> จะหมดเวลารายงานผล 
+                                            <a href="<?php echo base_url('report/trial/').$value->program_slug.'/'.$value->slug;?>" class="btn btn-primary">
+                                                <?php echo $value->has_report ? 'ดูรายงานที่เคยส่ง' : 'รายงานผล';?>
+                                            </a>
                                         <?php else: ?>
                                             โปรแกรม <?php echo $value->name;?> หมดเวลาการบันทึกข้อมูลแล้ว
                                         <?php endif; ?>
