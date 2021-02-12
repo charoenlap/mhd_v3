@@ -169,7 +169,7 @@ class Member extends CI_Controller
           'name' => $this->input->post('firstname').' '.$this->input->post('lastname'),
           'email' => $this->input->post('email'),
           'link' => base_url().'member/forgot',
-          'link_confirm' => base_url().'member/confirm/'.$this->input->post('email')
+          'link_confirm' => base_url().'member/confirm/'.urlencode(base64_encode($this->input->post('email')))
         );
         $message = $this->load->view('email/register', $dataemail, true);
         $subject = 'สมัครสมาชิก โครงการประเมินคุณภาพทางห้องปฏิบัติการโดยองค์กรภายนอก';
@@ -254,8 +254,9 @@ class Member extends CI_Controller
     $this->load->view('member/change', $data);
   }
 
-  public function confirm($email)
+  public function confirm($email='')
   {
+    $email = base64_decode(urldecode($email));
     if (!empty($email)) {
       $member_info = $this->model_member->getListByEmail($email);
       $this->model_member->edit($member_info->id, array('confirm'=>1));

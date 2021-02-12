@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url('admin/result/list/');?>" class="nav-link">
                         <i class="fas fa-cloud-upload-alt"></i>
                         <p>
                             อัพโหลดผล
