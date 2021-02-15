@@ -146,6 +146,14 @@ class Member_model extends CI_Model {
     return $query->num_rows() == 1 ? true : false;
   }
 
+  public function getListByCode($code)
+  {
+    $this->db->where('member_no', $code);
+    $this->db->where('del', 0);
+    $query = $this->db->get('member');
+    return $query->row();
+  }
+
 }
 
 /* End of file Member_model.php */

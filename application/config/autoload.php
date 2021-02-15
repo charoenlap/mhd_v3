@@ -148,6 +148,7 @@ $autoload['model'] = array(
     'Trial_model'             => 'model_trial',
     'Specimen_model'          => 'model_specimen',
     'Program_principle_model' => 'model_program_principle',
-    'Report_model'            => 'model_report'
+    'Report_model'            => 'model_report',
+    'Result_link_model'       => 'model_result_link'
 
 );

@@ -64,9 +64,8 @@
                                                     <?php echo $value['name']; ?>
                                                 <?php endif; ?>
                                                 </a>
-                                                <?php if ($value['name'] != '..'): ?>
-                                                &nbsp;<i class="fas fa-check text-success"></i>
-                                                &nbsp;<i class="fas fa-spinner fa-pulse"></i>
+                                                <?php if ($value['name'] != '..' && $value['type'] == 'application/pdf'): ?>
+                                                &nbsp;<?php echo $value['saved']?'<i class="fas fa-check text-success"></i>':'<i class="fas fa-times text-danger"></i>';?>
                                                 <?php endif; ?>
                                                 <?php if ($value['name'] != '..' && $value['type'] == 'application/pdf'): ?>
                                                 <a class="float-right" data-toggle="modal" data-target="#modalInfo-<?php echo $key;?>" style="cursor:pointer;">
@@ -84,44 +83,70 @@
                                                             <table class="table table-bordered">
                                                             <tr>
                                                                 <th width="40%">Status</th>
-                                                                <td class="text-success"><i class="fas fa-check"></i>&nbsp; Saved</td>
+                                                                <td class="text-success">
+                                                                    <?php echo $value['saved']==1?'<i class="fas fa-check"></i>&nbsp;Saved':'<i class="fas fa-times"></i>&nbsp;Unsave';?>
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <th width="40%">Year</th>
                                                                 <td>
-                                                                    <select name="" id="" class="form-control form-control-sm">
-                                                                        <option value="">2020</option>
+                                                                    <select name="" data-row="<?php echo $key;?>" class="select-year form-control form-control-sm">
+                                                                        <option value=""></option>
+                                                                        <?php foreach ($years as $v) : ?>
+                                                                            <option 
+                                                                                value="<?php echo $v->id;?>" 
+                                                                                <?php echo $value['data']->year_id==$v->id?'selected':'';?>
+                                                                            >
+                                                                                <?php echo $v->year;?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th width="40%">Program</th>
                                                                 <td>
-                                                                    <select name="" id="" class="form-control form-control-sm">
-                                                                        <option value="">EQAC</option>
+                                                                    <select name="" data-row="<?php echo $key;?>" class="select-program form-control form-control-sm">
+                                                                        <option value=""></option>
+                                                                        <?php foreach ($programs as $program) : ?>
+                                                                            <option 
+                                                                                value="<?php echo $program->id;?>"
+                                                                                <?php echo $value['data']->program_id==$program->id?'selected':'';?>
+                                                                            >
+                                                                                <?php echo $program->name;?>
+                                                                            </option>
+                                                                        <?php endforeach; ?>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th width="40%">Trial</th>
                                                                 <td>
-                                                                    <select name="" id="" class="form-control form-control-sm">
-                                                                        <option value="">280</option>
+                                                                    <select name="" data-row="<?php echo $key;?>" class="select-trial form-control form-control-sm">
+                                                                        <option value=""></option>
+                                                                        <?php foreach ($value['trials'] as $trial): ?>
+                                                                        <option 
+                                                                            value="<?php echo $trial->id;?>"
+                                                                            <?php echo $value['data']->trial_id==$trial->id?'selected':'';?>
+                                                                        >
+                                                                            <?php echo $trial->name;?>
+                                                                        </option>
+                                                                        <?php endforeach;?>
                                                                     </select>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th width="40%">User</th>
                                                                 <td>
-                                                                    <input type="text" class="form-control form-control-sm" />
+                                                                    <input type="text" class="form-control form-control-sm" value="<?php echo $value['data']->user_id;?>" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th width="40%">Sub User</th>
                                                                 <td>
                                                                     <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="subuserchecked<?php echo $key;?>" <?php echo $value['data']->is_forsub==1?'checked="checked"':'';?>>
+                                                                    <label class="form-check-label" for="subuserchecked<?php echo $key;?>">
                                                                     Send to sub user
                                                                     </label>
                                                                     </div>
@@ -142,7 +167,7 @@
                                             <?php if ($value['type'] == 'application/pdf'): ?>
                                             <td class="text-center">
                                                 <label class="switch float-none">
-                                                    <input type="checkbox" class="primary" checked="checked">
+                                                    <input type="checkbox" data-id="<?php echo $value['data']->id;?>" class="ch-status primary" <?php echo $value['data']->status==1 ? 'checked="checked"' : '';?>>
                                                     <span class="slider round"></span>
                                                 </label>
                                             </td>
@@ -177,33 +202,33 @@
 <style type="text/css">
 
 
-/* The switch - the box around the slider */
-.switch {
+    /* The switch - the box around the slider */
+    .switch {
     position: relative;
     display: inline-block;
     width: 40px;
     height: 22px;
     margin-bottom: 0;
     float: right;
-}
+    }
 
-/* Hide default HTML checkbox */
-.switch input {display:none;}
+    /* Hide default HTML checkbox */
+    .switch input {display:none;}
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+    /* The slider */
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
 
-.slider:before {
+    .slider:before {
     position: absolute;
     content: "";
     height: 16px;
@@ -213,80 +238,80 @@
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-}
+    }
 
-input.default:checked + .slider {
-  background-color: #444;
-}
-input.primary:checked + .slider {
-  background-color: #007bff;
-}
-input.success:checked + .slider {
-  background-color: #8bc34a;
-}
-input.info:checked + .slider {
-  background-color: #3de0f5;
-}
-input.warning:checked + .slider {
-  background-color: #FFC107;
-}
-input.danger:checked + .slider {
-  background-color: #f44336;
-}
+    input.default:checked + .slider {
+    background-color: #444;
+    }
+    input.primary:checked + .slider {
+    background-color: #007bff;
+    }
+    input.success:checked + .slider {
+    background-color: #8bc34a;
+    }
+    input.info:checked + .slider {
+    background-color: #3de0f5;
+    }
+    input.warning:checked + .slider {
+    background-color: #FFC107;
+    }
+    input.danger:checked + .slider {
+    background-color: #f44336;
+    }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
-  transform: translateX(18px);
-}
+    input:checked + .slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+    }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    }
 
-.slider.round:before {
-  border-radius: 50%;
-}
+    .slider.round:before {
+    border-radius: 50%;
+    }
     #customBtn {
-      display: inline-block;
-      background: white;
-      color: #444;
-      width: 190px;
-      border-radius: 5px;
-      border: thin solid #888;
-      box-shadow: 1px 1px 1px grey;
-      white-space: nowrap;
+        display: inline-block;
+        background: white;
+        color: #444;
+        width: 190px;
+        border-radius: 5px;
+        border: thin solid #888;
+        box-shadow: 1px 1px 1px grey;
+        white-space: nowrap;
     }
     #customBtn:hover {
-      cursor: pointer;
+        cursor: pointer;
     }
     span.label {
-      font-family: serif;
-      font-weight: normal;
+        font-family: serif;
+        font-weight: normal;
     }
     span.icon {
-      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-      display: inline-block;
-      vertical-align: middle;
-      width: 42px;
-      height: 42px;
+        background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+        display: inline-block;
+        vertical-align: middle;
+        width: 42px;
+        height: 42px;
     }
     span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 42px;
-      padding-right: 42px;
-      font-size: 14px;
-      font-weight: bold;
-      /* Use the Roboto font that is loaded in the <head> */
-      font-family: 'Roboto', sans-serif;
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 42px;
+        padding-right: 42px;
+        font-size: 14px;
+        font-weight: bold;
+        /* Use the Roboto font that is loaded in the <head> */
+        font-family: 'Roboto', sans-serif;
     }
-  </style>
+</style>
 
 
 <script type="text/javascript">
@@ -318,12 +343,34 @@ $(document).ready(function () {
 
     $('.select-program').change(function (e) {
         e.preventDefault();
+        console.log('change');
+        console.log($(this).val());
         eventTrial($(this));
     });
 
     $('.select-year').change(function (e) {
         e.preventDefault();
         eventTrial($(this));
+    });
+
+    $('.ch-status').change(function (e) { 
+        e.preventDefault();
+        let obj = {id: $(this).data('id'), status: 0};
+        if ($(this).is(':checked')) {
+            obj.status = 1;
+        } else {
+            obj.status = 0;
+        }
+        console.log(obj);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('admin/result/saveStatus');?>",
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            }
+        });
     });
 
 });

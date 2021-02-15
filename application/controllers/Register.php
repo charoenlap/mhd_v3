@@ -89,7 +89,7 @@ class Register extends CI_Controller
                 redirect('register');
             } else {
                 $this->session->set_userdata('success', 'สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-                redirect('register/receipt');
+                redirect('register/member');
             }
         }
 
@@ -110,6 +110,16 @@ class Register extends CI_Controller
 
         $this->load->template('register/index', $data);
     }
+
+    public function member()
+    {
+        $data = array();
+        $data['heading_title'] = 'สมัครโปรแกรมปี ' . ($this->session->has_userdata('year') ? $this->session->year : '');
+        $data['action'] = base_url('register/member');
+
+        $this->load->template('register/member', $data);
+    }
+
     public function receipt()
     {
         $data = array();

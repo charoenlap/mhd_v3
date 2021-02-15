@@ -59,6 +59,12 @@
          </a>
      </li>
      <li class="nav-item">
+         <a class="nav-link" href="<?php echo base_url('payment');?>">
+             <i class="fas fa-user-tag"></i>
+             <span>จัดการสิทธิ์</span>
+         </a>
+     </li>
+     <li class="nav-item">
          <a class="nav-link" href="<?php echo base_url('member');?>">
              <i class="fas fa-fw fa-user-shield"></i>
              <span>ข้อมูลส่วนตัว</span>

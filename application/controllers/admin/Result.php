@@ -47,9 +47,13 @@ class Result extends CI_Controller
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter);
 
+    $data['trials'] = array();
+
 
     $data['success'] = $this->session->has_userdata('success') ? $this->session->success : ''; $this->session->unset_userdata('success');
     $data['error'] = $this->session->has_userdata('error') ? $this->session->error : ''; $this->session->unset_userdata('error');
+
+    $data['program_selected'] = array();
 
     if ($this->session->has_userdata('urlredirect')) {
       $data['link_redirect'] = $this->session->urlredirect;
@@ -63,7 +67,127 @@ class Result extends CI_Controller
       $code = $this->input->get('code');
       $client = $this->getClient($code);
   
-      $data['results'] = $this->getResult($client, $folderid);
+      $results = $this->getResult($client, $folderid);
+
+      foreach ($results as $key => $result) {
+
+        if ($result['type']=='application/pdf') { // only pdf not use folder
+
+          // == get data
+            $filename = explode('.', $result['name']);
+            array_pop($filename);
+            $file = explode('_', implode('.', $filename));
+
+            $program_code = isset($file[0])&&!empty($file[0]) ? $file[0]: null ;
+            $program_name = isset($file[1])&&!empty($file[1]) ? $file[1]: null ;
+            $trial_name   = isset($file[2])&&!empty($file[2]) ? $file[2]: null ;
+            $user         = isset($file[3])&&!empty($file[3]) ? $file[3]: null ;
+            $subuser      = isset($file[4])&&!empty($file[4]) ? $file[4]: null ;
+
+            $year_id = $this->model_setting->get('config_register_year_id');
+
+            // find program
+            $program_id = 0;
+            if (!empty($program_name)&&!empty($program_code)) {
+              $slug = url_title(convert_accented_characters($program_name), 'dash', true);
+              $program_info = $this->model_program->getProgramBySlug($slug);
+              $program_id = isset($program_info->id) ? $program_info->id : 0;
+            }
+
+            // find trial
+            $trial_id = 0;
+            if (!empty($trial_name)) {
+              $slug = url_title(convert_accented_characters($trial_name), 'dash', true);
+              $trial_info = $this->model_trial->getTrialBySlug($slug, $program_id);
+              $trial_id = isset($trial_info->id) ? $trial_info->id : 0;
+            }
+
+            // find main user
+            $user_id = 0;
+            $forsubuser = 0;
+            if (!empty($user)) { // 202012345
+              $year = substr($user, 0, 4); // 2020
+              $year_id = $this->model_year->getYear($year)->id;
+              $usercode = substr($user, 4); // 12345
+              $user_info = $this->model_member->getListByCode($usercode);
+              $user_id = isset($user_info->id) ? $user_info->id : 0;
+            }
+
+            // find main user
+            if (!empty($subuser)) { // 202012345
+              $year = substr($subuser, 0, 4); // 2020
+              $subusercode = substr($subuser, 4); // 12345
+              $subuser_info = $this->model_member->getListByCode($subusercode);
+              $subuser_id = isset($subuser_info->id) ? $subuser_info->id : 0;
+              if ($subuser_id>0) {
+                $forsubuser = 1;
+                $user_id = $subuser_id;
+              }
+            }
+            
+          // == get data
+          
+          $check = $this->model_result_link->getListByGoogleId($result['id']);
+          if ($check!=false) {
+            $id = $check->id; // this id is primary key on table not google id
+            $update = array(
+              'year_id'     => $year_id,
+              'program_id'  => $program_id,
+              'trial_id'    => $trial_id,
+              'user_id'     => $user_id,
+              'is_forsub'   => $forsubuser,
+              'google_id'   => $result['id'],
+              'google_name' => $result['name'],
+              'google_type' => $result['type'],
+              'date_modify' => date('Y-m-d H:i:s', time()),
+              // 'status'      => 1
+            );
+            $r = $this->model_result_link->edit($id, $update);
+            if ($r==1) {
+              $results[$key]['saved'] = true;
+            } else {
+              $results[$key]['saved'] = false;
+            }
+          } else {
+            $insert = array(
+              'year_id'     => $year_id,
+              'program_id'  => $program_id,
+              'trial_id'    => $trial_id,
+              'user_id'     => $user_id,
+              'is_forsub'   => $forsubuser,
+              'google_id'   => $result['id'],
+              'google_name' => $result['name'],
+              'google_type' => $result['type'],
+              'date_added'  => date('Y-m-d H:i:s', time()),
+              'status'      => 1
+            );
+            $r = $this->model_result_link->add($insert);
+            if ($r>0) {
+              $results[$key]['saved'] = true;
+            } else {
+              $results[$key]['saved'] = false;
+            }
+          }
+
+          // get last data update
+          $lastupdate = $this->model_result_link->getListByGoogleId($result['id']);
+          $results[$key]['data'] = $lastupdate;
+          // $data['program_selected'][] = array('key' => $key, 'id' => $lastupdate->program_id);
+
+          $filter = array(
+            'year_id' => $lastupdate->year_id,
+            'program_id' => $lastupdate->program_id
+          );
+          $results[$key]['trials'] = $this->model_trial->getLists($filter);
+
+          $results[$key]['users'] = $this->model_member->getList($lastupdate->user_id);
+
+        }
+      }
+      // echo '<pre>';
+      // print_r($results);
+      // echo '</pre>';
+      $data['results'] = $results;
   
       $this->load->template('admin/result/index', $data);
     }
@@ -86,6 +210,16 @@ class Result extends CI_Controller
     $this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($data));
+  }
+
+  public function saveStatus()
+  {
+    $id = $this->input->post('id');
+    $status = $this->input->post('status');
+    $result = $this->model_result_link->edit($id, array('status'=> $status));
+    $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($result));
   }
 
   // ========================================
