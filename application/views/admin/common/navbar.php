@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin/member/lists/page/');?>" class="nav-link">
+                    <a href="<?php echo base_url('admin/member/lists/');?>" class="nav-link">
                         <i class="fas fa-users-cog"></i>
                         <p>จัดการสมาชิก</p>
                     </a>

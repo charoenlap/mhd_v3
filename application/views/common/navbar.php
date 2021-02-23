@@ -33,7 +33,7 @@
      </li>
 
      <li class="nav-item">
-         <a class="nav-link" href="<?php echo base_url('home');?>">
+         <a class="nav-link" href="<?php echo base_url('result');?>">
              <i class="fas fa-fw fa-chart-line"></i>
              <span>ผลการประเมิน</span>
          </a>
@@ -59,7 +59,7 @@
          </a>
      </li>
      <li class="nav-item">
-         <a class="nav-link" href="<?php echo base_url('payment');?>">
+         <a class="nav-link" href="<?php echo base_url('permission');?>">
              <i class="fas fa-user-tag"></i>
              <span>จัดการสิทธิ์</span>
          </a>

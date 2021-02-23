@@ -62,11 +62,12 @@ class Payment extends CI_Controller
         $filter['mhd_member.member_no'] = substr($this->input->post('filter_member'), 4, strlen($this->input->post('filter_member')));
       }
     }
-    $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'status', 'DESC');
+    $lists = $this->model_payment->getLists($filter, $page, $config['per_page'], 'id', 'DESC');
     $data['lists'] = array();
     if (count($lists)>0) {
       foreach ($lists as $key => $value) {
         $value->member_no = $this->model_member->getList($value->member_id)->member_no;
+        $value->member_no = substr($value->member_no,0,4).sprintf('%04d',substr($value->member_no,4));
         $value->programs = $this->model_register_program->getProgramByPayment($value->id);
         $data['lists'][] = $value;
       }

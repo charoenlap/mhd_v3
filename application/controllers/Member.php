@@ -18,10 +18,109 @@ class Member extends CI_Controller
     $this->load->template('member/form', $data);
   }
 
+  public function address()
+  {
+    $data = array();
+    $data['heading_title'] = 'แก้ไขที่อยู่';
+    $data['action'] = base_url('member/address');
+    $data['year'] = $this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year;
+
+    if ($this->session->has_userdata('success')) {
+      $data['success'] = $this->session->success;
+      $this->session->unset_userdata('success');
+    } else {
+      $data['success'] = '';
+    }
+    if ($this->session->has_userdata('error')) {
+      $data['error'] = $this->session->error;
+      $this->session->unset_userdata('error');
+    } else {
+      $data['error'] = '';
+    }
+
+    $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+    $member_info = $this->model_member->getListById($member_id);
+
+    // $year_id = $this->model_setting->get('config_register_year_id'); // year
+    // $data['year'] = $this->model_year->getList($year_id)->year;
+    // $data['year_open'] = $this->model_setting->get('config_register_open') == 1 ? true : false; // now is open?
+    // $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+    // $company_id = $register_info->company_id;
+    // $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
+
+    $company_info = $this->model_company->getListByIdMember($member_id);
+
+    $data['hospital']      = $company_info->name;
+    $data['room']      = $company_info->room;
+    $data['address_1'] = $company_info->address_1;
+    $data['address_2'] = $company_info->address_2;
+    $data['district']  = $company_info->district;
+    $data['country']   = $company_info->country;
+    $data['province']  = $company_info->province;
+    $data['postcode']  = $company_info->postcode;
+
+    if ($this->input->server('REQUEST_METHOD') == 'POST') {
+      $this->model_company->delmember($member_id);
+
+      $insert = array(
+        'member_id'  => $member_id,
+        'name'       => $this->input->post('hospital'),
+        'room'       => $this->input->post('room'),
+        'address_1'  => $this->input->post('address_1'),
+        'address_2'  => $this->input->post('address_2'),
+        'district'   => $this->input->post('district'),
+        'country'    => $this->input->post('country'),
+        'province'   => $this->input->post('province'),
+        'postcode'   => $this->input->post('postcode'),
+        'telephone'  => $member_info->telephone,
+        'date_added' => date('Y-m-d H:i:s', time())
+      );
+      $result = $this->model_company->add($insert);
+
+      $year_id = $this->model_setting->get('config_register_year_id'); // year
+      $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+      $update = array(
+        'company_id' => $result
+      );
+      $this->model_register->edit($register_info->id, $update);
+
+      if ($result>0) {
+        $this->session->set_userdata('success','Add address success');
+      } else {
+        $this->session->set_userdata('error','Fail add address');
+      }
+      redirect('member/dashboard');
+      exit();
+    }
+
+    $data['email'] = $member_info->email;
+    $data['firstname'] = $member_info->firstname;
+    $data['lastname'] = $member_info->lastname;
+    // $data['telephone'] = $member_info->telephone;
+
+
+    $this->load->view('member/address', $data);
+  }
+  
   public function dashboard()
   {
     $data = array();
     $data['heading_title'] = 'Dashboard';
+
+    if ($this->session->has_userdata('success')) {
+      $data['success'] = $this->session->success;
+      $this->session->unset_userdata('success');
+    } else {
+      $data['success'] = '';
+    }
+    if ($this->session->has_userdata('error')) {
+      $data['error'] = $this->session->error;
+      $this->session->unset_userdata('error');
+    } else {
+      $data['error'] = '';
+    }
+
+    
     $this->load->template('member/dashboard', $data);
   }
 
@@ -49,18 +148,22 @@ class Member extends CI_Controller
 
     if ($this->input->server('REQUEST_METHOD')=='POST') {
       if ($this->model_member->checkConfirm($this->input->post('email'), md5($this->input->post('password'))) == false) {
-        $this->session->set_userdata('error','ท่านยังไม่ได้ยืนยันอีเมล กรุณายืนยันอีเมลเข้าระบบของท่านที่อีเมลผู้สมัคร');
-        log_message('error', 'ท่านยังไม่ได้ยืนยันอีเมล กรุณายืนยันอีเมลเข้าระบบของท่านที่อีเมลผู้สมัคร');
+        $this->session->set_userdata('error','ท่านยังไม่ได้ยืนยันอีเมล หรือ รหัสผ่านไม่ถูกต้อง');
+        log_message('error', 'ท่านยังไม่ได้ยืนยันอีเมล หรือ รหัสผ่านไม่ถูกต้อง');
         redirect('member/login');
         exit();
       }
       $result = $this->model_member->login($this->input->post('email'), md5($this->input->post('password')));
       if ( $result !== false ) {
-        $edit = array('date_login'=>date('Y-m-d H:i:s', time()));
-        $this->model_member->edit($result->id, $edit);
 
         // ? หาค่า รหัสสมาชิก และ อีเมลบน navbar
         $member_info = $this->model_member->getLists(array('mhd_member.id'=>$result->id)); // get again for detail year;
+
+
+        $edit = array('date_login'=>date('Y-m-d H:i:s', time()));
+        $this->model_member->edit($result->id, $edit);
+
+
         $email = '';
         if (count($member_info)==0) {
           $member_no = '';
@@ -81,7 +184,14 @@ class Member extends CI_Controller
         $year = $this->model_setting->get('config_register_open')==1 ? $this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year : false;
         $this->session->set_userdata('year', $year);
       
-        redirect('member/dashboard');
+        // check user has address
+        // $company_info = $this->model_company->getListByIdMember($result->id);
+        if ($member_info[0]->date_login==null||$member_info[0]->date_login=='0000-00-00 00:00:00') {
+          redirect('member/address');
+        } else {
+          redirect('member/dashboard');
+        }
+        
         
       } else {
         $this->session->set_userdata('error', 'อีเมล รหัสผ่านผิดพลาด');
@@ -100,10 +210,13 @@ class Member extends CI_Controller
     redirect('member/login');
   }
 
-  public function register() {
+  public function register($email='') {
     $data = array();
-    $data['action'] = base_url('member/register');
+    $data['action'] = base_url('member/register/'.$email);
     $data['year'] = $this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year;
+
+    $email = !empty($email) ? base64_decode(urldecode($email)) : $email;
+    $data['email'] = $email;
 
     if ($this->session->has_userdata('success')) {
       $data['success'] = $this->session->success;
@@ -118,39 +231,70 @@ class Member extends CI_Controller
       $data['error'] = '';
     }
     
-    if ($this->input->server('REQUEST_METHOD')=='POST' && $this->validation_register()) {
-      // ? Add Member
-      $insert = array(
-        'email' => $this->input->post('email'),
-        'password' => md5($this->input->post('password')),
-        'firstname' => $this->input->post('firstname'),
-        'lastname' => $this->input->post('lastname'),
-        'telephone' => $this->input->post('telephone'),
-        'date_added' => date('Y-m-d H:i:s')
-      );
-      $member_id = $this->model_member->add($insert);
+    if ($this->input->server('REQUEST_METHOD')=='POST' && (empty($email) ? $this->validation_register() : true)) {
+
+      if (!empty($email)) {
+        // ? Find Member in db because main member regis to child member
+        $memberFind = $this->model_member->findWaitingEmail($email);
+        if ($memberFind!==false) {
+          $member_id = (int)$memberFind;
+
+          $update = array(
+            'password'   => md5($this->input->post('password')),
+            'firstname'  => $this->input->post('firstname'),
+            'lastname'   => $this->input->post('lastname'),
+            'telephone'  => $this->input->post('telephone'),
+            'date_modify' => date('Y-m-d H: i: s'),
+            'is_waiting' => 0
+          );
+          $this->model_member->edit($member_id, $update);
+        } else {
+          // ? Add Member
+          $insert = array(
+            'email'      => $this->input->post('email'),
+            'password'   => md5($this->input->post('password')),
+            'firstname'  => $this->input->post('firstname'),
+            'lastname'   => $this->input->post('lastname'),
+            'telephone'  => $this->input->post('telephone'),
+            'date_added' => date('Y-m-d H: i: s')
+          );
+          $member_id = $this->model_member->add($insert);
+        }
+
+      } else {
+        // ? Add Member
+        $insert = array(
+          'email'      => $this->input->post('email'),
+          'password'   => md5($this->input->post('password')),
+          'firstname'  => $this->input->post('firstname'),
+          'lastname'   => $this->input->post('lastname'),
+          'telephone'  => $this->input->post('telephone'),
+          'date_added' => date('Y-m-d H: i: s')
+        );
+        $member_id = $this->model_member->add($insert);
+    }
 
       if ($member_id>0) {
         // ? Add Company of member
         $insert = array(
-          'member_id' => $member_id,
-          'name' => $this->input->post('hospital'),
-          'room' => $this->input->post('room'),
-          'address_1' => $this->input->post('address_1'),
-          'address_2' => $this->input->post('address_2'),
-          'district' => $this->input->post('district'),
-          'country' => $this->input->post('country'),
-          'province' => $this->input->post('province'),
-          'postcode' => $this->input->post('postcode'),
-          'telephone' => $this->input->post('telephone'),
-          'fax' => $this->input->post('fax'),
-          'date_added' => date('Y-m-d H:i:s')
+          'member_id'  => $member_id,
+          'name'       => $this->input->post('hospital'),
+          'room'       => $this->input->post('room'),
+          'address_1'  => $this->input->post('address_1'),
+          'address_2'  => $this->input->post('address_2'),
+          'district'   => $this->input->post('district'),
+          'country'    => $this->input->post('country'),
+          'province'   => $this->input->post('province'),
+          'postcode'   => $this->input->post('postcode'),
+          'telephone'  => $this->input->post('telephone'),
+          'fax'        => $this->input->post('fax'),
+          'date_added' => date('Y-m-d H: i: s')
         );
         $company_id = $this->model_company->add($insert);
 
         // ? Add Register
         $insert = array(
-          'parent_id' => 0, // ! Fixed this อีกเคสคือ สมัครสมาชิกให้คนอื่น
+          // 'parent_id' => 0, // ! Fixed this อีกเคสคือ สมัครสมาชิกให้คนอื่น
           'member_id' => $member_id,
           'company_id' => $company_id,
           'year_id' => $this->model_setting->get('config_register_year_id'),
@@ -175,7 +319,7 @@ class Member extends CI_Controller
         $subject = 'สมัครสมาชิก โครงการประเมินคุณภาพทางห้องปฏิบัติการโดยองค์กรภายนอก';
         $this->email->smtpsend($this->input->post('email'), $subject, $message);
 
-        $this->session->set_userdata('success', 'สมัครสมาชิกเรียบร้อยแล้ว');
+        $this->session->set_userdata('success', 'สมัครสมาชิกเรียบร้อยแล้ว กรุณาตรวจสอบอีเมลเพื่อยืนยันการเข้าใช้งานระบบ');
         redirect('member/login');
       } else {
         $this->session->set_userdata('error', 'เกิดข้อผิดพลาดในการสมัครสมาชิก');

@@ -55,6 +55,7 @@ class Payment extends CI_Controller
 
     // Get List Program
     $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, false);
+    // print_r($data['program_list']);
 
     // Condition discount only program
     $total = 0;
@@ -117,7 +118,7 @@ class Payment extends CI_Controller
       $this->load->library('upload', $config);
       $this->upload->initialize($config);
       if (!$this->upload->do_upload('inputSlip')) {
-        $this->session->set_userdata('uploadFailed', 'เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง');
+        $this->session->set_userdata('uploadFailed', 'เกิดข้อผิดพลาดไม่สามารถแจ้งชำระเงินได้กรุณาลองใหม่อีกครั้ง '.$this->upload->display_errors());
       } else {
         $uploaded = $this->upload->data();
         $image = $uploaded['file_name'];

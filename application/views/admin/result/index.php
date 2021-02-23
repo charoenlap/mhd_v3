@@ -44,7 +44,15 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>File Google Drive</th>
+                                            <th rowspan="2">File Google Drive</th>
+                                            <th colspan="6" class="text-center">System Found</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Program</th>
+                                            <th>Trial</th>
+                                            <th>MainUser</th>
+                                            <th>SubUser</th>
                                             <th width="15%" class="text-center">Status</th>
                                         </tr>
                                     </thead>
@@ -52,7 +60,7 @@
                                         <?php if (count($results) > 0): ?>
                                         <?php foreach ($results as $key => $value): ?>
                                         <tr>
-                                            <td <?php echo ($value['type'] == 'application/vnd.google-apps.folder') ? 'colspan="2"' : ''; ?> >
+                                            <td <?php echo ($value['type'] == 'application/vnd.google-apps.folder') ? 'colspan="7"' : ''; ?> >
                                                 
                                                 <a href="<?php echo $value['link']; ?>" target="<?php echo $value['target']; ?>">
                                                 <?php if ($value['type'] == 'application/pdf'): ?>
@@ -68,103 +76,17 @@
                                                 &nbsp;<?php echo $value['saved']?'<i class="fas fa-check text-success"></i>':'<i class="fas fa-times text-danger"></i>';?>
                                                 <?php endif; ?>
                                                 <?php if ($value['name'] != '..' && $value['type'] == 'application/pdf'): ?>
-                                                <a class="float-right" data-toggle="modal" data-target="#modalInfo-<?php echo $key;?>" style="cursor:pointer;">
+                                                <!-- <a class="float-right" data-toggle="modal" data-target="#modalInfo-<?php echo $key;?>" style="cursor:pointer;">
                                                     <i class="fas fa-info-circle"></i>&nbsp;info
-                                                </a>
-                                                <div class="modal" tabindex="-1" role="dialog" id="modalInfo-<?php echo $key;?>">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Saved link google drive</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="table-responsive">
-                                                            <table class="table table-bordered">
-                                                            <tr>
-                                                                <th width="40%">Status</th>
-                                                                <td class="text-success">
-                                                                    <?php echo $value['saved']==1?'<i class="fas fa-check"></i>&nbsp;Saved':'<i class="fas fa-times"></i>&nbsp;Unsave';?>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="40%">Year</th>
-                                                                <td>
-                                                                    <select name="" data-row="<?php echo $key;?>" class="select-year form-control form-control-sm">
-                                                                        <option value=""></option>
-                                                                        <?php foreach ($years as $v) : ?>
-                                                                            <option 
-                                                                                value="<?php echo $v->id;?>" 
-                                                                                <?php echo $value['data']->year_id==$v->id?'selected':'';?>
-                                                                            >
-                                                                                <?php echo $v->year;?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="40%">Program</th>
-                                                                <td>
-                                                                    <select name="" data-row="<?php echo $key;?>" class="select-program form-control form-control-sm">
-                                                                        <option value=""></option>
-                                                                        <?php foreach ($programs as $program) : ?>
-                                                                            <option 
-                                                                                value="<?php echo $program->id;?>"
-                                                                                <?php echo $value['data']->program_id==$program->id?'selected':'';?>
-                                                                            >
-                                                                                <?php echo $program->name;?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="40%">Trial</th>
-                                                                <td>
-                                                                    <select name="" data-row="<?php echo $key;?>" class="select-trial form-control form-control-sm">
-                                                                        <option value=""></option>
-                                                                        <?php foreach ($value['trials'] as $trial): ?>
-                                                                        <option 
-                                                                            value="<?php echo $trial->id;?>"
-                                                                            <?php echo $value['data']->trial_id==$trial->id?'selected':'';?>
-                                                                        >
-                                                                            <?php echo $trial->name;?>
-                                                                        </option>
-                                                                        <?php endforeach;?>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="40%">User</th>
-                                                                <td>
-                                                                    <input type="text" class="form-control form-control-sm" value="<?php echo $value['data']->user_id;?>" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="40%">Sub User</th>
-                                                                <td>
-                                                                    <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="subuserchecked<?php echo $key;?>" <?php echo $value['data']->is_forsub==1?'checked="checked"':'';?>>
-                                                                    <label class="form-check-label" for="subuserchecked<?php echo $key;?>">
-                                                                    Send to sub user
-                                                                    </label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary">Save</button>
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </a> -->
                                                 <?php endif; ?>
                                             </td>
-                                            <?php if ($value['type'] == 'application/pdf'): ?>
+                                            <?php if ($value['name'] != '..' && $value['type'] == 'application/pdf'): ?>
+                                            <td><?php echo $value['data']->year_name;?></td>
+                                            <td><?php echo $value['data']->program_name;?></td>
+                                            <td><?php echo $value['data']->trial_name;?></td>
+                                            <td><?php echo $value['data']->member_id;?></td>
+                                            <td class="<?php echo $value['data']->match_sub==false?'text-danger':'';?>"><?php echo $value['data']->sub_member_id;?></td>
                                             <td class="text-center">
                                                 <label class="switch float-none">
                                                     <input type="checkbox" data-id="<?php echo $value['data']->id;?>" class="ch-status primary" <?php echo $value['data']->status==1 ? 'checked="checked"' : '';?>>

@@ -32,6 +32,34 @@
                     <div class="alert alert-danger alert-dismissible"><?php echo $error;?></div>
                     <?php endif;?>
                     <div class="card">
+						<div class="card-body">
+								<form action="<?php echo $action; ?>" method="post">
+									<div class="row">
+                                        <div class="col-3 mb-3">
+                                            <label>เลขสมาชิก</label>
+                                            <input type="text" name="filter_memberno" value="<?php echo $filter_memberno;?>" class="form-control" placeholder="ค้นหา เลขสมาชิก เก่า/ใหม่" />
+                                        </div>
+
+                                        <div class="col-3 mb-3">
+                                            <label>อีเมล</label>
+                                            <input type="text" name="filter_email" value="<?php echo $filter_email;?>" class="form-control" placeholder="ค้นหา อีเมล" />
+                                        </div>
+
+                                        <div class="col-3 mb-3">
+                                            <label>ชื่อ</label>
+                                            <input type="text" name="filter_name" value="<?php echo $filter_name;?>" class="form-control" placeholder="ค้นหา ชื่อ" />
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="submit" class="btn btn-primary" value="ค้นหา" />
+                                            <a href="<?php echo $action; ?>" class="btn btn-default">ล้าง</a>
+                                        </div>
+                                    </div>
+
+								</form>
+						</div>
+					</div>
+
+                    <div class="card">
                         <div class="card-body">
 
                             <table class="table table-bordered table-hover">
@@ -39,9 +67,9 @@
                                     <tr>
                                         <th>เลขสมาชิก</th>
                                         <th>ชื่อ</th>
+                                        <th>อีเมล</th>
                                         <th>โรงพยาบาล</th>
-                                        <th>สมัครเมื่อ</th>
-                                        <th>สถานะชำระเงินล่าสุด</th>
+                                        <th width="15%">สถานะ</th>
                                         <th width="15%" class="text-center">การจัดการ</th>
                                     </tr>
                                 </thead>
@@ -50,11 +78,21 @@
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
                                         <td><?php echo $value->member_no;?></td>
-                                        <td><?php echo $value->firstname.' '.$value->lastname;?></td>
+                                        <td><?php echo $value->firstname.' '.$value->lastname.($value->transfer_oldweb==1?' <span class="badge badge-secondary">เว็บเก่า</span>':'');?></td>
+                                        <td><?php echo $value->email;?></td>
                                         <td><?php echo $value->hospital;?></td>
-                                        <td><?php echo date('d/m/Y H:i', strtotime($value->date_added));?></td>
+                                      
                                         <td>
-                                            <span class="text-danger"><i class="fas fa-times-circle"></i> ยังไม่ได้ชำระ</span>
+                                        <?php if(empty($value->member_no)): ?>
+                                            <span class="text-danger"><i class="fas fa-times-circle"></i> ยังไม่ได้สมัคร</span><br />
+                                        <?php elseif ($value->is_waiting==1): ?>
+                                            <span class="text-info"><i class="fas fa-tasks"></i> เชิญแล้ว รอสมัคร</span><br />
+                                        <?php elseif(!empty($value->member_no)&&!empty($value->date_login)): ?>
+                                            <span class="text-success">
+                                                <i class="fas fa-check-circle"></i> เข้าระบบล่าสุด<br>
+                                                <?php echo date('d/m/Y H:i',strtotime($value->date_login));?>
+                                            </span>
+                                        <?php endif; ?>
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">

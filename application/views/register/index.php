@@ -74,7 +74,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <td>
                                     <?php echo $program->name . ' '; ?>
                                     <?php echo (in_array($program->id, $program_choose) ? '<span class="badge badge-success">สมัครแล้ว</span>' : '');?>
-                                    <?php echo isset($program_slip[$program->id]) && $program_slip[$program->id] == 0 ? '<a href="'.base_url('payment').'"><span class="badge badge-danger">รอแจ้งชำระเงิน</span></a>' : '';?>
+                                    
+                                    <?php if (isset($program_slip[$program->id]) && $program_slip[$program->id] == 0) : ?>
+                                        <?php echo '<a href="'.base_url('payment').'"><span class="badge badge-danger">รอแจ้งชำระเงิน</span></a>';?>
+                                    <?php else: ?>
+                                        <?php echo isset($program_payment[$program->id]) && $program_payment[$program->id] == 0 ? '<a href="#"><span class="badge badge-primary">รอตรวจสอบชำระเงิน</span></a>' : '';?>
+                                    <?php endif; ?>
                                     </td>
                                     <td><?php echo number_format($program->price, 2); ?></td>
                                 </tr>

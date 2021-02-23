@@ -10,6 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="row">
         <div class="col-sm-12 col-md-8">
+            <div class="card shadow mb-2">
+                <div class="card-body border-left-primary text-primary">เมื่อชำระเงินแล้ว <a href="<?php echo base_url('permission/index/');?>"><u><b>ท่านสามารถจัดการสิทธิ์ให้ผู้อื่น</b></u></a> สามารถแจ้งผลการทดสอบ และดูผลการประเมิน ได้ที่ หน้าจัดการสิทธิ์</div>
+            </div>
             <?php if (!empty($success)) { ?>
             <div class="card shadow mb-4">
                 <div class="card-body border-left-success text-success"><i class="fas fa-check-circle text-success"></i> <?php echo $success;?></div>

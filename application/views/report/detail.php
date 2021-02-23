@@ -23,9 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="card-body">
                 <div class="row">
                     <div class="container-fluid">
-                        <div class="text-right">
+                        <!-- <div class="text-right">
                             <a href="<?php echo $action; ?>" class="btn btn-primary">ดูกราฟ</a>
-                        </div>
+                        </div> -->
                         <table class="table table-hover">
                            <thead>
                                <tr>
@@ -36,18 +36,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php if (count($trial)>0) : ?>
                                 <?php foreach ($trial as $value) : ?>
                                     <tr>
-                                        <td><?php echo $value->name; ?></td>
+                                        <td>
+                                        <?php echo $value->name; ?>
+                                        </td>
                                         <td class="text-right">
                                         
                                         <?php if ($value->can_send) : ?>
                                             เหลือเวลาอีก <?php echo $value->send_remaining; ?> จะหมดเวลารายงานผล 
-                                            <a href="<?php echo base_url('report/trial/').$value->program_slug.'/'.$value->slug;?>" class="btn btn-primary">
+                                            <a href="<?php echo base_url('report/trial/').$value->program_slug.'/'.$value->slug.(isset($register_program_id)&&!empty($register_program_id)?'/'.$register_program_id:'');?>" class="btn btn-primary">
                                                 <?php echo $value->has_report ? 'ดูรายงานที่เคยส่ง' : 'รายงานผล';?>
                                             </a>
                                         <?php else: ?>
                                             โปรแกรม <?php echo $value->name;?> หมดเวลาการบันทึกข้อมูลแล้ว
                                         <?php endif; ?>
-                                            
+                                            <!-- <a href="#" class="btn btn-success">ผลการประเมิน</a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

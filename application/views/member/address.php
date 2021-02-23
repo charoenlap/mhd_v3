@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Register</title>
+        <title>Confirm Address</title>
 
         <!-- Bootstrap core JavaScript-->
         <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
@@ -84,15 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <input type="email" name="email" class="form-control form-control-user <?php echo !empty($email) ? 'form-control-plaintext' : '';?>" <?php echo !empty($email) ? 'readonly' : '';?> id="" placeholder="อีเมล" required value="<?php echo $email;?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6">
-                                            <input type="password" name="password" class="form-control form-control-user" id="" placeholder="รหัสผ่าน" required>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="password" name="confirm" class="form-control form-control-user" id="" placeholder="ยืนยันรหัสผ่าน" required>
+                                            <input type="email" name="email" value="<?php echo $email;?>" readonly class="form-control-plaintext form-control-user " id="" placeholder="อีเมล" required>
                                         </div>
                                     </div>
                                     <hr>
@@ -105,15 +97,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="firstname" class="form-control form-control-user" id="" placeholder="ชื่อ" required>
+                                            <input type="text" name="firstname" value="<?php echo $firstname;?>" readonly class="form-control-plaintext form-control-user" id="" placeholder="ชื่อ" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="lastname" class="form-control form-control-user" id="" placeholder="นามสกุล" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="telephone" class="form-control form-control-user" id="" placeholder="เบอร์โทรศัพท์" required>
+                                            <input type="text" name="lastname" value="<?php echo $lastname;?>" readonly class="form-control-plaintext form-control-user" id="" placeholder="นามสกุล" required>
                                         </div>
                                     </div>
                                     <hr>
@@ -126,43 +113,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="hospital" class="form-control form-control-user" id="" placeholder="ชื่อโรงพยาบาล" required>
+                                            <label>ชื่อโรงพยาบาล</label>
+                                            <input type="text" name="hospital" value="<?php echo $hospital;?>" class="form-control form-control-user" id="" placeholder="ชื่อโรงพยาบาล" required autofocus="on">
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="room" class="form-control form-control-user" id="" placeholder="ชื่อห้องปฏิบัติการ" required>
+                                            <label>ชื่อห้องปฏิบัติการ</label>
+                                            <input type="text" name="room" value="<?php echo $room;?>" class="form-control form-control-user" id="" placeholder="ชื่อห้องปฏิบัติการ" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="address_1" class="form-control form-control-user" id="" placeholder="เลขที่บ้าน" required>
+                                            <label>เลขที่บ้าน</label>
+                                            <input type="text" name="address_1" value="<?php echo $address_1;?>" class="form-control form-control-user" id="" placeholder="เลขที่บ้าน" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="address_2" class="form-control form-control-user" id="" placeholder="ตึก ชั้น ซอย ถนน">
+                                            <label>ตึก ชั้น ซอย ถนน</label>
+                                            <input type="text" name="address_2" value="<?php echo $address_2;?>" class="form-control form-control-user" id="" placeholder="ตึก ชั้น ซอย ถนน">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="district" class="form-control form-control-user" id="district" placeholder="แขวง/ตำบล" required>
+                                            <label>แขวง/ตำบล</label>
+                                            <input type="text" name="district" value="<?php echo $district;?>" class="form-control form-control-user" id="district" placeholder="แขวง/ตำบล" required>
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="country" class="form-control form-control-user" id="country" placeholder="เขต/อำเภอ" required>
+                                            <label>เขต/อำเภอ</label>
+                                            <input type="text" name="country" value="<?php echo $country;?>" class="form-control form-control-user" id="country" placeholder="เขต/อำเภอ" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="province" class="form-control form-control-user" id="province" placeholder="จังหวัด" required>
+                                            <label>จังหวัด</label>
+                                            <input type="text" name="province" value="<?php echo $province;?>" class="form-control form-control-user" id="province" placeholder="จังหวัด" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="postcode" class="form-control form-control-user" id="postcode" placeholder="รหัสไปรษณีย์" required>
+                                            <label>รหัสไปรษณีย์</label>
+                                            <input type="text" name="postcode" value="<?php echo $postcode;?>" class="form-control form-control-user" id="postcode" placeholder="รหัสไปรษณีย์" required>
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="สมัครสมาชิก">
+                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="บันทึกที่อยู่">
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?php echo base_url('member/login');?>">มีสมาชิกอยู่แล้ว? เข้าสู่ระบบ!</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -170,6 +162,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
         </div>
+        <div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">แจ้งเตือน !!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>กรุณาตรวจสอบและยืนยันที่อยู่ปัจจุบันให้ถูกต้อง</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            // alert('กรุณา')
+            $('#modalConfirm').modal('show');
+            $('#modalConfirm').on('hide.bs.modal', function (event) {
+                $('[name="hospital"]').focus();
+            });
+        });
+        </script>
+    
 
     </body>
 

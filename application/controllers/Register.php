@@ -18,9 +18,6 @@ class Register extends CI_Controller
         $data['heading_title'] = 'สมัครโปรแกรมปี ' . ($this->session->has_userdata('year') ? $this->session->year : '');
         $data['action'] = base_url('register');
 
-        $data['member_no'] = $this->session->member_info['member_no'];
-        $data['email'] = $this->session->member_info['email'];
-
         $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
         $year_id = $this->model_setting->get('config_register_year_id'); // year
         $data['year'] = $this->model_year->getList($year_id)->year;
@@ -28,6 +25,10 @@ class Register extends CI_Controller
         $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
         $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
         $company_id = 0;
+        
+        $member_info = $this->model_member->getListById($member_id);
+        $data['member_no'] = $data['year'].sprintf('%05d', $member_info->member_no);
+        $data['email'] = $member_info->email;
 
 
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
@@ -35,7 +36,7 @@ class Register extends CI_Controller
           
             if ($register_id==0) { // not found register in this year and add new register this year
               $insert = array(
-                'parent_id' => 0,
+                // 'parent_id' => 0,
                 'member_id' => $member_id,
                 'company_id' => $company_id,
                 'year_id' => $year_id,
@@ -89,7 +90,7 @@ class Register extends CI_Controller
                 redirect('register');
             } else {
                 $this->session->set_userdata('success', 'สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-                redirect('register/member');
+                redirect('payment');
             }
         }
 
@@ -100,10 +101,15 @@ class Register extends CI_Controller
         $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, null, $year_id);
         $data['program_choose'] = array(); 
         $data['program_slip'] = array();
+        $data['program_payment'] = array();
         foreach ($program_choose as $key => $value) {
+            $payment_info = $this->model_payment->getList($value->payment_id);
           $data['program_choose'][] = $value->program_id;
           $data['program_slip'][$value->program_id] = $value->send_slip;
+          $data['program_payment'][$value->program_id] = isset($payment_info->status) ? (int)$payment_info->status : 0;
+          
         }
+
 
         $filter = array('member_id' => $member_id);
         $data['company'] = $this->model_company->getLists($filter, 0, 99999999999);
@@ -116,6 +122,8 @@ class Register extends CI_Controller
         $data = array();
         $data['heading_title'] = 'สมัครโปรแกรมปี ' . ($this->session->has_userdata('year') ? $this->session->year : '');
         $data['action'] = base_url('register/member');
+
+
 
         $this->load->template('register/member', $data);
     }
@@ -168,6 +176,7 @@ class Register extends CI_Controller
         $data['total'] = $total;
         $data['total_text'] = $this->num2wordThai( $total );
         $data['discount'] = $discount;
+
 
         $this->load->view('register/receipt', $data);
     }

@@ -94,6 +94,7 @@ class Register_program_model extends CI_Model {
     $this->db->set('send_slip', 1);
     $this->db->set('payment_id', (int)$payment_id);
     $this->db->where('register_id', $register_id);
+    $this->db->where('payment_id is null', null, false);
     $this->db->update('register_program');
     return $this->db->affected_rows()==1 ? true : false;
   }
@@ -114,10 +115,19 @@ class Register_program_model extends CI_Model {
     $query = $this->db->get('register_program');
     return $query->result();
   }
+  public function getListProgramByMemberId($member_id,$company_id=0)
+  {
+    $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name');
+    $this->db->where('mhd_register_program.member_id',$member_id);
+    $this->db->where('mhd_register_program.del','0');
+    $this->db->order_by('mhd_register_program.id','DESC');
+    $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
+    $query = $this->db->get('register_program');
+    return $query->result();
+  }
   public function getListProgramByYear($id, $member_id, $company_id, $slip=null, $year_id=0)
   {
-
-    $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name');
+    $this->db->select('register_program.*, mhd_register_program.price as price, mhd_program.name as program_name, mhd_program.slug as program_slug');
     $this->db->where('mhd_register_program.member_id',$member_id);
     if ($company_id>0) {
       $this->db->where('mhd_register_program.company_id',$company_id);
@@ -138,6 +148,32 @@ class Register_program_model extends CI_Model {
     $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
     $query = $this->db->get('register_program');
     // echo $this->db->last_query();
+    return $query->result();
+  }
+  public function getListProgramBySub($id, $member_id, $company_id, $slip=null, $year_id=0)
+  {
+    $this->db->select('mhd_register_program.*, mhd_register_program.id as id, mhd_register_program.price as price, mhd_program.name as program_name, mhd_program.slug as program_slug');
+    $this->db->where('mhd_register_program.sub_member_id',$member_id);
+    if ($company_id>0) {
+      // $this->db->where('mhd_register_program.company_id',$company_id);
+    }
+    if ($id>0) {
+      // $this->db->where('mhd_register_program.register_id',$id);
+    }
+    if ($year_id>0) {
+      $this->db->where('mhd_register_program.year_id', $year_id);
+    }
+    if ($slip===true) {
+      $this->db->where('mhd_register_program.send_slip', 1); // send slip only
+    } else if ($slip===false) {
+      $this->db->where('mhd_register_program.send_slip', 0); // none send slip only
+    }
+    $this->db->where('mhd_register_program.del','0');
+    $this->db->order_by('mhd_register_program.id','DESC');
+    $this->db->join('mhd_program', 'mhd_program.id = mhd_register_program.program_id', 'LEFT'); 
+    $query = $this->db->get('register_program');
+    // echo $this->db->last_query();
+    // echo '<br>';
     return $query->result();
   }
   public function checkProgramInRegister($id, $program_id, $member_id, $company_id) {

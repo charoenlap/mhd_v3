@@ -105,24 +105,44 @@ class Result extends CI_Controller
             // find main user
             $user_id = 0;
             $forsubuser = 0;
+            $array_sub = array();
             if (!empty($user)) { // 202012345
               $year = substr($user, 0, 4); // 2020
               $year_id = $this->model_year->getYear($year)->id;
-              $usercode = substr($user, 4); // 12345
-              $user_info = $this->model_member->getListByCode($usercode);
+              $usercode = substr($user, 4); // 1234
+              $user_info = $this->model_member->getListByCode(sprintf('%011d',$usercode));
               $user_id = isset($user_info->id) ? $user_info->id : 0;
+
+              $subs = $this->model_register_program->getListProgramByMemberId($user_id);
+              if (count($subs)>0) {
+                foreach ($subs as $s) {
+                  if (isset($s->sub_member_id)&&!empty($s->sub_member_id)) {
+                    $array_sub[] = $s->sub_member_id;
+                  }
+                }
+              }
             }
 
+            
+
             // find main user
+            $subuser_id=0;
+            $matchsub = false;
             if (!empty($subuser)) { // 202012345
               $year = substr($subuser, 0, 4); // 2020
-              $subusercode = substr($subuser, 4); // 12345
-              $subuser_info = $this->model_member->getListByCode($subusercode);
-              $subuser_id = isset($subuser_info->id) ? $subuser_info->id : 0;
-              if ($subuser_id>0) {
-                $forsubuser = 1;
-                $user_id = $subuser_id;
+              $subusercode = substr($subuser, 4); // 1234
+              $subuser_info = $this->model_member->getListByCode(sprintf('%011d',$subusercode));
+              // print_r($subuser_info);
+              if (in_array($subuser_info->id, $array_sub)) {
+                $matchsub = true;
+                $subuser_id = isset($subuser_info->id) ? $subuser_info->id : 0;
+                if ($subuser_id>0) {
+                  $forsubuser = 1;
+                  // $user_id = $subuser_id;
+                }
               }
+            } else {
+              $matchsub = true;
             }
             
           // == get data
@@ -131,15 +151,16 @@ class Result extends CI_Controller
           if ($check!=false) {
             $id = $check->id; // this id is primary key on table not google id
             $update = array(
-              'year_id'     => $year_id,
-              'program_id'  => $program_id,
-              'trial_id'    => $trial_id,
-              'user_id'     => $user_id,
-              'is_forsub'   => $forsubuser,
-              'google_id'   => $result['id'],
-              'google_name' => $result['name'],
-              'google_type' => $result['type'],
-              'date_modify' => date('Y-m-d H:i:s', time()),
+              'year_id'       => $year_id,
+              'program_id'    => $program_id,
+              'trial_id'      => $trial_id,
+              'member_id'     => $user_id,
+              'sub_member_id' => $subuser_id,
+              'is_forsub'     => $forsubuser,
+              'google_id'     => $result['id'],
+              'google_name'   => $result['name'],
+              'google_type'   => $result['type'],
+              'date_modify'   => date('Y-m-d H:i:s', time()),
               // 'status'      => 1
             );
             $r = $this->model_result_link->edit($id, $update);
@@ -153,7 +174,7 @@ class Result extends CI_Controller
               'year_id'     => $year_id,
               'program_id'  => $program_id,
               'trial_id'    => $trial_id,
-              'user_id'     => $user_id,
+              'member_id'     => $user_id,
               'is_forsub'   => $forsubuser,
               'google_id'   => $result['id'],
               'google_name' => $result['name'],
@@ -171,6 +192,19 @@ class Result extends CI_Controller
 
           // get last data update
           $lastupdate = $this->model_result_link->getListByGoogleId($result['id']);
+          $tempYear = $this->model_year->getList($lastupdate->year_id);
+          $lastupdate->year_name = isset($tempYear->year) ? $tempYear->year : '-';
+          $tempProgram = $this->model_program->getList($lastupdate->program_id);
+          $lastupdate->program_name = isset($tempProgram->name) ? $tempProgram->name : '-';
+          $tempTrial = $this->model_trial->getList($lastupdate->trial_id);
+          $lastupdate->trial_name = isset($tempTrial->name) ? $tempTrial->name : '-';
+          $tempMember = $this->model_member->getList($lastupdate->member_id);
+          $lastupdate->member_id = isset($tempMember->member_no) ? $tempYear->year.sprintf('%04d',$tempMember->id) : '-';
+          $tempSubMember = $lastupdate->sub_member_id > 0 ? $this->model_member->getList($lastupdate->sub_member_id) : false;
+          $lastupdate->sub_member_id = isset($tempSubMember->member_no) ? $tempYear->year.sprintf('%04d',$tempSubMember->id) : '-';
+
+          $lastupdate->match_sub = $matchsub;
+          // print_r($lastupdate);
           $results[$key]['data'] = $lastupdate;
           // $data['program_selected'][] = array('key' => $key, 'id' => $lastupdate->program_id);
 
@@ -180,7 +214,7 @@ class Result extends CI_Controller
           );
           $results[$key]['trials'] = $this->model_trial->getLists($filter);
 
-          $results[$key]['users'] = $this->model_member->getList($lastupdate->user_id);
+          $results[$key]['users'] = $this->model_member->getList($lastupdate->member_id);
 
         }
       }

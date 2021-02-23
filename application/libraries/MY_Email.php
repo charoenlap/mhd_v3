@@ -11,15 +11,17 @@ class MY_Email extends CI_Email {
     public function smtpsend($email, $subject, $message='') 
     {
         $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'munk.gorn@gmail.com',
-            'smtp_pass' => 'xiymhnzdnbhekygh',
-            'smtp_port' => 465,
+            'protocol'     => 'smtp',
+            'smtp_host'    => 'smtp.gmail.com',
+            // 'smtp_user' => 'munk.gorn@gmail.com',
+            // 'smtp_pass' => 'xiymhnzdnbhekygh',
+            'smtp_user'    => 'support@fsoftpro.com',
+            'smtp_pass'    => 'fiverama2',
+            'smtp_port'    => 587,
             'smtp_timeout' => 5,
-            'smtp_crypto' => 'ssl',
-            'charset' => 'utf8',
-            'mailtype' => 'html'
+            'smtp_crypto'  => 'tls',
+            'charset'      => 'utf8',
+            'mailtype'     => 'html'
           );
         $this->initialize($config);
         $this->set_newline("\r\n");

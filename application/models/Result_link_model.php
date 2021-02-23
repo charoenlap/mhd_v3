@@ -50,7 +50,12 @@ class Result_link_model extends CI_Model {
   {
     if (count($filter)>0) {
       foreach ($filter as $key => $value) {
-        $this->db->where($key, $value);
+        if ($key=='member_id') {
+          $this->db->where('((member_id="'.$value.'" OR sub_member_id="'.$value.'") OR (member_id="0" AND sub_member_id="0"))', null);
+        } else {
+          $this->db->where($key, $value);
+        }
+        
       }
     }
     if ($start>=0 && $limit>=1) {
@@ -61,6 +66,8 @@ class Result_link_model extends CI_Model {
     }
     $this->db->where('del', 0);
     $query = $this->db->get('result_link');
+    // echo $this->db->last_query();
+    // echo '<br>';
     return $query->result();
   }
   // ------------------------------------------------------------------------

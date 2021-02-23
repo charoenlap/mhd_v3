@@ -56,6 +56,9 @@
 	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	define('ENVIRONMENT', 'development');
 	define('KEY', 'sn3FUrBRNqQyCTtOaZXfQfiaAen0eD5T');
+
+	// you can change email sender on  application/libraries/MY_Email.php
+	// you can change template loader on application/core/MY_loader.php
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
