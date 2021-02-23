@@ -178,6 +178,8 @@ class Member extends CI_Controller
           $member_no = implode(', ', $member_no);
         }
 
+        $member_no = substr($member_no, 0, 4).substr($member_no, 4);
+
         $this->session->set_userdata('token', $this->encryption->encrypt(json_encode($result)));
         $this->session->set_userdata('member_info', array('member_no'=>$member_no, 'email'=>$email));
 

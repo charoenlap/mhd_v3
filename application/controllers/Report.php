@@ -178,16 +178,24 @@ class Report extends CI_Controller
 
       $year_id = $this->model_setting->get('config_register_year_id'); // year
 
-      // if ($register_program_id!=null) {
+      if ($register_program_id!=null) { // sub member 
+        $tempRP = $this->model_register_program->getList($register_program_id);
 
-      // } else {}
+        $member_id = $tempRP->member_id;
+        $member_info = $this->model_member->getList($member_id);
 
-      $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
-      $member_info = $this->model_member->getList($member_id);
-    
-      $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
-      $register_id = $register_info->id;
-      $company_id = $register_info->company_id;
+        $register_id = $tempRP->register_id;
+        $company_id = $tempRP->company_id;
+      } else {
+        $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+        $member_info = $this->model_member->getList($member_id);
+      
+        $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+        $register_id = $register_info->id;
+        $company_id = $register_info->company_id;
+      }
+
+
       $company_info = $this->model_company->getList($company_id);
     // ! ========== default variable ==========
 
@@ -338,6 +346,8 @@ class Report extends CI_Controller
           } else {
             $post['date_added'] = date('Y-m-d H:i:s', time());
           }
+          $post['edit_member_id'] = json_decode($this->encryption->decrypt($this->session->token))->id;
+          
 
           // Check this use has "register > register_program_id" for make sure
           $main = false;
