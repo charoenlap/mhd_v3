@@ -27,9 +27,9 @@ date_default_timezone_set('Asia/Bangkok');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/mhd/';
+// $config['base_url'] = 'http://localhost/mhd/';
 //$config['base_url'] = 'https://www.fsoftpro.com/production/mhd/';
-// $config['base_url'] = 'https://govindarestaurantbkk.com/mhd/';
+$config['base_url'] = 'https://govindarestaurantbkk.com/mhd/';
 
 /*
 |--------------------------------------------------------------------------
