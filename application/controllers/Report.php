@@ -46,7 +46,7 @@ class Report extends CI_Controller
       $payment_info = $this->model_payment->getList($value->payment_id);
        $data['program_choose'][] = $value->program_id;
        $data['program_slip'][$value->program_id] = $value->send_slip;
-       $data['program_payment'][$value->program_id] = $payment_info->status;
+       $data['program_payment'][$value->program_id] = isset($payment_info->status) ? $payment_info->status : 0;
      }
 
     if ($this->session->has_userdata('success')) {

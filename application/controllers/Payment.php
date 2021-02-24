@@ -55,7 +55,6 @@ class Payment extends CI_Controller
 
     // Get List Program
     $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, false);
-    // print_r($data['program_list']);
 
     // Condition discount only program
     $total = 0;

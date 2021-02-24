@@ -70,7 +70,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = (ENVIRONMENT !== 'production') ? 'govinda' : 'production';
+// $active_group = (ENVIRONMENT !== 'production') ? 'dev' : 'production';
+
+switch (ENVIRONMENT)
+{
+	case 'development':
+    $active_group = 'dev';
+    break;
+
+  case 'testing':
+    $active_group = 'govinda';
+    break;
+
+  case 'production':
+    $active_group = 'production';
+    break;
+  default:
+    echo 'The application environment is not set correctly.';
+    exit(1); // EXIT_ERROR
+}
 
 $query_builder = TRUE;
 

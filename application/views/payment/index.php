@@ -126,6 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <table class="table table-bordered px-2">
                                             <thead>
                                                 <tr>
+                                                    <th class="text-center"><input type="checkbox" /></th>
                                                     <th class="text-center">ปี</th>
                                                     <th class="text-center">โปรแกรม</th>
                                                     <th class="text-center">ราคา</th>
@@ -134,7 +135,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php if (count($program_list)>0) : ?>
                                                 <?php foreach ($program_list as $key => $value) { ?>
+                                                
                                                 <tr>
+                                                    <td class="text-center"><input type="checkbox" /></td>
                                                     <td class="text-center"><?php echo $_SESSION['year']; ?></td>
                                                     <td class="text-center"><?php echo $value->program_name; ?></td>
                                                     <td class="text-right"><?php echo number_format($value->price,2); ?></td>
@@ -142,7 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?php } ?>
                                                 <?php else: ?>
                                                 <tr>
-                                                    <td colspan="3" class="text-center">ไม่พบโปรแกรม<br>
+                                                    <td colspan="4" class="text-center">ไม่พบโปรแกรม<br>
                                                     <a href="<?php echo $link_register;?>">ไปสมัครโปรแกรม</a></td>
                                                 </tr>
                                                 <?php endif; ?>
@@ -150,13 +153,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tfoot>
                                                 <?php if ($discount>0) : ?>
                                                 <tr>
-                                                    <th colspan="2" class="text-right">ส่วนลด</th>
+                                                    <th colspan="3" class="text-right">ส่วนลด</th>
                                                     <th class="text-right"><?php echo number_format($discount,2); ?></th>
                                                 </tr>
                                                 <?php endif;?>
                                                 <?php if (($total-$discount)>0) : ?>
                                                 <tr>
-                                                    <th colspan="2" class="text-right">ยอดชำระ</th>
+                                                    <th colspan="3" class="text-right">ยอดชำระ</th>
                                                     <th class="text-right"><?php echo number_format(($total-$discount),2); ?></th>
                                                 </tr>
                                                 <?php endif; ?>

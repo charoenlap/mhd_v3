@@ -51,13 +51,15 @@ class Member extends CI_Controller
     $company_info = $this->model_company->getListByIdMember($member_id);
 
     $data['hospital']      = $company_info->name;
-    $data['room']      = $company_info->room;
-    $data['address_1'] = $company_info->address_1;
-    $data['address_2'] = $company_info->address_2;
-    $data['district']  = $company_info->district;
-    $data['country']   = $company_info->country;
-    $data['province']  = $company_info->province;
-    $data['postcode']  = $company_info->postcode;
+    $data['type_hospital'] = $company_info->type_hospital;
+    $data['total_bed']     = $company_info->total_bed;
+    $data['room']          = $company_info->room;
+    $data['address_1']     = $company_info->address_1;
+    $data['address_2']     = $company_info->address_2;
+    $data['district']      = $company_info->district;
+    $data['country']       = $company_info->country;
+    $data['province']      = $company_info->province;
+    $data['postcode']      = $company_info->postcode;
 
     if ($this->input->server('REQUEST_METHOD') == 'POST') {
       $this->model_company->delmember($member_id);

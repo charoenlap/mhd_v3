@@ -57,10 +57,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <tr>
                 <td class="text-center"><?php echo $value->program_name; ?></td>
                 <td class="text-center"><?php echo number_format($value->price, 2); ?></td>
-                <td class="text-center"><?php echo $firstname." ".$lastname; ?></td>
-                <td class="text-center"><?php echo $firstname." ".$lastname; ?></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center"><?php echo $value->bill_company; ?></td>
+                <td class="text-center"><?php echo $value->bill_name; ?></td>
+                <td class="text-center"><?php echo $value->bill_address; ?></td>
+                <td class="text-center"><?php echo $value->bill_contact; ?></td>
             </tr>
             <?php } ?>
             <?php endforeach; ?>

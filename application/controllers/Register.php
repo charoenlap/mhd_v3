@@ -27,13 +27,14 @@ class Register extends CI_Controller
         $company_id = 0;
         
         $member_info = $this->model_member->getListById($member_id);
-        $data['member_no'] = $data['year'].sprintf('%05d', $member_info->member_no);
+        $data['member_no'] = $data['year'].sprintf('%05d', $member_info->id);
         $data['email'] = $member_info->email;
 
 
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $company_id = $this->input->post('company_id');
-          
+            
+            // check add and register
             if ($register_id==0) { // not found register in this year and add new register this year
               $insert = array(
                 // 'parent_id' => 0,
@@ -47,6 +48,44 @@ class Register extends CI_Controller
               );
               $register_id = $this->model_register->add($insert);
             }
+            
+            // sub total in this payment
+            $total = 0;
+            foreach ($this->input->post('program_id') as $checkbox_program_id => $value) {
+                if ($value == '1') {
+                    $program_info = $this->model_program->getList($checkbox_program_id);
+                    $price = !empty($program_info->price) ? $program_info->price : 0;
+                    $total += (double) $price;
+                }
+            }
+
+            $filter = array(
+                'mhd_payment.register_id' => $register_id,
+                'mhd_payment.member_id' => $member_id
+            );
+            $payments = $this->model_payment->getLists($filter);
+            if (count($payments)==0) {
+                $insert = array(
+                    'register_id' => $register_id,
+                    'member_id'   => $member_id,
+                    'status'      => 0, // 0,1
+                    'admin_id'    => 0, // admin for check data
+                    'total'       => $total,
+                    'date_added'  => date('Y-m-d H: i: s'),
+                );
+                $payment_id = $this->model_payment->add($insert);
+            } else {
+                $update = array(
+                    'member_id'   => $member_id,
+                    'status'      => 0, // 0,1
+                    'admin_id'    => 0, // admin for check data
+                    'total'       => (int)$payments[0]->total + (int)$total,
+                    'date_added'  => date('Y-m-d H: i: s'),
+                );
+                $this->model_payment->edit($payments[0]->id, $update);
+                $payment_id = $payments[0]->id;
+            }
+
             
 
             $result = array();
@@ -62,13 +101,14 @@ class Register extends CI_Controller
                     
                     $insert = array(
                         'register_id' => $register_id,
-                        'parent_id' => 0, // ! if you have parentid
-                        'company_id' => $company_id,
-                        'member_id' => $member_id,
-                        'year_id' => $year_id,
-                        'program_id' => $checkbox_program_id,
-                        'price' => $price,
-                        'date_added' => date('Y-m-d H:i:s'),
+                        'parent_id'   => 0, // ! dont used if you want add sub membet add in column "sub_member_id"
+                        'company_id'  => $company_id,
+                        'payment_id'  => $payment_id,
+                        'member_id'   => $member_id,
+                        'year_id'     => $year_id,
+                        'program_id'  => $checkbox_program_id,
+                        'price'       => $price,
+                        'date_added'  => date('Y-m-d H: i: s'),
                     );
                     if ($register_program_id != false && $register_program_id > 0) {
                       // find old register program and update it
@@ -78,6 +118,7 @@ class Register extends CI_Controller
                     }
                 }
             }
+
 
             // ? update total in register this year
             $update = array(
@@ -89,8 +130,9 @@ class Register extends CI_Controller
                 $this->session->set_userdata('error', 'เกิดข้อผิดพลาดไม่สามารถสมัครได้กรุณาลองใหม่อีกครั้ง');
                 redirect('register');
             } else {
-                $this->session->set_userdata('success', 'สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
-                redirect('payment');
+                // $this->session->set_userdata('success', 'สมัครโปรแกรมเรียบร้อยแล้ว เมื่อท่านชำระเงินแล้วสามารถแจ้งชำระเงินได้ที่นี่');
+                // redirect('payment');
+                redirect('register/createReceipt');
             }
         }
 
@@ -128,13 +170,77 @@ class Register extends CI_Controller
         $this->load->template('register/member', $data);
     }
 
+    public function createReceipt()
+    {
+        $data = array();
+        $data['heading_title'] = 'ยืนยันการสมัครและชำระเงิน';
+        $data['success'] = ($this->session->has_userdata('success')) ? $this->session->success : '';
+        $this->session->unset_userdata('success');
+        $data['error'] = ($this->session->has_userdata('error')) ? $this->session->error : '';
+        $this->session->unset_userdata('error');
+
+        $data['action'] = base_url('register/createReceipt');
+
+        // get default data
+        $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+        $year_id = $this->model_setting->get('config_register_year_id'); // year
+        $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+        $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
+        $company_id = $register_info->company_id;
+
+        //get program list
+        $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id);
+
+        
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $update_registerprogram = array();
+
+            $bill_company = $this->input->post('bill_company');
+            foreach ($bill_company as $register_program_id => $value) {
+                $update_registerprogram = array(
+                    'bill_company'  => $value,
+                    'bill_name'     => $this->input->post('bill_name')[$register_program_id],
+                    'bill_contact'  => $this->input->post('bill_contact')[$register_program_id],
+                    'bill_address'  => $this->input->post('bill_address')[$register_program_id],
+                    'bill_title_th' => $this->input->post('bill_title_th')[$register_program_id],
+                    'bill_title_en' => $this->input->post('bill_title_en')[$register_program_id],
+                    'date_modify'   => date('Y-m-d H:i:s', time())
+                );
+                $this->model_register_program->edit($register_program_id, $update_registerprogram);
+            }
+
+            redirect('register/receipt');
+            exit();
+        }
+
+
+        $this->load->template('register/create_receipt', $data);
+    }
+
     public function receipt()
     {
         $data = array();
+
+        $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
+        $year_id = $this->model_setting->get('config_register_year_id'); // year
+        $data['year'] = $this->model_year->getList($year_id)->year;
+        $data['year_open'] = $this->model_setting->get('config_register_open') == 1 ? true : false; // now is open?
+        $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
+        $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
+        $company_id = 0;
+        
+        $member_info = $this->model_member->getListById($member_id);
+        $data['member_no'] = $data['year'].sprintf('%05d', $member_info->id);
+        $data['email'] = $member_info->email;
+        $data['firstname'] = $member_info->firstname;
+        $data['lastname'] = $member_info->lastname;
+
+
         $json = json_decode($this->encryption->decrypt($this->session->token));
-        $data['member_no'] = $json->{'member_no'};
-        $data['firstname'] = $json->{'firstname'};
-        $data['lastname'] = $json->{'lastname'};
+        
+        // $data['member_no'] = $json->{'member_no'};
+        // $data['firstname'] = $json->{'firstname'};
+        // $data['lastname'] = $json->{'lastname'};
         $data['date_added'] = $json->{'date_added'};
         $data['email'] = $json->{'email'};
 

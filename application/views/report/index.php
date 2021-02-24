@@ -13,16 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h6 class="m-0 font-weight-bold text-primary"><?php echo $heading_title;?></h6>
         </div>
         <div class="card-body">
-					<?php if (!empty($success)): ?>
-					<div class="alert alert-success alert-dismissible">
-						<?php echo $success; ?>
-					</div>
-					<?php endif;?>
-					<?php if (!empty($error)): ?>
-					<div class="alert alert-danger alert-dismissible">
-						<?php echo $error; ?>
-					</div>
-					<?php endif;?>
+            <?php if (!empty($success)): ?>
+            <div class="alert alert-success alert-dismissible">
+                <?php echo $success; ?>
+            </div>
+            <?php endif;?>
+            <?php if (!empty($error)): ?>
+            <div class="alert alert-danger alert-dismissible">
+                <?php echo $error; ?>
+            </div>
+            <?php endif;?>
                 <div class="row">
                     <div class="container-fluid">
 
@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="tab-pane fade show active" id="me" role="tabpanel" aria-labelledby="me-tab">
                             <table class="table table-hover">
                                 <thead>
-                                    <th style="border: 0;"><b>โครงการ</b></th>
+                                    <th style="border: 0;"><b>โครงการที่สมัคร</b></th>
                                     <th class="text-right" style="border: 0;"><b>Trial</b></th>
                                 </thead>
                                 <tbody>
@@ -70,10 +70,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade show active" id="other" role="tabpanel" aria-labelledby="other-tab">
+                        <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
                             <table class="table table-hover">
                                 <thead>
-                                    <th style="border: 0;"><b>โครงการ</b></th>
+                                    <th>โครงการที่มีสิทธิ์</th>
                                     <th class="text-right" style="border: 0;"><b>Trial</b></th>
                                 </thead>
                                 <tbody>
