@@ -46,9 +46,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
           </div>
           <div class="form-group row mt-4">
             <label for="inputTotal" class="col-sm-1 col-form-label">ยอดชำระ</label>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
               <!-- <input type="number" class="form-control-plaintext" readonly id="inputTotal" value="100"> -->
-              <h4>1,000 บาท</h4>
+              <h4><?php echo number_format($total,2);?> บาท <small>(<?php echo $total_text;?>)</small></h4>
             </div>
           </div>
         </div>
@@ -75,11 +75,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <tbody>
               <?php foreach ($program_list as $register_program) : ?>
               <tr>
-                <td><?php echo $register_program->program_name;?></td>
-                <td><input type="text" name="bill_company[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_company;?>" class="form-control" placeholder="ผู้ชำระเงิน" required /></td>
-                <td><input type="text" name="bill_name[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_name;?>" class="form-control" placeholder="ออกใบเสร็จในนาม" required /></td>
-                <td><input type="text" name="bill_contact[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_contact;?>" class="form-control" placeholder="ผู้ประสานงาน" required /></td>
-                <td><input type="text" name="bill_address[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_address;?>" class="form-control" placeholder="ที่อยู่จัดส่งใบเสร็จ" required /></td>
+                <td width="20%"><?php echo $register_program->program_name;?></td>
+                <td width="20%"><input type="text" name="bill_company[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_company;?>" class="form-control" placeholder="ผู้ชำระเงิน" required /></td>
+                <td width="20%"><input type="text" name="bill_name[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_name;?>" class="form-control" placeholder="ออกใบเสร็จในนาม" required /></td>
+                <td width="20%"><input type="text" name="bill_contact[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_contact;?>" class="form-control" placeholder="ผู้ประสานงาน" required /></td>
+                <td width="20%"><input type="text" name="bill_address[<?php echo $register_program->id;?>]" value="<?php echo $register_program->bill_address;?>" class="form-control" placeholder="ที่อยู่จัดส่งใบเสร็จ" required /></td>
               </tr>
               <?php endforeach; ?>
             </tbody>

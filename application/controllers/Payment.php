@@ -55,6 +55,7 @@ class Payment extends CI_Controller
 
     // Get List Program
     $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, false);
+    
 
     // Condition discount only program
     $total = 0;
@@ -71,6 +72,9 @@ class Payment extends CI_Controller
       } else if ($value->program_id == 13) {
         $case_tree = "true";
       }
+      $payment_info = $this->model_payment->getList($value->payment_id);
+      $data['program_list'][$key]->payment_method = $payment_info->payment_method;
+      $data['program_list'][$key]->image = $payment_info->image;
     }
 
     if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
@@ -121,23 +125,32 @@ class Payment extends CI_Controller
       } else {
         $uploaded = $this->upload->data();
         $image = $uploaded['file_name'];
-        $insert = array(
-          'register_id' => $register_id,
-          'member_id' => $member_no,
-          'admin_id' => 0, // admin for check data
-          'image' => $image,
-          'bank_name' => $bank,
-          'total' => $this->input->post('total'),
-          'slip_date' => $this->input->post('date_payment'),
-          'slip_time' => $this->input->post('time_payment'),
-          'date_added' => date('Y-m-d H:i:s'),
+
+        $filter=array(
+          'mhd_payment.register_id' => $register_id,
+          'mhd_payment.member_id'   => $member_id,
         );
-        $payment_id = $this->model_payment->add($insert);
+        $payment_info = $this->model_payment->getLists($filter);
+        $payment_info = $payment_info[0];
+
+
+        $update = array(
+          'register_id' => $register_id,
+          'member_id'   => $member_no,
+          'admin_id'    => 0, // admin for check data
+          'image'       => $image, 
+          'bank_name'   => $bank,
+          'total'       => $this->input->post('total'),
+          'slip_date'   => $this->input->post('date_payment'),
+          'slip_time'   => $this->input->post('time_payment'),
+          'date_modify'  => date('Y-m-d H: i: s'),
+        );
+        $resultpayment = $this->model_payment->edit($payment_info->id, $update);
 
         //find register program and update flag payments
-        $this->model_register_program->updateSlip($register_id, $payment_id);
+        $this->model_register_program->updateSlip($register_id, $payment_info->id);
 
-        if ($payment_id > 0) {
+        if ($resultpayment==1) {
           $this->session->set_userdata('uploadSuccess', 'แจ้งชำระเงินเรียบร้อยแล้ว รอเจ้าหน้าที่ตรวจสอบระบบ');
         } else {
           $this->session->set_userdata('uploadFailed', 'เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่');

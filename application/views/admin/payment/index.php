@@ -75,7 +75,7 @@
 									<tr>
 										<th>เลขสมาชิก</th>
 										<th>วันเวลาชำระเงิน</th>
-										<th>ธนาคาร</th>
+										<th>ประเภทการชำระ</th>
 										<th>ยอดแจ้งชำระ</th>
 										<th>รูปภาพ <small>(คลิกเพื่อยืนยัน)</small></th>
 										<!-- <th width="15%" class="text-center">การจัดการ</th> -->
@@ -84,6 +84,7 @@
 								<tbody>
 									<?php if (count($lists) > 0): ?>
 									<?php foreach ($lists as $key => $value): ?>
+										<?php if (($value->payment_method=='bank_transfer'&&!empty($value->image))||in_array($value->payment_method, array('cheque','cash'))) : ?>
 									<tr>
 										<td class="<?php echo $value->status == 1 ? 'text-success' : ''; ?>">
 											<?php echo $value->member_no; ?>
@@ -92,16 +93,27 @@
 											<?php echo $date_pay = date('d/m/Y H:i:s', strtotime($value->slip_date . ' ' . $value->slip_time)); ?>
 										</td>
 										<td class="<?php echo $value->status == 1 ? 'text-success' : ''; ?>">
-											<?php echo $value->bank_name; ?>
+											<?php 
+												switch($value->payment_method) {
+													case 'bank_transfer':  echo 'โอนเงินเข้าบัญชี 016-452491-2';  break;
+													case 'cheque':  echo 'เช็คธนาคาร';  break;
+													case 'cash':  echo 'ชำระเงินสด';  break;
+												} 
+											?>
 										</td>
 										<td class="<?php echo $value->status == 1 ? 'text-success' : ''; ?>">
 											<?php echo number_format($value->total, 2); ?>
 										</td>
 										<td>
+											
 											<a data-toggle="modal" data-target=".exsample_img_<?php echo $key.$value->id; ?>"
 												style="cursor:pointer">
+												<?php if ($value->payment_method=='bank_transfer'): ?>
 												<img src="<?php echo base_url() . 'upload/' . $value->image; ?>" class="img-thumbnail"
 													style="max-height:100px;" />
+												<?php else: ?>
+												View
+												<?php endif;?>
 											</a>
 											<div class="modal fade exsample_img_<?php echo $key.$value->id; ?>" tabindex="-1" role="dialog"
 												aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -116,7 +128,8 @@
 														</div>
 														<div class="modal-body ">
 															<div class="row">
-																<div class="col-sm-6">
+															
+																<div class="<?php echo ($value->payment_method=='bank_transfer') ? 'col-sm-6' : 'col-sm-12';?>">
 																	<?php $total = 0;?>
 																	<?php foreach ($value->programs as $program): ?>
 																	<?php $total += (double) $program->price;?>
@@ -134,9 +147,15 @@
 																			</td>
 																		</tr>
 																		<tr>
-																			<th>ธนาคาร</th>
+																			<th>ประเภทการชำระ</th>
 																			<td>
-																				<?php echo $value->bank_name; ?>
+																			<?php 
+																				switch($value->payment_method) {
+																					case 'bank_transfer':  echo 'โอนเงินเข้าบัญชี ธนาคารไทยพาณิชย์ จำกัด (มหาชน) สาขาศิริราช เลขที่บัญชี 016-452491-2 ชื่อบัญชี "โครงการ การประเมินคุณภาพทางห้องปฏิบัติการ โดดยองค์กรภายนอก คณะเทคนิคการแพทย์" พร้อมหลักฐานแนบ';  break;
+																					case 'cheque':  echo 'เช็คธนาคารในนาม "โครงการ การประเมินคุณภาพทางห้องปฏิบัติการ โดดยองค์กรภายนอก คณะเทคนิคการแพทย์"';  break;
+																					case 'cash':  echo 'ชำระเงินสด ที่ ศูนย์พัฒนามาตรฐานการประเมินผลิตภัณฑ์ คณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล (โรงพยาบาลศิริราช)';  break;
+																				} 
+																			?>
 																			</td>
 																		</tr>
 																		<tr>
@@ -181,7 +200,9 @@
 
 																</div>
 																<div class="col-sm-6 text-center">
+																<?php if ($value->payment_method=='bank_transfer'): ?>
 																	<img src="<?php echo base_url() . 'upload/' . $value->image; ?>" class="img-fluid" />
+																<?php endif;?>
 																</div>
 															</div>
 														</div>
@@ -200,6 +221,7 @@
 										</td>
 
 									</tr>
+										<?php endif;?>
 									<?php endforeach;?>
 									<?php endif;?>
 								</tbody>

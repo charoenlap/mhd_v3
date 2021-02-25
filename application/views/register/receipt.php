@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td class="text-center"><?php echo number_format($value->price, 2); ?></td>
                 <td class="text-center"><?php echo $value->bill_company; ?></td>
                 <td class="text-center"><?php echo $value->bill_name; ?></td>
-                <td class="text-center"><?php echo $value->bill_address; ?></td>
+                <td class="text-left"><?php echo $value->bill_address; ?></td>
                 <td class="text-center"><?php echo $value->bill_contact; ?></td>
             </tr>
             <?php } ?>
@@ -143,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 **** การสมัครสมาชิกของท่านจะเสร็จสมบูรณ์ **** <br>
                 หลังจากที่ท่านได้รับใบเสร็จรับเงินตัวจริง จากเทคนิคการแพทย์ มหาวิทยาลัยมหิดล <br>
             </div>
-            <div class="container text-left " id="footer">
+            <div class="container text-left pb-3" id="footer">
                 มีปัญหาในการสมัครสมาชิก/ชำระเงิน ติดต่อ<br>
                 ศูนย์พัฒนามาตรฐานและการประเมินผลิตภัณฑ์ <br>
                 เลขที่ 2 ถนนวังหลัง แขวงศิริราช เขตบางกอกน้อย กรุงเทพฯ 10700 <br>

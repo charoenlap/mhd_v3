@@ -135,13 +135,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php if (count($program_list)>0) : ?>
                                                 <?php foreach ($program_list as $key => $value) { ?>
-                                                
+                                                    <?php if (($value->payment_method=='bank_transfer'&&empty($value->image))) : ?>
                                                 <tr>
                                                     <td class="text-center"><input type="checkbox" /></td>
                                                     <td class="text-center"><?php echo $_SESSION['year']; ?></td>
                                                     <td class="text-center"><?php echo $value->program_name; ?></td>
                                                     <td class="text-right"><?php echo number_format($value->price,2); ?></td>
                                                 </tr>
+                                                    <?php endif; ?>
                                                 <?php } ?>
                                                 <?php else: ?>
                                                 <tr>

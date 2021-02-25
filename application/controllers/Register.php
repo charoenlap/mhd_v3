@@ -98,6 +98,8 @@ class Register extends CI_Controller
 
                     // check program in this year
                     $register_program_id = $this->model_register_program->checkProgramInRegister($register_id, $checkbox_program_id, $member_id, $company_id);
+                    // get company
+                    $company_info = $this->model_company->getList($company_id);
                     
                     $insert = array(
                         'register_id' => $register_id,
@@ -108,6 +110,12 @@ class Register extends CI_Controller
                         'year_id'     => $year_id,
                         'program_id'  => $checkbox_program_id,
                         'price'       => $price,
+                        'bill_company'  => $member_info->firstname.' '.$member_info->lastname,
+                        'bill_name'     => $member_info->firstname.' '.$member_info->lastname,
+                        'bill_contact'  => $member_info->firstname.' '.$member_info->lastname,
+                        'bill_address'  => $company_info->name.(!empty($company_info->address_1)?', '.$company_info->address_1:'').(!empty($company_info->address_2)?', '.$company_info->address_2:'').(!empty($company_info->district)?', '.$company_info->district:'').(!empty($company_info->country)?', '.$company_info->country:'').(!empty($company_info->province)?', '.$company_info->province:'').(!empty($company_info->postcode)?', '.$company_info->postcode:''),
+                        'bill_title_th' => $member_info->firstname.' '.$member_info->lastname,
+                        'bill_title_en' => $member_info->firstname.' '.$member_info->lastname,
                         'date_added'  => date('Y-m-d H: i: s'),
                     );
                     if ($register_program_id != false && $register_program_id > 0) {
@@ -190,10 +198,46 @@ class Register extends CI_Controller
 
         //get program list
         $data['program_list'] = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id);
+        // ส่วนของการคำนวณ
+        $total = 0;
+        $discount = 0;
+        $case_one = "false";
+        $case_two = "false";
+        $case_tree = "false";
+        foreach ($data['program_list'] as $key => $value) {
+            $total += $value->price;
+            if ($value->program_id == 10) {
+                $case_one = "true";
+            } else if ($value->program_id == 12) {
+                $case_two = "true";
+            } else if ($value->program_id == 13) {
+                $case_tree = "true";
+            }
+        }
+        if ($case_one == "true" && $case_two == "true" && $case_tree == "true") {
+            $discount = 500;
+        } else if ($case_one == "true" && $case_two == "true") {
+            $discount = 200;
+        }
+        $data['total'] = $total;
+        $data['total_text'] = $this->num2wordThai( $total );
+        $data['discount'] = $discount;
 
         
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $update_registerprogram = array();
+
+            $filter=array(
+            'mhd_payment.register_id' => $register_id,
+            'mhd_payment.member_id'   => $member_id,
+            );
+            $payment_info = $this->model_payment->getLists($filter);
+            $payment_info = $payment_info[0];
+
+            $update = array(
+                'payment_method' => $this->input->post('payment_method')
+            );
+            $this->model_payment->edit($payment_info->id, $update);
 
             $bill_company = $this->input->post('bill_company');
             foreach ($bill_company as $register_program_id => $value) {
@@ -208,6 +252,8 @@ class Register extends CI_Controller
                 );
                 $this->model_register_program->edit($register_program_id, $update_registerprogram);
             }
+
+
 
             redirect('register/receipt');
             exit();
