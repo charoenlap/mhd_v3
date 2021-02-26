@@ -54,7 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'testing');
 	define('KEY', 'sn3FUrBRNqQyCTtOaZXfQfiaAen0eD5T');
 
 	// you can change email sender on  application/libraries/MY_Email.php
