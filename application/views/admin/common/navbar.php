@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
                 <li class="nav-header">ระบบรายงานผล</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url('admin/report/index');?>" class="nav-link">
                         <i class="fas fa-sign-in-alt"></i>
                         <p>
                             ดูรายงานที่สมาชิกแจ้งมา

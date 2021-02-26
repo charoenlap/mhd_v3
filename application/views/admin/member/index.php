@@ -102,8 +102,8 @@
                                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/member/edit/'.$value->id);?>">แก้ไข ข้อมูลผู้สมัคร</a>
                                                     <a class="dropdown-item" href="#">แก้ไข โปรแกรมที่สมัคร</a>
-                                                    <a class="dropdown-item" href="#">ตรวจสอบ การชำระเงิน</a>
-                                                    <a class="dropdown-item" href="#">Export Excel</a>
+                                                    <!-- <a class="dropdown-item" href="#">ตรวจสอบ การชำระเงิน</a> -->
+                                                    <!-- <a class="dropdown-item" href="#">Export Excel</a> -->
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/member/sendEmailConfirm/'.$value->id);?>" onclick="return confirm('การส่งเมลไม่ควรกดส่งถี่ๆ จะทำให้อีเมลระบบโดนแจ้งเป็นสแปมเมลได้ ยืนยันการส่งเมล?');">ส่งอีเมลยืนยันการสมัคร</a>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/member/sendEmailForgot/'.$value->id);?>" onclick="return confirm('การส่งเมลไม่ควรกดส่งถี่ๆ จะทำให้อีเมลระบบโดนแจ้งเป็นสแปมเมลได้ ยืนยันการส่งเมล?');">ส่งอีเมลรีเซทรหัสผ่าน</a>

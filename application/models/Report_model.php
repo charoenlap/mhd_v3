@@ -94,6 +94,14 @@ class Report_model extends CI_Model {
       return $query->result();
     }
   }
+  public function getMemberInReport($year_id, $program_id, $trial_id)
+  {
+    $this->db->where('year_id', $year_id);
+    $this->db->where('program_id', $program_id);
+    $this->db->where('trial_id', $trial_id);
+    $query = $this->db->get('report');
+    return $query->result();
+  }
   // ------------------------------------------------------------------------
 
 }

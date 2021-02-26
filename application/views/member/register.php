@@ -84,15 +84,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <input type="email" name="email" class="form-control form-control-user <?php echo !empty($email) ? 'form-control-plaintext' : '';?>" <?php echo !empty($email) ? 'readonly' : '';?> id="" placeholder="อีเมล" required value="<?php echo $email;?>">
+                                            <input type="email" name="email" class="form-control  <?php echo !empty($email) ? 'form-control-plaintext' : '';?>" <?php echo !empty($email) ? 'readonly' : '';?> id="" placeholder="อีเมล" required value="<?php echo $email;?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6">
-                                            <input type="password" name="password" class="form-control form-control-user" id="" placeholder="รหัสผ่าน" required>
+                                            <input type="password" name="password" class="form-control " id="" placeholder="รหัสผ่าน" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="password" name="confirm" class="form-control form-control-user" id="" placeholder="ยืนยันรหัสผ่าน" required>
+                                            <input type="password" name="confirm" class="form-control " id="" placeholder="ยืนยันรหัสผ่าน" required>
                                         </div>
                                     </div>
                                     <hr>
@@ -105,15 +105,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="firstname" class="form-control form-control-user" id="" placeholder="ชื่อ" required>
+                                            <input type="text" name="firstname" class="form-control " id="" placeholder="ชื่อ" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="lastname" class="form-control form-control-user" id="" placeholder="นามสกุล" required>
+                                            <input type="text" name="lastname" class="form-control " id="" placeholder="นามสกุล" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="telephone" class="form-control form-control-user" id="" placeholder="เบอร์โทรศัพท์" required>
+                                            <input type="text" name="telephone" class="form-control " id="" placeholder="เบอร์โทรศัพท์" required>
                                         </div>
                                     </div>
                                     <hr>
@@ -126,38 +126,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="hospital" class="form-control form-control-user" id="" placeholder="ชื่อโรงพยาบาล" required>
+                                            <input type="text" name="hospital" class="form-control " id="" placeholder="ชื่อโรงพยาบาล" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="room" class="form-control form-control-user" id="" placeholder="ชื่อห้องปฏิบัติการ" required>
+                                            <input type="text" name="room" class="form-control " id="" placeholder="ชื่อห้องปฏิบัติการ" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="address_1" class="form-control form-control-user" id="" placeholder="เลขที่บ้าน" required>
+                                            <!-- <input type="text" name="type_hospital" value="<?php echo $type_hospital;?>" class="form-control" id="" placeholder="ประเภทโรงพยาบาล" required> -->
+                                            <select name="type_hospital" id="" class="form-control">
+                                                <option value="โรงพยาบาลศูนย์">โรงพยาบาลศูนย์</option>
+                                                <option value="โรงพยาบาลทั่วไป">โรงพยาบาลทั่วไป</option>
+                                                <option value="โรงพยาบาลชุมชน">โรงพยาบาลชุมชน</option>
+                                                <option value="โรงพยาบาลมหาวิทยาลัย">โรงพยาบาลมหาวิทยาลัย</option>
+                                                <option value="โรงพยาบาลเอกชน">โรงพยาบาลเอกชน</option>
+                                                <option value="ห้องปฏิบัติการเอกชน">ห้องปฏิบัติการเอกชน</option>
+                                                <option value="อื่นๆ">อื่นๆ</option>
+                                            </select>
+                                            <input type="text" name="type_hospital_other" class="form-control d-none mt-1" placeholder="กรอกประเภทโรงพยาบาล" />
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="address_2" class="form-control form-control-user" id="" placeholder="ตึก ชั้น ซอย ถนน">
+                                            <select name="total_bed" id="" class="form-control">
+                                                <option value="1">น้อยกว่า 100 เตียง</option>
+                                                <option value="2">101 - 300 เตียง</option>
+                                                <option value="3">301 - 500 เตียง</option>
+                                                <option value="4">มากกว่า 500 เตียง</option>
+                                            </select>
+                                            <!-- <input type="text" name="total_bed" value="<?php echo $total_bed;?>" class="form-control" id="" placeholder="จำนวนเตียง" required> -->
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="district" class="form-control form-control-user" id="district" placeholder="แขวง/ตำบล" required>
+                                            <input type="text" name="address_1" class="form-control " id="" placeholder="เลขที่บ้าน" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="address_2" class="form-control " id="" placeholder="ตึก ชั้น ซอย ถนน">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" name="district" class="form-control " id="district" placeholder="แขวง/ตำบล" required>
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="country" class="form-control form-control-user" id="country" placeholder="เขต/อำเภอ" required>
+                                            <input type="text" name="country" class="form-control " id="country" placeholder="เขต/อำเภอ" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="province" class="form-control form-control-user" id="province" placeholder="จังหวัด" required>
+                                            <input type="text" name="province" class="form-control " id="province" placeholder="จังหวัด" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" name="postcode" class="form-control form-control-user" id="postcode" placeholder="รหัสไปรษณีย์" required>
+                                            <input type="text" name="postcode" class="form-control " id="postcode" placeholder="รหัสไปรษณีย์" required>
                                         </div>
                                     </div>
-                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="สมัครสมาชิก">
+                                    <input type="submit" class="btn btn-primary btn-block" value="สมัครสมาชิก">
                                 </form>
                                 <hr>
                                 <div class="text-center">
@@ -171,6 +195,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
 
+
+<script>
+$(document).ready(function () {
+    $('[type="submit"]').click(function(e){
+        $(this).html('กำลังบันทึก...').attr('disabled','disabled');
+        $('form').submit();
+    });
+
+    $('[name="type_hospital"]').change(function(e){
+        let other = 'อื่นๆ';
+        if ($(this).val()===other) {
+            $('[name="type_hospital_other"]').removeClass('d-none');
+        } else {
+            $('[name="type_hospital_other"]').addClass('d-none');
+        }
+    });
+});
+</script>
     </body>
 
 </html>

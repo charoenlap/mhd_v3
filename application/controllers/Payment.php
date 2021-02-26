@@ -143,7 +143,7 @@ class Payment extends CI_Controller
           'total'       => $this->input->post('total'),
           'slip_date'   => $this->input->post('date_payment'),
           'slip_time'   => $this->input->post('time_payment'),
-          'date_modify'  => date('Y-m-d H: i: s'),
+          'date_modify' => date('Y-m-d H: i: s'),
         );
         $resultpayment = $this->model_payment->edit($payment_info->id, $update);
 

@@ -1,5 +1,34 @@
 <?php
 class MY_Loader extends CI_Loader {
+
+    public function TemplateAdminProgram($template_name, $vars = array(), $return = FALSE)
+    {
+        if($return):
+            $content = $this->view('admin/common/header', $vars, $return);
+            $content .= $this->view('admin/common/navbar', $vars, $return);
+            $content .= $this->view('report/header', $vars, $return);
+            $content .= $this->view($template_name, $vars, $return);
+            $content .= $this->view('report/footer', $vars, $return);
+            $content .= $this->view('admin/common/footer', $vars, $return);
+            return $content;
+        else:
+            if (isset($_POST['type']) && !empty($_POST['type']) && $_POST['type']=='preview') {
+                $this->view('admin/common/header', $vars);
+                // $this->view('admin/common/navbar', $vars);
+                $this->view('admin/report/header', $vars);
+                $this->view($template_name, $vars);
+                $this->view('admin/report/footer', $vars);
+                // $this->view('admin/common/footer', $vars);
+            } else {
+                $this->view('admin/common/header', $vars);
+                $this->view('admin/common/navbar', $vars);
+                $this->view('admin/report/header', $vars);
+                $this->view($template_name, $vars);
+                $this->view('admin/report/footer', $vars);
+                $this->view('admin/common/footer', $vars);
+            }
+        endif;
+    }
     public function TemplateProgram($template_name, $vars = array(), $return = FALSE)
     {
         if($return):

@@ -12,7 +12,6 @@ class Report extends CI_Controller
     $data = array();
     $data['heading_title'] = 'แจ้งส่งผลการทดสอบ ';
     $data['action'] = base_url('report/detail');
-    $filter = array();
 
 
     $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
@@ -23,6 +22,7 @@ class Report extends CI_Controller
     $company_id = $register_info->company_id;
     $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
 
+    $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
      // filter choose program
      $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, null, $year_id);
@@ -64,6 +64,8 @@ class Report extends CI_Controller
 
     $this->load->template('report/index', $data);
   }
+
+  
   public function program($slug, $register_program_id=null) 
   {
     $data = array();

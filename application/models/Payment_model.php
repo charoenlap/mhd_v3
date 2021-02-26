@@ -77,7 +77,8 @@ class Payment_model extends CI_Model {
     $this->db->join('mhd_member','mhd_member.id = mhd_payment.member_id','LEFT');
     $this->db->where('mhd_member.del', 0);
     $query = $this->db->get('payment');
-    // echo $this->db->last_query();
+    echo $this->db->last_query();
+    echo '<br>';
     return $query->result();
   }
   // ------------------------------------------------------------------------

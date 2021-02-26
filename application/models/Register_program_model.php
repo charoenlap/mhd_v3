@@ -92,10 +92,13 @@ class Register_program_model extends CI_Model {
   }
   public function updateSlip($register_id, $payment_id=0) {
     $this->db->set('send_slip', 1);
-    $this->db->set('payment_id', (int)$payment_id);
+    // $this->db->set('payment_id', (int)$payment_id);
     $this->db->where('register_id', $register_id);
-    $this->db->where('payment_id is null', null, false);
+    // $this->db->where('payment_id is null', null, false);
+    $this->db->where('payment_id', $payment_id);
     $this->db->update('register_program');
+    // echo $this->db->last_query();
+    // exit();
     return $this->db->affected_rows()==1 ? true : false;
   }
   public function delmember($id) 

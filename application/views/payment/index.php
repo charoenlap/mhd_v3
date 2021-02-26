@@ -126,7 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <table class="table table-bordered px-2">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center"><input type="checkbox" /></th>
+                                                    <!-- <th class="text-center"><input type="checkbox" /></th> -->
                                                     <th class="text-center">ปี</th>
                                                     <th class="text-center">โปรแกรม</th>
                                                     <th class="text-center">ราคา</th>
@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?php foreach ($program_list as $key => $value) { ?>
                                                     <?php if (($value->payment_method=='bank_transfer'&&empty($value->image))) : ?>
                                                 <tr>
-                                                    <td class="text-center"><input type="checkbox" /></td>
+                                                    <!-- <td class="text-center"><input type="checkbox" /></td> -->
                                                     <td class="text-center"><?php echo $_SESSION['year']; ?></td>
                                                     <td class="text-center"><?php echo $value->program_name; ?></td>
                                                     <td class="text-right"><?php echo number_format($value->price,2); ?></td>
