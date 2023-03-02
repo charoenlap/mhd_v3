@@ -36,8 +36,6 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
-
-
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -53,7 +51,7 @@
                                     <tr>
                                         <td><?php echo $value->name;?></td>
                                         <td class="text-center"><?php echo $value->code;?></td>
-                                        <td class="text-center">0</td>
+                                        <td class="text-center"><?php echo $count_program[$value->id]; ?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,7 +61,7 @@
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/program/edit/'.$value->id);?>">แก้ไข</a>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/program/setting/'.$value->id);?>">ตั้งค่าเครื่อง</a>
                                                     <a class="dropdown-item" href="<?php echo base_url('admin/trial/list/'.$value->id.'/');?>">จัดการ Trial</a>
-                                                    <a class="dropdown-item disabled" href="#" disabled="disabled">คู่มือ</a>
+                                                    <a class="dropdown-item" href="<?php echo base_url('upload/คู่มือ.pdf'); ?>" target="_blank" >คู่มือ</a>
                                                     <!-- <div class="dropdown-divider"></div> -->
                                                     <!-- <a class="dropdown-item text-danger" href="<?php echo base_url('admin/program/del/'.$value->id);?>" onclick="return confirm('ยืนยันการลบ');">ลบ ข้อมูลผู้สมัคร</a> -->
                                                 </div>
@@ -75,7 +73,7 @@
                                 </tbody>
                             </table>
 
-                            <?php echo $pagination; ?>
+                            <?php //echo $pagination; ?>
 
                             <small class="float-right mt-4">ไม่สามารถเพิ่มโปรแกรมเองได้เนื่องจากรูปแบบของแต่ละโปรแกรมไม่เหมือนกัน</small>
 

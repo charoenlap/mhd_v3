@@ -30,15 +30,15 @@ date_default_timezone_set('Asia/Bangkok');
 switch (ENVIRONMENT)
 {
 	case 'development':
-    $config['base_url'] = 'http://localhost/mhd/';
+    $config['base_url'] = 'https://www.fsoftpro.com/mhd/';
     break;
 
   case 'testing':
-    $config['base_url'] = 'https://govindarestaurantbkk.com/mhd/';
+    $config['base_url'] = 'https://www.fsoftpro.com/mhd/';
     break;
 
   case 'production':
-    $config['base_url'] = 'https://govindarestaurantbkk.com/mhd/';
+    $config['base_url'] = 'https://www.fsoftpro.com/mhd/';
     break;
   default:
     echo 'The application environment is not set correctly.';

@@ -16,7 +16,7 @@ class MY_Email extends CI_Email {
             // 'smtp_user' => 'munk.gorn@gmail.com',
             // 'smtp_pass' => 'xiymhnzdnbhekygh',
             'smtp_user'    => 'support@fsoftpro.com',
-            'smtp_pass'    => 'fiverama2',
+            'smtp_pass'    => 'Fsps0lution',
             'smtp_port'    => 587,
             'smtp_timeout' => 5,
             'smtp_crypto'  => 'tls',

@@ -29,7 +29,7 @@
                         <span class="info-box-icon bg-info"><i class="fas fa-sign-in-alt"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">รายงานที่สมาชิกแจ้งมา</span>
-                            <span class="info-box-number">2</span>
+                            <span class="info-box-number"><?php echo count($report_trial['0']); ?></span>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <span class="info-box-icon bg-success"><i class="fas fa-file-invoice-dollar"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">แจ้งชำระเงิน</span>
-                            <span class="info-box-number">1,410</span>
+                            <span class="info-box-number"><?php echo count($payment_info); ?></span>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <span class="info-box-icon bg-warning"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">จำนวนสมาชิกทั้งหมด</span>
-                            <span class="info-box-number">1,410</span>
+                            <span class="info-box-number"><?php echo count($member_info); ?></span>
                         </div>
                     </div>
                 </div>

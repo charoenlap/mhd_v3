@@ -59,6 +59,12 @@ class Program_model extends CI_Model {
     $query = $this->db->get('program');
     return $query->num_rows() == 1 ? $query->row() : false;
   }
+  public function getListsSlug($slug){
+    $this->db->where('slug', $slug);
+    $this->db->where('del', 0);
+    $query = $this->db->get('program');
+    return $query->num_rows() == 1 ? $query->row() : false;
+  }
 
   public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
@@ -97,6 +103,11 @@ class Program_model extends CI_Model {
 
   public function getProgramBySlug($slug)
   {
+    // if($slug == "eqaisyphilis"){
+    //   $slug = "eqai-syphilis";
+    // }elseif($slug == "eqaihbv"){
+    //   $slug = "eqai-hbv";
+    // }
     $this->db->where('slug', $slug);
     $this->db->where('del', 0);
     $query = $this->db->get('program');

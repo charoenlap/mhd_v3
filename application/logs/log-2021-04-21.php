@@ -1,0 +1,20 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2021-04-21 09:44:37 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:01:21 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:01:32 --> ท่านยังไม่ได้ยืนยันอีเมล หรือ รหัสผ่านไม่ถูกต้อง
+ERROR - 2021-04-21 10:01:32 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:01:41 --> ท่านยังไม่ได้ยืนยันอีเมล หรือ รหัสผ่านไม่ถูกต้อง
+ERROR - 2021-04-21 10:01:41 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:01:48 --> ท่านยังไม่ได้ยืนยันอีเมล หรือ รหัสผ่านไม่ถูกต้อง
+ERROR - 2021-04-21 10:01:48 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:01:56 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:02:24 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:04:02 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:05:22 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 10:28:39 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 12:22:27 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 16:49:18 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 16:52:54 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 17:34:01 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-04-21 17:41:10 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532

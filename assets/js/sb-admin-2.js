@@ -54,3 +54,32 @@
   });
 
 })(jQuery); // End of use strict
+
+function limit_decimal(ele,limit){
+  // $this.val(parseFloat($this.val(),10).toFixed($limit));
+  // console.log(parseFloat(ele.val()).toFixed(limit));
+  // ele.val();
+  if(parseFloat(ele.val())>0){
+      ele.val(parseFloat(ele.val()).toFixed(limit));
+  }else{
+      ele.val(0);
+  }
+  // console.log($(this).val()+'<<<');
+  // if($(this).val().indexOf('.')!=-1){         
+  //    if($(this).val().split(".")[1].length > 2){                
+  //        if( isNaN( parseFloat( this.value ) ) ) return;
+  //        this.value = parseFloat(this.value).toFixed(2);
+  //    }  
+  // }            
+  // return this; //for chaining
+}
+$(document).ready(function(){
+  $("input.checkbox-two-0").click(function() {
+    var bol = $("input.checkbox-two-0:checked").length >= 2;
+    $("input.checkbox-two-0").not(":checked").attr("disabled", bol);
+});
+$("input.checkbox-two-1").click(function() {
+    var bol = $("input.checkbox-two-1:checked").length >= 2;
+    $("input.checkbox-two-1").not(":checked").attr("disabled", bol);
+});
+})

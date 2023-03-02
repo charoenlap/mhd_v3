@@ -39,6 +39,11 @@ class Home extends CI_Controller
     $list[] = $param;
 
     $param = new stdClass();
+    $param->name = 'การประเมินความพึงพอใจ';
+    $param->link = base_url('home/contentcat/72/');
+    $list[] = $param;
+
+    $param = new stdClass();
     $param->name = 'ใบสมัครสมาชิก';
     $param->link = base_url('home/contentcat/81/');
     $list[] = $param;
@@ -52,13 +57,14 @@ class Home extends CI_Controller
     $data = array();
 
     $data['result'] = $this->model_content->getCatList($catid);
-    $data['contents'] = $this->model_content->getContentByCat($catid);
+    // $data['contents'] = $this->model_content->getContentByCat($catid);
 
 
-    $data['contents'] = $this->model_content->getContentByCat($catid);
+    $data['contents'] = $this->model_content->getContentListByCat($catid);
 
     
-    $data['sub_menu'] = $this->rightSide();
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    $data['right_side'] = $this->rightSide();
     $this->load->TemplateHome('home/cat', $data);
   }
 
@@ -67,8 +73,8 @@ class Home extends CI_Controller
     $data = array();
     $data['result'] = $this->model_content->getContentList($id);
 
-    
-    $data['sub_menu'] = $this->rightSide();
+    $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    $data['right_side'] = $this->rightSide();
 
     $this->load->TemplateHome('home/content', $data);
   }
@@ -76,6 +82,8 @@ class Home extends CI_Controller
   {
     $data = array();
     $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    $data['lists']  = $this->model_content->getContentList(179);
+    $data['right_side'] = $this->rightSide();
     $data['size_bg'] = 'height';
     $this->load->TemplateHome('home/about_schemes', $data);
   }
@@ -84,6 +92,7 @@ class Home extends CI_Controller
     $data = array();
 
     $data['sub_menu'] = $this->model_content->getContentByCat(79);
+    $data['right_side'] = $this->rightSide();
     $this->load->TemplateHome('home/contact',$data);
   }
 }

@@ -1,4 +1,4 @@
-<?php
+	<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -97,7 +97,7 @@ $db['dev'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'fsoftpro_mhd',
+	'database' => 'fsoftpro_uatmhd',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'mhd_',
 	'pconnect' => FALSE,
@@ -117,9 +117,9 @@ $db['dev'] = array(
 $db['production'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'fsoftpro_mhd',
-	'password' => 'Cgjtj88FX',
-	'database' => 'fsoftpro_mhd',
+	'username' => 'fsoftpro_uatmhd',
+	'password' => 'T86OIEOM',
+	'database' => 'fsoftpro_uatmhd',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'mhd_',
 	'pconnect' => FALSE,
@@ -139,9 +139,9 @@ $db['production'] = array(
 $db['govinda'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'govinda_mhd',
-	'password' => 'nmF0WUH5Y',
-	'database' => 'govinda_mhd',
+	'username' => 'fsoftpro_uatmhd',
+	'password' => 'T86OIEOM',
+	'database' => 'fsoftpro_uatmhd',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'mhd_',
 	'pconnect' => FALSE,

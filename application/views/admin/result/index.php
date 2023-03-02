@@ -39,7 +39,6 @@
                             </a>
                             <hr />
 
-
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>

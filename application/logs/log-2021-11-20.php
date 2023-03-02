@@ -1,0 +1,14 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2021-11-20 02:16:54 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 10:27:37 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 10:27:51 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 10:27:52 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 10:32:08 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 14:35:57 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 14:37:36 --> Severity: Warning --> Invalid argument supplied for foreach() /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/application/controllers/Payment.php 61
+ERROR - 2021-11-20 14:37:37 --> Severity: Warning --> Invalid argument supplied for foreach() /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/application/controllers/Payment.php 61
+ERROR - 2021-11-20 14:38:37 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 18:14:39 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-11-20 18:16:59 --> Severity: Warning --> Invalid argument supplied for foreach() /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/application/controllers/Payment.php 61
+ERROR - 2021-11-20 18:16:59 --> Severity: Warning --> Invalid argument supplied for foreach() /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/application/controllers/Payment.php 61

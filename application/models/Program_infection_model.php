@@ -86,7 +86,12 @@ class Program_infection_model extends CI_Model {
 
 
   // Custom Query ------------------------------------------------------------------------
-
+  public function delByProgram($program_id)
+  {
+    $this->db->where('program_id', $program_id);
+    $this->db->delete('program_infection');
+    return $this->db->affected_rows()==1 ? true : false;
+  }
 }
 
 /* End of file Program_instrument_model.php */

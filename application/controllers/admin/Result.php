@@ -170,8 +170,9 @@ class Result extends CI_Controller
               $results[$key]['saved'] = false;
             }
           } else {
+            $config_register_year_id = $this->model_setting->get('config_register_year_id');
             $insert = array(
-              'year_id'     => $year_id,
+              'year_id'     => $config_register_year_id,
               'program_id'  => $program_id,
               'trial_id'    => $trial_id,
               'member_id'     => $user_id,
@@ -179,7 +180,8 @@ class Result extends CI_Controller
               'google_id'   => $result['id'],
               'google_name' => $result['name'],
               'google_type' => $result['type'],
-              'date_added'  => date('Y-m-d H:i:s', time()),
+              // 'date_added'  => date('Y-m-d H:i:s', time()),
+              'date_added'  => date('Y-m-d H:i:s'),
               'status'      => 1
             );
             $r = $this->model_result_link->add($insert);

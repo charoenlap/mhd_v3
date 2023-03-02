@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                padding: 5%;
+            }
+            textarea {
+                width: 100%;
+                height: 200px;
+                font-size: 20pt;
+            }
+            button {
+                width: 100%;
+                height: 100px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: mediumaquamarine;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="POST" action="session-g.php">
+            <h1>ออกใบเสร็จแบบกลุ่ม</h1>
+
+            <label for="receiptName">ออกใบเสร็จในนาม</label>
+            <br>
+
+            <textarea name="receiptName" id="receiptName"></textarea>
+            <br>
+            <br>
+
+            <label for="receiptAddress">ที่อยู่จัดส่งใบเสร็จ</label><br>
+            <textarea name="receiptAddress" id="receiptAddress"></textarea>
+
+            <button type="submit">ENTER</button>
+        </form>
+    </body>
+    
+</html>

@@ -7,7 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?php echo $heading_title;?></h1>
-
     <div class="row">
         <div class="col-sm-12">
             <?php if (!empty($success)): ?> 

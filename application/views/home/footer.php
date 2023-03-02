@@ -1,6 +1,7 @@
         
         </div>
-        <footer>
+    </div>
+    <footer>
         <div class="row">
             <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
             <p class="mb-0"><b>ศูนย์พัฒนามาตรฐานและการประเมินผลิตภัณฑ์ (Center for Standardization and Product validation)</b></p>
@@ -12,8 +13,6 @@
             </div>
         </div>
         </footer>
-    </div>
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

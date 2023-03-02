@@ -62,7 +62,8 @@ class Trial_model extends CI_Model {
     return $query->num_rows() == 1 ? $query->row() : false;
   }
 
-  public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
+  // public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
+  public function getLists($filter=array(), $start=0, $limit='', $sort='', $by='')
   {
     $this->db->select('mhd_program_trial.*,mhd_program_trial.id as id,mhd_year.year as year');
     if (count($filter)>0) {

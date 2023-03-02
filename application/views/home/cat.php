@@ -24,17 +24,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 <ul>
                 <?php foreach ($contents as $content) : ?>
+                <?php if($content->hide == 0 && $content->del == 0) { ?>
                 <li><a href="<?php echo base_url('home/content/'.$content->id);?>"><?php echo $content->name;?></a></li>
+                <?php } ?>
                 <?php endforeach; ?>
                 </ul>
-
                 <!-- view/home/content.php Content here -->
             </div>
         </div>
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4" style="padding:15px 15px;">
         <ul class="list-group" style="margin-right:15px;margin-left:15px;">
-        <?php foreach ($sub_menu as $menu) : ?>
+        <?php foreach ($right_side as $menu) : ?>
+        <?php //foreach ($sub_menu as $menu) : ?>
         <li class="list-group-item bg-blue">
             <a href="<?php echo $menu->link;?>" class="text-write"><i class="fas fa-arrow-right"></i> <?php echo $menu->name;?></a>
         </li>

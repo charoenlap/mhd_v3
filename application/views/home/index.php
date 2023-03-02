@@ -15,7 +15,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </div>
 
 
-
       <div class="col-sm-12 col-md-3">
         <ul id="rightside" class="list-unstyled">
           <?php foreach ($right_side as $menu) : ?>

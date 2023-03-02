@@ -137,6 +137,7 @@ $autoload['model'] = array(
     'Setting_model'           => 'model_setting',
     'Year_model'              => 'model_year',
     'Admin_model'             => 'model_admin',
+    'Admin_permission_model'  => 'model_admin_permission',
     'Register_model'          => 'model_register',
     'Register_program_model'  => 'model_register_program',
     'Company_model'           => 'model_company',
@@ -150,5 +151,6 @@ $autoload['model'] = array(
     'Program_principle_model' => 'model_program_principle',
     'Report_model'            => 'model_report',
     'Result_link_model'       => 'model_result_link',
-    'Old_model'               => 'model_old'
+    'Old_model'               => 'model_old',
+    'Payment_assign_model'    => 'model_payment_assign'
 );

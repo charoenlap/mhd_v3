@@ -36,8 +36,6 @@
                     <?php endif;?>
                     <div class="card">
                         <div class="card-body">
-
-
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -49,12 +47,20 @@
                                     <?php if (count($lists)>0) : ?>
                                     <?php foreach ($lists as $key => $value) : ?>
                                     <tr>
-                                        <td><?php echo $value->name;?></td>
+                                        <td><?php echo $value->name;?>
+                                        <?php if(count($value->report_value) > 0){ ?>
+                                                <span class="badge badge-danger right"><?php echo count($value->report_value); ?></span>
+                                            <?php } ?>
+                                        </td>
                                         <td class="text-center">
                                         <a href="<?php echo base_url('admin/report/trial/'.$year.'/'.$program_slug.'/'.$value->slug);?>">Report</a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                    <?php else : ?>
+                                    <tr>
+                                    <td colspan="2" class="text-center">ไม่พบรายการ Report Trial</td>
+                                    </tr>
                                     <?php endif;?>
                                 </tbody>
                             </table>

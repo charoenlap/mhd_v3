@@ -41,7 +41,6 @@
 				<?php endif;?>
 					<div class="card">
 						<div class="card-body">
-
 							<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 								<div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label">Program</label>
@@ -54,7 +53,7 @@
 									<div class="col-sm-10">
 										<select name="year_id" id="" class="form-control" required>
 											<?php foreach ($years as $value): ?>
-											<option value="<?php echo $value->id; ?>">
+											<option value="<?php echo $value->id; ?>" <?php if($year_id == $value->id){echo "selected";} ?>>
 												<?php echo $value->year; ?>
 											</option>
 											<?php endforeach;?>

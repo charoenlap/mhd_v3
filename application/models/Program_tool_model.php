@@ -69,9 +69,9 @@ class Program_tool_model extends CI_Model {
     if (!empty($sort)) {
       $this->db->order_by($sort, $by);
     } else {
-      $this->db->order_by('section', 'ASC');
-      $this->db->order_by('code', 'ASC');
-      $this->db->order_by('name', 'ASC');
+      // $this->db->order_by('section', 'ASC');
+      // $this->db->order_by('code', 'ASC');
+      // $this->db->order_by('name', 'ASC');
     
     }
     if (count($filter)>0) {

@@ -52,3 +52,7 @@ form .row>label,
     background:rgba(0,0,0,0.3);
     padding:10px 15px;
 }
+
+.text-underline {
+    text-decoration: underline;
+}

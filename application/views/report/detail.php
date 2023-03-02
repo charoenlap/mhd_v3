@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -46,6 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <a href="<?php echo base_url('report/trial/').$value->program_slug.'/'.$value->slug.(isset($register_program_id)&&!empty($register_program_id)?'/'.$register_program_id:'');?>" class="btn btn-primary">
                                                 <?php echo $value->has_report ? 'ดูรายงานที่เคยส่ง' : 'รายงานผล';?>
                                             </a>
+                                            <!-- <a href="<?php echo base_url('report/trial/').$fileNameOpen.'/'.$value->slug.(isset($register_program_id)&&!empty($register_program_id)?'/'.$register_program_id:'');?>" class="btn btn-primary">
+                                                <?php echo $value->has_report ? 'ดูรายงานที่เคยส่ง' : 'รายงานผล';?>
+                                            </a> -->
                                         <?php else: ?>
                                             โปรแกรม <?php echo $value->name;?> หมดเวลาการบันทึกข้อมูลแล้ว
                                         <?php endif; ?>

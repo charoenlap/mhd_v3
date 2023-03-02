@@ -13,6 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta name="author" content="">
 
         <title>EQAS MUMT</title>
+        
+        <!-- fix error favi.co -->
+        <link rel="shortcut icon" href="#">
 
         <!-- Bootstrap core JavaScript-->
         <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
@@ -49,8 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Bootstrap datepicker -->
         <script type="text/javascript" src="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
-
         <link rel="stylesheet" href="<?php echo base_url();?>/assets/css/app.css" />
+
+        <!-- Jquery validate -->
+        <script src="<?php echo base_url();?>assets/vendor/jquery-validate/jquery.validate.js"></script>
+        <!-- <script src="<?php echo base_url();?>assets/vendor/jquery-validate/jquery-1.11.1.js"></script> -->
     </head>
 
     <body id="page-top">

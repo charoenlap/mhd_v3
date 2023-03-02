@@ -54,7 +54,7 @@ class User extends CI_Controller
         $edit = array('date_login'=>date('Y-m-d H:i:s', time()));
         $this->model_admin->edit($result->id, $edit);
         $this->session->set_userdata('admin_token', $this->encryption->encrypt(json_encode($result)));
-        $this->session->set_userdata('admin_info', array('admin_id' => $result->id, 'username'=>$result->username));
+        $this->session->set_userdata('admin_info', array('admin_id' => $result->id, 'username'=>$result->username, 'authority' => $result->authority_id, 'program_permission' => $result->permission_id));
         $text_open = $this->model_setting->get('config_register_open')==0 ? '<span class="badge badge-danger right">ปิด</span>' : '<span class="badge badge-success right">เปิด '.$this->model_year->getList( $this->model_setting->get('config_register_year_id') )->year.'</span>' ;
         $this->session->set_userdata('admin_register', $text_open);
         redirect('admin/home');
@@ -70,6 +70,7 @@ class User extends CI_Controller
   {
     $this->session->unset_userdata('admin_token');
     $this->session->unset_userdata('admin_register');
+    $this->session->unset_userdata('admin_info');
     redirect('admin/user');
   }
 

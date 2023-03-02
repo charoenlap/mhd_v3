@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <body class="bg-gradient-primary">
         <div class="container">
-            <img src="<?php echo base_url();?>assets/img/header.png" class="img-fluid" />
+            <!-- <img src="<?php echo base_url();?>assets/img/header.png" class="img-fluid" /> -->
+            <img src="https://eqamt.mahidol.ac.th/wp-content/uploads/2021/05/banner.png" class="img-fluid w-100 mt-4 mb-2" />
             <?php if (!empty($success)) { ?>
             <div class="card shadow mb-4">
                 <div class="card-body border-left-success text-success"><i class="fas fa-check-circle text-success"></i> <?php echo $success;?></div>

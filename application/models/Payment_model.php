@@ -60,7 +60,7 @@ class Payment_model extends CI_Model {
     $query = $this->db->get('payment');
     return $query->num_rows() == 1 ? $query->row() : false;
   }
-  public function getLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
+  public function getLists($filter=array(), $start=0, $limit='', $sort='', $by='')
   {
     $this->db->select('mhd_payment.*, mhd_member.member_no');
     if (count($filter)>0) {
@@ -115,6 +115,36 @@ class Payment_model extends CI_Model {
     return $query->num_rows() == 1 ? $query->row() : false;
   }
 
+  public function getPaymentByMemberIdRegisterId($member_id,$register_id)
+  {
+    $this->db->where('member_id',$member_id);
+    $this->db->where('register_id',$register_id);
+    $this->db->where('del',0);
+    $query = $this->db->get('payment');
+    return $query->result();
+    // return $query->num_rows() == 1 ? $query->row() : false;
+  }
+
+  public function getPaymentByMemberIdRegister($member_id,$register_id)
+  {
+    $this->db->where('member_id',$member_id);
+    $this->db->where('register_id',$register_id);
+    $this->db->where('del',0);
+    $query = $this->db->get('payment');
+    return $query->num_rows() == 1 ? $query->row() : false;
+  }
+
+  public function getPayments($filter=array()) 
+  {
+    if (count($filter)>0) {
+      foreach ($filter as $key => $value) {
+        $this->db->where($key, $value);
+      }
+
+      $query = $this->db->get('payment');
+      return $query->result();
+    }
+  }
   // ------------------------------------------------------------------------
 
 }

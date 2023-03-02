@@ -38,6 +38,7 @@
     // Init 
     <?php if ( isset($_POST['type']) && !empty($_POST['type']) && $_POST['type']=='preview' ) : ?>
       $('input,select,textarea').attr('disabled','disabled');
+      $('input#input_result').prop('disabled', false);
       $('#blockpreview').show().removeClass('d-none');
       $('.hidepreview').hide();
     <?php endif; ?>
@@ -49,6 +50,7 @@
 
     // Event
     $('#print').click(function(e) {
+      alert('กรุณากดปุ่มยืนยันส่งผลการตรวจด้วยทุกครั้ง ไม่เช่นนั้นผลการตรวจจะไม่ถูกบันทึก');
       console.log('ok');
       window.print();
     });

@@ -1,23 +1,61 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>EQAS-MUMT</title>
+<title>EQAS MUMT</title>
+
+<!-- fix error favi.co -->
+<link rel="shortcut icon" href="#">
+
+<!-- Bootstrap core JavaScript-->
+<script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<?php echo base_url();?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<?php echo base_url();?>assets/js/sb-admin-2.js"></script>
+
+<!-- Page level plugins -->
+<!-- <script src="<?php echo base_url();?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+
+<!-- Page level custom scripts -->
+<script src="<?php echo base_url();?>assets/js/demo/datatables-demo.js"></script>
 
 
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/fontawesome.min.css" />
+<!-- Custom fonts for this template-->
+<link href="<?php echo base_url();?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/home.css" />
-    <!-- <link rel="stylesheet/less" type="text/css" href="assets/css/home.less?t=<?php time();?>" /> -->
-    <!-- <script src="//cdn.jsdelivr.net/npm/less@3.13" ></script> -->
-  </head>
+<!-- Custom styles for this template-->
+<link href="<?php echo base_url();?>assets/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom styles for this page -->
+<!-- <link href="<?php echo base_url();?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<!-- Bootstrap datepicker -->
+<script type="text/javascript" src="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>/assets/css/app.css" />
+
+<!-- Jquery validate -->
+<script src="<?php echo base_url();?>assets/vendor/jquery-validate/jquery.validate.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/vendor/jquery-validate/jquery-1.11.1.js"></script> -->
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/home.css" />
+</head>
+
   <body>
-      <div class="container-fluid px-0 bg-home" style="background: url('<?php echo base_url();?>assets/img/bghome.jpg') no-repeat center center / cover;">
+      <div class="container-fluid px-0 bg-home <?php if($this->uri->segment(2) == 'about_schemes'){echo 'h-100';}?>" <?php if($this->uri->segment(2) == 'about_schemes'){'';}else{ ?> style="background: url('<?php echo base_url();?>assets/img/bghome.jpg') no-repeat center center / cover;" <?php } ?>>
         <div class="row">

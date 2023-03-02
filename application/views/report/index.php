@@ -30,9 +30,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li class="nav-item">
                             <a class="nav-link active" id="me-tab" data-toggle="tab" href="#me" role="tab" aria-controls="me" aria-selected="true">แจ้งส่งผลการทดสอบของตัวเอง</a>
                         </li>
-                        <li class="nav-item">
+                       <!--  <li class="nav-item">
                             <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">แจ้งส่งผลการทดสอบของบุคคลอื่น</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content" id="paneltab">
                         <div class="tab-pane fade show active" id="me" role="tabpanel" aria-labelledby="me-tab">
@@ -43,29 +43,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </thead>
                                 <tbody>
                                     <?php foreach ($programs as $program) :?>
+                                    <?php if (in_array($program->id, $program_choose)) : ?>
                                     <tr>
                                         <td>
                                             <?php echo $program->name; ?>
                                             <?php echo (in_array($program->id, $program_choose) ? '<span class="badge badge-success">สมัครแล้ว</span>' : '');?>
-                                            <?php echo isset($program_slip[$program->id]) && $program_slip[$program->id] == 0 ? '<a href="'.base_url('payment').'"><span class="badge badge-danger">รอแจ้งชำระเงิน</span></a>' : '';?>
-                                            <?php echo isset($program_payment[$program->id]) && $program_payment[$program->id] == 0 ? '<a href="#"><span class="badge badge-primary">รอตรวจสอบชำระเงิน</span></a>' : '';?>
+                                            <?php echo isset($program_slip[$program->id]) && $program_slip[$program->id] == 0 && $program_approve[$program->id] != 1 ? '<a href="'.base_url('payment').'"><span class="badge badge-danger">รอแจ้งชำระเงิน</span></a>' : '';?>
+                                            <?php //echo isset($program_payment[$program->id]) && $program_payment[$program->id] == 0 ? '<a href="#"><span class="badge badge-primary">รอตรวจสอบชำระเงิน</span></a>' : '';?>
+                                            <?php echo isset($program_approve[$program->id]) && $program_approve[$program->id] == 0 && $program_slip[$program->id] == 1 ? '<span class="badge badge-primary">รอตรวจสอบชำระเงิน</span>' : '';?>
                                         </td>  
                                         <td class="text-right">
-                                        
                                             <?php if (in_array($program->id, $program_choose)) : ?>
-                                                <?php if (isset($program_payment[$program->id]) && $program_payment[$program->id] == 0) : ?>
+                                                <?php //if (isset($program_payment[$program->id]) && $program_payment[$program->id] == 0) : ?>
+                                                <?php if (isset($program_approve[$program->id]) && $program_approve[$program->id] == 0 && $program_slip[$program->id] == 1) : ?>
                                                     <a href="<?php echo base_url('payment/'); ?>" class="btn btn-primary disabled" disabled>รอตรวจสอบชำระเงิน</a>
-                                                <?php elseif (isset($program_slip[$program->id]) && $program_slip[$program->id] == 0) : ?>
+                                                <?php elseif (isset($program_slip[$program->id]) && $program_slip[$program->id] == 0 && $program_approve[$program->id] != 1) : ?>
                                                     <a href="<?php echo base_url('payment/'); ?>" class="btn btn-warning">แจ้งชำระเงิน</a>
                                                 <?php else: ?>
-                                                    <a href="<?php echo base_url('report/program/').$program->slug; ?>" class="btn btn-primary">Trial</a>
+                                                    <!-- <p>อยู่ระหว่างปรับปรุงระบบ</p>
+                                                    <?php if($_SESSION['member_info']['email'] == "test1@eqamumt.com"){ ?>
+                                                    <a href="<?php echo base_url('report/program/').$program->slug.'/'.$year_id; ?>" class="btn btn-primary">Trial</a>
+                                                    <?php } ?> -->
+                                                    <a href="<?php echo base_url('report/program/').$program->slug.'/'.$year_id; ?>" class="btn btn-primary">Trial</a>
                                                 <?php endif;?>
                                             <?php else: ?>
-                                                <a href="<?php echo base_url('register/'); ?>" class="btn btn-info">สมัคร</a>
+                                                <a href="<?php echo base_url('register/'); ?>" class="btn btn-info <?php echo isset($year_config) && $year_config == 1 ?'':'disabled'; ?>">สมัคร</a>
                                             <?php endif; ?>
                                             
                                         </td>
                                     </tr>
+                                    <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -83,7 +90,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php echo $program->program_name.' - '.$program->tag; ?>
                                         </td>  
                                         <td class="text-right">
-                                            <a href="<?php echo base_url('report/program/').$program->program_slug.'/'.$program->id; ?>" class="btn btn-primary">Trial</a>
+                                            <!-- <a href="<?php echo base_url('report/program/').$program->program_slug.'/'.$program->id; ?>" class="btn btn-primary">Trial</a> -->
+                                            <a href="<?php echo base_url('report/program/').$program->program_slug.'/'.$year_id.'/'.$program->id; ?>" class="btn btn-primary">Trial</a>
                                             
                                         </td>
                                     </tr>

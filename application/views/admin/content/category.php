@@ -34,10 +34,16 @@
                     <?php if (!empty($error)) : ?>
                     <div class="alert alert-danger alert-dismissible"><?php echo $error;?></div>
                     <?php endif;?>
+
+                    <?php if (!empty($uploadFailed)) : ?>
+                        <div class="alert alert-danger alert-dismissible"><?php echo $uploadFailed; ?></div>
+                    <?php endif; ?>
+                    <?php if (!empty($uploadSuccess)) : ?>
+                        <div class="alert alert-success alert-dismissible"><?php echo $uploadSuccess; ?></div>
+                    <?php endif; ?>
+
                     <div class="card">
                         <div class="card-body">
-
-
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -51,9 +57,11 @@
                                     <tr>
                                         <td><?php echo $value->name;?></td>
                                         <td class="text-center">
-                                            
+                                            <?php if($value->link != ''){ ?>
                                             <a class="btn btn-sm btn-secondary" href="<?php echo $value->link;?>">แก้ไข</a>
-                                            
+                                            <?php } else { ?>
+                                            <a class="btn btn-sm btn-secondary" href="<?php echo base_url('admin/content/list/'.$value->id);?>">แก้ไข</a>
+                                            <?php }?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

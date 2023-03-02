@@ -1,0 +1,10 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2021-03-10 10:37:41 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 10:40:08 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 10:40:12 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 12:44:41 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 14:26:23 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 14:27:34 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 15:16:11 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532
+ERROR - 2021-03-10 15:20:23 --> Severity: Warning --> call_user_func_array() expects parameter 1 to be a valid callback, class 'Error' does not have a method 'index' /home/govinda/domains/fsoftprodev.xyz/public_html/mhd/system/core/CodeIgniter.php 532

@@ -9,14 +9,20 @@ class Result extends CI_Controller
     parent::__construct();
   }
 
-  public function index()
+  public function index($year)
   {
     $data = array();
     $data['heading_title'] = 'ผลการประเมิน ';
     $data['action'] = base_url('result/detail');
 
     $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
-    $year_id = $this->model_setting->get('config_register_year_id'); // year
+    // old year_id
+    // $year_id = $this->model_setting->get('config_register_year_id'); // year
+    $year_id  = $this->model_year->getYear($year)->id;
+    if(empty($year_id)){
+      $data['register_close'] = 1;
+    }
+    $data['year_id'] = $year_id;
     $data['year'] = $this->model_year->getList($year_id)->year;
     $data['year_open'] = $this->model_setting->get('config_register_open') == 1 ? true : false; // now is open?
     $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
@@ -25,10 +31,11 @@ class Result extends CI_Controller
 
     $filter = array();
     $data['programs'] = $this->model_program->getLists($filter, 0, 99999999999);
-     $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, null, $year_id);
+     $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, $year_id);
      $data['program_choose'] = array(); 
+     $data['program_slip'] = array(); 
      foreach ($program_choose as $key => $value) {
-      
+      $data['program_slip'][$value->program_id] = $value->send_slip;
       // $filter = array(
       //   'year_id'    => 0,
       //   'program_id' => 1,
@@ -41,7 +48,7 @@ class Result extends CI_Controller
     $this->load->template('result/index', $data);
   }
 
-  public function program($slug) 
+  public function program($slug,$year_id) 
   {
     $data = array();
     $data['action'] = base_url('report/graph');
@@ -50,7 +57,7 @@ class Result extends CI_Controller
     $id = $program_info->id;
 
     $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
-    $year_id = $this->model_setting->get('config_register_year_id'); // year
+    // $year_id = $this->model_setting->get('config_register_year_id'); // year
     $data['year'] = $this->model_year->getList($year_id)->year;
     $data['year_open'] = $this->model_setting->get('config_register_open') == 1 ? true : false; // now is open?
     $register_info = $this->model_register->getRegisterByYearAndMember($member_id, $year_id);
@@ -58,16 +65,17 @@ class Result extends CI_Controller
     $register_id = isset($register_info->id) ? $register_info->id : 0; // debug when register error not found id
 
      // filter choose program
-     $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, null, $year_id);
+     $program_choose = $this->model_register_program->getListProgramByYear($register_id, $member_id, $company_id, $year_id);
      $program_has_slip = array();
      foreach ($program_choose as $key => $value) {
-       if ($value->send_slip==1) {
+      //  if ($value->send_slip==1) {
+      if ($value->admin_approve==1) {
         $program_has_slip[] = $value->program_id;
        }
      }
      if (!in_array($id,$program_has_slip)) {
       $this->session->set_userdata('error', 'ไม่สามารถเข้าโปรแกรม '.$program_info->name.' ได้ เนื่องจากคุณยัง ไม่ได้สมัคร หรือยังไม่ได้แจ้งชำระเงิน');
-      redirect('report');
+      redirect('report/index/'.$year_id);
      }
 
     $program = $this->model_program->getList($id);

@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <th class="text-right" style="border: 0;"><b>Trial</b></th>
                             </thead>
                             <tbody>
+                            <?php if(count($year_id) > 0 && !empty($program_choose)) { ?>
                                 <?php foreach ($program_choose as $program) :?>
                                 <tr>
                                     <td>
@@ -39,10 +40,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <?php echo isset($program_slip[$program->id]) && $program_slip[$program->id] == 0 ? '<a href="'.base_url('payment').'"><span class="badge badge-danger">รอแจ้งชำระเงิน</span></a>' : '';?>
                                     </td>  
                                     <td class="text-right">
-                                        <a href="<?php echo base_url('result/program/'.$program->program_slug);?>" class="btn btn-primary">Trial</a>
+                                        <a href="<?php echo base_url('result/program/'.$program->program_slug .'/'.$year_id);?>" class="btn btn-primary">Trial</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
+                                <?php } elseif(!empty($register_close)) { ?>
+                                    <tr>
+                                    <td colspan="2" class="text-center">ไม่พบรายการ</td>
+                                    </tr>
+                                <?php } elseif(count($year_id) > 0 && empty($program_choose)) { ?>
+                                    <tr>
+                                    <td colspan="2" class="text-center">ไม่พบรายการ</td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

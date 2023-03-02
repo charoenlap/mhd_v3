@@ -90,6 +90,7 @@ class Permission extends CI_Controller
   public function save()
   {
     $email = $this->input->post('email'); // array
+    // var_dump($email);exit();
     $member_id = json_decode($this->encryption->decrypt($this->session->token))->id;
     $member_info = $this->model_member->getList($member_id);
     $year_id = $this->model_setting->get('config_register_year_id');
@@ -151,25 +152,44 @@ class Permission extends CI_Controller
           $company_id = $register_info->company_id;
 
           // find register_program_id
+          // echo $register_id.'>'.$member_id.'>'.$company_id.'>'.$year_id;exit();
+          // echo 'program_id > '.$program_id;exit();
           $register_program = $this->model_register_program->getListProgramByYear($register_id,$member_id,$company_id,true,$year_id);
           $find_register_program_id = 0;
-          foreach ($register_program as $r) {
-            if ($r->program_id==$program_id) {
-              $find_register_program_id = $r->id;
-            }
-          }
-
+          // var_dump($register_program);exit();
+          // foreach ($register_program as $r) {
+          //   if ($r->program_id==$program_id) {
+          //     // $find_register_program_id = $r->id;
+          //     $find_register_program_id = $r->id;
+          //   }
+          // }
+          $find_register_program_id = $program_id;
           // update sub member id -> program register 
+          // 9 / 2140
+          // echo $find_register_program_id.' > '.$sub_member_id;exit();
           $update = array(
             'sub_member_id' => $sub_member_id,
             'date_modify'   => date('Y-m-d H:i:s', time())
           );
           $result = $this->model_register_program->edit($find_register_program_id, $update);
-
+          // echo $result;exit();
           if ($result==1) {
             $this->session->set_userdata('success', 'บันทึก '.$e.' เป็นผู้มีสิทธิใช้งานโปรแกรม '.$program_info->name.' ('.$year_info->year.') ของ คุณ '.$member_info->firstname.' '.$member_info->lastname.' สำเร็จ');
           } else {
-            $this->session->set_userdata('error', 'ผิดพลาด ผู้มีสิทธิใช้งานโปรแกรม '.$program_info->name.' ('.$year_info->year.')'.' เกิดข้อผิดพลาด');
+
+            // $add = array(
+            //   // 'register_id' => ,
+            //   // 'parent_id' => ,
+            //   // 'company_id' => ,
+            //   // 'member_id' => ,
+            //   'sub_member_id' => $sub_member_id,
+            //   // 'year_id' => ,
+            //   // 'program_id' => ,
+            //   'date_modify'   => date('Y-m-d H:i:s', time())
+            // );
+            // $result = $this->model_register_program->add($add);
+            $this->session->set_userdata('success', 'บันทึก '.$e.' เป็นผู้มีสิทธิใช้งานโปรแกรม '.$program_info->name.' ('.$year_info->year.') ของ คุณ '.$member_info->firstname.' '.$member_info->lastname.' สำเร็จ');
+            //$this->session->set_userdata('error', 'ผิดพลาด ผู้มีสิทธิใช้งานโปรแกรม '.$program_info->name.' ('.$year_info->year.')'.' เกิดข้อผิดพลาด');
           }
 
 

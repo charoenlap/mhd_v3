@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
-<div class="container-fluid about-schemes" style="margin-bottom: 140px;">
+
+<div class="col-sm-12 col-md-9 col-lg-10 about-schemes" style="margin-bottom: 140px;">
     <div class="row">
         <div class="col-sm-8">
             <img src="<?php echo base_url(); ?>assets/img/headerblack.png" class="img-fluid my-4 px-4" />
@@ -12,8 +13,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="container bg-light pt-2 pb-2">
-                    <h3>เกี่ยวกับโครงการ</h3>
-                    <p class="m-0">โครงการประเมินคุณภาพห้องปฏิบัติการโดยองค์กรภายนอก (The External Quality Assessment Schemes in Clinical Laboratory) คณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล&nbsp; ได้เริ่มดำเนินการตั้งแต่ ปี พ.ศ. 2528 จากการริเริ่มของศาสตราจารย์วีกูล วีรานุวัตติ์ คณบดี&nbsp;&nbsp;ท่านแรก นับเป็นปฐมบทของการควบคุมคุณภาพการวิเคราะห์ทางห้องปฏิบัติการทางการแพทย์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ในประเทศไทยและภูมิภาคอาเซียน และมีการดำเนินการพัฒนาโครงการต่างๆ เพื่อให้ครอบคลุมงานทางห้องปฏิบัติการทุกด้าน ปัจจุบันคณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล ได้ให้บริการโครงการประเมินคุณภาพห้องปฏิบัติการโดยองค์กรภายนอก จำนวนทั้งสิ้น 10 โครงการ จำแนกเป็น 5 สาขา ดังนี้&nbsp;</p>
+                    <h3><?php echo $lists->name; ?></h3>
+                    <?php echo $lists->detail; ?>
+                    <!-- <p class="m-0">โครงการประเมินคุณภาพห้องปฏิบัติการโดยองค์กรภายนอก (The External Quality Assessment Schemes in Clinical Laboratory) คณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล&nbsp; ได้เริ่มดำเนินการตั้งแต่ ปี พ.ศ. 2528 จากการริเริ่มของศาสตราจารย์วีกูล วีรานุวัตติ์ คณบดี&nbsp;&nbsp;ท่านแรก นับเป็นปฐมบทของการควบคุมคุณภาพการวิเคราะห์ทางห้องปฏิบัติการทางการแพทย์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ในประเทศไทยและภูมิภาคอาเซียน และมีการดำเนินการพัฒนาโครงการต่างๆ เพื่อให้ครอบคลุมงานทางห้องปฏิบัติการทุกด้าน ปัจจุบันคณะเทคนิคการแพทย์ มหาวิทยาลัยมหิดล ได้ให้บริการโครงการประเมินคุณภาพห้องปฏิบัติการโดยองค์กรภายนอก จำนวนทั้งสิ้น 10 โครงการ จำแนกเป็น 5 สาขา ดังนี้&nbsp;</p>
                     <p class="m-0">1. สาขาเคมีคลินิก</p>
                     <div style="margin-left:.38in;">-เคมีคลินิก (The External Quality Assessment Scheme in Clinical Chemistry: EQAC)</div>
                     <div style="margin-left:.38in;">-ฮอร์โมน (The External Quality Assessment Scheme in Hormone: EQAH)</div>
@@ -31,7 +33,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div style="margin-left:.38in;">-การย้อม Acid Fast Bacilli (EQAB: AFB)</div>
                     <div style="margin-left:.38in;">-การวินิจฉัยแยกชนิดและการทดสอบความไวต่อยาปฏิชีวนะ (EQAB: IDEN &amp; AST)</div>
                     <p class="m-0">&nbsp;</p>
-                    <p class="m-0">จากการดำเนินการที่ผ่านมาพบว่าจำนวนสมาชิกของโครงการมีแนวโน้มเพิ่มขึ้นทุกๆ ปี และทางโครงการได้มีการปรับปรุงการดำเนินงานให้สอดคล้องตามมาตรฐาน ISO/IEC 17043 ซึ่งจะทำให้เกิดประโยชน์สูงสุดแก่ห้องปฏิบัติการสมาชิก จึงหวังว่าห้องปฏิบัติการทางการแพทย์จะให้ความไว้วางใจเข้าร่วมเป็นสมาชิกของโครงการอย่างต่อเนื่องต่อไป</p>
+                    <p class="m-0">จากการดำเนินการที่ผ่านมาพบว่าจำนวนสมาชิกของโครงการมีแนวโน้มเพิ่มขึ้นทุกๆ ปี และทางโครงการได้มีการปรับปรุงการดำเนินงานให้สอดคล้องตามมาตรฐาน ISO/IEC 17043 ซึ่งจะทำให้เกิดประโยชน์สูงสุดแก่ห้องปฏิบัติการสมาชิก จึงหวังว่าห้องปฏิบัติการทางการแพทย์จะให้ความไว้วางใจเข้าร่วมเป็นสมาชิกของโครงการอย่างต่อเนื่องต่อไป</p> -->
                 </div>
             </div>
         </div>

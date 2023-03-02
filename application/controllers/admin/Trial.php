@@ -211,6 +211,7 @@ class Trial extends CI_Controller
     $data['note'] = !empty($trial_info->note) ? $trial_info->note : '';
     $data['row_limit'] = (int)$trial_info->row_limit;
     $data['program_id'] = $trial_info->program_id;
+    $data['year_id']  = $trial_info->year_id;
     
 
     // Submit

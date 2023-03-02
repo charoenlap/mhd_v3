@@ -57,6 +57,7 @@ class Content_model extends CI_Model {
     $this->db->where('mhd_language_detail.type', 1);
     $this->db->where('mhd_content.cat', $cat);
     $this->db->where('mhd_content.del', 0);
+    $this->db->order_by('seq', 'ASC');
     $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
     $query = $this->db->get('content');
     // return $query->num_rows() == 1 ? $query->result() : false;
@@ -133,6 +134,19 @@ class Content_model extends CI_Model {
     return $query->num_rows() == 1 ? $query->row() : false;
   }
 
+  public function getCatListById($id)
+  {
+    $this->db->select('mhd_content_cat.*,mhd_language_detail.*, mhd_content_cat.id as id,mhd_language_detail.id as detail_id');
+    $this->db->where('mhd_language_detail.type', 0);
+    $this->db->where('mhd_content_cat.id', $id);
+    $this->db->where('mhd_content_cat.del', 0);
+    // $this->db->where('mhd_language_detail.language_id', 1);
+    $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content_cat.id', 'LEFT');
+    $query = $this->db->get('content_cat');
+    // return $query->result();
+    return $query->num_rows() == 1 ? $query->row() : false;
+  }
+
   public function getCatLists($filter=array(), $start=0, $limit=10, $sort='', $by='')
   {
     $this->db->select('mhd_content_cat.*, mhd_language_detail.*, mhd_content_cat.id as id');
@@ -161,6 +175,51 @@ class Content_model extends CI_Model {
     $this->db->where('mhd_content.del', 0);
     $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
     $query = $this->db->get('content');
+    return $query->result();
+  }
+
+  public function getContentByCatId($cat,$id)
+  {
+    // $this->db->select('mhd_content.*, mhd_language_detail.*, mhd_content.id as id');
+    // $this->db->where('mhd_language_detail.type', 1);
+    $this->db->where('mhd_content.cat', $cat);
+    $this->db->where('mhd_content.id', $id);
+    $this->db->where('mhd_content.del', 0);
+    // $this->db->join('mhd_language_detail', 'mhd_language_detail.ref_id=mhd_content.id', 'LEFT');
+    $query = $this->db->get('content');
+    return $query->result();
+  }
+
+  public function editLanguageDetail($id,$data)
+  {
+    $this->db->where('id', $id);
+    $this->db->set($data);
+    $this->db->update('language_detail');
+    return $this->db->affected_rows()==1 ? true : false;
+  }
+
+  public function editLanguageDetailByRefId($id,$data)
+  {
+    $this->db->where('ref_id', $id);
+    $this->db->set($data);
+    $this->db->update('language_detail');
+    return $this->db->affected_rows()==1 ? true : false;
+  }
+
+  public function addLanguageDetail($data)
+  {
+    $this->db->set($data);
+    $this->db->insert('language_detail');
+    return $this->db->insert_id();
+  }
+
+  public function getSeqByCat($cat_id)
+  {
+    $this->db->select('mhd_content.*, max(seq)+1 as maxz');
+    // $this->db->where('mhd_language_detail.type', 1);
+    $this->db->where('mhd_content.cat', $cat_id);
+    $query = $this->db->get('content');
+    // return $this->db->affected_rows()==1 ? true : false;
     return $query->result();
   }
   // ------------------------------------------------------------------------

@@ -1,9 +1,10 @@
 
             
-          <div id="blockpreview" class="d-none">
+          <div id="blockpreview">
             <div class="row">
               <div class="col-6">
-                <button type="button" id="showgoback" class="btn btn-secondary">ย้อนกลับ</button>
+                <!-- <button type="button" id="showgoback" class="btn btn-secondary">ย้อนกลับ</button> -->
+                <a href="<?php echo $back_page; ?>" type="button" id="showgoback" class="btn btn-secondary">ย้อนกลับ</a>
               </div>
               <div class="col-6 text-right">
                 <button type="button" id="print" class="btn btn-info">พิมพ์</button>
@@ -37,12 +38,17 @@
   }
 
   #btnsubmit { display:none; }
+  <?php if($add_report == false){ ?>
   input,select,textarea { border:0 !important;  }
+  <?php } ?>
 </style>
 <!-- Script -->
 <script>
   $(function () {
+    <?php if($add_report == false){ ?>
     $('input,select,textarea').attr('disabled','disabled');
+    $('input#input_result').prop('disabled', false);
+    <?php } ?>
   });
 </script>
 <script>
@@ -72,12 +78,12 @@
       $('[name="type"]').val('submit');
       $('form').submit();
     });
-    $('#showgoback').click(function (e) { 
-      e.preventDefault();
-      $('input,select,textarea').removeAttr('disabled');
-      $('[name="type"]').val('');
-      $('form').submit();
-    });
+    // $('#showgoback').click(function (e) { 
+    //   e.preventDefault();
+    //   $('input,select,textarea').removeAttr('disabled');
+    //   $('[name="type"]').val('');
+    //   $('form').submit();
+    // });
     $('[name=received_status]').change(function (e) { 
       e.preventDefault();
       if ($(this).val()=='true'||$(this).val()=='false') {

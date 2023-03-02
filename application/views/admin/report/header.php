@@ -33,7 +33,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="row">
                 <div class="col-12">
 
-        <form action="<?php echo $action; ?>" method="POST" class="mb-5">
+        <form action="<?php echo $action; ?>" method="POST" class="mb-5" enctype="multipart/form-data">
 
           <input type="hidden" name="program_name" value="<?php echo $program_name; ?>" />
           <input type="hidden" name="program_id" value="<?php echo $program_id; ?>" />
@@ -45,7 +45,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
           <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
           <input type="hidden" name="address" value="<?php echo $address; ?>" />
           <input type="hidden" name="type" value="preview">
-
+          
+          <?php if ($post_val !== '' && count($image) > 0 ) { ?>
+          <input type="hidden" name="path" value="<?php echo $file_path; ?>">
+          <?php foreach ($image as $key => $val){ ?>
+          <input type="hidden" name="<?php echo 'file_'.$key; ?>" value="<?php echo $val; ?>">
+          <?php } ?>
+        <?php } ?>
 
           <div class="card card-body mb-2">
             <div class="row">
@@ -54,7 +60,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
               </div>
               
               <div class="col-sm-12 text-left">
-                <p class="mb-0"><?php echo $address;?></p>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h3><?php echo $member_no; ?></h3>
+                    <p class="mb-0"><?php echo $address;?></p>
+                  </div>
+                  <div class="col-md-9 text-right">
+                    <p>Reported Date <?php echo $date_report; ?></p>
+                  </div>
+                </div>
                 <hr />
               </div>
 

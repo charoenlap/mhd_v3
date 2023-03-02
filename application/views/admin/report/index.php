@@ -37,7 +37,6 @@
                     <div class="card">
                         <div class="card-body">
 
-
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -48,8 +47,14 @@
                                 <tbody>
                                     <?php if (count($lists)>0) : ?>
                                     <?php foreach ($lists as $key => $value) : ?>
+                                        <?php $report_trial = array_count_values(array_column($value->report_value,'trial_del')); ?>
                                     <tr>
-                                        <td><?php echo $value->year;?></td>
+                                        <td><?php echo $value->year;?>
+                                            <?php if(count($value->report_value) > 0 && count($report_trial['0']) > 0 ){ ?>
+                                                <!-- <span class="badge badge-danger right"><?php echo count($value->report_value); ?></span> -->
+                                                <span class="badge badge-danger right"><?php echo count($report_trial['0']); ?></span>
+                                            <?php } ?>
+                                        </td>
                                         <td class="text-center">
                                         <a href="<?php echo base_url('admin/report/year/'.$value->year);?>">Program</a>
                                         </td>

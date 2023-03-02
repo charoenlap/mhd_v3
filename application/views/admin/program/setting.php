@@ -62,9 +62,10 @@
                                                     <th width="20%">Tool Code</th>
                                                     <th>Tool Name</th>
                                                     <th width="20%">Tool Section</th>
-                                                    <th width="10%"">
+                                                    <!-- <th width="10%">
                                                         <a href=" #" type="button" id="add_tool" class="btn btn-sm btn-success">Add</a>
-                                                    </th>
+                                                    </th> -->
+                                                    <th class="text-center"><a href="<?php echo base_url('admin/program/addTool/'.$id); ?>" class="btn btn-success btn-add">Add</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -74,8 +75,8 @@
                                                     <td><input type="text" name="tool[code][<?php echo $tool->id;?>]" class="form-control" value="<?php echo $tool->code;?>" /></td>
                                                     <td><input type="text" name="tool[name][<?php echo $tool->id;?>]" class="form-control" value="<?php echo $tool->name;?>" /></td>
                                                     <td><input type="text" name="tool[section][<?php echo $tool->id;?>]" class="form-control" value="<?php echo $tool->section;?>" /></td>
-                                                    <td><button type="button" class="del_tool btn btn-sm btn-danger">Del</button></td>
-                                                    
+                                                    <!-- <td><button type="button" class="del_tool btn btn-sm btn-danger">Del</button></td> -->
+                                                    <td class="text-center"><a href="<?php echo base_url('admin/program/delTool/'.$tool->id.'/'.$id);?>" class="btn btn-danger btn-del">Del</a></td>
                                                 </tr>
                                                 <?php } } ?>
                                             </tbody>
@@ -88,10 +89,12 @@
                                                     <th width="25%">Instruments Code</th>
                                                     <th>Instruments Name</th>
                                                     <th width="20%">Instruments Section</th>
-                                                    <th width="10%""><button type=" button" class="btn btn-sm btn-success">Add</button></th>
+                                                    <!-- <th width="10%""><button type=" button" class="btn btn-sm btn-success">Add</button></th> -->
                                                     <?php if ($id==1) : // Only ID:EQAC ?>
                                                     <th width="20%"></th>
+                                                    <th>fix decimal</th>
                                                     <?php endif; // Only ID:EQAC ?>
+                                                    <th class="text-center"><a href="<?php echo base_url('admin/program/addInstruments/'.$id); ?>" class="btn btn-success btn-add">Add</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -101,20 +104,22 @@
                                                     <td><input type="text" name="instrument[code][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->code;?>" /></td>
                                                     <td><input type="text" name="instrument[name][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->name;?>" /></td>
                                                     <td><input type="text" name="instrument[section][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->section;?>" /></td>
-                                                    <td><button type="button" class="del_tool btn btn-sm btn-danger">Del</button></td>
+                                                    <!-- <td><button type="button" class="del_tool btn btn-sm btn-danger">Del</button></td> -->
                                                     <?php if ($id==1) : // Only ID:EQAC ?>
                                                     <td>
                                                         <?php $saved = json_decode($instrument->event, true); ?>
-                                                        <select class="form-control select2multi" multiple="multiple">
+                                                        <select class="form-control select2multi" multiple="multiple" name="instrument[event][<?php echo $instrument->id;?>][]">
                                                             <?php foreach ($tools_eqac as $value): ?>
-                                                            <option value="<?php echo $value->id;?>"
+                                                            <option value="<?php echo $value->code;?>"
                                                                     <?php echo in_array($value->code, $saved) ? 'selected' : '';?>>
                                                                 <?php echo $value->name;?>
                                                             </option>
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </td>
+                                                    <td><input type="text" name="instrument[fix_decimal][<?php echo $instrument->id;?>]" class="form-control" value="<?php echo $instrument->fix_decimal; ?>"></td>
                                                     <?php endif; // Only ID:EQAC ?>
+                                                    <td class="text-center"><a href="<?php echo base_url('admin/program/delInstruments/'.$instrument->id.'/'.$id);?>" class="btn btn-danger btn-del">Del</a></td>
                                                 </tr>
                                                 <?php } } ?>
                                             </tbody>
@@ -127,7 +132,7 @@
                                                 <tr>
                                                     <th width="25%">Principle Code</th>
                                                     <th>Principle name</th>
-                                                    <th width="10%""><button type=" button" class="btn btn-sm btn-success">Add</button></th>
+                                                    <!-- <th width="10%""><button type=" button" class="btn btn-sm btn-success">Add</button></th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -242,4 +247,22 @@ $(document).ready(function() {
         tokenSeparators: [',', ' ']
     })
 });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.btn-del').click(function (e) {
+            if(confirm('Do you want to delete ?')==true){
+                window.location = $(this).attr('href');
+            }else{
+                e.preventDefault();
+            }
+        });
+        $('.btn-add').click(function (e) {
+            if(confirm('คุณต้องการเพิ่มข้อมูลใช่มั้ย')==true){
+                window.location = $(this).attr('href');
+            }else{
+                e.preventDefault();
+            }
+        });
+    });
 </script>

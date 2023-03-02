@@ -11,10 +11,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="row">
         <div class="col-sm-12">
             <div class="card shadow mb-2 ">
-                <div class="card-body border-left-primary text-primary pb-1">พิมพ์ อีเมล แล้ว Enter เพื่อให้มาแจ้งส่งผลการทดสอบ </div>
+                <div class="card-body border-left-primary text-primary pb-1">มอบหมายผู้มีสิทธ์ส่งผลการทดสอบ และตรวจสอบผลการประเมิน (subuser) </div>
                 <div class="card-body border-left-primary text-primary">
-                    กรณีมีอีเมลนี้ในระบบแล้ว ไม่จำเป็นต้องสมัครใหม่ สามารถ login เพื่อแจ้งผลการทดสอบได้เลย<br>
-                    กรณีไม่มีผู้ใช้นี้ในระบบ จะต้องสมัครสมาชิกใหม่ และ login เข้าไปแจ้งผลการทดสอบ
+                โปรดตรวจสอบข้อมูลผู้รับสิทธ์หากเป็นผู้ใช้รายใหม่ จะต้องลงทะเบียนในระบบเว็บไซต์ก่อน login เข้าใช้งาน
                 </div>
             </div>
             <?php if (!empty($success)) { ?>
@@ -30,7 +29,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold">การให้สิทธิ์เข้าถึงการรายงานผลโปรแกรม</h6>
+                    <h6 class="m-0 font-weight-bold">รายละเอียดผู้รับสิทธ์(subuser)</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -60,8 +59,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                            <table class="table table-bordered">
                            <thead>
                                 <tr>
-                                    <th width="20%">โปรแกรม</th>
-                                    <th>ให้สิทธิ์บุคคลอื่น 1 คน (กรอกด้วย อีเมล เท่านั้น)</th>
+                                    <th width="20%">โครงการ</th>
+                                    <th>E-mail ผู้รับสิทธ์(จำกัด 1 อีเมล์ / โครงการ)</th>
                                     <th>บันทึก</th>
                                 </tr>
                            </thead>

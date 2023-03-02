@@ -25,17 +25,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-4 ">
-        <div class="card">
-        <div class="card-body">
-        <ul>
-        <?php foreach ($sub_menu as $menu) : ?>
-        <li>
-        <a href="<?php echo $menu->link;?>"><?php echo $menu->name;?></a>
+    <div class="col-sm-12 col-md-4 col-lg-4" style="padding:15px 15px;">
+        <ul class="list-group" style="margin-right:15px;margin-left:15px;">
+        <?php foreach ($right_side as $menu) : ?>
+        <?php //foreach ($sub_menu as $menu) : ?>
+        <li class="list-group-item bg-blue">
+            <a href="<?php echo $menu->link;?>" class="text-write"><i class="fas fa-arrow-right"></i> <?php echo $menu->name;?></a>
         </li>
         <?php endforeach;?>
         </ul>
-        </div>
-        </div>
     </div>
 </div>
