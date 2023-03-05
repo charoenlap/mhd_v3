@@ -30,7 +30,7 @@ date_default_timezone_set('Asia/Bangkok');
 switch (ENVIRONMENT)
 {
 	case 'development':
-    $config['base_url'] = 'https://www.fsoftpro.com/mhd/';
+    $config['base_url'] = 'http://localhost/mhd_v3/';
     break;
 
   case 'testing':
